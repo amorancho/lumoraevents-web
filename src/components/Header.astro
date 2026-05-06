@@ -1,0 +1,87 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { getLocalizedPath } from "../utils/i18n";
+import type { Locale } from "../utils/site";
+
+interface Props {
+  currentLocale: Locale;
+  navigation: {
+    links: Array<{
+      label: string;
+      href: string;
+    }>;
+    primaryCta: string;
+    menu: string;
+  };
+}
+
+const { currentLocale, navigation } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const homePath = `${baseUrl}${getLocalizedPath(currentLocale)}`;
+---
+
+<header
+  class="sticky top-0 z-30 border-b border-black/5 bg-surface/80 backdrop-blur"
+>
+  <div class="shell flex h-18 items-center justify-between gap-6">
+    <a
+      href={homePath}
+      class="flex items-center gap-3 text-sm font-semibold tracking-[0.2em] text-ink"
+    >
+      <span
+        class="flex size-10 items-center justify-center rounded-2xl bg-ink text-base text-white"
+      >
+        L
+      </span>
+      <span>LUMORAEVENTS</span>
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex">
+      {
+        navigation.links.map((link) => (
+          <a
+            href={`${homePath}${link.href}`}
+            class="text-sm text-ink-soft hover:text-ink"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+
+      <LanguageSwitcher currentLocale={currentLocale} />
+
+      <a href={`${homePath}#cta`} class="button-primary">
+        {navigation.primaryCta}
+      </a>
+    </nav>
+
+    <details class="relative md:hidden">
+      <summary class="button-secondary cursor-pointer">
+        {navigation.menu}
+      </summary>
+
+      <div class="panel absolute right-0 top-14 w-72 p-4">
+        <nav class="flex flex-col gap-2">
+          {
+            navigation.links.map((link) => (
+              <a
+                href={`${homePath}${link.href}`}
+                class="rounded-2xl px-4 py-3 text-sm font-medium text-ink-soft hover:bg-surface-muted hover:text-ink"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="mt-4 border-t border-border pt-4">
+          <LanguageSwitcher currentLocale={currentLocale} />
+        </div>
+
+        <a href={`${homePath}#cta`} class="button-primary mt-4 w-full">
+          {navigation.primaryCta}
+        </a>
+      </div>
+    </details>
+  </div>
+</header>

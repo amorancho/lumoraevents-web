@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "title": "LumoraEvents | Operaciones de eventos para equipos modernos",
+    "description": "LumoraEvents ayuda a planificar, lanzar y medir eventos de forma ordenada desde un único espacio de trabajo."
+  },
+  "navigation": {
+    "links": [
+      {
+        "label": "Producto",
+        "href": "#product"
+      },
+      {
+        "label": "Funcionalidades",
+        "href": "#features"
+      },
+      {
+        "label": "Contacto",
+        "href": "#cta"
+      }
+    ],
+    "primaryCta": "Solicitar demo",
+    "menu": "Menú"
+  },
+  "hero": {
+    "eyebrow": "Operativa de eventos, sin caos",
+    "title": "Una forma más serena de gestionar eventos premium a escala.",
+    "description": "LumoraEvents da a marketing, operaciones y clientes un sistema compartido para coordinar tiempos, proveedores y ejecución con más claridad.",
+    "primaryCta": "Ver el flujo",
+    "secondaryCta": "Hablar con ventas",
+    "highlights": [
+      "Estructura multiidioma lista para crecer",
+      "JavaScript mínimo y entrega estática rápida",
+      "Mejores handoffs entre equipo, venue y partners"
+    ],
+    "panel": {
+      "label": "Coordinación en directo",
+      "title": "Una sola línea temporal, todos alineados.",
+      "description": "Una base pública simple hoy, con suficiente estructura para evolucionar después hacia una web SaaS más completa.",
+      "items": [
+        {
+          "name": "Brief del venue",
+          "value": "Aprobado"
+        },
+        {
+          "name": "Run of show",
+          "value": "Compartido"
+        },
+        {
+          "name": "Aprobaciones cliente",
+          "value": "Sincronizadas"
+        }
+      ],
+      "note": "La base ya incluye SEO, hreflang, sitemap y despliegue automático en GitHub Pages."
+    }
+  },
+  "features": {
+    "eyebrow": "Pensado para ejecutar con foco",
+    "title": "Una arquitectura ligera y fácil de ampliar.",
+    "description": "El stack se mantiene pequeño a propósito, pero cubre lo necesario para una web pública SaaS sólida y profesional.",
+    "items": [
+      {
+        "title": "Componentes Astro reutilizables",
+        "description": "Header, hero, grid de funcionalidades, CTA, footer y selector de idioma se comparten entre todos los idiomas."
+      },
+      {
+        "title": "Separación limpia por idioma",
+        "description": "Los textos viven en diccionarios JSON mientras las URLs siguen siendo explícitas, canónicas y amigables para buscadores."
+      },
+      {
+        "title": "Rendimiento static-first",
+        "description": "Astro, Tailwind y GitHub Pages mantienen el peso bajo y el despliegue sencillo."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Lanza una presencia web más limpia para LumoraEvents.",
+    "description": "Esta base ya está preparada para producto, expansión multiidioma, analytics y despliegue continuo sin añadir complejidad innecesaria.",
+    "primaryCta": "Planificar la siguiente página",
+    "secondaryCta": "Revisar la arquitectura"
+  },
+  "footer": {
+    "tagline": "Operaciones de eventos premium, presentadas con claridad.",
+    "contactLabel": "hello@lumoraevents.net"
+  }
+}

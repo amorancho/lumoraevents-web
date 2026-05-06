@@ -1,0 +1,85 @@
+{
+  "meta": {
+    "title": "LumoraEvents | Event operations for modern teams",
+    "description": "LumoraEvents helps teams plan, launch, and measure polished events from one calm workspace."
+  },
+  "navigation": {
+    "links": [
+      {
+        "label": "Product",
+        "href": "#product"
+      },
+      {
+        "label": "Features",
+        "href": "#features"
+      },
+      {
+        "label": "Contact",
+        "href": "#cta"
+      }
+    ],
+    "primaryCta": "Book a demo",
+    "menu": "Menu"
+  },
+  "hero": {
+    "eyebrow": "Event operations, without the chaos",
+    "title": "A calmer way to run premium events at scale.",
+    "description": "LumoraEvents gives marketing, operations, and client teams one shared system to plan timelines, manage vendors, and keep every event moving with confidence.",
+    "primaryCta": "See the workflow",
+    "secondaryCta": "Talk to sales",
+    "highlights": [
+      "Multilingual structure ready for product growth",
+      "Minimal JavaScript and fast static delivery",
+      "Clear handoffs across teams, venues, and partners"
+    ],
+    "panel": {
+      "label": "Live coordination",
+      "title": "One timeline, every stakeholder aligned.",
+      "description": "A simple public web foundation now, with enough structure to expand into a richer SaaS marketing site later.",
+      "items": [
+        {
+          "name": "Venue brief",
+          "value": "Approved"
+        },
+        {
+          "name": "Run of show",
+          "value": "Shared"
+        },
+        {
+          "name": "Client approvals",
+          "value": "Synced"
+        }
+      ],
+      "note": "SEO metadata, hreflang, sitemap, and GitHub Pages deployment are already wired into the project."
+    }
+  },
+  "features": {
+    "eyebrow": "Built for focused execution",
+    "title": "A lean architecture that is easy to grow.",
+    "description": "The stack stays intentionally small while covering the essentials for a polished public SaaS presence.",
+    "items": [
+      {
+        "title": "Reusable Astro components",
+        "description": "Header, hero, feature grid, CTA, footer, and language switcher stay shared across locales."
+      },
+      {
+        "title": "Clean locale separation",
+        "description": "Texts live in JSON dictionaries while URLs remain explicit, canonical, and search-friendly."
+      },
+      {
+        "title": "Static-first performance",
+        "description": "Astro, Tailwind, and GitHub Pages keep the payload small and the deployment path simple."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Launch a cleaner LumoraEvents web presence.",
+    "description": "This starter is ready for product messaging, multilingual expansion, analytics, and continuous deployment without adding unnecessary moving parts.",
+    "primaryCta": "Plan the next page",
+    "secondaryCta": "Review the architecture"
+  },
+  "footer": {
+    "tagline": "Premium event operations, presented with clarity.",
+    "contactLabel": "hello@lumoraevents.net"
+  }
+}

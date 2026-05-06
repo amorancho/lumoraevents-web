@@ -1,0 +1,43 @@
+---
+import CTASection from "./CTASection.astro";
+import FeaturesSection from "./FeaturesSection.astro";
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import HeroSection from "./HeroSection.astro";
+import { getLocalizedPath, getMessages } from "../utils/i18n";
+import type { Locale } from "../utils/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const homePath = getLocalizedPath(locale);
+const featuresHref = `${homePath}#features`;
+const ctaHref = `${homePath}#cta`;
+---
+
+<Header currentLocale={locale} navigation={messages.navigation} />
+
+<main>
+  <HeroSection
+    hero={messages.hero}
+    primaryHref={featuresHref}
+    secondaryHref={ctaHref}
+  />
+
+  <FeaturesSection features={messages.features} />
+
+  <CTASection
+    cta={messages.cta}
+    primaryHref={ctaHref}
+    secondaryHref={featuresHref}
+  />
+</main>
+
+<Footer
+  currentLocale={locale}
+  navigation={messages.navigation}
+  footer={messages.footer}
+/>

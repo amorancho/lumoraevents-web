@@ -1,0 +1,43 @@
+---
+interface Props {
+  features: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    items: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+}
+
+const { features } = Astro.props;
+---
+
+<section id="features" class="shell py-16 sm:py-24">
+  <div class="max-w-2xl">
+    <span class="eyebrow">{features.eyebrow}</span>
+    <h2
+      class="mt-5 text-4xl font-semibold tracking-tight text-balance sm:text-5xl"
+    >
+      {features.title}
+    </h2>
+    <p class="mt-5 text-lg leading-8 text-ink-soft">
+      {features.description}
+    </p>
+  </div>
+
+  <div class="mt-12 grid gap-6 lg:grid-cols-3">
+    {
+      features.items.map((item, index) => (
+        <article class="panel p-8">
+          <span class="text-sm font-semibold text-accent">0{index + 1}</span>
+          <h3 class="mt-5 text-2xl font-semibold text-balance">{item.title}</h3>
+          <p class="mt-4 text-base leading-7 text-ink-soft">
+            {item.description}
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>
