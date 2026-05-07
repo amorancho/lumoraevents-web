@@ -1,11 +1,13 @@
 ---
+import ApproachSection from "./ApproachSection.astro";
 import CTASection from "./CTASection.astro";
+import FaqSection from "./FaqSection.astro";
 import FeaturesSection from "./FeaturesSection.astro";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import HeroSection from "./HeroSection.astro";
 import { getLocalizedPath, getMessages } from "../utils/i18n";
-import type { Locale } from "../utils/site";
+import { siteConfig, type Locale } from "../utils/site";
 
 interface Props {
   locale: Locale;
@@ -15,23 +17,33 @@ const { locale } = Astro.props;
 const messages = getMessages(locale);
 const homePath = getLocalizedPath(locale);
 const featuresHref = `${homePath}#features`;
-const ctaHref = `${homePath}#cta`;
+const contactHref = `mailto:${siteConfig.email}`;
+const appHref = siteConfig.appUrl;
 ---
 
-<Header currentLocale={locale} navigation={messages.navigation} />
+<Header
+  currentLocale={locale}
+  navigation={messages.navigation}
+  primaryHref={contactHref}
+  appHref={appHref}
+/>
 
-<main>
+<main class="relative isolate">
   <HeroSection
     hero={messages.hero}
-    primaryHref={featuresHref}
-    secondaryHref={ctaHref}
+    primaryHref={contactHref}
+    secondaryHref={appHref}
   />
+
+  <ApproachSection approach={messages.approach} />
 
   <FeaturesSection features={messages.features} />
 
+  <FaqSection faq={messages.faq} />
+
   <CTASection
     cta={messages.cta}
-    primaryHref={ctaHref}
+    primaryHref={contactHref}
     secondaryHref={featuresHref}
   />
 </main>

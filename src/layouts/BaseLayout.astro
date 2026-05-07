@@ -20,7 +20,7 @@ const canonicalUrl = getCanonicalUrl(locale, slug);
 const alternateLinks = getAlternateLinks(slug);
 const localeDefinition = getLocaleDefinition(locale);
 const socialImageUrl = new URL(
-  siteConfig.socialImage,
+  `${import.meta.env.BASE_URL}${siteConfig.socialImage}`,
   siteConfig.siteUrl,
 ).toString();
 ---
@@ -32,11 +32,15 @@ const socialImageUrl = new URL(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#f3f0e8" />
+    <meta name="theme-color" content="#0a0a0a" />
 
     <title>{title}</title>
 
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+      type="image/svg+xml"
+    />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -62,6 +66,8 @@ const socialImageUrl = new URL(
   </head>
 
   <body>
-    <slot />
+    <div class="relative isolate min-h-screen">
+      <slot />
+    </div>
   </body>
 </html>

@@ -10,78 +10,111 @@ interface Props {
       label: string;
       href: string;
     }>;
+    appLabel: string;
     primaryCta: string;
     menu: string;
   };
+  primaryHref: string;
+  appHref: string;
 }
 
-const { currentLocale, navigation } = Astro.props;
+const { currentLocale, navigation, primaryHref, appHref } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 const homePath = `${baseUrl}${getLocalizedPath(currentLocale)}`;
+const logoSrc = `${baseUrl}/images/logo.svg`;
 ---
 
-<header
-  class="sticky top-0 z-30 border-b border-black/5 bg-surface/80 backdrop-blur"
->
-  <div class="shell flex h-18 items-center justify-between gap-6">
-    <a
-      href={homePath}
-      class="flex items-center gap-3 text-sm font-semibold tracking-[0.2em] text-ink"
+<header class="sticky top-0 z-40 pt-3 sm:pt-4">
+  <div class="shell">
+    <div
+      class="relative flex min-h-[4.2rem] items-center justify-between gap-5 overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/48 px-4 shadow-[0_18px_50px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:px-5"
     >
-      <span
-        class="flex size-10 items-center justify-center rounded-2xl bg-ink text-base text-white"
+      <div
+        class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.015))]"
       >
-        L
-      </span>
-      <span>LUMORAEVENTS</span>
-    </a>
+      </div>
 
-    <nav class="hidden items-center gap-8 md:flex">
-      {
-        navigation.links.map((link) => (
-          <a
-            href={`${homePath}${link.href}`}
-            class="text-sm text-ink-soft hover:text-ink"
-          >
-            {link.label}
-          </a>
-        ))
-      }
-
-      <LanguageSwitcher currentLocale={currentLocale} />
-
-      <a href={`${homePath}#cta`} class="button-primary">
-        {navigation.primaryCta}
+      <a
+        href={homePath}
+        aria-label="LumoraEvents home"
+        class="relative z-10 flex shrink-0 items-center"
+      >
+        <img
+          src={logoSrc}
+          alt="LumoraEvents"
+          class="h-7 w-auto drop-shadow-[0_8px_18px_rgba(0,0,0,0.28)] sm:h-[1.85rem]"
+          loading="eager"
+        />
       </a>
-    </nav>
 
-    <details class="relative md:hidden">
-      <summary class="button-secondary cursor-pointer">
-        {navigation.menu}
-      </summary>
+      <nav class="relative z-10 hidden items-center gap-6 md:flex">
+        {
+          navigation.links.map((link) => (
+            <a
+              href={`${homePath}${link.href}`}
+              class="text-sm text-copy-soft hover:text-copy"
+            >
+              {link.label}
+            </a>
+          ))
+        }
 
-      <div class="panel absolute right-0 top-14 w-72 p-4">
-        <nav class="flex flex-col gap-2">
-          {
-            navigation.links.map((link) => (
-              <a
-                href={`${homePath}${link.href}`}
-                class="rounded-2xl px-4 py-3 text-sm font-medium text-ink-soft hover:bg-surface-muted hover:text-ink"
-              >
-                {link.label}
-              </a>
-            ))
-          }
-        </nav>
+        <a
+          href={appHref}
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 border-l border-white/8 pl-5 text-sm text-copy-soft/85 hover:text-copy"
+        >
+          <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
+          <span>{navigation.appLabel}</span>
+        </a>
 
-        <div class="mt-4 border-t border-border pt-4">
-          <LanguageSwitcher currentLocale={currentLocale} />
-        </div>
+        <LanguageSwitcher currentLocale={currentLocale} />
 
-        <a href={`${homePath}#cta`} class="button-primary mt-4 w-full">
+        <a href={primaryHref} class="button-primary px-4 py-2.5">
           {navigation.primaryCta}
         </a>
-      </div>
-    </details>
+      </nav>
+
+      <details class="relative z-10 md:hidden">
+        <summary
+          class="inline-flex cursor-pointer items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+        >
+          {navigation.menu}
+        </summary>
+
+        <div class="panel absolute right-0 top-16 w-72 p-4">
+          <nav class="flex flex-col gap-2">
+            {
+              navigation.links.map((link) => (
+                <a
+                  href={`${homePath}${link.href}`}
+                  class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+
+            <a
+              href={appHref}
+              target="_blank"
+              rel="noreferrer"
+              class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
+            >
+              {navigation.appLabel}
+            </a>
+          </nav>
+
+          <div class="mt-4 border-t border-white/10 pt-4">
+            <LanguageSwitcher currentLocale={currentLocale} />
+          </div>
+
+          <a href={primaryHref} class="button-primary mt-4 w-full">
+            {navigation.primaryCta}
+          </a>
+        </div>
+      </details>
+    </div>
   </div>
 </header>

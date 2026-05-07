@@ -1,85 +1,140 @@
 {
   "meta": {
-    "title": "LumoraEvents | Operaciones de eventos para equipos modernos",
-    "description": "LumoraEvents ayuda a planificar, lanzar y medir eventos de forma ordenada desde un único espacio de trabajo."
+    "title": "LumoraEvents | Software en tiempo real para competiciones de danza",
+    "description": "LumoraEvents unifica scoring de jueces, horarios, seguimiento en directo y resultados en tiempo real para competiciones de danza."
   },
   "navigation": {
     "links": [
       {
-        "label": "Producto",
+        "label": "Platform",
         "href": "#product"
       },
       {
-        "label": "Funcionalidades",
+        "label": "Features",
         "href": "#features"
       },
       {
-        "label": "Contacto",
+        "label": "Contact",
         "href": "#cta"
       }
     ],
-    "primaryCta": "Solicitar demo",
-    "menu": "Menú"
+    "appLabel": "Access platform",
+    "primaryCta": "Contact us",
+    "menu": "Men\u00fa"
   },
   "hero": {
-    "eyebrow": "Operativa de eventos, sin caos",
-    "title": "Una forma más serena de gestionar eventos premium a escala.",
-    "description": "LumoraEvents da a marketing, operaciones y clientes un sistema compartido para coordinar tiempos, proveedores y ejecución con más claridad.",
-    "primaryCta": "Ver el flujo",
-    "secondaryCta": "Hablar con ventas",
-    "highlights": [
-      "Estructura multiidioma lista para crecer",
-      "JavaScript mínimo y entrega estática rápida",
-      "Mejores handoffs entre equipo, venue y partners"
-    ],
-    "panel": {
-      "label": "Coordinación en directo",
-      "title": "Una sola línea temporal, todos alineados.",
-      "description": "Una base pública simple hoy, con suficiente estructura para evolucionar después hacia una web SaaS más completa.",
-      "items": [
-        {
-          "name": "Brief del venue",
-          "value": "Aprobado"
-        },
-        {
-          "name": "Run of show",
-          "value": "Compartido"
-        },
-        {
-          "name": "Aprobaciones cliente",
-          "value": "Sincronizadas"
-        }
-      ],
-      "note": "La base ya incluye SEO, hreflang, sitemap y despliegue automático en GitHub Pages."
-    }
+    "eyebrow": "Software premium para competiciones de danza modernas",
+    "title": "Your competition.\nIn real time.",
+    "description": "Scoring, horarios y resultados en directo con soporte real para eventos modernos.",
+    "primaryCta": "Contact us",
+    "secondaryCta": "Access platform",
+    "imageAlt": "Captura hero de la plataforma LumoraEvents",
+    "imageSrc": "",
+    "panelLabel": "Vista de plataforma",
+    "overlayLabel": "Control en directo",
+    "overlayDescription": "Una capa operativa serena para el d\u00eda del evento.",
+    "placeholderTitle": "Una plataforma. Control claro.",
+    "placeholderDescription": "Dise\u00f1ada para que horarios, scoring y resultados fluyan en tiempo real sin a\u00f1adir ruido."
   },
-  "features": {
-    "eyebrow": "Pensado para ejecutar con foco",
-    "title": "Una arquitectura ligera y fácil de ampliar.",
-    "description": "El stack se mantiene pequeño a propósito, pero cubre lo necesario para una web pública SaaS sólida y profesional.",
+  "approach": {
+    "eyebrow": "C\u00f3mo trabaja LumoraEvents",
+    "title": "Construida junto a competiciones reales.",
+    "description": "Herramientas modernas para competiciones en directo, definidas con organizadores que necesitan calma, claridad y soporte fiable.",
+    "note": "El soporte forma parte del producto: antes del evento, durante la presi\u00f3n del d\u00eda y despu\u00e9s de que todo termine.",
     "items": [
       {
-        "title": "Componentes Astro reutilizables",
-        "description": "Header, hero, grid de funcionalidades, CTA, footer y selector de idioma se comparten entre todos los idiomas."
+        "title": "Soporte que se mantiene cerca",
+        "description": "Estamos disponibles cuando cambian los tiempos, aparecen dudas o el evento necesita claridad operativa r\u00e1pida."
       },
       {
-        "title": "Separación limpia por idioma",
-        "description": "Los textos viven en diccionarios JSON mientras las URLs siguen siendo explícitas, canónicas y amigables para buscadores."
+        "title": "Una plataforma en evoluci\u00f3n constante",
+        "description": "LumoraEvents mejora a partir del feedback real de competiciones, no de supuestos gen\u00e9ricos de software."
       },
       {
-        "title": "Rendimiento static-first",
-        "description": "Astro, Tailwind y GitHub Pages mantienen el peso bajo y el despliegue sencillo."
+        "title": "Claridad bajo presi\u00f3n",
+        "description": "Cada flujo est\u00e1 dise\u00f1ado para reducir ruido y mantener alineados a organizadores, jueces y participantes."
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Experiencia de plataforma",
+    "title": "Dise\u00f1ada para jornadas de competici\u00f3n en directo.",
+    "description": "Cuatro superficies de producto. Una sola capa operativa serena.",
+    "sections": [
+      {
+        "id": "live-tracking",
+        "title": "Live tracking",
+        "description": "Sigue tiempos, categor\u00edas y flujo del evento desde una sola vista clara.",
+        "imageSrc": "/images/platform/live-tracking.webp",
+        "imageAlt": "Pantalla de live tracking de LumoraEvents"
+      },
+      {
+        "id": "judges",
+        "title": "Judges experience",
+        "description": "Una interfaz de scoring r\u00e1pida y limpia para tablet, m\u00f3vil y presi\u00f3n en directo.",
+        "imageSrc": "/images/platform/judges.webp",
+        "imageAlt": "Interfaz de scoring de jueces de LumoraEvents"
+      },
+      {
+        "id": "schedule",
+        "title": "Schedule configurator",
+        "description": "La complejidad del horario convertida en una capa flexible y controlable.",
+        "imageSrc": "/images/platform/schedule.webp",
+        "imageAlt": "Configurador de horarios de LumoraEvents"
+      },
+      {
+        "id": "public-live",
+        "title": "Public live experience",
+        "description": "Permite seguir participantes, horarios y resultados con una transparencia moderna.",
+        "imageSrc": "/images/platform/public-live.webp",
+        "imageAlt": "Experiencia p\u00fablica en directo de LumoraEvents"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Algunas dudas habituales antes de empezar.",
+    "description": "Respuestas cortas, expectativas claras y soporte real detr\u00e1s de la plataforma.",
+    "items": [
+      {
+        "question": "\u00bfHace falta conocimiento t\u00e9cnico para usar LumoraEvents?",
+        "answer": "No. LumoraEvents est\u00e1 dise\u00f1ado para equipos de evento, con una configuraci\u00f3n clara y soporte cercano cuando hace falta."
+      },
+      {
+        "question": "\u00bfC\u00f3mo env\u00edan las puntuaciones los jueces durante la competici\u00f3n?",
+        "answer": "Los jueces punt\u00faan desde una interfaz limpia en tablet o m\u00f3vil, para que el proceso siga siendo r\u00e1pido y legible en directo."
+      },
+      {
+        "question": "\u00bfPuede adaptarse a nuestras propias reglas de competici\u00f3n?",
+        "answer": "S\u00ed. La l\u00f3gica de scoring, el flujo de jueces, las categor\u00edas y los timings pueden ajustarse a c\u00f3mo funciona ya tu evento."
+      },
+      {
+        "question": "\u00bfFunciona bien en m\u00f3viles y tablets?",
+        "answer": "S\u00ed. La plataforma est\u00e1 pensada para funcionar con fluidez en navegadores modernos desde m\u00f3vil, tablet y escritorio."
+      },
+      {
+        "question": "\u00bfTendremos soporte durante el d\u00eda del evento?",
+        "answer": "S\u00ed. Estamos disponibles antes, durante y despu\u00e9s del evento para que las dudas operativas no se conviertan en estr\u00e9s."
+      },
+      {
+        "question": "\u00bfEl p\u00fablico puede seguir la competici\u00f3n en directo?",
+        "answer": "S\u00ed. Horarios, participantes y resultados pueden compartirse en una experiencia p\u00fablica en vivo con visibilidad clara."
+      },
+      {
+        "question": "\u00bfHay que instalar algo para usarla?",
+        "answer": "No hace falta instalar nada. LumoraEvents funciona en el navegador, lo que simplifica el despliegue para equipos y jueces."
       }
     ]
   },
   "cta": {
-    "title": "Lanza una presencia web más limpia para LumoraEvents.",
-    "description": "Esta base ya está preparada para producto, expansión multiidioma, analytics y despliegue continuo sin añadir complejidad innecesaria.",
-    "primaryCta": "Planificar la siguiente página",
-    "secondaryCta": "Revisar la arquitectura"
+    "eyebrow": "Siguiente paso",
+    "title": "Haz que el producto real sea el centro.",
+    "description": "El sistema visual ya est\u00e1 listo para usar capturas aut\u00e9nticas de LumoraEvents y construir una presencia p\u00fablica m\u00e1s limpia alrededor del flujo real de competici\u00f3n.",
+    "primaryCta": "Contactar",
+    "secondaryCta": "Ver capacidades"
   },
   "footer": {
-    "tagline": "Operaciones de eventos premium, presentadas con claridad.",
+    "tagline": "Operativa premium para competiciones con claridad, calma y soporte real.",
     "contactLabel": "hello@lumoraevents.net"
   }
 }

@@ -1,0 +1,108 @@
+---
+type ApproachItem = {
+  title: string;
+  description: string;
+};
+
+interface Props {
+  approach: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    note: string;
+    items: ApproachItem[];
+  };
+}
+
+const { approach } = Astro.props;
+
+const fallbackItems: ApproachItem[] = [
+  {
+    title: "Support that stays close",
+    description:
+      "We stay available before, during, and after event day so decisions do not get stuck in operational stress.",
+  },
+  {
+    title: "A platform that keeps evolving",
+    description:
+      "LumoraEvents grows from real organizer feedback and real competition workflows, not from generic SaaS assumptions.",
+  },
+  {
+    title: "Clarity under pressure",
+    description:
+      "Every surface is designed to reduce noise, protect timing, and keep the day readable when it matters most.",
+  },
+];
+
+const items = approach.items.length ? approach.items : fallbackItems;
+---
+
+<section class="shell relative py-20 sm:py-24 lg:py-28">
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.1),transparent_68%)] blur-3xl"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute left-[12%] top-28 hidden h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.08),transparent_72%)] blur-3xl lg:block"
+  >
+  </div>
+
+  <div
+    class="relative z-10 grid gap-12 border-y border-white/8 py-10 sm:gap-14 sm:py-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-18 lg:py-14"
+  >
+    <div class="max-w-[33rem]">
+      <span class="eyebrow reveal">{approach.eyebrow}</span>
+      <h2
+        class="reveal mt-5 max-w-[12ch] text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.8rem] lg:leading-[0.98]"
+        style="--reveal-delay: 80ms"
+      >
+        {approach.title}
+      </h2>
+      <p
+        class="reveal mt-5 max-w-[31rem] text-lg leading-8 text-copy-soft sm:text-xl"
+        style="--reveal-delay: 160ms"
+      >
+        {approach.description}
+      </p>
+
+      <p
+        class="reveal mt-8 max-w-[24rem] border-l border-white/10 pl-5 text-sm leading-7 text-copy-soft/90 sm:mt-10"
+        style="--reveal-delay: 240ms"
+      >
+        {approach.note}
+      </p>
+    </div>
+
+    <div class="reveal relative" style="--reveal-delay: 220ms">
+      <div
+        class="pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-white/8 lg:block"
+      >
+      </div>
+
+      <div class="lg:pl-10">
+        {
+          items.map((item, index) => (
+            <article
+              class:list={[
+                "group relative grid gap-3 py-6 transition-colors duration-300 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] sm:gap-6 sm:py-7",
+                index !== 0 && "border-t border-white/8",
+              ]}
+            >
+              <div class="flex items-center gap-3">
+                <span class="size-2 rounded-full bg-accent-cyan/80 shadow-[0_0_14px_rgba(6,182,212,0.28)] transition-transform duration-300 group-hover:scale-110">
+                </span>
+                <h3 class="text-base font-semibold tracking-[-0.03em] text-white sm:text-lg">
+                  {item.title}
+                </h3>
+              </div>
+
+              <p class="max-w-[32rem] text-sm leading-7 text-copy-soft sm:text-base">
+                {item.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

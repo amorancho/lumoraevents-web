@@ -1,12 +1,12 @@
 {
   "meta": {
-    "title": "LumoraEvents | Event operations for modern teams",
-    "description": "LumoraEvents helps teams plan, launch, and measure polished events from one calm workspace."
+    "title": "LumoraEvents | Real-time competition software for dance events",
+    "description": "LumoraEvents brings judges scoring, schedules, live tracking, and realtime results into one premium operating layer for dance competitions."
   },
   "navigation": {
     "links": [
       {
-        "label": "Product",
+        "label": "Platform",
         "href": "#product"
       },
       {
@@ -18,68 +18,123 @@
         "href": "#cta"
       }
     ],
-    "primaryCta": "Book a demo",
+    "appLabel": "Access platform",
+    "primaryCta": "Contact us",
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Event operations, without the chaos",
-    "title": "A calmer way to run premium events at scale.",
-    "description": "LumoraEvents gives marketing, operations, and client teams one shared system to plan timelines, manage vendors, and keep every event moving with confidence.",
-    "primaryCta": "See the workflow",
-    "secondaryCta": "Talk to sales",
-    "highlights": [
-      "Multilingual structure ready for product growth",
-      "Minimal JavaScript and fast static delivery",
-      "Clear handoffs across teams, venues, and partners"
-    ],
-    "panel": {
-      "label": "Live coordination",
-      "title": "One timeline, every stakeholder aligned.",
-      "description": "A simple public web foundation now, with enough structure to expand into a richer SaaS marketing site later.",
-      "items": [
-        {
-          "name": "Venue brief",
-          "value": "Approved"
-        },
-        {
-          "name": "Run of show",
-          "value": "Shared"
-        },
-        {
-          "name": "Client approvals",
-          "value": "Synced"
-        }
-      ],
-      "note": "SEO metadata, hreflang, sitemap, and GitHub Pages deployment are already wired into the project."
-    }
+    "eyebrow": "Premium software for modern dance competitions",
+    "title": "Your competition.\nIn real time.",
+    "description": "Live scoring, schedules and results with real support for modern events.",
+    "primaryCta": "Contact us",
+    "secondaryCta": "Access platform",
+    "imageAlt": "LumoraEvents platform hero screenshot",
+    "imageSrc": "",
+    "panelLabel": "Platform view",
+    "overlayLabel": "Live control",
+    "overlayDescription": "One calm operating layer for event day.",
+    "placeholderTitle": "One platform. Clear control.",
+    "placeholderDescription": "Designed to keep schedules, scoring and results moving in real time without adding noise."
   },
-  "features": {
-    "eyebrow": "Built for focused execution",
-    "title": "A lean architecture that is easy to grow.",
-    "description": "The stack stays intentionally small while covering the essentials for a polished public SaaS presence.",
+  "approach": {
+    "eyebrow": "How LumoraEvents works",
+    "title": "Built alongside real competition days.",
+    "description": "Modern live competition tools, shaped with organizers who need calm, clarity, and reliable support.",
+    "note": "Support is part of the product experience: before the event, during the pressure of the day, and after everything closes.",
     "items": [
       {
-        "title": "Reusable Astro components",
-        "description": "Header, hero, feature grid, CTA, footer, and language switcher stay shared across locales."
+        "title": "Support that stays close",
+        "description": "We stay available when timing shifts, questions appear, or the day needs fast operational clarity."
       },
       {
-        "title": "Clean locale separation",
-        "description": "Texts live in JSON dictionaries while URLs remain explicit, canonical, and search-friendly."
+        "title": "A platform that keeps evolving",
+        "description": "LumoraEvents improves through real feedback from competitions, not from generic software assumptions."
       },
       {
-        "title": "Static-first performance",
-        "description": "Astro, Tailwind, and GitHub Pages keep the payload small and the deployment path simple."
+        "title": "Clarity under pressure",
+        "description": "Each workflow is designed to reduce noise and keep organizers, judges, and participants aligned."
+      }
+    ]
+  },
+  "features": {
+    "eyebrow": "Platform experience",
+    "title": "Built for live competition days.",
+    "description": "Four product surfaces. One calm operational layer.",
+    "sections": [
+      {
+        "id": "live-tracking",
+        "title": "Live tracking",
+        "description": "Follow timings, categories, and live event flow from one clear screen.",
+        "imageSrc": "/images/platform/live-tracking.webp",
+        "imageAlt": "LumoraEvents live tracking screen"
+      },
+      {
+        "id": "judges",
+        "title": "Judges experience",
+        "description": "A fast, clean scoring interface built for tablets, phones, and live pressure.",
+        "imageSrc": "/images/platform/judges.webp",
+        "imageAlt": "LumoraEvents judges scoring interface"
+      },
+      {
+        "id": "schedule",
+        "title": "Schedule configurator",
+        "description": "Complex event structure simplified into one flexible scheduling layer.",
+        "imageSrc": "/images/platform/schedule.webp",
+        "imageAlt": "LumoraEvents schedule configurator"
+      },
+      {
+        "id": "public-live",
+        "title": "Public live experience",
+        "description": "Let participants, teams, and audiences follow the event with modern transparency.",
+        "imageSrc": "/images/platform/public-live.webp",
+        "imageAlt": "LumoraEvents public live experience"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "A few things teams usually ask before getting started.",
+    "description": "Short answers, clear expectations, and real support behind the platform.",
+    "items": [
+      {
+        "question": "Do we need technical knowledge to run LumoraEvents?",
+        "answer": "No. LumoraEvents is designed for event teams, with a setup that stays clear and support that stays close when needed."
+      },
+      {
+        "question": "How do judges send scores during the competition?",
+        "answer": "Judges score from a clean interface on tablet or phone, so input stays fast and readable under live pressure."
+      },
+      {
+        "question": "Can it adapt to our own competition rules?",
+        "answer": "Yes. Scoring logic, judging flow, categories, and timings can be adjusted to fit how your event already works."
+      },
+      {
+        "question": "Does it work well on phones and tablets?",
+        "answer": "Yes. The platform is built to work smoothly across modern browsers on mobile, tablet, and desktop."
+      },
+      {
+        "question": "Will we have support during the event day?",
+        "answer": "Yes. We stay available before, during, and after the event so operational questions do not turn into stress."
+      },
+      {
+        "question": "Can the audience follow the competition live?",
+        "answer": "Yes. Schedules, participants, and results can be shared through a live public experience with clear visibility."
+      },
+      {
+        "question": "Do we need to install anything to use it?",
+        "answer": "No installation is required. LumoraEvents runs in the browser, which keeps rollout simple for teams and judges."
       }
     ]
   },
   "cta": {
-    "title": "Launch a cleaner LumoraEvents web presence.",
-    "description": "This starter is ready for product messaging, multilingual expansion, analytics, and continuous deployment without adding unnecessary moving parts.",
-    "primaryCta": "Plan the next page",
-    "secondaryCta": "Review the architecture"
+    "eyebrow": "Next step",
+    "title": "Use the real product as the centerpiece.",
+    "description": "The visual system is now ready for authentic LumoraEvents product captures and a cleaner public presence built around real competition workflow.",
+    "primaryCta": "Contact us",
+    "secondaryCta": "See capabilities"
   },
   "footer": {
-    "tagline": "Premium event operations, presented with clarity.",
+    "tagline": "Premium competition operations with clarity, calm, and real support.",
     "contactLabel": "hello@lumoraevents.net"
   }
 }

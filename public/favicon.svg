@@ -1,5 +1,113 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="18" fill="#12141A" />
-  <path d="M20 18V46H44V38H28V18H20Z" fill="#F9F7F2" />
-  <path d="M38 18L44 24V18H38Z" fill="#4B6FE8" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="49"
+   height="74.499748"
+   viewBox="0 0 42.207481 64.17238"
+   class="looka-1j8o68f"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="4.1398601"
+     inkscape:cx="31.28125"
+     inkscape:cy="37.320101"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <defs
+     id="SvgjsDefs5317">
+    <linearGradient
+       id="SvgjsLinearGradient5322">
+      <stop
+         id="SvgjsStop5323"
+         stop-color="#006838"
+         offset="0" />
+      <stop
+         id="SvgjsStop5324"
+         stop-color="#96cf24"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       id="SvgjsLinearGradient5325">
+      <stop
+         id="SvgjsStop5326"
+         stop-color="#006838"
+         offset="0" />
+      <stop
+         id="SvgjsStop5327"
+         stop-color="#96cf24"
+         offset="1" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#SvgjsLinearGradient5322"
+       id="linearGradient3"
+       gradientTransform="scale(0.80387538,1.2439739)"
+       x1="26.188875"
+       y1="5.063611"
+       x2="93.233376"
+       y2="5.063611"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#SvgjsLinearGradient5322"
+       id="linearGradient4"
+       gradientTransform="scale(0.80387538,1.2439739)"
+       x1="26.188875"
+       y1="5.0639272"
+       x2="93.233376"
+       y2="5.0639272"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="SvgjsG5318"
+     featurekey="symbolFeature-0"
+     transform="matrix(0.76943813,0,0,0.76943813,-16.198665,-4.846993)"
+     fill="url(#SvgjsLinearGradient5322)"
+     style="fill:url(#linearGradient4)">
+    <g
+       fill="none"
+       stroke="#000000"
+       font-family="'Times New Roman'"
+       font-size="16px"
+       transform="scale(1,-1)"
+       id="g3">
+      <g
+         transform="translate(0,-96)"
+         id="g2">
+        <g
+           id="g1">
+          <path
+             d="m 21.633,34.925 c 3.34,11.93 19.204,18.785 25.289,31.298 2.944,6.056 1.568,17.238 -3.458,21.716 -0.267,0.239 -1.374,2.387 -0.247,1.582 C 54.416,81.327 63.521,70.509 59.309,60.068 53.464,45.577 38.409,38.34 38.519,23.585 38.566,17.447 43.088,12.523 48.838,7.375 L 49.073,6.299 C 34.143,10.56 17.742,21.028 21.633,34.925 Z M 59.314,18.723 c 8.673,7.801 13.968,12.54 11.729,21.575 2.723,-4.179 5.252,-9.975 3.092,-14.492 C 72.203,21.769 70.28,18.956 63.244,15.02 59.515,12.935 56.712,10.677 54.37,6.898 c -0.122,3.955 0.641,7.954 4.944,11.825 z m -9.628,13.43 c 3.317,6.102 8.159,10.469 12.852,16.729 3.331,4.443 6.382,11.822 3.193,17.846 l 0.206,0.288 C 70.824,61.556 71.028,52.654 69.495,46.059 67.086,35.69 58.5,31.5 53.511,23.918 51.557,20.948 50.446,17.311 51,13.5 45.461,18.021 46.717,26.69 49.686,32.153 Z"
+             stroke-linejoin="miter"
+             stroke-linecap="round"
+             stroke="none"
+             stroke-width="0.75"
+             fill="url(#SvgjsLinearGradient5322)"
+             marker-start="none"
+             marker-end="none"
+             stroke-miterlimit="79.8403"
+             id="path1"
+             style="fill:url(#linearGradient3)" />
+        </g>
+      </g>
+    </g>
+  </g>
 </svg>
