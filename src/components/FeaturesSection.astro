@@ -2,6 +2,13 @@
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
+type PlatformSectionId =
+  | "registrations"
+  | "configuration"
+  | "judges"
+  | "live-tracking"
+  | "public-live";
+
 type PlatformSection = {
   id: string;
   title: string;
@@ -25,53 +32,86 @@ const publicRoot = new URL("../../public/", import.meta.url);
 const hasAsset = (src: string) =>
   existsSync(fileURLToPath(new URL(src.replace(/^\//, ""), publicRoot)));
 
+const sectionOrder: PlatformSectionId[] = [
+  "registrations",
+  "configuration",
+  "judges",
+  "live-tracking",
+  "public-live",
+];
+
 const fallbackSections: PlatformSection[] = [
   {
-    id: "live-tracking",
-    title: "Live tracking",
+    id: "registrations",
+    title: "Registrations",
     description:
-      "Follow timings, categories, and live event flow from one clear screen.",
-    imageSrc: "/images/platform/live-tracking.webp",
-    imageAlt: "LumoraEvents live tracking screenshot placeholder",
+      "Schools, participants, categories, and music prepared in one clear flow instead of being scattered across files and inboxes.",
+    imageSrc: "/images/platform/registrations.webp",
+    imageAlt: "LumoraEvents registrations flow placeholder",
+  },
+  {
+    id: "configuration",
+    title: "Configuration",
+    description:
+      "Schedules, judges, criteria, and event structure prepared in one flexible setup layer before the day begins.",
+    imageSrc: "/images/platform/configuration.webp",
+    imageAlt: "LumoraEvents event configuration placeholder",
   },
   {
     id: "judges",
     title: "Judges experience",
     description:
-      "A fast, clean scoring interface built for tablets, phones, and live pressure.",
+      "A clean scoring flow that stays fast and easy to follow on tablet or phone, even under live pressure.",
     imageSrc: "/images/platform/judges.webp",
-    imageAlt: "LumoraEvents judges scoring screenshot placeholder",
+    imageAlt: "LumoraEvents judges scoring interface",
   },
   {
-    id: "schedule",
-    title: "Schedule configurator",
+    id: "live-tracking",
+    title: "Live tracking",
     description:
-      "Complex event structure simplified into one flexible scheduling layer.",
-    imageSrc: "/images/platform/schedule.webp",
-    imageAlt: "LumoraEvents schedule configurator screenshot placeholder",
+      "See what is running, what is next, and where attention is needed from one calm operational view.",
+    imageSrc: "/images/platform/live-tracking.webp",
+    imageAlt: "LumoraEvents live tracking screen",
   },
   {
     id: "public-live",
     title: "Public live experience",
     description:
-      "Let participants, teams, and audiences follow the event with modern transparency.",
+      "Participants and audiences follow schedules, performances, and results through a modern public live experience.",
     imageSrc: "/images/platform/public-live.webp",
-    imageAlt: "LumoraEvents public live experience screenshot placeholder",
+    imageAlt: "LumoraEvents public live experience",
   },
 ];
 
-const sections = (
-  features.sections.length ? features.sections : fallbackSections
-).map((section, index) => ({
-  ...(fallbackSections[index] ?? fallbackSections[0]),
-  ...section,
-  hasImage: hasAsset(section.imageSrc),
-}));
+const fallbackById = new Map(
+  fallbackSections.map((section) => [section.id as PlatformSectionId, section]),
+);
+const providedById = new Map(
+  features.sections.map((section) => [
+    section.id as PlatformSectionId,
+    section,
+  ]),
+);
 
-const liveTracking = sections[0] ?? fallbackSections[0];
-const judges = sections[1] ?? fallbackSections[1];
-const schedule = sections[2] ?? fallbackSections[2];
-const publicLive = sections[3] ?? fallbackSections[3];
+const sections = sectionOrder.map((id) => {
+  const fallback = fallbackById.get(id) ?? fallbackSections[0];
+  const section = providedById.get(id);
+  const imageSrc = section?.imageSrc ?? fallback.imageSrc;
+
+  return {
+    ...fallback,
+    ...section,
+    id,
+    imageSrc,
+    hasImage: hasAsset(imageSrc),
+  };
+});
+
+const registrations = sections[0] ?? fallbackSections[0];
+const configuration = sections[1] ?? fallbackSections[1];
+const judges = sections[2] ?? fallbackSections[2];
+const liveTracking = sections[3] ?? fallbackSections[3];
+const publicLive = sections[4] ?? fallbackSections[4];
 ---
 
 <section id="features" class="shell relative py-20 sm:py-28">
@@ -80,11 +120,11 @@ const publicLive = sections[3] ?? fallbackSections[3];
   >
   </div>
   <div
-    class="pointer-events-none absolute right-[8%] top-[38rem] h-48 w-48 bg-[radial-gradient(circle,rgba(6,182,212,0.1),transparent_72%)] blur-3xl"
+    class="pointer-events-none absolute right-[8%] top-[52rem] h-48 w-48 bg-[radial-gradient(circle,rgba(6,182,212,0.1),transparent_72%)] blur-3xl"
   >
   </div>
 
-  <div class="relative z-10 max-w-[40rem]">
+  <div class="relative z-10 max-w-[44rem]">
     <span class="eyebrow reveal">{features.eyebrow}</span>
     <h2
       class="reveal mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.9rem] lg:leading-[0.96]"
@@ -93,7 +133,7 @@ const publicLive = sections[3] ?? fallbackSections[3];
       {features.title}
     </h2>
     <p
-      class="reveal mt-5 max-w-[34rem] text-lg leading-8 text-copy-soft sm:text-xl"
+      class="reveal mt-5 max-w-[38rem] text-lg leading-8 text-copy-soft sm:text-xl"
       style="--reveal-delay: 160ms"
     >
       {features.description}
@@ -104,6 +144,243 @@ const publicLive = sections[3] ?? fallbackSections[3];
     class="relative z-10 mt-18 space-y-20 sm:mt-22 sm:space-y-24 lg:space-y-28"
   >
     <article class="reveal" style="--reveal-delay: 220ms">
+      <div class="max-w-[31rem]">
+        <p
+          class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
+        >
+          {registrations.title}
+        </p>
+        <p
+          class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
+        >
+          {registrations.description}
+        </p>
+      </div>
+
+      <div class="relative mt-8 sm:mt-10">
+        <div
+          class="pointer-events-none absolute inset-x-8 top-6 h-28 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_72%)] blur-3xl"
+        >
+        </div>
+
+        <div
+          class="group relative overflow-hidden rounded-[2.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_34px_90px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:p-5"
+        >
+          <div class="flex items-center gap-2 border-b border-white/10 pb-4">
+            <span class="size-2 rounded-full bg-white/25"></span>
+            <span class="size-2 rounded-full bg-white/20"></span>
+            <span class="size-2 rounded-full bg-white/15"></span>
+            <span
+              class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
+            >
+              Registration flow
+            </span>
+          </div>
+
+          <div
+            class="mt-4 overflow-hidden rounded-[1.9rem] border border-white/10 bg-black/42 p-4"
+          >
+            {
+              registrations.hasImage ? (
+                <img
+                  src={registrations.imageSrc}
+                  alt={registrations.imageAlt}
+                  class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="grid min-h-[24rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[30rem]">
+                  <div class="max-w-md">
+                    <p class="text-2xl font-semibold text-white sm:text-3xl">
+                      {registrations.title}
+                    </p>
+                    <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
+                      {registrations.imageSrc}
+                    </p>
+                  </div>
+                </div>
+              )
+            }
+          </div>
+        </div>
+
+        <div
+          class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:-right-3 sm:bottom-8 sm:mt-0"
+        >
+          Schools, categories, music, and participant data gathered in one clear
+          place.
+        </div>
+      </div>
+    </article>
+
+    <article class="reveal" style="--reveal-delay: 120ms">
+      <div class="relative">
+        <div class="max-w-[31rem] lg:ml-auto">
+          <p
+            class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
+          >
+            {configuration.title}
+          </p>
+          <p
+            class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
+          >
+            {configuration.description}
+          </p>
+        </div>
+
+        <div class="relative mt-10 sm:mt-12">
+          <div
+            class="pointer-events-none absolute left-[18%] top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.16),transparent_72%)] blur-3xl"
+          >
+          </div>
+
+          <div
+            class="ml-auto w-full overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_32px_86px_rgba(0,0,0,0.42)] lg:w-[88%]"
+          >
+            <div class="flex items-center gap-2 border-b border-white/10 pb-4">
+              <span class="size-2 rounded-full bg-white/25"></span>
+              <span class="size-2 rounded-full bg-white/20"></span>
+              <span class="size-2 rounded-full bg-white/15"></span>
+              <span
+                class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
+              >
+                Event setup
+              </span>
+            </div>
+
+            <div
+              class="mt-4 overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/42 p-4"
+            >
+              {
+                configuration.hasImage ? (
+                  <img
+                    src={configuration.imageSrc}
+                    alt={configuration.imageAlt}
+                    class="h-auto w-full rounded-[1.3rem] border border-white/8 object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="grid min-h-[22rem] place-items-center rounded-[1.3rem] border border-dashed border-white/12 bg-black/45 px-10 py-14 text-center sm:min-h-[28rem]">
+                    <div class="max-w-md">
+                      <p class="text-2xl font-semibold text-white sm:text-3xl">
+                        {configuration.title}
+                      </p>
+                      <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
+                        {configuration.imageSrc}
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+
+          <div
+            class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:left-0 sm:top-8 sm:mt-0"
+          >
+            Schedules, judges, categories, and criteria shaped before the day
+            begins.
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="reveal" style="--reveal-delay: 120ms">
+      <div class="relative">
+        <div class="max-w-[31rem] lg:ml-auto">
+          <p
+            class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
+          >
+            {judges.title}
+          </p>
+          <p
+            class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
+          >
+            {judges.description}
+          </p>
+        </div>
+
+        <div class="relative mt-10 min-h-[26rem] sm:min-h-[32rem]">
+          <div
+            class="pointer-events-none absolute left-[12%] top-14 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.12),transparent_72%)] blur-3xl"
+          >
+          </div>
+
+          <div
+            class="relative w-[84%] overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_30px_80px_rgba(0,0,0,0.4)] sm:w-[76%]"
+          >
+            <div class="flex items-center gap-2 border-b border-white/10 pb-4">
+              <span class="size-2 rounded-full bg-white/25"></span>
+              <span class="size-2 rounded-full bg-white/20"></span>
+              <span class="size-2 rounded-full bg-white/15"></span>
+              <span
+                class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
+              >
+                Judge input
+              </span>
+            </div>
+
+            <div
+              class="mt-4 overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/40 p-4"
+            >
+              {
+                judges.hasImage ? (
+                  <img
+                    src={judges.imageSrc}
+                    alt={judges.imageAlt}
+                    class="h-auto w-full rounded-[1.2rem] border border-white/8 object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="grid min-h-[20rem] place-items-center rounded-[1.2rem] border border-dashed border-white/12 bg-black/45 px-8 py-12 text-center sm:min-h-[24rem]">
+                    <div class="max-w-sm">
+                      <p class="text-xl font-semibold text-white sm:text-2xl">
+                        Tablet scoring
+                      </p>
+                      <p class="mt-3 text-sm leading-7 text-copy-soft">
+                        {judges.imageSrc}
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+
+          <div
+            class="absolute right-0 top-14 w-[42%] overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 p-3 shadow-[0_24px_64px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:right-[6%] sm:top-28 sm:w-[28%]"
+          >
+            <div
+              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
+            >
+              {
+                judges.hasImage ? (
+                  <img
+                    src={judges.imageSrc}
+                    alt={judges.imageAlt}
+                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-black/48 px-4 py-6 text-center sm:min-h-[17rem]">
+                    <div>
+                      <p class="text-sm font-semibold text-white">
+                        Mobile scoring
+                      </p>
+                      <p class="mt-2 text-xs leading-5 text-copy-soft">
+                        Clear, fast input under live pressure.
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="reveal" style="--reveal-delay: 120ms">
       <div class="max-w-[30rem]">
         <p
           class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
@@ -167,151 +444,7 @@ const publicLive = sections[3] ?? fallbackSections[3];
         <div
           class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:-right-3 sm:bottom-8 sm:mt-0"
         >
-          Follow the event as it moves, not as a static schedule.
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="relative">
-        <div class="max-w-[31rem] lg:ml-auto">
-          <p
-            class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-          >
-            {judges.title}
-          </p>
-          <p
-            class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-          >
-            {judges.description}
-          </p>
-        </div>
-
-        <div class="relative mt-10 min-h-[26rem] sm:min-h-[32rem]">
-          <div
-            class="pointer-events-none absolute left-[12%] top-14 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.12),transparent_72%)] blur-3xl"
-          >
-          </div>
-
-          <div
-            class="relative w-[84%] overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_30px_80px_rgba(0,0,0,0.4)] sm:w-[76%]"
-          >
-            <div
-              class="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/40 p-4"
-            >
-              {
-                judges.hasImage ? (
-                  <img
-                    src={judges.imageSrc}
-                    alt={judges.imageAlt}
-                    class="h-auto w-full rounded-[1.2rem] border border-white/8 object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div class="grid min-h-[20rem] place-items-center rounded-[1.2rem] border border-dashed border-white/12 bg-black/45 px-8 py-12 text-center sm:min-h-[24rem]">
-                    <div class="max-w-sm">
-                      <p class="text-xl font-semibold text-white sm:text-2xl">
-                        Tablet scoring
-                      </p>
-                      <p class="mt-3 text-sm leading-7 text-copy-soft">
-                        {judges.imageSrc}
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-
-          <div
-            class="absolute right-0 top-14 w-[42%] overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 p-3 shadow-[0_24px_64px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:right-[6%] sm:top-28 sm:w-[28%]"
-          >
-            <div
-              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
-            >
-              {
-                judges.hasImage ? (
-                  <img
-                    src={judges.imageSrc}
-                    alt={judges.imageAlt}
-                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-black/48 px-4 py-6 text-center sm:min-h-[17rem]">
-                    <div>
-                      <p class="text-sm font-semibold text-white">
-                        Mobile scoring
-                      </p>
-                      <p class="mt-2 text-xs leading-5 text-copy-soft">
-                        Fast, clean input for judges.
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="relative">
-        <div class="max-w-[29rem]">
-          <p
-            class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-          >
-            {schedule.title}
-          </p>
-          <p
-            class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-          >
-            {schedule.description}
-          </p>
-        </div>
-
-        <div class="relative mt-10 sm:mt-12">
-          <div
-            class="pointer-events-none absolute left-[18%] top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.16),transparent_72%)] blur-3xl"
-          >
-          </div>
-
-          <div
-            class="ml-auto w-full overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_32px_86px_rgba(0,0,0,0.42)] lg:w-[88%]"
-          >
-            <div
-              class="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/42 p-4"
-            >
-              {
-                schedule.hasImage ? (
-                  <img
-                    src={schedule.imageSrc}
-                    alt={schedule.imageAlt}
-                    class="h-auto w-full rounded-[1.3rem] border border-white/8 object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div class="grid min-h-[22rem] place-items-center rounded-[1.3rem] border border-dashed border-white/12 bg-black/45 px-10 py-14 text-center sm:min-h-[28rem]">
-                    <div class="max-w-md">
-                      <p class="text-2xl font-semibold text-white sm:text-3xl">
-                        {schedule.title}
-                      </p>
-                      <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
-                        {schedule.imageSrc}
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-
-          <div
-            class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:left-0 sm:top-8 sm:mt-0"
-          >
-            Reorder, adjust, and adapt without losing the shape of the day.
-          </div>
+          See what is live, what is next, and where attention is needed.
         </div>
       </div>
     </article>
@@ -339,8 +472,19 @@ const publicLive = sections[3] ?? fallbackSections[3];
         <div
           class="relative overflow-hidden rounded-[2.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_34px_90px_rgba(0,0,0,0.42)]"
         >
+          <div class="flex items-center gap-2 border-b border-white/10 pb-4">
+            <span class="size-2 rounded-full bg-white/25"></span>
+            <span class="size-2 rounded-full bg-white/20"></span>
+            <span class="size-2 rounded-full bg-white/15"></span>
+            <span
+              class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
+            >
+              Public live
+            </span>
+          </div>
+
           <div
-            class="overflow-hidden rounded-[1.9rem] border border-white/10 bg-black/42 p-4"
+            class="mt-4 overflow-hidden rounded-[1.9rem] border border-white/10 bg-black/42 p-4"
           >
             {
               publicLive.hasImage ? (
@@ -371,8 +515,7 @@ const publicLive = sections[3] ?? fallbackSections[3];
         >
           <span class="mt-2 size-2 shrink-0 rounded-full bg-accent-cyan"></span>
           <p>
-            Participants, schedules, and results visible to everyone who needs
-            them.
+            Participants and audiences stay informed without chasing updates.
           </p>
         </div>
       </div>

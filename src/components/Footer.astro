@@ -1,5 +1,4 @@
 ---
-import LanguageSwitcher from "./LanguageSwitcher.astro";
 import { getLocalizedPath } from "../utils/i18n";
 import { siteConfig, type Locale } from "../utils/site";
 
@@ -13,7 +12,6 @@ interface Props {
   };
   footer: {
     tagline: string;
-    contactLabel: string;
   };
 }
 
@@ -30,7 +28,7 @@ const year = new Date().getFullYear();
       <div
         class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
       >
-        <div class="max-w-[32rem]">
+        <div class="max-w-[31rem]">
           <a
             href={homePath}
             aria-label="LumoraEvents home"
@@ -43,33 +41,53 @@ const year = new Date().getFullYear();
               loading="lazy"
             />
           </a>
-          <p class="mt-5 max-w-xl text-sm leading-7 text-copy-soft">
+          <p class="mt-5 max-w-[26rem] text-sm leading-7 text-copy-soft">
             {footer.tagline}
           </p>
         </div>
 
-        <div class="flex flex-col items-start gap-4 sm:items-end">
-          <div
-            class="flex flex-wrap items-center gap-3 text-sm text-copy-soft sm:justify-end"
+        <div class="flex flex-col items-start gap-3 sm:items-end">
+          <a
+            href={siteConfig.instagramUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LumoraEvents Instagram"
+            class="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[transform,border-color,background-color,color] duration-300 hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.05]"
           >
-            <a
-              href={`mailto:${siteConfig.email}`}
-              class="font-medium hover:text-copy"
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              class="size-4 text-copy-soft transition-colors duration-300 group-hover:text-copy"
             >
-              {footer.contactLabel}
-            </a>
-            <span class="size-1 rounded-full bg-white/16"></span>
-            <a
-              href={siteConfig.instagramUrl}
-              target="_blank"
-              rel="noreferrer"
-              class="font-medium hover:text-copy"
-            >
-              {siteConfig.instagramHandle}
-            </a>
-          </div>
+              <rect
+                x="3.75"
+                y="3.75"
+                width="16.5"
+                height="16.5"
+                rx="4.25"
+                stroke="currentColor"
+                stroke-width="1.4"
+              ></rect>
+              <circle
+                cx="12"
+                cy="12"
+                r="3.7"
+                stroke="currentColor"
+                stroke-width="1.4"
+              ></circle>
+              <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor"></circle>
+            </svg>
+            <span>{siteConfig.instagramHandle}</span>
+          </a>
 
-          <LanguageSwitcher currentLocale={currentLocale} />
+          <a
+            href={`mailto:${siteConfig.email}`}
+            class="inline-flex items-center gap-2 text-sm text-copy-soft transition-colors duration-300 hover:text-copy sm:justify-end"
+          >
+            <span class="size-1 rounded-full bg-white/18"></span>
+            <span>{siteConfig.email}</span>
+          </a>
         </div>
       </div>
 
@@ -79,7 +97,10 @@ const year = new Date().getFullYear();
         <nav class="flex flex-wrap gap-5">
           {
             navigation.links.map((link) => (
-              <a href={`${homePath}${link.href}`} class="hover:text-copy">
+              <a
+                href={`${homePath}${link.href}`}
+                class="transition-colors duration-300 hover:text-copy"
+              >
                 {link.label}
               </a>
             ))

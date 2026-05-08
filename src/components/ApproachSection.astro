@@ -4,12 +4,17 @@ type ApproachItem = {
   description: string;
 };
 
+type ApproachAccent = {
+  variant: "linked" | "offset" | "step" | "orbit";
+  dot: string;
+  glow: string;
+};
+
 interface Props {
   approach: {
     eyebrow: string;
     title: string;
     description: string;
-    note: string;
     items: ApproachItem[];
   };
 }
@@ -18,23 +23,54 @@ const { approach } = Astro.props;
 
 const fallbackItems: ApproachItem[] = [
   {
+    title: "One place for the moving parts",
+    description:
+      "The event's operational core stays connected instead of being pieced together from separate files and messages.",
+  },
+  {
+    title: "Clarity when plans shift",
+    description:
+      "If timings, categories, or last-minute details change, the structure stays readable.",
+  },
+  {
     title: "Support that stays close",
     description:
-      "We stay available before, during, and after event day so decisions do not get stuck in operational stress.",
+      "We stay available before, during, and after the event so questions do not become extra pressure.",
   },
   {
-    title: "A platform that keeps evolving",
+    title: "Less chaos before the event",
     description:
-      "LumoraEvents grows from real organizer feedback and real competition workflows, not from generic SaaS assumptions.",
-  },
-  {
-    title: "Clarity under pressure",
-    description:
-      "Every surface is designed to reduce noise, protect timing, and keep the day readable when it matters most.",
+      "Schedules, participants, music, and changes stop living across spreadsheets, emails, and separate lists.",
   },
 ];
 
-const items = approach.items.length ? approach.items : fallbackItems;
+const items = fallbackItems.map((fallbackItem, index) => ({
+  ...fallbackItem,
+  ...(approach.items[index] ?? {}),
+}));
+
+const pillarAccents: ApproachAccent[] = [
+  {
+    variant: "linked",
+    dot: "#06b6d4",
+    glow: "rgba(6,182,212,0.18)",
+  },
+  {
+    variant: "offset",
+    dot: "#7c3aed",
+    glow: "rgba(124,58,237,0.18)",
+  },
+  {
+    variant: "step",
+    dot: "#06b6d4",
+    glow: "rgba(6,182,212,0.16)",
+  },
+  {
+    variant: "orbit",
+    dot: "#7c3aed",
+    glow: "rgba(124,58,237,0.16)",
+  },
+];
 ---
 
 <section class="shell relative py-20 sm:py-24 lg:py-28">
@@ -48,9 +84,9 @@ const items = approach.items.length ? approach.items : fallbackItems;
   </div>
 
   <div
-    class="relative z-10 grid gap-12 border-y border-white/8 py-10 sm:gap-14 sm:py-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-18 lg:py-14"
+    class="relative z-10 grid gap-14 border-y border-white/8 py-12 sm:gap-16 sm:py-14 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-20 lg:py-16"
   >
-    <div class="max-w-[33rem]">
+    <div class="max-w-[31rem]">
       <span class="eyebrow reveal">{approach.eyebrow}</span>
       <h2
         class="reveal mt-5 max-w-[12ch] text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.8rem] lg:leading-[0.98]"
@@ -59,48 +95,125 @@ const items = approach.items.length ? approach.items : fallbackItems;
         {approach.title}
       </h2>
       <p
-        class="reveal mt-5 max-w-[31rem] text-lg leading-8 text-copy-soft sm:text-xl"
+        class="reveal mt-6 max-w-[29rem] text-lg leading-8 text-copy-soft sm:text-xl"
         style="--reveal-delay: 160ms"
       >
         {approach.description}
-      </p>
-
-      <p
-        class="reveal mt-8 max-w-[24rem] border-l border-white/10 pl-5 text-sm leading-7 text-copy-soft/90 sm:mt-10"
-        style="--reveal-delay: 240ms"
-      >
-        {approach.note}
       </p>
     </div>
 
     <div class="reveal relative" style="--reveal-delay: 220ms">
       <div
-        class="pointer-events-none absolute inset-y-0 left-0 hidden w-px bg-white/8 lg:block"
+        class="pointer-events-none absolute inset-y-2 left-0 hidden w-px bg-white/8 lg:block"
       >
       </div>
 
-      <div class="lg:pl-10">
+      <div class="grid gap-x-8 gap-y-8 lg:grid-cols-2 lg:pl-12 xl:gap-x-10 xl:gap-y-10">
         {
-          items.map((item, index) => (
-            <article
-              class:list={[
-                "group relative grid gap-3 py-6 transition-colors duration-300 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)] sm:gap-6 sm:py-7",
-                index !== 0 && "border-t border-white/8",
-              ]}
-            >
-              <div class="flex items-center gap-3">
-                <span class="size-2 rounded-full bg-accent-cyan/80 shadow-[0_0_14px_rgba(6,182,212,0.28)] transition-transform duration-300 group-hover:scale-110">
-                </span>
-                <h3 class="text-base font-semibold tracking-[-0.03em] text-white sm:text-lg">
+          items.map((item, index) => {
+            const accent = pillarAccents[index] ?? pillarAccents[0];
+
+            return (
+              <article class="group relative pt-2">
+                <div class="flex items-center gap-4">
+                  <div class="relative flex h-9 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.025] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,transform] duration-300 group-hover:-translate-y-0.5 group-hover:border-white/16 group-hover:bg-white/[0.045] sm:h-10 sm:w-14">
+                    <div
+                      class="pointer-events-none absolute inset-0 opacity-55 transition-opacity duration-300 group-hover:opacity-95"
+                      style={`background: radial-gradient(circle at 50% 50%, ${accent.glow}, transparent 72%);`}
+                    >
+                    </div>
+
+                    {accent.variant === "linked" && (
+                      <svg
+                        viewBox="0 0 48 20"
+                        fill="none"
+                        aria-hidden="true"
+                        class="relative z-10 h-3.5 w-10"
+                      >
+                        <path
+                          d="M8 10h32"
+                          stroke="rgba(255,255,255,0.36)"
+                          stroke-linecap="round"
+                          stroke-width="1.2"
+                        ></path>
+                        <circle cx="12" cy="10" r="1.8" fill="rgba(255,255,255,0.42)"></circle>
+                        <circle cx="24" cy="10" r="2.1" fill={accent.dot}></circle>
+                        <circle cx="36" cy="10" r="1.8" fill="rgba(255,255,255,0.42)"></circle>
+                      </svg>
+                    )}
+
+                    {accent.variant === "offset" && (
+                      <svg
+                        viewBox="0 0 48 20"
+                        fill="none"
+                        aria-hidden="true"
+                        class="relative z-10 h-3.5 w-10"
+                      >
+                        <path
+                          d="M8 6.5h12M8 13.5h20M28 6.5h12"
+                          stroke="rgba(255,255,255,0.38)"
+                          stroke-linecap="round"
+                          stroke-width="1.2"
+                        ></path>
+                        <path
+                          d="M24 6.5v7"
+                          stroke="rgba(255,255,255,0.32)"
+                          stroke-linecap="round"
+                          stroke-width="1.2"
+                        ></path>
+                        <circle cx="24" cy="13.5" r="2" fill={accent.dot}></circle>
+                      </svg>
+                    )}
+
+                    {accent.variant === "step" && (
+                      <svg
+                        viewBox="0 0 48 20"
+                        fill="none"
+                        aria-hidden="true"
+                        class="relative z-10 h-3.5 w-10"
+                      >
+                        <path
+                          d="M8 12h8M20 8h8M32 12h8"
+                          stroke="rgba(255,255,255,0.38)"
+                          stroke-linecap="round"
+                          stroke-width="1.2"
+                        ></path>
+                        <circle cx="18" cy="12" r="1.8" fill="rgba(255,255,255,0.42)"></circle>
+                        <circle cx="30" cy="8" r="2.1" fill={accent.dot}></circle>
+                      </svg>
+                    )}
+
+                    {accent.variant === "orbit" && (
+                      <svg
+                        viewBox="0 0 48 20"
+                        fill="none"
+                        aria-hidden="true"
+                        class="relative z-10 h-3.5 w-10"
+                      >
+                        <path
+                          d="M9 10c3.5-3.8 9.5-3.8 13 0M26 10c3.5 3.8 9.5 3.8 13 0"
+                          stroke="rgba(255,255,255,0.36)"
+                          stroke-linecap="round"
+                          stroke-width="1.2"
+                        ></path>
+                        <circle cx="11" cy="10" r="1.8" fill="rgba(255,255,255,0.42)"></circle>
+                        <circle cx="37" cy="10" r="2.1" fill={accent.dot}></circle>
+                      </svg>
+                    )}
+                  </div>
+
+                  <span class="h-px flex-1 bg-gradient-to-r from-white/14 via-white/6 to-transparent transition-opacity duration-300 group-hover:from-white/20 group-hover:via-white/10"></span>
+                </div>
+
+                <h3 class="mt-5 max-w-[16rem] text-lg font-semibold tracking-[-0.03em] text-white transition-colors duration-300 group-hover:text-white/95 sm:text-[1.15rem]">
                   {item.title}
                 </h3>
-              </div>
-
-              <p class="max-w-[32rem] text-sm leading-7 text-copy-soft sm:text-base">
-                {item.description}
-              </p>
-            </article>
-          ))
+                <p class="mt-3 max-w-[25rem] text-sm leading-7 text-copy-soft sm:text-base">
+                  {item.description}
+                </p>
+              </article>
+            );
+          })
         }
       </div>
     </div>

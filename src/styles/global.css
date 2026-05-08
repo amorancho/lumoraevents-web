@@ -96,6 +96,10 @@
     @apply inline-flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-semibold text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06];
   }
 
+  .event-scroll-button {
+    @apply inline-flex size-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-copy-soft shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[color,background-color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-white/18 hover:bg-white/[0.06] hover:text-copy;
+  }
+
   .section-copy {
     @apply max-w-[38rem] text-base leading-8 text-copy-soft sm:text-lg;
   }
@@ -171,6 +175,22 @@
     transform: scaleY(0.2);
   }
 
+  .logo-scroller {
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+  }
+
+  .logo-scroller::-webkit-scrollbar {
+    display: none;
+  }
+
+  .logo-scroller.is-dragging {
+    cursor: grabbing;
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(18px);
@@ -202,5 +222,11 @@
     opacity: 1;
     transform: none;
     animation: none;
+  }
+}
+
+@media (pointer: fine) {
+  .logo-scroller {
+    cursor: grab;
   }
 }

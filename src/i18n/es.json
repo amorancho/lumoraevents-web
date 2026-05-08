@@ -6,135 +6,184 @@
   "navigation": {
     "links": [
       {
-        "label": "Platform",
+        "label": "Plataforma",
         "href": "#product"
       },
       {
-        "label": "Features",
+        "label": "Características",
         "href": "#features"
       },
       {
-        "label": "Contact",
+        "label": "Contacto",
         "href": "#cta"
       }
     ],
-    "appLabel": "Access platform",
-    "primaryCta": "Contact us",
-    "menu": "Men\u00fa"
+    "appLabel": "Acceder a la plataforma",
+    "primaryCta": "Contactar",
+    "menu": "Menú"
   },
   "hero": {
-    "eyebrow": "Software premium para competiciones de danza modernas",
-    "title": "Your competition.\nIn real time.",
-    "description": "Scoring, horarios y resultados en directo con soporte real para eventos modernos.",
-    "primaryCta": "Contact us",
-    "secondaryCta": "Access platform",
+    "eyebrow": "Software premium para competiciones de danza",
+    "title": "Una mejor forma de organizar competiciones.",
+    "description": "Diseñado para simplificar el día de la competición para organizadores, jueces y participantes.",
+    "primaryCta": "Contactar",
+    "secondaryCta": "Acceder a la plataforma",
     "imageAlt": "Captura hero de la plataforma LumoraEvents",
     "imageSrc": "",
     "panelLabel": "Vista de plataforma",
     "overlayLabel": "Control en directo",
-    "overlayDescription": "Una capa operativa serena para el d\u00eda del evento.",
+    "overlayDescription": "Una capa operativa serena para el día del evento.",
     "placeholderTitle": "Una plataforma. Control claro.",
-    "placeholderDescription": "Dise\u00f1ada para que horarios, scoring y resultados fluyan en tiempo real sin a\u00f1adir ruido."
+    "placeholderDescription": "Diseñada para que horarios, scoring y resultados fluyan en tiempo real sin añadir ruido."
   },
-  "approach": {
-    "eyebrow": "C\u00f3mo trabaja LumoraEvents",
-    "title": "Construida junto a competiciones reales.",
-    "description": "Herramientas modernas para competiciones en directo, definidas con organizadores que necesitan calma, claridad y soporte fiable.",
-    "note": "El soporte forma parte del producto: antes del evento, durante la presi\u00f3n del d\u00eda y despu\u00e9s de que todo termine.",
+  "events": {
+    "title": "Algunos de nuestros eventos",
     "items": [
       {
+        "name": "Etoiles d'Orient",
+        "logoSrc": "/images/events/event-01.png"
+      },
+      {
+        "name": "Campeonato Nacional de Euskadi",
+        "logoSrc": "/images/events/event-02.png"
+      },
+      {
+        "name": "IAD Grand Prix",
+        "logoSrc": "/images/events/event-03.png"
+      },
+      {
+        "name": "Leyla Raqs BCN",
+        "logoSrc": "/images/events/event-04.png"
+      },
+      {
+        "name": "Da House Fest",
+        "logoSrc": "/images/events/event-05.png"
+      },
+      {
+        "name": "Campeonato Danza Moderna y Urbana Ciudad de Pamplona",
+        "logoSrc": "/images/events/event-06.png"
+      },
+      {
+        "name": "Campeonato Nacional Castilla y León Danza Urbana",
+        "logoSrc": "/images/events/event-07.png"
+      },
+      {
+        "name": "Hips Don't Lie",
+        "logoSrc": "/images/events/event-08.png"
+      },
+      {
+        "name": "Weekend Experience",
+        "logoSrc": "/images/events/event-09.png"
+      }
+    ]
+  },
+  "approach": {
+    "eyebrow": "Cómo trabaja LumoraEvents",
+    "title": "Pensada para el trabajo que hay detrás del día de competición.",
+    "description": "Horarios, jueces, participantes y resultados organizados en una sola plataforma clara y fácil de seguir.",
+    "items": [
+      {
+        "title": "Un solo lugar para lo esencial",
+        "description": "El núcleo operativo del evento permanece conectado, sin reconstruir decisiones entre archivos, correos y mensajes."
+      },
+      {
+        "title": "Claridad cuando el plan cambia",
+        "description": "Si cambian horarios, categorías o detalles de última hora, la estructura sigue siendo legible."
+      },
+      {
         "title": "Soporte que se mantiene cerca",
-        "description": "Estamos disponibles cuando cambian los tiempos, aparecen dudas o el evento necesita claridad operativa r\u00e1pida."
+        "description": "Estamos disponibles antes, durante y después del evento para que las dudas no se conviertan en presión añadida."
       },
       {
-        "title": "Una plataforma en evoluci\u00f3n constante",
-        "description": "LumoraEvents mejora a partir del feedback real de competiciones, no de supuestos gen\u00e9ricos de software."
-      },
-      {
-        "title": "Claridad bajo presi\u00f3n",
-        "description": "Cada flujo est\u00e1 dise\u00f1ado para reducir ruido y mantener alineados a organizadores, jueces y participantes."
+        "title": "Menos caos antes del evento",
+        "description": "Horarios, participantes, músicas y cambios dejan de vivir entre hojas de cálculo, correos y listas separadas."
       }
     ]
   },
   "features": {
-    "eyebrow": "Experiencia de plataforma",
-    "title": "Dise\u00f1ada para jornadas de competici\u00f3n en directo.",
-    "description": "Cuatro superficies de producto. Una sola capa operativa serena.",
+    "eyebrow": "Flujo de competición",
+    "title": "Un flujo claro desde las inscripciones hasta el día de la competición.",
+    "description": "Inscripciones, configuración, jueces, seguimiento y experiencia pública conectados en una sola plataforma pensada para eventos reales.",
     "sections": [
       {
-        "id": "live-tracking",
-        "title": "Live tracking",
-        "description": "Sigue tiempos, categor\u00edas y flujo del evento desde una sola vista clara.",
-        "imageSrc": "/images/platform/live-tracking.webp",
-        "imageAlt": "Pantalla de live tracking de LumoraEvents"
+        "id": "registrations",
+        "title": "Inscripciones",
+        "description": "Escuelas, participantes, categorías y músicas organizadas en un flujo claro, sin repartir el evento entre archivos y correos.",
+        "imageSrc": "/images/platform/registrations.webp",
+        "imageAlt": "Flujo de inscripciones de LumoraEvents"
+      },
+      {
+        "id": "configuration",
+        "title": "Configuración",
+        "description": "Horarios, jueces, criterios y estructura del evento preparados en una capa flexible antes de que empiece la jornada.",
+        "imageSrc": "/images/platform/configuration.webp",
+        "imageAlt": "Configuración del evento y horarios en LumoraEvents"
       },
       {
         "id": "judges",
-        "title": "Judges experience",
-        "description": "Una interfaz de scoring r\u00e1pida y limpia para tablet, m\u00f3vil y presi\u00f3n en directo.",
+        "title": "Experiencia de jueces",
+        "description": "Un flujo de scoring limpio, rápido y fácil de seguir en tablet o móvil, incluso bajo presión en directo.",
         "imageSrc": "/images/platform/judges.webp",
         "imageAlt": "Interfaz de scoring de jueces de LumoraEvents"
       },
       {
-        "id": "schedule",
-        "title": "Schedule configurator",
-        "description": "La complejidad del horario convertida en una capa flexible y controlable.",
-        "imageSrc": "/images/platform/schedule.webp",
-        "imageAlt": "Configurador de horarios de LumoraEvents"
+        "id": "live-tracking",
+        "title": "Seguimiento en directo",
+        "description": "Una vista operativa clara para saber qué está ocurriendo, qué viene después y dónde hace falta atención.",
+        "imageSrc": "/images/platform/live-tracking.webp",
+        "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents"
       },
       {
         "id": "public-live",
-        "title": "Public live experience",
-        "description": "Permite seguir participantes, horarios y resultados con una transparencia moderna.",
+        "title": "Experiencia pública en directo",
+        "description": "Participantes y público siguen horarios, actuaciones y resultados desde una experiencia pública moderna y accesible.",
         "imageSrc": "/images/platform/public-live.webp",
-        "imageAlt": "Experiencia p\u00fablica en directo de LumoraEvents"
+        "imageAlt": "Experiencia pública en directo de LumoraEvents"
       }
     ]
   },
   "faq": {
     "eyebrow": "FAQ",
     "title": "Algunas dudas habituales antes de empezar.",
-    "description": "Respuestas cortas, expectativas claras y soporte real detr\u00e1s de la plataforma.",
+    "description": "Respuestas cortas, expectativas claras y soporte real detrás de la plataforma.",
     "items": [
       {
-        "question": "\u00bfHace falta conocimiento t\u00e9cnico para usar LumoraEvents?",
-        "answer": "No. LumoraEvents est\u00e1 dise\u00f1ado para equipos de evento, con una configuraci\u00f3n clara y soporte cercano cuando hace falta."
+        "question": "¿Hace falta conocimiento técnico para usar LumoraEvents?",
+        "answer": "No. LumoraEvents está diseñado para equipos de evento, con una configuración clara y soporte cercano cuando hace falta."
       },
       {
-        "question": "\u00bfC\u00f3mo env\u00edan las puntuaciones los jueces durante la competici\u00f3n?",
-        "answer": "Los jueces punt\u00faan desde una interfaz limpia en tablet o m\u00f3vil, para que el proceso siga siendo r\u00e1pido y legible en directo."
+        "question": "¿Cómo envían las puntuaciones los jueces durante la competición?",
+        "answer": "Los jueces puntúan desde una interfaz limpia en tablet o móvil, para que el proceso siga siendo rápido y legible en directo."
       },
       {
-        "question": "\u00bfPuede adaptarse a nuestras propias reglas de competici\u00f3n?",
-        "answer": "S\u00ed. La l\u00f3gica de scoring, el flujo de jueces, las categor\u00edas y los timings pueden ajustarse a c\u00f3mo funciona ya tu evento."
+        "question": "¿Puede adaptarse a nuestras propias reglas de competición?",
+        "answer": "Sí. La lógica de scoring, el flujo de jueces, las categorías y los timings pueden ajustarse a cómo funciona ya tu evento."
       },
       {
-        "question": "\u00bfFunciona bien en m\u00f3viles y tablets?",
-        "answer": "S\u00ed. La plataforma est\u00e1 pensada para funcionar con fluidez en navegadores modernos desde m\u00f3vil, tablet y escritorio."
+        "question": "¿Funciona bien en móviles y tablets?",
+        "answer": "Sí. La plataforma está pensada para funcionar con fluidez en navegadores modernos desde móvil, tablet y escritorio."
       },
       {
-        "question": "\u00bfTendremos soporte durante el d\u00eda del evento?",
-        "answer": "S\u00ed. Estamos disponibles antes, durante y despu\u00e9s del evento para que las dudas operativas no se conviertan en estr\u00e9s."
+        "question": "¿Tendremos soporte durante el día del evento?",
+        "answer": "Sí. Estamos disponibles antes, durante y después del evento para que las dudas operativas no se conviertan en estrés."
       },
       {
-        "question": "\u00bfEl p\u00fablico puede seguir la competici\u00f3n en directo?",
-        "answer": "S\u00ed. Horarios, participantes y resultados pueden compartirse en una experiencia p\u00fablica en vivo con visibilidad clara."
+        "question": "¿El público puede seguir la competición en directo?",
+        "answer": "Sí. Horarios, participantes y resultados pueden compartirse en una experiencia pública en vivo con visibilidad clara."
       },
       {
-        "question": "\u00bfHay que instalar algo para usarla?",
+        "question": "¿Hay que instalar algo para usarla?",
         "answer": "No hace falta instalar nada. LumoraEvents funciona en el navegador, lo que simplifica el despliegue para equipos y jueces."
       }
     ]
   },
   "cta": {
-    "eyebrow": "Siguiente paso",
-    "title": "Haz que el producto real sea el centro.",
-    "description": "El sistema visual ya est\u00e1 listo para usar capturas aut\u00e9nticas de LumoraEvents y construir una presencia p\u00fablica m\u00e1s limpia alrededor del flujo real de competici\u00f3n.",
-    "primaryCta": "Contactar",
-    "secondaryCta": "Ver capacidades"
+    "eyebrow": "Soporte real",
+    "title": "Hagamos que tu próxima competición se sienta más clara y mejor organizada.",
+    "description": "Desde la preparación hasta el día del evento, LumoraEvents acompaña cada competición con una experiencia moderna y soporte cercano.",
+    "primaryCta": "Hablemos"
   },
   "footer": {
-    "tagline": "Operativa premium para competiciones con claridad, calma y soporte real.",
-    "contactLabel": "hello@lumoraevents.net"
+    "tagline": "Gestión de competiciones diseñada alrededor de eventos reales."
   }
 }

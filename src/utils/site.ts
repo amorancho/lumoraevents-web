@@ -3,7 +3,7 @@ export const siteConfig = {
   //siteUrl: "https://lumoraevents.net",
   siteUrl: "https://amorancho.github.io",
   appUrl: "https://app.lumoraevents.net",
-  email: "hello@lumoraevents.net",
+  email: "admin@lumoraevents.net",
   instagramHandle: "@lumoraevents.app",
   instagramUrl: "https://instagram.com/lumoraevents.app",
   socialImage: "/images/og-default.svg",

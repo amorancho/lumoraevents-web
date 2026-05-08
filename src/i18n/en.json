@@ -23,9 +23,9 @@
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Premium software for modern dance competitions",
-    "title": "Your competition.\nIn real time.",
-    "description": "Live scoring, schedules and results with real support for modern events.",
+    "eyebrow": "Premium software for dance competitions",
+    "title": "A better way to organize competitions.",
+    "description": "Designed to simplify competition day for organizers, judges, and participants.",
     "primaryCta": "Contact us",
     "secondaryCta": "Access platform",
     "imageAlt": "LumoraEvents platform hero screenshot",
@@ -36,56 +36,107 @@
     "placeholderTitle": "One platform. Clear control.",
     "placeholderDescription": "Designed to keep schedules, scoring and results moving in real time without adding noise."
   },
-  "approach": {
-    "eyebrow": "How LumoraEvents works",
-    "title": "Built alongside real competition days.",
-    "description": "Modern live competition tools, shaped with organizers who need calm, clarity, and reliable support.",
-    "note": "Support is part of the product experience: before the event, during the pressure of the day, and after everything closes.",
+  "events": {
+    "title": "Some of our events",
     "items": [
       {
+        "name": "Etoiles d'Orient",
+        "logoSrc": "/images/events/event-01.png"
+      },
+      {
+        "name": "Campeonato Nacional de Euskadi",
+        "logoSrc": "/images/events/event-02.png"
+      },
+      {
+        "name": "IAD Grand Prix",
+        "logoSrc": "/images/events/event-03.png"
+      },
+      {
+        "name": "Leyla Raqs BCN",
+        "logoSrc": "/images/events/event-04.png"
+      },
+      {
+        "name": "Da House Fest",
+        "logoSrc": "/images/events/event-05.png"
+      },
+      {
+        "name": "Campeonato Danza Moderna y Urbana Ciudad de Pamplona",
+        "logoSrc": "/images/events/event-06.png"
+      },
+      {
+        "name": "Campeonato Nacional Castilla y León Danza Urbana",
+        "logoSrc": "/images/events/event-07.png"
+      },
+      {
+        "name": "Hips Don't Lie",
+        "logoSrc": "/images/events/event-08.png"
+      },
+      {
+        "name": "Weekend Experience",
+        "logoSrc": "/images/events/event-09.png"
+      }
+    ]
+  },
+  "approach": {
+    "eyebrow": "How LumoraEvents works",
+    "title": "Built for the work behind competition day.",
+    "description": "Schedules, judges, participants, and results organized in one calm platform that stays clear before and during competition day.",
+    "items": [
+      {
+        "title": "One place for the moving parts",
+        "description": "The operational core of the event stays connected instead of being pieced together from separate files and messages."
+      },
+      {
+        "title": "Clarity when plans shift",
+        "description": "If timings, categories, or last-minute details change, the structure stays readable."
+      },
+      {
         "title": "Support that stays close",
-        "description": "We stay available when timing shifts, questions appear, or the day needs fast operational clarity."
+        "description": "We stay available before, during, and after the event so questions do not become extra pressure."
       },
       {
-        "title": "A platform that keeps evolving",
-        "description": "LumoraEvents improves through real feedback from competitions, not from generic software assumptions."
-      },
-      {
-        "title": "Clarity under pressure",
-        "description": "Each workflow is designed to reduce noise and keep organizers, judges, and participants aligned."
+        "title": "Less chaos before the event",
+        "description": "Schedules, participants, music, and changes stop living across spreadsheets, emails, and separate lists."
       }
     ]
   },
   "features": {
-    "eyebrow": "Platform experience",
-    "title": "Built for live competition days.",
-    "description": "Four product surfaces. One calm operational layer.",
+    "eyebrow": "Competition flow",
+    "title": "One clear flow from registrations to competition day.",
+    "description": "Registrations, setup, judging, live control, and public visibility connected in one platform built for real events.",
     "sections": [
       {
-        "id": "live-tracking",
-        "title": "Live tracking",
-        "description": "Follow timings, categories, and live event flow from one clear screen.",
-        "imageSrc": "/images/platform/live-tracking.webp",
-        "imageAlt": "LumoraEvents live tracking screen"
+        "id": "registrations",
+        "title": "Registrations",
+        "description": "Schools, participants, categories, and music prepared in one clear flow instead of being scattered across files and inboxes.",
+        "imageSrc": "/images/platform/registrations.webp",
+        "imageAlt": "LumoraEvents registrations flow"
+      },
+      {
+        "id": "configuration",
+        "title": "Configuration",
+        "description": "Schedules, judges, criteria, and event structure prepared in one flexible setup layer before the day begins.",
+        "imageSrc": "/images/platform/configuration.webp",
+        "imageAlt": "LumoraEvents event configuration and schedule setup"
       },
       {
         "id": "judges",
         "title": "Judges experience",
-        "description": "A fast, clean scoring interface built for tablets, phones, and live pressure.",
+        "description": "A clean scoring flow that stays fast and easy to follow on tablet or phone, even under live pressure.",
         "imageSrc": "/images/platform/judges.webp",
         "imageAlt": "LumoraEvents judges scoring interface"
       },
       {
-        "id": "schedule",
-        "title": "Schedule configurator",
-        "description": "Complex event structure simplified into one flexible scheduling layer.",
-        "imageSrc": "/images/platform/schedule.webp",
-        "imageAlt": "LumoraEvents schedule configurator"
+        "id": "live-tracking",
+        "title": "Live tracking",
+        "description": "See what is running, what is next, and where attention is needed from one calm operational view.",
+        "imageSrc": "/images/platform/live-tracking.webp",
+        "imageAlt": "LumoraEvents live tracking screen"
       },
       {
         "id": "public-live",
         "title": "Public live experience",
-        "description": "Let participants, teams, and audiences follow the event with modern transparency.",
+        "description": "Participants and audiences follow schedules, performances, and results through a modern public live experience.",
         "imageSrc": "/images/platform/public-live.webp",
         "imageAlt": "LumoraEvents public live experience"
       }
@@ -127,14 +178,12 @@
     ]
   },
   "cta": {
-    "eyebrow": "Next step",
-    "title": "Use the real product as the centerpiece.",
-    "description": "The visual system is now ready for authentic LumoraEvents product captures and a cleaner public presence built around real competition workflow.",
-    "primaryCta": "Contact us",
-    "secondaryCta": "See capabilities"
+    "eyebrow": "Real support",
+    "title": "Let's make your next competition feel calmer, clearer, and fully supported.",
+    "description": "From preparation to competition day, LumoraEvents stays close with a modern live experience and real human support behind it.",
+    "primaryCta": "Let's talk"
   },
   "footer": {
-    "tagline": "Premium competition operations with clarity, calm, and real support.",
-    "contactLabel": "hello@lumoraevents.net"
+    "tagline": "Competition management designed around real events."
   }
 }
