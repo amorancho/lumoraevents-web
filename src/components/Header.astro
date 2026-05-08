@@ -26,95 +26,210 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
 
 <header class="sticky top-0 z-40 pt-3 sm:pt-4">
   <div class="shell">
-    <div
-      class="relative flex min-h-[4.2rem] items-center justify-between gap-5 overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/48 px-4 shadow-[0_18px_50px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:px-5"
-    >
+    <div class="relative" data-mobile-menu-root>
       <div
-        class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.015))]"
+        class="relative flex min-h-[4.2rem] items-center justify-between gap-5 overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/48 px-4 shadow-[0_18px_50px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:px-5"
       >
-      </div>
-
-      <a
-        href={homePath}
-        aria-label="LumoraEvents home"
-        class="relative z-10 flex shrink-0 items-center"
-      >
-        <img
-          src={logoSrc}
-          alt="LumoraEvents"
-          class="h-7 w-auto drop-shadow-[0_8px_18px_rgba(0,0,0,0.28)] sm:h-[1.85rem]"
-          loading="eager"
-        />
-      </a>
-
-      <nav class="relative z-10 hidden items-center gap-6 md:flex">
-        {
-          navigation.links.map((link) => (
-            <a
-              href={`${homePath}${link.href}`}
-              class="text-sm text-copy-soft hover:text-copy"
-            >
-              {link.label}
-            </a>
-          ))
-        }
+        <div
+          class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.015))]"
+        >
+        </div>
 
         <a
-          href={appHref}
-          target="_blank"
-          rel="noreferrer"
-          class="inline-flex items-center gap-2 border-l border-white/8 pl-5 text-sm text-copy-soft/85 hover:text-copy"
+          href={homePath}
+          aria-label="LumoraEvents home"
+          class="relative z-10 flex shrink-0 items-center"
         >
-          <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
-          <span>{navigation.appLabel}</span>
+          <img
+            src={logoSrc}
+            alt="LumoraEvents"
+            class="h-7 w-auto drop-shadow-[0_8px_18px_rgba(0,0,0,0.28)] sm:h-[1.85rem]"
+            loading="eager"
+          />
         </a>
 
-        <LanguageSwitcher currentLocale={currentLocale} />
+        <nav class="relative z-10 hidden items-center gap-6 md:flex">
+          {
+            navigation.links.map((link) => (
+              <a
+                href={`${homePath}${link.href}`}
+                class="text-sm text-copy-soft hover:text-copy"
+              >
+                {link.label}
+              </a>
+            ))
+          }
 
-        <a href={primaryHref} class="button-primary px-4 py-2.5">
-          {navigation.primaryCta}
-        </a>
-      </nav>
+          <a
+            href={appHref}
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center gap-2 border-l border-white/8 pl-5 text-sm text-copy-soft/85 hover:text-copy"
+          >
+            <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
+            <span>{navigation.appLabel}</span>
+          </a>
 
-      <details class="relative z-10 md:hidden">
-        <summary
-          class="inline-flex cursor-pointer items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
-        >
-          {navigation.menu}
-        </summary>
+          <LanguageSwitcher currentLocale={currentLocale} />
 
-        <div class="panel absolute right-0 top-16 w-72 p-4">
-          <nav class="flex flex-col gap-2">
-            {
-              navigation.links.map((link) => (
-                <a
-                  href={`${homePath}${link.href}`}
-                  class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
-                >
-                  {link.label}
-                </a>
-              ))
-            }
-
-            <a
-              href={appHref}
-              target="_blank"
-              rel="noreferrer"
-              class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
-            >
-              {navigation.appLabel}
-            </a>
-          </nav>
-
-          <div class="mt-4 border-t border-white/10 pt-4">
-            <LanguageSwitcher currentLocale={currentLocale} />
-          </div>
-
-          <a href={primaryHref} class="button-primary mt-4 w-full">
+          <a href={primaryHref} class="button-primary px-4 py-2.5">
             {navigation.primaryCta}
           </a>
+        </nav>
+
+        <div class="relative z-10 md:hidden">
+          <button
+            type="button"
+            data-mobile-menu-button
+            aria-expanded="false"
+            aria-controls="mobile-nav-panel"
+            class="inline-flex touch-manipulation items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,color,transform] duration-300 hover:border-white/16 hover:bg-white/[0.06]"
+          >
+            {navigation.menu}
+          </button>
         </div>
-      </details>
+      </div>
+
+      <div
+        id="mobile-nav-panel"
+        data-mobile-menu-panel
+        hidden
+        class="panel absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-3rem))] translate-y-2 p-4 opacity-0 pointer-events-none transition-[opacity,transform] duration-200 md:hidden"
+      >
+        <nav class="flex flex-col gap-2">
+          {
+            navigation.links.map((link) => (
+              <a
+                href={`${homePath}${link.href}`}
+                class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
+              >
+                {link.label}
+              </a>
+            ))
+          }
+
+          <a
+            href={appHref}
+            target="_blank"
+            rel="noreferrer"
+            class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
+          >
+            {navigation.appLabel}
+          </a>
+        </nav>
+
+        <div class="mt-4 border-t border-white/10 pt-4">
+          <LanguageSwitcher currentLocale={currentLocale} />
+        </div>
+
+        <a href={primaryHref} class="button-primary mt-4 w-full">
+          {navigation.primaryCta}
+        </a>
+      </div>
     </div>
   </div>
+
+  <script is:inline>
+    const setupMobileMenus = () => {
+      const menuRoots = document.querySelectorAll("[data-mobile-menu-root]");
+
+      menuRoots.forEach((root) => {
+        if (!(root instanceof HTMLElement) || root.dataset.bound === "true") {
+          return;
+        }
+
+        const button = root.querySelector("[data-mobile-menu-button]");
+        const panel = root.querySelector("[data-mobile-menu-panel]");
+
+        if (!(button instanceof HTMLButtonElement) || !(panel instanceof HTMLElement)) {
+          return;
+        }
+
+        root.dataset.bound = "true";
+        let hideTimer;
+
+        const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
+        const isOpen = () => button.getAttribute("aria-expanded") === "true";
+
+        const finishHide = () => {
+          if (isOpen()) {
+            return;
+          }
+
+          panel.hidden = true;
+        };
+
+        const openMenu = () => {
+          window.clearTimeout(hideTimer);
+          panel.hidden = false;
+          button.setAttribute("aria-expanded", "true");
+
+          requestAnimationFrame(() => {
+            panel.classList.remove("pointer-events-none", "translate-y-2", "opacity-0");
+            panel.classList.add("pointer-events-auto", "translate-y-0", "opacity-100");
+          });
+        };
+
+        const closeMenu = () => {
+          if (!isOpen()) {
+            panel.hidden = true;
+            return;
+          }
+
+          button.setAttribute("aria-expanded", "false");
+          panel.classList.remove("pointer-events-auto", "translate-y-0", "opacity-100");
+          panel.classList.add("pointer-events-none", "translate-y-2", "opacity-0");
+          hideTimer = window.setTimeout(finishHide, 200);
+        };
+
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (isOpen()) {
+            closeMenu();
+            return;
+          }
+
+          openMenu();
+        });
+
+        panel.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            closeMenu();
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          const target = event.target;
+
+          if (!(target instanceof Node) || root.contains(target)) {
+            return;
+          }
+
+          closeMenu();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+
+        window.addEventListener("resize", () => {
+          if (isDesktop()) {
+            closeMenu();
+          }
+        });
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupMobileMenus, {
+        once: true,
+      });
+    } else {
+      setupMobileMenus();
+    }
+  </script>
 </header>
