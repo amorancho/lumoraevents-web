@@ -6,18 +6,28 @@ import {
   getCanonicalUrl,
   getLocaleDefinition,
 } from "../utils/i18n";
+import {
+  getAlternatePageLinks,
+  getPageCanonicalUrl,
+  type SitePage,
+} from "../utils/routes";
 import { siteConfig, type Locale } from "../utils/site";
 
 interface Props {
   locale: Locale;
   title: string;
   description: string;
+  page?: SitePage;
   slug?: string;
 }
 
-const { locale, title, description, slug = "" } = Astro.props;
-const canonicalUrl = getCanonicalUrl(locale, slug);
-const alternateLinks = getAlternateLinks(slug);
+const { locale, title, description, page, slug = "" } = Astro.props;
+const canonicalUrl = page
+  ? getPageCanonicalUrl(locale, page)
+  : getCanonicalUrl(locale, slug);
+const alternateLinks = page
+  ? getAlternatePageLinks(page)
+  : getAlternateLinks(slug);
 const localeDefinition = getLocaleDefinition(locale);
 const socialImageUrl = new URL(
   `${import.meta.env.BASE_URL}${siteConfig.socialImage}`,

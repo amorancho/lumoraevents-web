@@ -1,23 +1,25 @@
 ---
-import { getLocalizedPath } from "../utils/i18n";
+import { getPagePath, type SitePage } from "../utils/routes";
 import { siteConfig, type Locale } from "../utils/site";
 
 interface Props {
   currentLocale: Locale;
   navigation: {
-    links: Array<{
+    footerLinks: ReadonlyArray<{
       label: string;
-      href: string;
+      page: SitePage;
     }>;
+    appLabel: string;
   };
   footer: {
     tagline: string;
+    accessLabel: string;
   };
 }
 
 const { currentLocale, navigation, footer } = Astro.props;
-const homePath = getLocalizedPath(currentLocale);
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const getHref = (page: SitePage) => `${baseUrl}${getPagePath(currentLocale, page)}`;
 const logoSrc = `${baseUrl}/images/logo.svg`;
 const year = new Date().getFullYear();
 ---
@@ -30,7 +32,7 @@ const year = new Date().getFullYear();
       >
         <div class="max-w-[31rem]">
           <a
-            href={homePath}
+            href={getHref("home")}
             aria-label="LumoraEvents home"
             class="inline-flex items-center"
           >
@@ -82,11 +84,13 @@ const year = new Date().getFullYear();
           </a>
 
           <a
-            href={`mailto:${siteConfig.email}`}
-            class="inline-flex items-center gap-2 text-sm text-copy-soft transition-colors duration-300 hover:text-copy sm:justify-end"
+            href={siteConfig.appUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[transform,border-color,background-color,color] duration-300 hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.05] sm:justify-end"
           >
-            <span class="size-1 rounded-full bg-white/18"></span>
-            <span>{siteConfig.email}</span>
+            <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
+            <span>{footer.accessLabel}</span>
           </a>
         </div>
       </div>
@@ -96,9 +100,9 @@ const year = new Date().getFullYear();
       >
         <nav class="flex flex-wrap gap-5">
           {
-            navigation.links.map((link) => (
+            navigation.footerLinks.map((link) => (
               <a
-                href={`${homePath}${link.href}`}
+                href={getHref(link.page)}
                 class="transition-colors duration-300 hover:text-copy"
               >
                 {link.label}

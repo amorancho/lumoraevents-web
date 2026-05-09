@@ -8,6 +8,7 @@ import Footer from "./Footer.astro";
 import Header from "./Header.astro";
 import HeroSection from "./HeroSection.astro";
 import { getMessages } from "../utils/i18n";
+import { getPagePath } from "../utils/routes";
 import { siteConfig, type Locale } from "../utils/site";
 
 interface Props {
@@ -16,16 +17,12 @@ interface Props {
 
 const { locale } = Astro.props;
 const messages = getMessages(locale);
-const contactHref = `mailto:${siteConfig.email}`;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const contactHref = `${baseUrl}${getPagePath(locale, "contact")}`;
 const appHref = siteConfig.appUrl;
 ---
 
-<Header
-  currentLocale={locale}
-  navigation={messages.navigation}
-  primaryHref={contactHref}
-  appHref={appHref}
-/>
+<Header currentLocale={locale} currentPage="home" navigation={messages.navigation} />
 
 <main class="relative isolate">
   <HeroSection

@@ -1,5 +1,5 @@
 ---
-import HomePage from "../../components/HomePage.astro";
+import PlatformPage from "../../components/PlatformPage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getMessages } from "../../utils/i18n";
 
@@ -9,9 +9,9 @@ const messages = getMessages(locale);
 
 <BaseLayout
   locale={locale}
-  title={messages.meta.title}
-  description={messages.meta.description}
-  page="home"
+  title={messages.platformPage.meta.title}
+  description={messages.platformPage.meta.description}
+  page="platform"
 >
-  <HomePage locale={locale} />
+  <PlatformPage locale={locale} />
 </BaseLayout>

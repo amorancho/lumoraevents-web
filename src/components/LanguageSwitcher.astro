@@ -1,14 +1,20 @@
 ---
 import { getLocalizedPath, localeEntries } from "../utils/i18n";
+import { getPagePath, type SitePage } from "../utils/routes";
 import type { Locale } from "../utils/site";
 
 interface Props {
   currentLocale: Locale;
+  currentPage?: SitePage;
   slug?: string;
 }
 
-const { currentLocale, slug = "" } = Astro.props;
+const { currentLocale, currentPage, slug = "" } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const getHref = (locale: Locale) =>
+  `${baseUrl}${
+    currentPage ? getPagePath(locale, currentPage) : getLocalizedPath(locale, slug)
+  }`;
 ---
 
 <div
@@ -17,7 +23,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
   {
     localeEntries.map(({ code, label }) => (
       <a
-        href={`${baseUrl}${getLocalizedPath(code, slug)}`}
+        href={getHref(code)}
         hreflang={code}
         aria-current={code === currentLocale ? "page" : undefined}
         class:list={[

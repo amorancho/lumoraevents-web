@@ -1,26 +1,25 @@
 ---
 import LanguageSwitcher from "./LanguageSwitcher.astro";
-import { getLocalizedPath } from "../utils/i18n";
-import type { Locale } from "../utils/site";
+import { getPagePath, type SitePage } from "../utils/routes";
+import { siteConfig, type Locale } from "../utils/site";
 
 interface Props {
   currentLocale: Locale;
+  currentPage: SitePage;
   navigation: {
-    links: Array<{
+    headerLinks: ReadonlyArray<{
       label: string;
-      href: string;
+      page: SitePage;
     }>;
     appLabel: string;
-    primaryCta: string;
     menu: string;
   };
-  primaryHref: string;
-  appHref: string;
 }
 
-const { currentLocale, navigation, primaryHref, appHref } = Astro.props;
+const { currentLocale, currentPage, navigation } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-const homePath = `${baseUrl}${getLocalizedPath(currentLocale)}`;
+const appHref = siteConfig.appUrl;
+const getHref = (page: SitePage) => `${baseUrl}${getPagePath(currentLocale, page)}`;
 const logoSrc = `${baseUrl}/images/logo.svg`;
 ---
 
@@ -36,7 +35,7 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
         </div>
 
         <a
-          href={homePath}
+          href={getHref("home")}
           aria-label="LumoraEvents home"
           class="relative z-10 flex shrink-0 items-center"
         >
@@ -50,10 +49,16 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
 
         <nav class="relative z-10 hidden items-center gap-6 md:flex">
           {
-            navigation.links.map((link) => (
+            navigation.headerLinks.map((link) => (
               <a
-                href={`${homePath}${link.href}`}
-                class="text-sm text-copy-soft hover:text-copy"
+                href={getHref(link.page)}
+                aria-current={link.page === currentPage ? "page" : undefined}
+                class:list={[
+                  "text-sm",
+                  link.page === currentPage
+                    ? "text-copy"
+                    : "text-copy-soft hover:text-copy",
+                ]}
               >
                 {link.label}
               </a>
@@ -70,11 +75,7 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
             <span>{navigation.appLabel}</span>
           </a>
 
-          <LanguageSwitcher currentLocale={currentLocale} />
-
-          <a href={primaryHref} class="button-primary px-4 py-2.5">
-            {navigation.primaryCta}
-          </a>
+          <LanguageSwitcher currentLocale={currentLocale} currentPage={currentPage} />
         </nav>
 
         <div class="relative z-10 md:hidden">
@@ -98,10 +99,14 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
       >
         <nav class="flex flex-col gap-2">
           {
-            navigation.links.map((link) => (
+            navigation.headerLinks.map((link) => (
               <a
-                href={`${homePath}${link.href}`}
-                class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
+                href={getHref(link.page)}
+                aria-current={link.page === currentPage ? "page" : undefined}
+                class:list={[
+                  "rounded-2xl px-4 py-3 text-sm font-medium hover:bg-white/[0.04] hover:text-copy",
+                  link.page === currentPage ? "bg-white/[0.04] text-copy" : "text-copy-soft",
+                ]}
               >
                 {link.label}
               </a>
@@ -119,11 +124,16 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
         </nav>
 
         <div class="mt-4 border-t border-white/10 pt-4">
-          <LanguageSwitcher currentLocale={currentLocale} />
+          <LanguageSwitcher currentLocale={currentLocale} currentPage={currentPage} />
         </div>
 
-        <a href={primaryHref} class="button-primary mt-4 w-full">
-          {navigation.primaryCta}
+        <a
+          href={appHref}
+          target="_blank"
+          rel="noreferrer"
+          class="button-primary mt-4 w-full"
+        >
+          {navigation.appLabel}
         </a>
       </div>
     </div>

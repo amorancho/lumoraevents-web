@@ -1,5 +1,5 @@
 ---
-import HomePage from "../../components/HomePage.astro";
+import InsightsPage from "../../components/InsightsPage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getMessages } from "../../utils/i18n";
 
@@ -9,9 +9,9 @@ const messages = getMessages(locale);
 
 <BaseLayout
   locale={locale}
-  title={messages.meta.title}
-  description={messages.meta.description}
-  page="home"
+  title={messages.insightsPage.meta.title}
+  description={messages.insightsPage.meta.description}
+  page="insights"
 >
-  <HomePage locale={locale} />
+  <InsightsPage locale={locale} />
 </BaseLayout>

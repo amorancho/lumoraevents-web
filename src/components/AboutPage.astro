@@ -1,0 +1,202 @@
+---
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import { getMessages } from "../utils/i18n";
+import type { Locale } from "../utils/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const content = messages.aboutPage;
+---
+
+<Header currentLocale={locale} currentPage="about" navigation={messages.navigation} />
+
+<main class="relative isolate overflow-hidden">
+  <div
+    class="pointer-events-none absolute inset-x-0 top-0 h-[12rem] bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.08),transparent_58%)] blur-3xl"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute right-[-6rem] top-[18rem] h-[14rem] w-[14rem] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.06),transparent_72%)] blur-3xl"
+  >
+  </div>
+
+  <section class="shell relative pb-10 pt-6 sm:pb-12 sm:pt-8">
+    <div class="mx-auto max-w-[42rem]">
+      <div class="max-w-[38rem]">
+        <span class="eyebrow reveal">{content.hero.eyebrow}</span>
+        <h1
+          class="reveal mt-4 max-w-[14ch] text-[2rem] leading-[1.06] font-semibold tracking-[-0.045em] text-white sm:text-[2.55rem] lg:text-[2.85rem]"
+          style="--reveal-delay: 80ms"
+        >
+          {content.hero.title}
+        </h1>
+
+        <div
+          class="reveal mt-5 max-w-[35rem] space-y-4 text-[0.98rem] leading-8 text-copy-soft sm:text-lg"
+          style="--reveal-delay: 160ms"
+        >
+          {
+            content.hero.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell relative py-10 sm:py-12">
+    <div
+      class="pointer-events-none absolute left-[10%] top-4 h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.06),transparent_72%)] blur-3xl"
+    >
+    </div>
+
+    <div class="mx-auto max-w-[42rem]">
+      <div class="reveal max-w-[36rem]" style="--reveal-delay: 80ms">
+        <span class="eyebrow">{content.story.eyebrow}</span>
+        <h2
+          class="mt-4 max-w-[15ch] text-[1.7rem] leading-[1.08] font-semibold tracking-[-0.045em] text-white sm:text-[2.15rem]"
+        >
+          {content.story.title}
+        </h2>
+      </div>
+
+      <div class="reveal mt-5 max-w-[35rem] space-y-4 text-[0.98rem] leading-8 text-copy-soft sm:text-lg" style="--reveal-delay: 140ms">
+        <div class="space-y-4">
+          {
+            content.story.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell relative py-12 sm:py-14">
+    <div
+      class="pointer-events-none absolute inset-x-[18%] top-0 h-16 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.04),transparent_72%)] blur-3xl"
+    >
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-14">
+      <div class="reveal max-w-[26rem]" style="--reveal-delay: 80ms">
+        <span class="eyebrow">{content.work.eyebrow}</span>
+        <h2
+          class="mt-4 text-[1.8rem] leading-[1.06] font-semibold tracking-[-0.045em] text-white sm:text-[2.35rem]"
+        >
+          {content.work.title}
+        </h2>
+        <p class="mt-4 text-base leading-8 text-copy-soft sm:text-lg">
+          {content.work.description}
+        </p>
+      </div>
+
+      <div class="reveal" style="--reveal-delay: 140ms">
+        <div class="border-t border-white/10">
+          {
+            content.work.phases.map((item, index) => (
+              <div class="grid gap-4 border-b border-white/10 py-5 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-5 sm:py-6">
+                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-copy-soft/55">
+                  0{index + 1}
+                </span>
+                <div>
+                  <h3 class="text-lg font-semibold tracking-[-0.03em] text-white sm:text-[1.35rem]">
+                    {item.title}
+                  </h3>
+                  <p class="mt-3 max-w-[34rem] text-sm leading-7 text-copy-soft sm:text-base">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell relative py-12 sm:py-14">
+    <div class="grid gap-8 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)] lg:gap-14">
+      <div class="reveal max-w-[26rem]" style="--reveal-delay: 80ms">
+        <span class="eyebrow">{content.philosophy.eyebrow}</span>
+        <h2
+          class="mt-4 text-[1.8rem] leading-[1.06] font-semibold tracking-[-0.045em] text-white sm:text-[2.35rem]"
+        >
+          {content.philosophy.title}
+        </h2>
+        <p class="mt-4 text-base leading-8 text-copy-soft sm:text-lg">
+          {content.philosophy.description}
+        </p>
+      </div>
+
+      <div class="reveal" style="--reveal-delay: 140ms">
+        <div class="border-t border-white/10">
+          {
+            content.philosophy.items.map((item) => (
+              <div class="grid gap-4 border-b border-white/10 py-5 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] sm:gap-6 sm:py-6">
+                <h3 class="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
+                  {item.title}
+                </h3>
+                <p class="max-w-[31rem] text-sm leading-7 text-copy-soft sm:text-base">
+                  {item.description}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell relative py-12 sm:py-14">
+    <div class="reveal max-w-[42rem]" style="--reveal-delay: 80ms">
+      <span class="eyebrow">{content.principles.eyebrow}</span>
+    </div>
+
+    <div class="reveal mt-6 border-t border-white/10" style="--reveal-delay: 140ms">
+      {
+        content.principles.items.map((item) => (
+          <div class="grid gap-4 border-b border-white/10 py-4 sm:grid-cols-[minmax(0,16rem)_minmax(0,1fr)] sm:gap-6 sm:py-5">
+            <h3 class="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
+              {item.title}
+            </h3>
+            <p class="max-w-[30rem] text-sm leading-7 text-copy-soft sm:text-base">
+              {item.description}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="shell relative pb-18 pt-10 sm:pb-20 sm:pt-12">
+    <div
+      class="pointer-events-none absolute inset-x-[22%] top-3 h-16 bg-[radial-gradient(circle,rgba(124,58,237,0.06),transparent_72%)] blur-3xl"
+    >
+    </div>
+
+    <div class="reveal mx-auto max-w-[38rem] border-t border-white/10 pt-7 text-center" style="--reveal-delay: 120ms">
+      <span class="eyebrow">{content.closing.eyebrow}</span>
+      <h2
+        class="mx-auto mt-5 max-w-[17ch] text-[1.8rem] leading-[1.08] font-semibold tracking-[-0.045em] text-white sm:text-[2.35rem]"
+      >
+        {content.closing.title}
+      </h2>
+      <p class="mx-auto mt-4 max-w-[32rem] text-base leading-8 text-copy-soft sm:text-lg">
+        {content.closing.description}
+      </p>
+    </div>
+  </section>
+</main>
+
+<Footer
+  currentLocale={locale}
+  navigation={messages.navigation}
+  footer={messages.footer}
+/>
