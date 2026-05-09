@@ -27,10 +27,10 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
   <div class="shell">
     <div class="relative" data-mobile-menu-root>
       <div
-        class="relative flex min-h-[4.2rem] items-center justify-between gap-5 overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/48 px-4 shadow-[0_18px_50px_rgba(0,0,0,0.32)] backdrop-blur-xl sm:px-5"
+        class="relative flex min-h-[4.2rem] items-center justify-between gap-5 overflow-hidden rounded-[1.55rem] border border-white/8 bg-black/72 px-4 shadow-[0_18px_44px_rgba(0,0,0,0.24)] sm:px-5"
       >
         <div
-          class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.015))]"
+          class="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.012))]"
         >
         </div>
 
@@ -42,8 +42,9 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
           <img
             src={logoSrc}
             alt="LumoraEvents"
-            class="h-7 w-auto drop-shadow-[0_8px_18px_rgba(0,0,0,0.28)] sm:h-[1.85rem]"
+            class="h-7 w-auto sm:h-[1.85rem]"
             loading="eager"
+            fetchpriority="high"
           />
         </a>
 
@@ -84,7 +85,7 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
             data-mobile-menu-button
             aria-expanded="false"
             aria-controls="mobile-nav-panel"
-            class="inline-flex touch-manipulation items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,color,transform] duration-300 hover:border-white/16 hover:bg-white/[0.06]"
+            class="inline-flex touch-manipulation items-center rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-semibold text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,color] duration-200 hover:border-white/16 hover:bg-white/[0.06]"
           >
             {navigation.menu}
           </button>
@@ -95,7 +96,7 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
         id="mobile-nav-panel"
         data-mobile-menu-panel
         hidden
-        class="panel absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-3rem))] translate-y-2 p-4 opacity-0 pointer-events-none transition-[opacity,transform] duration-200 md:hidden"
+        class="panel pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-3rem))] translate-y-1.5 p-4 opacity-0 transition-[opacity,transform] duration-150 md:hidden"
       >
         <nav class="flex flex-col gap-2">
           {

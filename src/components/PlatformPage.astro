@@ -23,11 +23,11 @@ const content = messages.platformPage;
 
 <main class="relative isolate overflow-hidden">
   <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-[32rem] bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_58%)] blur-3xl"
+    class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.16),transparent_68%)]"
   >
   </div>
 
-  <section class="shell relative pb-18 pt-10 sm:pb-22 sm:pt-14">
+  <section class="shell relative pb-14 pt-8 sm:pb-18 sm:pt-12">
     <div class="max-w-[50rem]">
       <span class="eyebrow reveal">{content.hero.eyebrow}</span>
       <h1
@@ -45,8 +45,8 @@ const content = messages.platformPage;
     </div>
   </section>
 
-  <section class="shell relative py-16 sm:py-20">
-    <div class="grid gap-12 lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:gap-18">
+  <section class="shell relative py-14 sm:py-18">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:gap-14">
       <div class="reveal max-w-[28rem]" style="--reveal-delay: 80ms">
         <span class="eyebrow">{content.intro.eyebrow}</span>
         <h2
@@ -80,13 +80,9 @@ const content = messages.platformPage;
 
   <ApproachSection approach={messages.approach} />
 
-  <section class="shell relative pb-22 pt-16 sm:pb-28">
+  <section class="shell relative pb-18 pt-12 sm:pb-22">
     <div
-      class="pointer-events-none absolute inset-x-[18%] top-6 h-28 bg-[radial-gradient(circle,rgba(6,182,212,0.14),transparent_72%)] blur-3xl"
-    >
-    </div>
-    <div
-      class="reveal relative mx-auto max-w-[48rem] rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-12 text-center shadow-[0_28px_72px_rgba(0,0,0,0.34)] sm:px-10 sm:py-16"
+      class="reveal relative mx-auto max-w-[48rem] rounded-[2.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 text-center shadow-[0_20px_46px_rgba(0,0,0,0.24)] sm:px-10 sm:py-14"
       style="--reveal-delay: 120ms"
     >
       <span class="eyebrow">{content.closing.eyebrow}</span>

@@ -41,39 +41,39 @@
     "items": [
       {
         "name": "Etoiles d'Orient",
-        "logoSrc": "/images/events/event-01.png"
+        "logoSrc": "/images/events/event-01.webp"
       },
       {
         "name": "Campeonato Nacional de Euskadi",
-        "logoSrc": "/images/events/event-02.png"
+        "logoSrc": "/images/events/event-02.webp"
       },
       {
         "name": "IAD Grand Prix",
-        "logoSrc": "/images/events/event-03.png"
+        "logoSrc": "/images/events/event-03.webp"
       },
       {
         "name": "Leyla Raqs BCN",
-        "logoSrc": "/images/events/event-04.png"
+        "logoSrc": "/images/events/event-04.webp"
       },
       {
         "name": "Da House Fest",
-        "logoSrc": "/images/events/event-05.png"
+        "logoSrc": "/images/events/event-05.webp"
       },
       {
         "name": "Campeonato Danza Moderna y Urbana Ciudad de Pamplona",
-        "logoSrc": "/images/events/event-06.png"
+        "logoSrc": "/images/events/event-06.webp"
       },
       {
         "name": "Campeonato Nacional Castilla y León Danza Urbana",
-        "logoSrc": "/images/events/event-07.png"
+        "logoSrc": "/images/events/event-07.webp"
       },
       {
         "name": "Hips Don't Lie",
-        "logoSrc": "/images/events/event-08.png"
+        "logoSrc": "/images/events/event-08.webp"
       },
       {
         "name": "Weekend Experience",
-        "logoSrc": "/images/events/event-09.png"
+        "logoSrc": "/images/events/event-09.webp"
       }
     ]
   },

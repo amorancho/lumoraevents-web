@@ -22,24 +22,24 @@ const hasAsset = (src: string) =>
   existsSync(fileURLToPath(new URL(src.replace(/^\//, ""), publicRoot)));
 
 const fallbackItems: EventItem[] = [
-  { name: "Etoiles d'Orient", logoSrc: "/images/events/event-01.png" },
+  { name: "Etoiles d'Orient", logoSrc: "/images/events/event-01.webp" },
   {
     name: "Campeonato Nacional de Euskadi",
-    logoSrc: "/images/events/event-02.png",
+    logoSrc: "/images/events/event-02.webp",
   },
-  { name: "IAD Grand Prix", logoSrc: "/images/events/event-03.png" },
-  { name: "Leyla Raqs BCN", logoSrc: "/images/events/event-04.png" },
-  { name: "Da House Fest", logoSrc: "/images/events/event-05.png" },
+  { name: "IAD Grand Prix", logoSrc: "/images/events/event-03.webp" },
+  { name: "Leyla Raqs BCN", logoSrc: "/images/events/event-04.webp" },
+  { name: "Da House Fest", logoSrc: "/images/events/event-05.webp" },
   {
     name: "Campeonato Danza Moderna y Urbana Ciudad de Pamplona",
-    logoSrc: "/images/events/event-06.png",
+    logoSrc: "/images/events/event-06.webp",
   },
   {
     name: "Campeonato Nacional Castilla y León Danza Urbana",
-    logoSrc: "/images/events/event-07.png",
+    logoSrc: "/images/events/event-07.webp",
   },
-  { name: "Hips Don't Lie", logoSrc: "/images/events/event-08.png" },
-  { name: "Weekend Experience", logoSrc: "/images/events/event-09.png" },
+  { name: "Hips Don't Lie", logoSrc: "/images/events/event-08.webp" },
+  { name: "Weekend Experience", logoSrc: "/images/events/event-09.webp" },
 ];
 
 const items = (events.items.length ? events.items : fallbackItems).map(
@@ -61,13 +61,8 @@ const items = (events.items.length ? events.items : fallbackItems).map(
 
 <section
   id="events"
-  class="shell relative pb-14 pt-2 sm:pb-18 sm:pt-4 lg:pb-20"
+  class="shell relative pb-12 pt-2 sm:pb-16 sm:pt-4 lg:pb-18"
 >
-  <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_72%)] blur-3xl"
-  >
-  </div>
-
   <div class="relative z-10 border-y border-white/8 py-8 sm:py-10 lg:py-12">
     <div class="max-w-[24rem]">
       <h2 id="events-title" class="eyebrow reveal" style="--reveal-delay: 80ms">
@@ -76,11 +71,6 @@ const items = (events.items.length ? events.items : fallbackItems).map(
     </div>
 
     <div class="reveal relative mt-8 sm:mt-10" style="--reveal-delay: 180ms">
-      <div
-        class="pointer-events-none absolute inset-x-[8%] top-0 h-20 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_72%)] blur-3xl"
-      >
-      </div>
-
       <div class="relative">
         <button
           type="button"
@@ -159,8 +149,9 @@ const items = (events.items.length ? events.items : fallbackItems).map(
                           src={item.resolvedSrc}
                           alt={item.logoAlt}
                           draggable="false"
-                          class="h-full w-full object-contain opacity-58 grayscale transition-[opacity,transform,filter] duration-300 group-hover:-translate-y-0.5 group-hover:opacity-88 group-hover:grayscale-0"
-                          loading="lazy"
+                          class="h-full w-full object-contain opacity-72 grayscale transition-[opacity,filter] duration-200 group-hover:opacity-100 group-hover:grayscale-0"
+                          loading={index < 3 ? "eager" : "lazy"}
+                          decoding="async"
                         />
                       </div>
                     ) : (

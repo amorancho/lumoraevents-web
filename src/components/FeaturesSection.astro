@@ -114,16 +114,7 @@ const liveTracking = sections[3] ?? fallbackSections[3];
 const publicLive = sections[4] ?? fallbackSections[4];
 ---
 
-<section id="features" class="shell relative py-20 sm:py-28">
-  <div
-    class="pointer-events-none absolute inset-x-0 top-24 h-72 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.14),transparent_62%)] blur-3xl"
-  >
-  </div>
-  <div
-    class="pointer-events-none absolute right-[8%] top-[52rem] h-48 w-48 bg-[radial-gradient(circle,rgba(6,182,212,0.1),transparent_72%)] blur-3xl"
-  >
-  </div>
-
+<section id="features" class="shell relative py-16 sm:py-20 lg:py-24">
   <div class="relative z-10 max-w-[44rem]">
     <span class="eyebrow reveal">{features.eyebrow}</span>
     <h2
@@ -140,9 +131,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
     </p>
   </div>
 
-  <div
-    class="relative z-10 mt-18 space-y-20 sm:mt-22 sm:space-y-24 lg:space-y-28"
-  >
+  <div class="relative z-10 mt-14 space-y-16 sm:mt-16 sm:space-y-18 lg:space-y-20">
     <article class="reveal" style="--reveal-delay: 220ms">
       <div class="max-w-[31rem]">
         <p
@@ -159,12 +148,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
 
       <div class="relative mt-8 sm:mt-10">
         <div
-          class="pointer-events-none absolute inset-x-8 top-6 h-28 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_72%)] blur-3xl"
-        >
-        </div>
-
-        <div
-          class="group relative overflow-hidden rounded-[2.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_34px_90px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:p-5"
+          class="relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] sm:p-5"
         >
           <div class="flex items-center gap-2 border-b border-white/10 pb-4">
             <span class="size-2 rounded-full bg-white/25"></span>
@@ -187,6 +171,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
                   alt={registrations.imageAlt}
                   class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div class="grid min-h-[24rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[30rem]">
@@ -205,7 +190,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
         </div>
 
         <div
-          class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:-right-3 sm:bottom-8 sm:mt-0"
+          class="mt-4 max-w-xs rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:-right-2 sm:bottom-6 sm:mt-0"
         >
           Schools, categories, music, and participant data gathered in one clear
           place.
@@ -230,12 +215,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
 
         <div class="relative mt-10 sm:mt-12">
           <div
-            class="pointer-events-none absolute left-[18%] top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.16),transparent_72%)] blur-3xl"
-          >
-          </div>
-
-          <div
-            class="ml-auto w-full overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_32px_86px_rgba(0,0,0,0.42)] lg:w-[88%]"
+            class="ml-auto w-full overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] lg:w-[88%]"
           >
             <div class="flex items-center gap-2 border-b border-white/10 pb-4">
               <span class="size-2 rounded-full bg-white/25"></span>
@@ -258,6 +238,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
                     alt={configuration.imageAlt}
                     class="h-auto w-full rounded-[1.3rem] border border-white/8 object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div class="grid min-h-[22rem] place-items-center rounded-[1.3rem] border border-dashed border-white/12 bg-black/45 px-10 py-14 text-center sm:min-h-[28rem]">
@@ -276,7 +257,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
           </div>
 
           <div
-            class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:left-0 sm:top-8 sm:mt-0"
+            class="mt-4 max-w-xs rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-0 sm:top-6 sm:mt-0"
           >
             Schedules, judges, categories, and criteria shaped before the day
             begins.
@@ -300,14 +281,9 @@ const publicLive = sections[4] ?? fallbackSections[4];
           </p>
         </div>
 
-        <div class="relative mt-10 min-h-[26rem] sm:min-h-[32rem]">
+        <div class="relative mt-10 sm:min-h-[32rem]">
           <div
-            class="pointer-events-none absolute left-[12%] top-14 h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.12),transparent_72%)] blur-3xl"
-          >
-          </div>
-
-          <div
-            class="relative w-[84%] overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_30px_80px_rgba(0,0,0,0.4)] sm:w-[76%]"
+            class="relative w-[84%] overflow-hidden rounded-[2.3rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_56px_rgba(0,0,0,0.28)] sm:w-[76%]"
           >
             <div class="flex items-center gap-2 border-b border-white/10 pb-4">
               <span class="size-2 rounded-full bg-white/25"></span>
@@ -330,6 +306,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
                     alt={judges.imageAlt}
                     class="h-auto w-full rounded-[1.2rem] border border-white/8 object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div class="grid min-h-[20rem] place-items-center rounded-[1.2rem] border border-dashed border-white/12 bg-black/45 px-8 py-12 text-center sm:min-h-[24rem]">
@@ -348,7 +325,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
           </div>
 
           <div
-            class="absolute right-0 top-14 w-[42%] overflow-hidden rounded-[2rem] border border-white/10 bg-black/40 p-3 shadow-[0_24px_64px_rgba(0,0,0,0.36)] backdrop-blur-xl sm:right-[6%] sm:top-28 sm:w-[28%]"
+            class="relative mt-4 ml-auto w-[52%] overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/72 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:right-[6%] sm:top-28 sm:mt-0 sm:w-[28%]"
           >
             <div
               class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
@@ -360,6 +337,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
                     alt={judges.imageAlt}
                     class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-black/48 px-4 py-6 text-center sm:min-h-[17rem]">
@@ -396,12 +374,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
 
       <div class="relative mt-8 sm:mt-10">
         <div
-          class="pointer-events-none absolute inset-x-8 top-6 h-28 rounded-full bg-[radial-gradient(circle,rgba(124,58,237,0.18),transparent_72%)] blur-3xl"
-        >
-        </div>
-
-        <div
-          class="group relative overflow-hidden rounded-[2.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_34px_90px_rgba(0,0,0,0.4)] transition-transform duration-300 hover:-translate-y-0.5 sm:p-5"
+          class="relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] sm:p-5"
         >
           <div class="flex items-center gap-2 border-b border-white/10 pb-4">
             <span class="size-2 rounded-full bg-white/25"></span>
@@ -424,6 +397,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
                   alt={liveTracking.imageAlt}
                   class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div class="grid min-h-[24rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[30rem]">
@@ -442,7 +416,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
         </div>
 
         <div
-          class="mt-4 max-w-xs rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:-right-3 sm:bottom-8 sm:mt-0"
+          class="mt-4 max-w-xs rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:-right-2 sm:bottom-6 sm:mt-0"
         >
           See what is live, what is next, and where attention is needed.
         </div>
@@ -465,12 +439,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
 
       <div class="relative mt-10 sm:mt-12">
         <div
-          class="pointer-events-none absolute right-[10%] top-10 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.12),transparent_72%)] blur-3xl"
-        >
-        </div>
-
-        <div
-          class="relative overflow-hidden rounded-[2.6rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_34px_90px_rgba(0,0,0,0.42)]"
+          class="relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)]"
         >
           <div class="flex items-center gap-2 border-b border-white/10 pb-4">
             <span class="size-2 rounded-full bg-white/25"></span>
@@ -493,6 +462,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
                   alt={publicLive.imageAlt}
                   class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               ) : (
                 <div class="grid min-h-[22rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[28rem]">
@@ -511,7 +481,7 @@ const publicLive = sections[4] ?? fallbackSections[4];
         </div>
 
         <div
-          class="mt-4 flex max-w-sm items-start gap-3 rounded-[1.6rem] border border-white/10 bg-black/32 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_18px_44px_rgba(0,0,0,0.26)] backdrop-blur-xl sm:absolute sm:left-[8%] sm:bottom-8 sm:mt-0"
+          class="mt-4 flex max-w-sm items-start gap-3 rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-[8%] sm:bottom-6 sm:mt-0"
         >
           <span class="mt-2 size-2 shrink-0 rounded-full bg-accent-cyan"></span>
           <p>

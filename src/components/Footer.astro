@@ -24,9 +24,9 @@ const logoSrc = `${baseUrl}/images/logo.svg`;
 const year = new Date().getFullYear();
 ---
 
-<footer class="py-12 sm:py-14">
-  <div class="shell border-t border-white/8 pt-8 sm:pt-10">
-    <div class="flex flex-col gap-10">
+<footer class="py-10 sm:py-12">
+  <div class="shell border-t border-white/8 pt-8 sm:pt-9">
+    <div class="flex flex-col gap-8">
       <div
         class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
       >
@@ -39,7 +39,7 @@ const year = new Date().getFullYear();
             <img
               src={logoSrc}
               alt="LumoraEvents"
-              class="h-8 w-auto drop-shadow-[0_8px_18px_rgba(0,0,0,0.24)] sm:h-9"
+              class="h-8 w-auto sm:h-9"
               loading="lazy"
             />
           </a>
@@ -54,7 +54,7 @@ const year = new Date().getFullYear();
             target="_blank"
             rel="noreferrer"
             aria-label="LumoraEvents Instagram"
-            class="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[transform,border-color,background-color,color] duration-300 hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.05]"
+            class="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,color] duration-200 hover:border-white/16 hover:bg-white/[0.05]"
           >
             <svg
               viewBox="0 0 24 24"
@@ -87,7 +87,7 @@ const year = new Date().getFullYear();
             href={siteConfig.appUrl}
             target="_blank"
             rel="noreferrer"
-            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[transform,border-color,background-color,color] duration-300 hover:-translate-y-0.5 hover:border-white/16 hover:bg-white/[0.05] sm:justify-end"
+            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,color] duration-200 hover:border-white/16 hover:bg-white/[0.05] sm:justify-end"
           >
             <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
             <span>{footer.accessLabel}</span>
