@@ -11,92 +11,87 @@ interface Props {
 const { locale } = Astro.props;
 const messages = getMessages(locale);
 const content = messages.contactPage;
+const copy =
+  locale === "es"
+    ? {
+        eyebrow: "Contacto",
+        title: "Cuéntanos cómo es tu evento.",
+        description:
+          "Si estás preparando una competición y quieres ver si LumoraEvents encaja con la forma en la que trabaja tu equipo, podemos empezar en ese punto.",
+        methodNotes: [
+          "La forma más directa de empezar una conversación.",
+          "Una forma más tranquila e informal de mantener el contacto.",
+          "Para equipos que ya tienen acceso y quieren entrar directamente.",
+        ],
+      }
+    : {
+        eyebrow: "Contact",
+        title: "Tell us about your event.",
+        description:
+          "If you are planning a competition and want to see whether LumoraEvents fits the way your team works, we can start from there.",
+        methodNotes: [
+          "The most direct way to start a conversation.",
+          "A quieter, more informal way to stay in touch.",
+          "For teams who already have access and want to enter directly.",
+        ],
+      };
+const methods = content.methods.map((method, index) => ({
+  ...method,
+  note: copy.methodNotes[index] ?? method.note,
+}));
 ---
 
 <Header currentLocale={locale} currentPage="contact" navigation={messages.navigation} />
 
 <main class="relative isolate overflow-hidden">
   <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_56%)] blur-3xl"
+    class="pointer-events-none absolute inset-x-0 top-0 h-[12rem] bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.08),transparent_58%)] blur-3xl"
   >
   </div>
 
-  <section class="shell relative pb-16 pt-10 sm:pb-20 sm:pt-14">
-    <div class="max-w-[48rem]">
-      <span class="eyebrow reveal">{content.hero.eyebrow}</span>
-      <h1
-        class="editorial-display reveal mt-6 max-w-[12ch] text-5xl leading-[0.95] font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-[5.2rem]"
-        style="--reveal-delay: 80ms"
-      >
-        {content.hero.title}
-      </h1>
-      <p
-        class="reveal mt-6 max-w-[36rem] text-lg leading-8 text-copy-soft sm:text-xl"
-        style="--reveal-delay: 160ms"
-      >
-        {content.hero.description}
-      </p>
-    </div>
-  </section>
-
-  <section class="shell relative py-16 sm:py-22">
-    <div class="grid gap-12 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)] lg:gap-18">
-      <div class="reveal max-w-[26rem]" style="--reveal-delay: 80ms">
-        <h2
-          class="editorial-display text-4xl leading-[0.98] font-semibold tracking-[-0.05em] text-white sm:text-[3rem]"
+  <section class="shell relative pb-16 pt-6 sm:pb-18 sm:pt-8">
+    <div class="mx-auto max-w-[40rem]">
+      <div class="reveal mx-auto max-w-[30rem] text-center" style="--reveal-delay: 80ms">
+        <span class="eyebrow">{copy.eyebrow}</span>
+        <h1
+          class="mt-4 text-[2rem] leading-[1.06] font-semibold tracking-[-0.05em] text-white sm:text-[2.45rem]"
         >
-          {content.intro.title}
-        </h2>
-        <p class="mt-5 text-base leading-8 text-copy-soft sm:text-lg">
-          {content.intro.description}
+          {copy.title}
+        </h1>
+        <p class="mt-4 text-base leading-8 text-copy-soft sm:text-lg">
+          {copy.description}
         </p>
       </div>
 
-      <div class="reveal border-t border-white/10" style="--reveal-delay: 140ms">
-        {
-          content.methods.map((method) => (
-            <a
-              href={method.href}
-              target={method.href.startsWith("http") ? "_blank" : undefined}
-              rel={method.href.startsWith("http") ? "noreferrer" : undefined}
-              class="grid gap-4 border-b border-white/10 py-6 sm:grid-cols-[10rem_minmax(0,1fr)] sm:gap-8 sm:py-7"
-            >
-              <span class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-copy-soft/58">
-                {method.label}
-              </span>
-              <div>
-                <p class="text-xl font-semibold tracking-[-0.04em] text-white sm:text-2xl">
-                  {method.value}
-                </p>
-                <p class="mt-3 max-w-[32rem] text-sm leading-7 text-copy-soft sm:text-base">
-                  {method.note}
-                </p>
-              </div>
-            </a>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="shell relative pb-22 pt-8 sm:pb-28">
-    <div
-      class="pointer-events-none absolute inset-x-[18%] top-0 h-28 bg-[radial-gradient(circle,rgba(6,182,212,0.12),transparent_72%)] blur-3xl"
-    >
-    </div>
-    <div
-      class="reveal mx-auto max-w-[46rem] border-t border-white/10 pt-8 text-center"
-      style="--reveal-delay: 160ms"
-    >
-      <span class="eyebrow">{content.closing.eyebrow}</span>
-      <h2
-        class="editorial-display mx-auto mt-6 max-w-[14ch] text-4xl leading-[1] font-semibold tracking-[-0.05em] text-white sm:text-[3.2rem]"
+      <div
+        class="reveal mt-8 rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 shadow-[0_16px_40px_rgba(0,0,0,0.18)] sm:mt-10 sm:p-5"
+        style="--reveal-delay: 140ms"
       >
-        {content.closing.title}
-      </h2>
-      <p class="mx-auto mt-5 max-w-[34rem] text-base leading-8 text-copy-soft sm:text-lg">
-        {content.closing.description}
-      </p>
+        <div class="border-t border-white/10">
+          {
+            methods.map((method) => (
+              <a
+                href={method.href}
+                target={method.href.startsWith("http") ? "_blank" : undefined}
+                rel={method.href.startsWith("http") ? "noreferrer" : undefined}
+                class="grid gap-3 border-b border-white/10 py-5 sm:grid-cols-[9rem_minmax(0,1fr)] sm:gap-6 sm:py-6"
+              >
+                <span class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-copy-soft/56">
+                  {method.label}
+                </span>
+                <div>
+                  <p class="text-lg font-semibold tracking-[-0.04em] text-white sm:text-[1.35rem]">
+                    {method.value}
+                  </p>
+                  <p class="mt-2 max-w-[28rem] text-sm leading-7 text-copy-soft sm:text-base">
+                    {method.note}
+                  </p>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </div>
   </section>
 </main>

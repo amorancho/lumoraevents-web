@@ -251,8 +251,8 @@ export const sharedMessages = {
       methods: [
         {
           label: "Email",
-          value: "admin@lumoraevents.net",
-          href: "mailto:admin@lumoraevents.net",
+          value: "info@lumoraevents.net",
+          href: "mailto:info@lumoraevents.net",
           note: "The clearest way to start a conversation about your event.",
         },
         {
@@ -559,8 +559,8 @@ export const sharedMessages = {
       methods: [
         {
           label: "Email",
-          value: "admin@lumoraevents.net",
-          href: "mailto:admin@lumoraevents.net",
+          value: "info@lumoraevents.net",
+          href: "mailto:info@lumoraevents.net",
           note:
             "La forma más clara de empezar una conversación sobre tu evento.",
         },
