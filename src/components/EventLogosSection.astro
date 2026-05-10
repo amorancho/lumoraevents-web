@@ -1,0 +1,280 @@
+---
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+type EventItem = {
+  name: string;
+  logoSrc: string;
+  logoAlt?: string;
+};
+
+interface Props {
+  events: {
+    title: string;
+    items: EventItem[];
+  };
+}
+
+const { events } = Astro.props;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const publicRoot = new URL("../../public/", import.meta.url);
+const hasAsset = (src: string) =>
+  existsSync(fileURLToPath(new URL(src.replace(/^\//, ""), publicRoot)));
+
+const fallbackItems: EventItem[] = [
+  { name: "Etoiles d'Orient", logoSrc: "/images/events/event-01.webp" },
+  {
+    name: "Campeonato Nacional de Euskadi",
+    logoSrc: "/images/events/event-02.webp",
+  },
+  { name: "IAD Grand Prix", logoSrc: "/images/events/event-03.webp" },
+  { name: "Leyla Raqs BCN", logoSrc: "/images/events/event-04.webp" },
+  { name: "Da House Fest", logoSrc: "/images/events/event-05.webp" },
+  {
+    name: "Campeonato Danza Moderna y Urbana Ciudad de Pamplona",
+    logoSrc: "/images/events/event-06.webp",
+  },
+  {
+    name: "Campeonato Nacional Castilla y León Danza Urbana",
+    logoSrc: "/images/events/event-07.webp",
+  },
+  { name: "Hips Don't Lie", logoSrc: "/images/events/event-08.webp" },
+  { name: "Weekend Experience", logoSrc: "/images/events/event-09.webp" },
+];
+
+const items = (events.items.length ? events.items : fallbackItems).map(
+  (item, index) => {
+    const fallbackItem = fallbackItems[index] ?? fallbackItems[0];
+    const logoSrc = item.logoSrc || fallbackItem.logoSrc;
+
+    return {
+      ...fallbackItem,
+      ...item,
+      logoSrc,
+      resolvedSrc: `${baseUrl}${logoSrc}`,
+      logoAlt: item.logoAlt ?? `${item.name} logo`,
+      hasLogo: hasAsset(logoSrc),
+    };
+  },
+);
+---
+
+<section class="shell relative py-14 sm:py-16 lg:py-18">
+  <div class="relative z-10 border-y border-white/8 py-8 sm:py-10">
+    <div class="max-w-[24rem]">
+      <h2 id="events-title" class="eyebrow reveal" style="--reveal-delay: 80ms">
+        {events.title}
+      </h2>
+    </div>
+
+    <div class="reveal relative mt-8 sm:mt-10" style="--reveal-delay: 180ms">
+      <div class="relative">
+        <button
+          type="button"
+          class="event-scroll-button absolute left-2 top-1/2 z-30 -translate-y-1/2 sm:left-3 lg:-left-5"
+          data-event-scroll-button="prev"
+          data-event-scroll-target="events-scroller"
+          aria-label="Scroll events left"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+            class="size-4"
+          >
+            <path
+              d="M11.5 4.5 6 10l5.5 5.5"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.6"></path>
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          class="event-scroll-button absolute right-2 top-1/2 z-30 -translate-y-1/2 sm:right-3 lg:-right-5"
+          data-event-scroll-button="next"
+          data-event-scroll-target="events-scroller"
+          aria-label="Scroll events right"
+        >
+          <svg
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden="true"
+            class="size-4"
+          >
+            <path
+              d="M8.5 4.5 14 10l-5.5 5.5"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.6"></path>
+          </svg>
+        </button>
+
+        <div
+          class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] shadow-[0_18px_44px_rgba(0,0,0,0.22)]"
+        >
+          <div
+            class="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-canvas via-canvas/85 to-transparent"
+          >
+          </div>
+          <div
+            class="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-canvas via-canvas/85 to-transparent"
+          >
+          </div>
+
+          <div
+            id="events-scroller"
+            class="logo-scroller relative overflow-x-auto px-4 select-none sm:px-6"
+            data-event-scroller
+            aria-labelledby="events-title"
+          >
+            <ul class="flex min-w-max items-center">
+              {
+                items.map((item, index) => (
+                  <li
+                    class:list={[
+                      "group flex h-26 w-[12rem] shrink-0 snap-start items-center justify-center px-4 sm:h-30 sm:w-[13.75rem] sm:px-5 lg:h-32 lg:w-[14.5rem]",
+                      index !== items.length - 1 && "border-r border-white/8",
+                    ]}
+                  >
+                    {item.hasLogo ? (
+                      <div class="flex h-[74%] w-full items-center justify-center sm:h-[78%]">
+                        <img
+                          src={item.resolvedSrc}
+                          alt={item.logoAlt}
+                          draggable="false"
+                          class="h-full w-full object-contain opacity-72 grayscale transition-[opacity,filter] duration-200 group-hover:opacity-100 group-hover:grayscale-0"
+                          loading={index < 3 ? "eager" : "lazy"}
+                          decoding="async"
+                        />
+                      </div>
+                    ) : (
+                      <span class="text-center text-sm font-semibold uppercase tracking-[0.22em] text-copy-soft/80 transition-colors duration-300 group-hover:text-copy">
+                        {item.name}
+                      </span>
+                    )}
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    const setupEventScrollers = () => {
+      const scrollers = document.querySelectorAll("[data-event-scroller]");
+      const buttons = document.querySelectorAll("[data-event-scroll-button]");
+
+      scrollers.forEach((scroller) => {
+        if (
+          !(scroller instanceof HTMLElement) ||
+          scroller.dataset.bound === "true"
+        ) {
+          return;
+        }
+
+        scroller.dataset.bound = "true";
+
+        let isDragging = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+
+        const endDrag = (pointerId) => {
+          if (!isDragging) {
+            return;
+          }
+
+          isDragging = false;
+          scroller.classList.remove("is-dragging");
+
+          if (
+            pointerId !== undefined &&
+            scroller.hasPointerCapture(pointerId)
+          ) {
+            scroller.releasePointerCapture(pointerId);
+          }
+        };
+
+        scroller.addEventListener("pointerdown", (event) => {
+          if (event.pointerType !== "mouse") {
+            return;
+          }
+
+          event.preventDefault();
+          isDragging = true;
+          startX = event.clientX;
+          startScrollLeft = scroller.scrollLeft;
+          scroller.classList.add("is-dragging");
+          scroller.setPointerCapture(event.pointerId);
+        });
+
+        scroller.addEventListener("pointermove", (event) => {
+          if (!isDragging) {
+            return;
+          }
+
+          event.preventDefault();
+          const delta = event.clientX - startX;
+          scroller.scrollLeft = startScrollLeft - delta;
+        });
+
+        scroller.addEventListener("pointerup", (event) => {
+          endDrag(event.pointerId);
+        });
+
+        scroller.addEventListener("pointercancel", (event) => {
+          endDrag(event.pointerId);
+        });
+
+        scroller.addEventListener("pointerleave", (event) => {
+          if (event.buttons === 0) {
+            endDrag(event.pointerId);
+          }
+        });
+      });
+
+      buttons.forEach((button) => {
+        if (
+          !(button instanceof HTMLButtonElement) ||
+          button.dataset.bound === "true"
+        ) {
+          return;
+        }
+
+        const targetId = button.dataset.eventScrollTarget;
+        const direction = button.dataset.eventScrollButton;
+        const target = targetId ? document.getElementById(targetId) : null;
+
+        if (!(target instanceof HTMLElement) || !direction) {
+          return;
+        }
+
+        button.dataset.bound = "true";
+
+        button.addEventListener("click", () => {
+          const delta = Math.round(target.clientWidth * 0.72);
+          const offset = direction === "prev" ? -delta : delta;
+
+          target.scrollBy({
+            left: offset,
+            behavior: "smooth",
+          });
+        });
+      });
+    };
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", setupEventScrollers, {
+        once: true,
+      });
+    } else {
+      setupEventScrollers();
+    }
+  </script>
+</section>

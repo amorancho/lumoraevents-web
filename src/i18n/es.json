@@ -23,18 +23,9 @@
     "menu": "Menú"
   },
   "hero": {
-    "eyebrow": "Software premium para competiciones de danza",
-    "title": "Una mejor forma de organizar competiciones.",
-    "description": "Diseñado para simplificar el día de la competición para organizadores, jueces y participantes.",
-    "primaryCta": "Contactar",
-    "secondaryCta": "Acceder a la plataforma",
-    "imageAlt": "Captura hero de la plataforma LumoraEvents",
-    "imageSrc": "",
-    "panelLabel": "Vista de plataforma",
-    "overlayLabel": "Control en directo",
-    "overlayDescription": "Una capa operativa serena para el día del evento.",
-    "placeholderTitle": "Una plataforma. Control claro.",
-    "placeholderDescription": "Diseñada para que horarios, scoring y resultados fluyan en tiempo real sin añadir ruido."
+    "eyebrow": "Software para competiciones reales de danza",
+    "title": "Una forma más clara de organizar competiciones.",
+    "description": "Una plataforma serena para organizadores, jueces y participantes antes y durante el día de competición."
   },
   "events": {
     "title": "Algunos de nuestros eventos",
@@ -75,7 +66,24 @@
         "name": "Weekend Experience",
         "logoSrc": "/images/events/event-09.webp"
       }
-    ]
+    ],
+    "editorial": {
+      "label": "Tipos de eventos",
+      "title": "No todas las competiciones funcionan igual.",
+      "description": "LumoraEvents se adapta con naturalidad a competiciones con estilos, estructuras y dinámicas de jurado diferentes.",
+      "note": "La misma estructura también puede adaptarse a eventos caninos, gastronómicos, belleza, vocales y otros formatos con dinámicas de jurado y puntuación.",
+      "styles": [
+        "URBAN",
+        "BELLYDANCE",
+        "MODERN",
+        "CONTEMPORARY",
+        "FUSION",
+        "K-POP",
+        "DANZA CLÁSICA",
+        "OPEN",
+        "CUALQUIER ESTILO"
+      ]
+    }
   },
   "approach": {
     "eyebrow": "Cómo trabaja LumoraEvents",
@@ -101,7 +109,7 @@
     ]
   },
   "features": {
-    "eyebrow": "Flujo de competición",
+    "eyebrow": "Experiencia de plataforma",
     "title": "Un flujo claro desde las inscripciones hasta el día de la competición.",
     "description": "Inscripciones, configuración, jueces, seguimiento y experiencia pública conectados en una sola plataforma pensada para eventos reales.",
     "sections": [
@@ -160,7 +168,7 @@
         "answer": "Sí. La lógica de scoring, el flujo de jueces, las categorías y los timings pueden ajustarse a cómo funciona ya tu evento."
       },
       {
-        "question": "¿Funciona bien en móviles y tablets?",
+        "question": "¿Funciona bien en cualquier dispositivo?",
         "answer": "Sí. La plataforma está pensada para funcionar con fluidez en navegadores modernos desde móvil, tablet y escritorio."
       },
       {

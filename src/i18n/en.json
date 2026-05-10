@@ -23,18 +23,9 @@
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Premium software for dance competitions",
-    "title": "A better way to organize competitions.",
-    "description": "Designed to simplify competition day for organizers, judges, and participants.",
-    "primaryCta": "Contact us",
-    "secondaryCta": "Access platform",
-    "imageAlt": "LumoraEvents platform hero screenshot",
-    "imageSrc": "",
-    "panelLabel": "Platform view",
-    "overlayLabel": "Live control",
-    "overlayDescription": "One calm operating layer for event day.",
-    "placeholderTitle": "One platform. Clear control.",
-    "placeholderDescription": "Designed to keep schedules, scoring and results moving in real time without adding noise."
+    "eyebrow": "Software for real dance competitions",
+    "title": "A clearer way to run competitions.",
+    "description": "One calm platform for organizers, judges, and participants before and during competition day."
   },
   "events": {
     "title": "Some of our events",
@@ -75,7 +66,24 @@
         "name": "Weekend Experience",
         "logoSrc": "/images/events/event-09.webp"
       }
-    ]
+    ],
+    "editorial": {
+      "label": "Types of events",
+      "title": "Not every competition works the same way.",
+      "description": "LumoraEvents adapts naturally to competitions with different styles, structures, and judging dynamics.",
+      "note": "The same structure can also adapt to canine events, gastronomy, beauty, vocal competitions, and other formats built around judging and scoring dynamics.",
+      "styles": [
+        "URBAN",
+        "BELLYDANCE",
+        "MODERN",
+        "CONTEMPORARY",
+        "FUSION",
+        "K-POP",
+        "CLASSICAL BALLET",
+        "OPEN",
+        "ANY STYLE"
+      ]
+    }
   },
   "approach": {
     "eyebrow": "How LumoraEvents works",
@@ -101,7 +109,7 @@
     ]
   },
   "features": {
-    "eyebrow": "Competition flow",
+    "eyebrow": "Platform experience",
     "title": "One clear flow from registrations to competition day.",
     "description": "Registrations, setup, judging, live control, and public visibility connected in one platform built for real events.",
     "sections": [
@@ -160,7 +168,7 @@
         "answer": "Yes. Scoring logic, judging flow, categories, and timings can be adjusted to fit how your event already works."
       },
       {
-        "question": "Does it work well on phones and tablets?",
+        "question": "Does it work well on any device?",
         "answer": "Yes. The platform is built to work smoothly across modern browsers on mobile, tablet, and desktop."
       },
       {
