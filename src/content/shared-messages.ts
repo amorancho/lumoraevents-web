@@ -15,10 +15,6 @@ export const sharedMessages = {
           page: "about",
         },
         {
-          label: "Insights",
-          page: "insights",
-        },
-        {
           label: "Contact",
           page: "contact",
         },
@@ -31,10 +27,6 @@ export const sharedMessages = {
         {
           label: "About",
           page: "about",
-        },
-        {
-          label: "Insights",
-          page: "insights",
         },
         {
           label: "Contact",
@@ -195,42 +187,6 @@ export const sharedMessages = {
           "The product matters. So does the human layer behind it when the day is already in motion.",
       },
     },
-    insightsPage: {
-      meta: {
-        title: "Insights | LumoraEvents",
-        description:
-          "Editorial notes on competition operations, product thinking, and what real event teams keep teaching the platform.",
-      },
-      hero: {
-        eyebrow: "Insights",
-        title: "Notes from the work around real competitions.",
-        description:
-          "A place for patterns, observations, and product thinking shaped by live events rather than generic software talk.",
-      },
-      themes: [
-        {
-          title: "Operational clarity",
-          description:
-            "What consistently reduces friction before the first round even starts.",
-        },
-        {
-          title: "Design under pressure",
-          description:
-            "Why interfaces for real event teams need calm more than novelty.",
-        },
-        {
-          title: "Support as product",
-          description:
-            "How staying close to organizers changes what the platform should become.",
-        },
-      ],
-      closing: {
-        eyebrow: "Editorial space",
-        title: "A proper journal is coming.",
-        description:
-          "For now, this page marks the space where product lessons from real competitions will continue to take shape.",
-      },
-    },
     contactPage: {
       meta: {
         title: "Contact | LumoraEvents",
@@ -292,10 +248,6 @@ export const sharedMessages = {
           page: "about",
         },
         {
-          label: "Insights",
-          page: "insights",
-        },
-        {
           label: "Contacto",
           page: "contact",
         },
@@ -308,10 +260,6 @@ export const sharedMessages = {
         {
           label: "Nosotros",
           page: "about",
-        },
-        {
-          label: "Insights",
-          page: "insights",
         },
         {
           label: "Contacto",
@@ -490,47 +438,6 @@ export const sharedMessages = {
           "Software, y también la tranquilidad de saber que alguien sigue cerca del evento.",
         description:
           "El producto importa. La capa humana que hay detrás cuando el día ya está en marcha también.",
-      },
-    },
-
-    insightsPage: {
-      meta: {
-        title: "Insights | LumoraEvents",
-        description:
-          "Notas editoriales sobre operativa de competiciones, criterio de producto y lo que los equipos reales siguen enseñando a la plataforma.",
-      },
-
-      hero: {
-        eyebrow: "Insights",
-        title:
-          "Notas nacidas del trabajo alrededor de competiciones reales.",
-        description:
-          "Un espacio para patrones, observaciones y criterio de producto moldeado por eventos en vivo, no por discurso genérico de software.",
-      },
-
-      themes: [
-        {
-          title: "Claridad operativa",
-          description:
-            "Lo que de verdad reduce fricción antes de que empiece la primera ronda.",
-        },
-        {
-          title: "Diseño bajo presión",
-          description:
-            "Por qué las interfaces para equipos reales necesitan claridad más que novedad.",
-        },
-        {
-          title: "Soporte como producto",
-          description:
-            "Cómo mantenerse cerca de los organizadores cambia lo que la plataforma debe llegar a ser.",
-        },
-      ],
-
-      closing: {
-        eyebrow: "Espacio editorial",
-        title: "Un journal propio está en camino.",
-        description:
-          "Por ahora, esta página reserva el lugar donde seguirán tomando forma las lecciones de producto nacidas en competiciones reales.",
       },
     },
 

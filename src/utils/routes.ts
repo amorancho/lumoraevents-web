@@ -18,10 +18,6 @@ export const pageSlugs = {
     en: "about",
     es: "nosotros",
   },
-  insights: {
-    en: "insights",
-    es: "insights",
-  },
   contact: {
     en: "contact",
     es: "contacto",
