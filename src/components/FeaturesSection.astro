@@ -32,6 +32,11 @@ const publicRoot = new URL("../../public/", import.meta.url);
 const hasAsset = (src: string) =>
   existsSync(fileURLToPath(new URL(src.replace(/^\//, ""), publicRoot)));
 
+const publicLiveTrackingMobileSrc =
+  "/images/platform/public-live-tracking-mobile.webp";
+const publicLiveResultsMobileSrc =
+  "/images/platform/public-live-results-mobile.webp";
+
 const sectionOrder: PlatformSectionId[] = [
   "registrations",
   "configuration",
@@ -112,6 +117,8 @@ const configuration = sections[1] ?? fallbackSections[1];
 const judges = sections[2] ?? fallbackSections[2];
 const liveTracking = sections[3] ?? fallbackSections[3];
 const publicLive = sections[4] ?? fallbackSections[4];
+const publicLiveTrackingMobileHasImage = hasAsset(publicLiveTrackingMobileSrc);
+const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
 ---
 
 <section id="features" class="shell relative py-16 sm:py-20 lg:py-24">
@@ -437,9 +444,9 @@ const publicLive = sections[4] ?? fallbackSections[4];
         </p>
       </div>
 
-      <div class="relative mt-10 sm:mt-12">
+      <div class="relative mt-10 sm:min-h-[35rem] sm:mt-12 lg:min-h-[40rem]">
         <div
-          class="relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)]"
+          class="relative mx-auto w-full overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] sm:w-[72%] lg:w-[68%]"
         >
           <div class="flex items-center gap-2 border-b border-white/10 pb-4">
             <span class="size-2 rounded-full bg-white/25"></span>
@@ -480,8 +487,86 @@ const publicLive = sections[4] ?? fallbackSections[4];
           </div>
         </div>
 
+        <div class="mt-4 grid grid-cols-2 gap-4 sm:contents">
+          <div
+            class="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/72 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-[2%] sm:top-20 sm:mt-0 sm:w-[22%] lg:left-[4%] lg:w-[21%]"
+          >
+            <div class="mb-3 flex items-center gap-2 px-1">
+              <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
+              <span class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft">
+                Live follow
+              </span>
+            </div>
+
+            <div
+              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
+            >
+              {
+                publicLiveTrackingMobileHasImage ? (
+                  <img
+                    src={publicLiveTrackingMobileSrc}
+                    alt="LumoraEvents public live tracking mobile view"
+                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.1),transparent_48%),linear-gradient(180deg,rgba(12,12,14,0.96),rgba(8,8,10,0.98))] px-4 py-6 text-center sm:min-h-[16rem]">
+                    <div>
+                      <p class="text-sm font-semibold text-white">
+                        Mobile tracking
+                      </p>
+                      <p class="mt-2 text-xs leading-5 text-copy-soft">
+                        Order, timings, and what is happening now.
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+
+          <div
+            class="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/72 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:right-[2%] sm:bottom-16 sm:mt-0 sm:w-[22%] lg:right-[4%] lg:w-[21%]"
+          >
+            <div class="mb-3 flex items-center gap-2 px-1">
+              <span class="size-1.5 rounded-full bg-white/75"></span>
+              <span class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft">
+                Results
+              </span>
+            </div>
+
+            <div
+              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
+            >
+              {
+                publicLiveResultsMobileHasImage ? (
+                  <img
+                    src={publicLiveResultsMobileSrc}
+                    alt="LumoraEvents public live results mobile view"
+                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_48%),linear-gradient(180deg,rgba(12,12,14,0.96),rgba(8,8,10,0.98))] px-4 py-6 text-center sm:min-h-[16rem]">
+                    <div>
+                      <p class="text-sm font-semibold text-white">
+                        Mobile results
+                      </p>
+                      <p class="mt-2 text-xs leading-5 text-copy-soft">
+                        Placements and scores ready to check at a glance.
+                      </p>
+                    </div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+
         <div
-          class="mt-4 flex max-w-sm items-start gap-3 rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-[8%] sm:bottom-6 sm:mt-0"
+          class="mt-4 flex max-w-sm items-start gap-3 rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-[12%] sm:bottom-6 sm:mt-0 lg:left-[18%]"
         >
           <span class="mt-2 size-2 shrink-0 rounded-full bg-accent-cyan"></span>
           <p>
