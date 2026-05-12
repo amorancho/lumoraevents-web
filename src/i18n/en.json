@@ -112,6 +112,16 @@
     "eyebrow": "Platform experience",
     "title": "One clear flow from registrations to competition day.",
     "description": "Registrations, setup, judging, live control, and public visibility connected in one platform built for real events.",
+    "upcoming": {
+      "badge": "Coming soon",
+      "title": "Workshop & Masterclasses",
+      "description": "We are preparing a new layer for workshops, masterclasses, and special sessions, designed to integrate naturally into the event ecosystem.",
+      "note": "A near-term evolution for LumoraEvents, extending the experience beyond competition moments without losing the clarity of the platform.",
+      "previewEyebrow": "Future layer",
+      "previewTitle": "Learning experiences",
+      "previewItems": ["Workshops", "Masterclasses", "Special sessions"],
+      "previewFootnote": "A light preview of the next expansion inside the LumoraEvents ecosystem."
+    },
     "sections": [
       {
         "id": "registrations",

@@ -17,12 +17,24 @@ type PlatformSection = {
   imageAlt: string;
 };
 
+type UpcomingFeature = {
+  badge: string;
+  title: string;
+  description: string;
+  note: string;
+  previewEyebrow: string;
+  previewTitle: string;
+  previewItems: string[];
+  previewFootnote: string;
+};
+
 interface Props {
   features: {
     eyebrow: string;
     title: string;
     description: string;
     sections: PlatformSection[];
+    upcoming?: UpcomingFeature;
   };
 }
 
@@ -88,6 +100,19 @@ const fallbackSections: PlatformSection[] = [
   },
 ];
 
+const fallbackUpcoming: UpcomingFeature = {
+  badge: "Coming soon",
+  title: "Workshop & Masterclasses",
+  description:
+    "A new layer in preparation for workshops, masterclasses, and special sessions, designed to extend the event ecosystem with the same calm clarity.",
+  note: "A lighter next step for LumoraEvents, bringing educational moments closer to the broader event experience.",
+  previewEyebrow: "Future layer",
+  previewTitle: "Learning experiences",
+  previewItems: ["Workshops", "Masterclasses", "Special sessions"],
+  previewFootnote:
+    "A small editorial preview of what is coming next inside the platform ecosystem.",
+};
+
 const fallbackById = new Map(
   fallbackSections.map((section) => [section.id as PlatformSectionId, section]),
 );
@@ -117,6 +142,10 @@ const configuration = sections[1] ?? fallbackSections[1];
 const judges = sections[2] ?? fallbackSections[2];
 const liveTracking = sections[3] ?? fallbackSections[3];
 const publicLive = sections[4] ?? fallbackSections[4];
+const upcoming = {
+  ...fallbackUpcoming,
+  ...features.upcoming,
+};
 const publicLiveTrackingMobileHasImage = hasAsset(publicLiveTrackingMobileSrc);
 const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
 ---
@@ -138,7 +167,9 @@ const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
     </p>
   </div>
 
-  <div class="relative z-10 mt-14 space-y-16 sm:mt-16 sm:space-y-18 lg:space-y-20">
+  <div
+    class="relative z-10 mt-14 space-y-16 sm:mt-16 sm:space-y-18 lg:space-y-20"
+  >
     <article class="reveal" style="--reveal-delay: 220ms">
       <div class="max-w-[31rem]">
         <p
@@ -493,7 +524,9 @@ const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
           >
             <div class="mb-3 flex items-center gap-2 px-1">
               <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
-              <span class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft">
+              <span
+                class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
+              >
                 Live follow
               </span>
             </div>
@@ -531,7 +564,9 @@ const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
           >
             <div class="mb-3 flex items-center gap-2 px-1">
               <span class="size-1.5 rounded-full bg-white/75"></span>
-              <span class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft">
+              <span
+                class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
+              >
                 Results
               </span>
             </div>
@@ -572,6 +607,105 @@ const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
           <p>
             Participants and audiences stay informed without chasing updates.
           </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="reveal" style="--reveal-delay: 120ms">
+      <div class="mx-auto max-w-[64rem]">
+        <div
+          class="rounded-[2.1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] px-6 py-7 shadow-[0_18px_40px_rgba(0,0,0,0.18)] sm:px-8 sm:py-9"
+        >
+          <div
+            class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(17rem,19.5rem)] lg:items-center lg:gap-10"
+          >
+            <div class="max-w-[36rem]">
+              <span
+                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-copy-soft"
+              >
+                <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
+                {upcoming.badge}
+              </span>
+
+              <h3
+                class="editorial-display mt-5 text-3xl leading-[1.02] font-semibold tracking-[-0.05em] text-white sm:text-[2.7rem]"
+              >
+                {upcoming.title}
+              </h3>
+
+              <p
+                class="mt-4 max-w-[33rem] text-lg leading-8 text-copy-soft sm:text-xl sm:leading-9"
+              >
+                {upcoming.description}
+              </p>
+
+              <p
+                class="mt-4 max-w-[31rem] text-sm leading-7 text-copy-soft sm:text-base"
+              >
+                {upcoming.note}
+              </p>
+            </div>
+
+            <div class="w-full max-w-[19.5rem] lg:justify-self-end">
+              <div class="relative mx-auto">
+                <div
+                  class="pointer-events-none absolute inset-x-6 -top-3 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent)]"
+                >
+                </div>
+
+                <div
+                  class="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-4 shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <span
+                      class="rounded-full border border-white/10 bg-black/28 px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-copy-soft"
+                    >
+                      {upcoming.badge}
+                    </span>
+                    <span class="size-2 rounded-full bg-accent-cyan/70"></span>
+                  </div>
+
+                  <div
+                    class="mt-4 rounded-[1.35rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_56%),linear-gradient(180deg,rgba(13,13,15,0.96),rgba(9,9,11,0.98))] p-4"
+                  >
+                    <p
+                      class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-white/45"
+                    >
+                      {upcoming.previewEyebrow}
+                    </p>
+                    <p
+                      class="mt-2 text-lg font-semibold tracking-[-0.04em] text-white"
+                    >
+                      {upcoming.previewTitle}
+                    </p>
+
+                    <div class="mt-4 space-y-2.5">
+                      {
+                        upcoming.previewItems.map((item, index) => (
+                          <div class="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2.5 text-xs text-copy-soft">
+                            <span
+                              class={`size-1.5 rounded-full ${
+                                index === 0
+                                  ? "bg-accent-cyan/80"
+                                  : index === 1
+                                    ? "bg-white/60"
+                                    : "bg-accent/70"
+                              }`}
+                            ></span>
+                            <span>{item}</span>
+                          </div>
+                        ))
+                      }
+                    </div>
+
+                    <p class="mt-4 text-xs leading-6 text-copy-soft">
+                      {upcoming.previewFootnote}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </article>

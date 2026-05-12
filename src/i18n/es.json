@@ -109,6 +109,16 @@
     ]
   },
   "features": {
+    "upcoming": {
+      "badge": "Coming soon",
+      "title": "Workshop & Masterclasses",
+      "description": "Estamos preparando una nueva capa para workshops, masterclasses y sesiones especiales, pensada para integrarse con naturalidad en el ecosistema del evento.",
+      "note": "Una evoluci\u00f3n pr\u00f3xima para ampliar la experiencia m\u00e1s all\u00e1 de la competici\u00f3n sin perder la claridad del conjunto.",
+      "previewEyebrow": "Pr\u00f3xima capa",
+      "previewTitle": "Experiencias formativas",
+      "previewItems": ["Workshops", "Masterclasses", "Sesiones especiales"],
+      "previewFootnote": "Un adelanto ligero de la siguiente expansi\u00f3n dentro del ecosistema LumoraEvents."
+    },
     "eyebrow": "Experiencia de plataforma",
     "title": "Un flujo claro desde las inscripciones hasta el día de la competición.",
     "description": "Inscripciones, configuración, jueces, seguimiento y experiencia pública conectados en una sola plataforma pensada para eventos reales.",
