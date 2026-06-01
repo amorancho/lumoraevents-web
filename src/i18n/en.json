@@ -71,25 +71,25 @@
     }
   },
   "approach": {
-    "eyebrow": "How LumoraEvents works",
-    "title": "Built for the work behind competition day.",
-    "description": "The operational layer that keeps teams clearer before the event and calmer while it is live.",
+    "eyebrow": "Real support",
+    "title": "How we work with you",
+    "description": "We support you before, during, and after the event so the technology feels like help, not one more concern.",
     "items": [
       {
-        "title": "One place for the moving parts",
-        "description": "Participants, schedules, music, judges, and scoring stay connected."
+        "title": "First meeting",
+        "description": "We understand how your event works, answer questions, and show you the best way to work with the platform."
       },
       {
-        "title": "Clarity when plans shift",
-        "description": "Timings and last-minute changes remain readable across the event."
+        "title": "Setup and preparation",
+        "description": "We help you prepare the event and make the adjustments needed to match the way your team works."
       },
       {
-        "title": "Support that stays close",
-        "description": "Questions get answered without adding pressure to the team."
+        "title": "Support during the event",
+        "description": "We monitor the competitions and keep a direct communication channel open to respond quickly to any need."
       },
       {
-        "title": "Less chaos before the event",
-        "description": "Preparation stops living across spreadsheets, emails, and side lists."
+        "title": "Continuous improvement",
+        "description": "After the event, we gather feedback, review what we learned, and keep improving the platform alongside organizers."
       }
     ]
   },

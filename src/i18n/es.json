@@ -71,25 +71,25 @@
     }
   },
   "approach": {
-    "eyebrow": "Cómo trabaja LumoraEvents",
-    "title": "Pensada para el trabajo que hay detrás del día de competición.",
-    "description": "La capa operativa que ayuda a los equipos a llegar más claros al evento y a trabajar con menos presión en directo.",
+    "eyebrow": "Acompañamiento real",
+    "title": "Cómo trabajamos contigo",
+    "description": "Te acompañamos antes, durante y después del evento para que la tecnología sea una ayuda, no una preocupación más.",
     "items": [
       {
-        "title": "Un solo lugar para lo esencial",
-        "description": "Participantes, horarios, músicas, jueces y scoring permanecen conectados."
+        "title": "Primera reunión",
+        "description": "Entendemos cómo funciona tu evento, resolvemos dudas y te mostramos la mejor forma de trabajar con la plataforma."
       },
       {
-        "title": "Claridad cuando el plan cambia",
-        "description": "Los cambios de horario y los ajustes de última hora siguen siendo legibles."
+        "title": "Configuración y preparación",
+        "description": "Te ayudamos a preparar el evento y realizamos los ajustes necesarios para adaptarnos a vuestra forma de trabajar."
       },
       {
-        "title": "Soporte que se mantiene cerca",
-        "description": "Las dudas se resuelven sin añadir presión al equipo."
+        "title": "Soporte durante el evento",
+        "description": "Monitorizamos las competiciones y mantenemos un canal directo de comunicación para responder rápidamente ante cualquier necesidad."
       },
       {
-        "title": "Menos caos antes del evento",
-        "description": "La preparación deja de vivir entre hojas de cálculo, correos y listas paralelas."
+        "title": "Mejora continua",
+        "description": "Después del evento recogemos feedback, revisamos lo aprendido y seguimos mejorando la plataforma junto a los organizadores."
       }
     ]
   },
