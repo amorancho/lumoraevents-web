@@ -1,7 +1,7 @@
 {
   "meta": {
-    "title": "LumoraEvents | Real-time competition software for dance events",
-    "description": "LumoraEvents brings judges scoring, schedules, live tracking, and realtime results into one premium operating layer for dance competitions."
+    "title": "LumoraEvents | Competition and dance event management software",
+    "description": "Professional platform to manage registrations, judges, scheduling, voting, and results for dance competitions and other judged events."
   },
   "navigation": {
     "appLabel": "Access platform",
@@ -108,7 +108,7 @@
   },
   "features": {
     "eyebrow": "Platform experience",
-    "title": "One clear flow from registrations to competition day.",
+    "title": "The full competition management process in one platform.",
     "description": "Registrations, setup, judging, live control, and public visibility connected in one platform built for real events.",
     "upcoming": {
       "badge": "Coming soon",
