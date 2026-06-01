@@ -24,8 +24,8 @@
         "logoSrc": "/images/events/event-02.webp"
       },
       {
-        "name": "IAD Grand Prix",
-        "logoSrc": "/images/events/event-03.webp"
+        "name": "Royal Dance Competición",
+        "logoSrc": "/images/events/event-10.webp"
       },
       {
         "name": "Leyla Raqs BCN",
@@ -42,6 +42,10 @@
       {
         "name": "Campeonato Nacional Castilla y León Danza Urbana",
         "logoSrc": "/images/events/event-07.webp"
+      },
+      {
+        "name": "IAD Grand Prix",
+        "logoSrc": "/images/events/event-03.webp"
       },
       {
         "name": "Hips Don't Lie",
@@ -201,9 +205,9 @@
     ]
   },
   "cta": {
-    "eyebrow": "Real support",
-    "title": "Let's make your next competition feel calmer, clearer, and fully supported.",
-    "description": "From preparation to competition day, LumoraEvents stays close with a modern live experience and real human support behind it.",
+    "eyebrow": "LET'S START WITH YOUR EVENT",
+    "title": "The best way to get to know LumoraEvents is by talking about your event.",
+    "description": "Because no competition works exactly the same way. Let’s start by understanding yours, and we’ll show you how we work with organizers like you.",
     "primaryCta": "Let's talk"
   },
   "footer": {

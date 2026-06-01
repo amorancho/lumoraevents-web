@@ -24,9 +24,10 @@
         "logoSrc": "/images/events/event-02.webp"
       },
       {
-        "name": "IAD Grand Prix",
-        "logoSrc": "/images/events/event-03.webp"
+        "name": "Royal Dance Competición",
+        "logoSrc": "/images/events/event-10.webp"
       },
+      
       {
         "name": "Leyla Raqs BCN",
         "logoSrc": "/images/events/event-04.webp"
@@ -42,6 +43,10 @@
       {
         "name": "Campeonato Nacional Castilla y León Danza Urbana",
         "logoSrc": "/images/events/event-07.webp"
+      },
+      {
+        "name": "IAD Grand Prix",
+        "logoSrc": "/images/events/event-03.webp"
       },
       {
         "name": "Hips Don't Lie",
@@ -201,9 +206,9 @@
     ]
   },
   "cta": {
-    "eyebrow": "Soporte real",
-    "title": "Hagamos que tu próxima competición se sienta más clara y mejor organizada.",
-    "description": "Desde la preparación hasta el día del evento, LumoraEvents acompaña cada competición con una experiencia moderna y soporte cercano.",
+    "eyebrow": "EMPECEMOS POR TU EVENTO",
+    "title": "La mejor forma de conocer LumoraEvents es hablando de tu evento.",
+    "description": "Porque ninguna competición funciona exactamente igual. Empecemos entendiendo cómo es la vuestra y te enseñaremos cómo trabajamos con organizadores como vosotros.",
     "primaryCta": "Hablemos"
   },
   "footer": {
