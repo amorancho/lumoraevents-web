@@ -60,10 +60,19 @@
     "editorial": {
       "label": "Tipos de eventos",
       "title": "No todas las competiciones funcionan igual.",
-      "description": "LumoraEvents se adapta con naturalidad a competiciones con estilos, estructuras y dinámicas de jurado diferentes.",
-      "note": "La misma estructura también puede adaptarse a eventos caninos, gastronómicos, belleza, vocales y otros formatos con dinámicas de jurado y puntuación.",
+      "description": "LumoraEvents se adapta con naturalidad a competiciones de danza con estilos, formatos y dinámicas de jurado diferentes.",
+      "secondaryLabel": "Y MÁS ALLÁ DE LA DANZA",
+      "secondaryStyles": [
+        "GASTRONÓMICO",
+        "BELLEZA",
+        "CANINOS",
+        "VOCALES / CANTO",
+        "Y MUCHO MÁS"
+      ],
       "styles": [
         "URBAN",
+        "HIP HOP",
+        "BATALLAS",
         "BELLYDANCE",
         "MODERN",
         "CONTEMPORARY",

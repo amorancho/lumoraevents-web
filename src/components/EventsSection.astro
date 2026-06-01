@@ -4,7 +4,8 @@ type EventEditorial = {
   title: string;
   description: string;
   styles: string[];
-  note?: string;
+  secondaryLabel?: string;
+  secondaryStyles?: string[];
 };
 
 interface Props {
@@ -31,8 +32,14 @@ const fallbackEditorial: EventEditorial = {
     "OPEN",
     "ANY STYLE",
   ],
-  note:
-    "The same structure can also adapt to canine events, gastronomy, beauty, vocal competitions, and other formats built around judging and scoring dynamics.",
+  secondaryLabel: "Beyond dance",
+  secondaryStyles: [
+    "GASTRONOMIC",
+    "BEAUTY",
+    "CANINE",
+    "VOCAL / SINGING",
+    "AND MUCH MORE",
+  ],
 };
 
 const editorial: EventEditorial = {
@@ -42,6 +49,10 @@ const editorial: EventEditorial = {
     events.editorial?.styles && events.editorial.styles.length > 0
       ? events.editorial.styles
       : fallbackEditorial.styles,
+  secondaryStyles:
+    events.editorial?.secondaryStyles && events.editorial.secondaryStyles.length > 0
+      ? events.editorial.secondaryStyles
+      : fallbackEditorial.secondaryStyles,
 };
 
 const isExpandedStyle = (style: string) => {
@@ -52,7 +63,7 @@ const isExpandedStyle = (style: string) => {
 
 <section class="shell pb-12 pt-4 sm:pb-14 sm:pt-6 lg:pb-16">
   <div class="border-y border-white/8 py-7 sm:py-8 lg:py-9">
-    <div class="grid gap-6 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-end lg:gap-10">
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-center lg:gap-10">
       <div class="max-w-[34rem]">
         <span class="eyebrow reveal">{editorial.label}</span>
 
@@ -72,11 +83,11 @@ const isExpandedStyle = (style: string) => {
       </div>
 
       <div
-        class="reveal max-w-[34rem] sm:max-w-[42rem] lg:ml-auto lg:max-w-[39rem]"
+        class="reveal max-w-[34rem] sm:max-w-[44rem] lg:ml-auto lg:flex lg:w-full lg:max-w-[42rem] lg:flex-col lg:justify-center"
         style="--reveal-delay: 200ms"
       >
         <ul
-          class="flex flex-wrap items-center gap-2.5 lg:justify-end"
+          class="flex flex-wrap items-center gap-2 lg:justify-end"
           aria-label={editorial.label}
         >
           {
@@ -84,9 +95,9 @@ const isExpandedStyle = (style: string) => {
               <li>
                 <span
                   class:list={[
-                    "inline-flex items-center rounded-full px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.22em]",
+                    "inline-flex items-center rounded-full px-2.5 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.18em] sm:px-3 sm:text-[0.66rem]",
                     isExpandedStyle(style)
-                      ? "gap-2 border border-cyan-300/30 bg-[linear-gradient(135deg,rgba(34,211,238,0.18),rgba(255,255,255,0.05))] pr-3.5 text-white shadow-[0_10px_30px_rgba(6,182,212,0.16)] ring-1 ring-cyan-200/10"
+                      ? "gap-2 border border-cyan-300/28 bg-[linear-gradient(135deg,rgba(34,211,238,0.16),rgba(255,255,255,0.04))] pr-3 text-white shadow-[0_8px_24px_rgba(6,182,212,0.14)] ring-1 ring-cyan-200/8"
                       : "border border-white/10 bg-white/[0.03] text-copy-soft/86",
                   ]}
                 >
@@ -105,13 +116,26 @@ const isExpandedStyle = (style: string) => {
           }
         </ul>
 
-        {
-          editorial.note && (
-            <p class="mt-4 max-w-[31rem] text-[0.95rem] leading-6 text-copy-soft/72 lg:ml-auto lg:text-right">
-              {editorial.note}
-            </p>
-          )
-        }
+        <div class="mt-3.5 lg:ml-auto lg:max-w-[35rem]">
+          <p class="text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-copy-soft/52 lg:text-right">
+            {editorial.secondaryLabel}
+          </p>
+
+          <ul
+            class="mt-2 flex flex-wrap items-center gap-1.5 lg:justify-end"
+            aria-label={editorial.secondaryLabel}
+          >
+            {
+              (editorial.secondaryStyles ?? []).map((style) => (
+                <li>
+                  <span class="inline-flex items-center rounded-full border border-white/6 bg-white/[0.018] px-2.5 py-1 text-[0.56rem] font-medium uppercase tracking-[0.16em] text-copy-soft/58 sm:px-3">
+                    {style}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
       </div>
     </div>
   </div>

@@ -59,10 +59,19 @@
     "editorial": {
       "label": "Types of events",
       "title": "Not every competition works the same way.",
-      "description": "LumoraEvents adapts naturally to competitions with different styles, structures, and judging dynamics.",
-      "note": "The same structure can also adapt to canine events, gastronomy, beauty, vocal competitions, and other formats built around judging and scoring dynamics.",
+      "description": "LumoraEvents adapts naturally to dance competitions with different styles, formats, and judging dynamics.",
+      "secondaryLabel": "Beyond dance",
+      "secondaryStyles": [
+        "GASTRONOMIC",
+        "BEAUTY",
+        "CANINE",
+        "VOCAL / SINGING",
+        "AND MUCH MORE"
+      ],
       "styles": [
         "URBAN",
+        "HIP HOP",
+        "BATTLES",
         "BELLYDANCE",
         "MODERN",
         "CONTEMPORARY",
