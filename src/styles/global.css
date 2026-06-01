@@ -96,6 +96,30 @@
     @apply max-w-[38rem] text-base leading-8 text-copy-soft sm:text-lg;
   }
 
+  .section-intro {
+    @apply max-w-[46rem];
+  }
+
+  .section-intro-centered {
+    @apply mx-auto text-center;
+  }
+
+  .section-title {
+    @apply mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.9rem] lg:leading-[0.96];
+  }
+
+  .section-description {
+    @apply mt-5 text-lg leading-8 text-copy-soft sm:text-xl;
+  }
+
+  .surface-card {
+    @apply rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.055),rgba(255,255,255,0.02))] shadow-[0_20px_48px_rgba(0,0,0,0.24)];
+  }
+
+  .product-mini-frame {
+    @apply overflow-hidden rounded-[1.55rem] border border-white/10 bg-black/45;
+  }
+
   .faq-trigger {
     @apply flex w-full cursor-pointer items-center justify-between gap-4 transition-[border-color,background-color] duration-200 hover:border-white/14 hover:bg-white/[0.03];
   }

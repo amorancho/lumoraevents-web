@@ -4,28 +4,13 @@
     "description": "LumoraEvents brings judges scoring, schedules, live tracking, and realtime results into one premium operating layer for dance competitions."
   },
   "navigation": {
-    "links": [
-      {
-        "label": "Platform",
-        "href": "#product"
-      },
-      {
-        "label": "Features",
-        "href": "#features"
-      },
-      {
-        "label": "Contact",
-        "href": "#cta"
-      }
-    ],
     "appLabel": "Access platform",
-    "primaryCta": "Contact us",
     "menu": "Menu"
   },
   "hero": {
-    "eyebrow": "Software for real dance competitions",
     "title": "A clearer way to run competitions.",
-    "description": "One calm platform for organizers, judges, and participants before and during competition day."
+    "description": "Less improvisation. More control. A better organized competition from day one.",
+    "keywords": ["SMART", "SIMPLE", "COMPETITIONS UNDER CONTROL"]
   },
   "events": {
     "title": "Some of our events",
@@ -88,23 +73,23 @@
   "approach": {
     "eyebrow": "How LumoraEvents works",
     "title": "Built for the work behind competition day.",
-    "description": "Schedules, judges, participants, and results organized in one calm platform that stays clear before and during competition day.",
+    "description": "The operational layer that keeps teams clearer before the event and calmer while it is live.",
     "items": [
       {
         "title": "One place for the moving parts",
-        "description": "The operational core of the event stays connected instead of being pieced together from separate files and messages."
+        "description": "Participants, schedules, music, judges, and scoring stay connected."
       },
       {
         "title": "Clarity when plans shift",
-        "description": "If timings, categories, or last-minute details change, the structure stays readable."
+        "description": "Timings and last-minute changes remain readable across the event."
       },
       {
         "title": "Support that stays close",
-        "description": "We stay available before, during, and after the event so questions do not become extra pressure."
+        "description": "Questions get answered without adding pressure to the team."
       },
       {
         "title": "Less chaos before the event",
-        "description": "Schedules, participants, music, and changes stop living across spreadsheets, emails, and separate lists."
+        "description": "Preparation stops living across spreadsheets, emails, and side lists."
       }
     ]
   },
@@ -115,48 +100,68 @@
     "upcoming": {
       "badge": "Coming soon",
       "title": "Workshop & Masterclasses",
-      "description": "We are preparing a new layer for workshops, masterclasses, and special sessions, designed to integrate naturally into the event ecosystem.",
-      "note": "A near-term evolution for LumoraEvents, extending the experience beyond competition moments without losing the clarity of the platform.",
+      "description": "A lighter extension for workshops, masterclasses, and special sessions inside the same product ecosystem.",
+      "note": "Designed as a teaser for what comes next, not as a separate product story.",
       "previewEyebrow": "Future layer",
       "previewTitle": "Learning experiences",
       "previewItems": ["Workshops", "Masterclasses", "Special sessions"],
-      "previewFootnote": "A light preview of the next expansion inside the LumoraEvents ecosystem."
+      "previewFootnote": "The same clarity, expanded beyond competition formats."
     },
     "sections": [
       {
         "id": "registrations",
         "title": "Registrations",
-        "description": "Schools, participants, categories, and music prepared in one clear flow instead of being scattered across files and inboxes.",
+        "benefit": "Bring entries, schools, categories, and music into one intake flow.",
+        "description": "Collect competition data in one place instead of rebuilding the event from spreadsheets, emails, and separate forms.",
         "imageSrc": "/images/platform/registrations.webp",
-        "imageAlt": "LumoraEvents registrations flow"
+        "imageAlt": "LumoraEvents registrations flow",
+        "previewLabel": "Registration flow",
+        "previewItems": ["Schools", "Participants", "Categories", "Music"],
+        "previewFootnote": "Everything arrives structured before competition day."
       },
       {
         "id": "configuration",
         "title": "Configuration",
-        "description": "Schedules, judges, criteria, and event structure prepared in one flexible setup layer before the day begins.",
+        "benefit": "Shape schedules, judges, and criteria before the day gets busy.",
+        "description": "Set the operational rules once, keep the structure readable, and prepare the event without jumping across disconnected tools.",
         "imageSrc": "/images/platform/configuration.webp",
-        "imageAlt": "LumoraEvents event configuration and schedule setup"
+        "imageAlt": "LumoraEvents event configuration and schedule setup",
+        "previewLabel": "Event setup",
+        "previewItems": ["Schedules", "Judge panels", "Criteria", "Rounds"],
+        "previewFootnote": "A flexible setup layer for the moving parts."
       },
       {
         "id": "judges",
         "title": "Judges experience",
-        "description": "A clean scoring flow that stays fast and easy to follow on tablet or phone, even under live pressure.",
+        "benefit": "Keep scoring clean, fast, and easy to follow on any device.",
+        "description": "Judges work from a focused interface that reduces friction under pressure and keeps results flowing back into the event in real time.",
         "imageSrc": "/images/platform/judges.webp",
-        "imageAlt": "LumoraEvents judges scoring interface"
+        "imageAlt": "LumoraEvents judges scoring interface",
+        "previewLabel": "Scoring flow",
+        "previewItems": ["Tablet ready", "Mobile ready", "Fast input", "Live sync"],
+        "previewFootnote": "Built for live scoring without extra noise."
       },
       {
         "id": "live-tracking",
         "title": "Live tracking",
-        "description": "See what is running, what is next, and where attention is needed from one calm operational view.",
+        "benefit": "See what is live, what is next, and where attention is needed.",
+        "description": "Give organizers one calmer operational view during the event, with the current stage of the competition always within reach.",
         "imageSrc": "/images/platform/live-tracking.webp",
-        "imageAlt": "LumoraEvents live tracking screen"
+        "imageAlt": "LumoraEvents live tracking screen",
+        "previewLabel": "Control board",
+        "previewItems": ["Now live", "Up next", "Delays", "Attention points"],
+        "previewFootnote": "A clearer operational pulse during the day."
       },
       {
         "id": "public-live",
         "title": "Public live experience",
-        "description": "Participants and audiences follow schedules, performances, and results through a modern public live experience.",
+        "benefit": "Share schedules, performances, and results without manual updates.",
+        "description": "Participants and audiences follow the event through a public layer that keeps them informed without pulling the team away from operations.",
         "imageSrc": "/images/platform/public-live.webp",
-        "imageAlt": "LumoraEvents public live experience"
+        "imageAlt": "LumoraEvents public live experience",
+        "previewLabel": "Public live",
+        "previewItems": ["Schedules", "Performance order", "Results", "Live status"],
+        "previewFootnote": "A public view that stays aligned with the event."
       }
     ]
   },

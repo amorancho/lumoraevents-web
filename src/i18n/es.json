@@ -4,28 +4,13 @@
     "description": "LumoraEvents unifica scoring de jueces, horarios, seguimiento en directo y resultados en tiempo real para competiciones de danza."
   },
   "navigation": {
-    "links": [
-      {
-        "label": "Plataforma",
-        "href": "#product"
-      },
-      {
-        "label": "Características",
-        "href": "#features"
-      },
-      {
-        "label": "Contacto",
-        "href": "#cta"
-      }
-    ],
     "appLabel": "Acceder a la plataforma",
-    "primaryCta": "Contactar",
     "menu": "Menú"
   },
   "hero": {
-    "eyebrow": "Software para competiciones reales de danza",
     "title": "Una forma más clara de organizar competiciones.",
-    "description": "Una plataforma serena para organizadores, jueces y participantes antes y durante el día de competición."
+    "description": "Menos improvisación. Más control. Una competición mejor organizada desde el primer día.",
+    "keywords": ["SMART", "SIMPLE", "COMPETICIONES BAJO CONTROL"]
   },
   "events": {
     "title": "Algunos de nuestros eventos",
@@ -88,23 +73,23 @@
   "approach": {
     "eyebrow": "Cómo trabaja LumoraEvents",
     "title": "Pensada para el trabajo que hay detrás del día de competición.",
-    "description": "Horarios, jueces, participantes y resultados organizados en una sola plataforma clara y fácil de seguir.",
+    "description": "La capa operativa que ayuda a los equipos a llegar más claros al evento y a trabajar con menos presión en directo.",
     "items": [
       {
         "title": "Un solo lugar para lo esencial",
-        "description": "El núcleo operativo del evento permanece conectado, sin reconstruir decisiones entre archivos, correos y mensajes."
+        "description": "Participantes, horarios, músicas, jueces y scoring permanecen conectados."
       },
       {
         "title": "Claridad cuando el plan cambia",
-        "description": "Si cambian horarios, categorías o detalles de última hora, la estructura sigue siendo legible."
+        "description": "Los cambios de horario y los ajustes de última hora siguen siendo legibles."
       },
       {
         "title": "Soporte que se mantiene cerca",
-        "description": "Estamos disponibles antes, durante y después del evento para que las dudas no se conviertan en presión añadida."
+        "description": "Las dudas se resuelven sin añadir presión al equipo."
       },
       {
         "title": "Menos caos antes del evento",
-        "description": "Horarios, participantes, músicas y cambios dejan de vivir entre hojas de cálculo, correos y listas separadas."
+        "description": "La preparación deja de vivir entre hojas de cálculo, correos y listas paralelas."
       }
     ]
   },
@@ -112,12 +97,12 @@
     "upcoming": {
       "badge": "Coming soon",
       "title": "Workshop & Masterclasses",
-      "description": "Estamos preparando una nueva capa para workshops, masterclasses y sesiones especiales, pensada para integrarse con naturalidad en el ecosistema del evento.",
-      "note": "Una evoluci\u00f3n pr\u00f3xima para ampliar la experiencia m\u00e1s all\u00e1 de la competici\u00f3n sin perder la claridad del conjunto.",
-      "previewEyebrow": "Pr\u00f3xima capa",
+      "description": "Una extensión ligera para workshops, masterclasses y sesiones especiales dentro del mismo ecosistema de producto.",
+      "note": "Planteado como teaser de la siguiente capa, no como un bloque separado de otra web.",
+      "previewEyebrow": "Próxima capa",
       "previewTitle": "Experiencias formativas",
       "previewItems": ["Workshops", "Masterclasses", "Sesiones especiales"],
-      "previewFootnote": "Un adelanto ligero de la siguiente expansi\u00f3n dentro del ecosistema LumoraEvents."
+      "previewFootnote": "La misma claridad, ampliada más allá de la competición."
     },
     "eyebrow": "Experiencia de plataforma",
     "title": "Un flujo claro desde las inscripciones hasta el día de la competición.",
@@ -126,37 +111,57 @@
       {
         "id": "registrations",
         "title": "Inscripciones",
-        "description": "Escuelas, participantes, categorías y músicas organizadas en un flujo claro, sin repartir el evento entre archivos y correos.",
+        "benefit": "Reúne inscripciones, escuelas, categorías y músicas en un solo flujo.",
+        "description": "Recoge los datos del evento en un solo lugar, sin reconstruir la competición entre hojas de cálculo, correos y formularios separados.",
         "imageSrc": "/images/platform/registrations.webp",
-        "imageAlt": "Flujo de inscripciones de LumoraEvents"
+        "imageAlt": "Flujo de inscripciones de LumoraEvents",
+        "previewLabel": "Flujo de inscripción",
+        "previewItems": ["Escuelas", "Participantes", "Categorías", "Música"],
+        "previewFootnote": "Todo llega estructurado antes del día de competición."
       },
       {
         "id": "configuration",
         "title": "Configuración",
-        "description": "Horarios, jueces, criterios y estructura del evento preparados en una capa flexible antes de que empiece la jornada.",
+        "benefit": "Define horarios, jueces y criterios antes de que empiece la jornada.",
+        "description": "Configura las reglas operativas una vez, mantén la estructura legible y prepara el evento sin saltar entre herramientas desconectadas.",
         "imageSrc": "/images/platform/configuration.webp",
-        "imageAlt": "Configuración del evento y horarios en LumoraEvents"
+        "imageAlt": "Configuración del evento y horarios en LumoraEvents",
+        "previewLabel": "Setup del evento",
+        "previewItems": ["Horarios", "Paneles", "Criterios", "Rondas"],
+        "previewFootnote": "Una capa flexible para todas las piezas del evento."
       },
       {
         "id": "judges",
         "title": "Experiencia de jueces",
-        "description": "Un flujo de scoring limpio, rápido y fácil de seguir en tablet o móvil, incluso bajo presión en directo.",
+        "benefit": "Mantén el scoring limpio, rápido y fácil de seguir en cualquier dispositivo.",
+        "description": "Los jueces trabajan desde una interfaz enfocada que reduce fricción bajo presión y devuelve los resultados al evento en tiempo real.",
         "imageSrc": "/images/platform/judges.webp",
-        "imageAlt": "Interfaz de scoring de jueces de LumoraEvents"
+        "imageAlt": "Interfaz de scoring de jueces de LumoraEvents",
+        "previewLabel": "Flujo de scoring",
+        "previewItems": ["Tablet", "Móvil", "Entrada rápida", "Sync en vivo"],
+        "previewFootnote": "Pensado para puntuar en directo sin ruido extra."
       },
       {
         "id": "live-tracking",
         "title": "Seguimiento en directo",
-        "description": "Una vista operativa clara para saber qué está ocurriendo, qué viene después y dónde hace falta atención.",
+        "benefit": "Ve qué está en marcha, qué viene después y dónde hace falta atención.",
+        "description": "Da al equipo una vista operativa más calmada durante el evento, con el estado actual de la competición siempre visible.",
         "imageSrc": "/images/platform/live-tracking.webp",
-        "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents"
+        "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents",
+        "previewLabel": "Control en vivo",
+        "previewItems": ["Ahora", "Siguiente", "Retrasos", "Puntos de atención"],
+        "previewFootnote": "Un pulso operativo más claro durante la jornada."
       },
       {
         "id": "public-live",
         "title": "Experiencia pública en directo",
-        "description": "Participantes y público siguen horarios, actuaciones y resultados desde una experiencia pública moderna y accesible.",
+        "benefit": "Comparte horarios, actuaciones y resultados sin actualizaciones manuales.",
+        "description": "Participantes y público siguen el evento desde una capa pública que informa sin apartar al equipo de la operativa.",
         "imageSrc": "/images/platform/public-live.webp",
-        "imageAlt": "Experiencia pública en directo de LumoraEvents"
+        "imageAlt": "Experiencia pública en directo de LumoraEvents",
+        "previewLabel": "Live público",
+        "previewItems": ["Horarios", "Orden", "Resultados", "Estado en vivo"],
+        "previewFootnote": "Una vista pública alineada con lo que ocurre en el evento."
       }
     ]
   },

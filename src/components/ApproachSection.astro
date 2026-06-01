@@ -24,23 +24,19 @@ const { approach } = Astro.props;
 const fallbackItems: ApproachItem[] = [
   {
     title: "One place for the moving parts",
-    description:
-      "The event's operational core stays connected instead of being pieced together from separate files and messages.",
+    description: "Participants, schedules, music, judges, and scoring stay connected.",
   },
   {
     title: "Clarity when plans shift",
-    description:
-      "If timings, categories, or last-minute details change, the structure stays readable.",
+    description: "Timings and last-minute changes remain readable across the event.",
   },
   {
     title: "Support that stays close",
-    description:
-      "We stay available before, during, and after the event so questions do not become extra pressure.",
+    description: "Questions get answered without adding pressure to the team.",
   },
   {
     title: "Less chaos before the event",
-    description:
-      "Schedules, participants, music, and changes stop living across spreadsheets, emails, and separate lists.",
+    description: "Preparation stops living across spreadsheets, emails, and side lists.",
   },
 ];
 
@@ -74,40 +70,38 @@ const pillarAccents: ApproachAccent[] = [
 ---
 
 <section class="shell relative py-16 sm:py-20 lg:py-24">
-  <div
-    class="relative z-10 grid gap-10 border-y border-white/8 py-10 sm:gap-12 sm:py-12 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-16 lg:py-14"
-  >
-    <div class="max-w-[31rem]">
-      <span class="eyebrow reveal">{approach.eyebrow}</span>
-      <h2
-        class="reveal mt-5 max-w-[12ch] text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.8rem] lg:leading-[0.98]"
-        style="--reveal-delay: 80ms"
-      >
-        {approach.title}
-      </h2>
-      <p
-        class="reveal mt-6 max-w-[29rem] text-lg leading-8 text-copy-soft sm:text-xl"
-        style="--reveal-delay: 160ms"
-      >
-        {approach.description}
-      </p>
+  <div class="surface-card relative overflow-hidden px-6 py-8 sm:px-8 sm:py-9 lg:px-10 lg:py-10">
+    <div
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.08),transparent_34%),radial-gradient(circle_at_82%_18%,rgba(6,182,212,0.08),transparent_24%)]"
+    >
     </div>
 
-    <div class="reveal relative" style="--reveal-delay: 220ms">
-      <div
-        class="pointer-events-none absolute inset-y-2 left-0 hidden w-px bg-white/8 lg:block"
-      >
+    <div class="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:gap-10">
+      <div class="max-w-[33rem]">
+        <span class="eyebrow reveal">{approach.eyebrow}</span>
+        <h2
+          class="section-title reveal max-w-[12ch]"
+          style="--reveal-delay: 80ms"
+        >
+          {approach.title}
+        </h2>
+        <p
+          class="section-description reveal max-w-[30rem] text-base sm:text-lg"
+          style="--reveal-delay: 160ms"
+        >
+          {approach.description}
+        </p>
       </div>
 
-      <div class="grid gap-x-8 gap-y-8 lg:grid-cols-2 lg:pl-12 xl:gap-x-10 xl:gap-y-10">
+      <div class="reveal grid gap-4 sm:grid-cols-2" style="--reveal-delay: 220ms">
         {
           items.map((item, index) => {
             const accent = pillarAccents[index] ?? pillarAccents[0];
 
             return (
-              <article class="group relative pt-2">
+              <article class="group rounded-[1.7rem] border border-white/10 bg-black/36 p-5 transition-[border-color,background-color] duration-200 hover:border-white/16 hover:bg-white/[0.03]">
                 <div class="flex items-center gap-4">
-                  <div class="relative flex h-9 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.025] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color] duration-200 group-hover:border-white/16 group-hover:bg-white/[0.04] sm:h-10 sm:w-14">
+                  <div class="relative flex h-10 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.025] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color] duration-200 group-hover:border-white/16 group-hover:bg-white/[0.04]">
                     <div
                       class="pointer-events-none absolute inset-0 opacity-45 transition-opacity duration-200 group-hover:opacity-70"
                       style={`background: radial-gradient(circle at 50% 50%, ${accent.glow}, transparent 72%);`}
@@ -193,13 +187,13 @@ const pillarAccents: ApproachAccent[] = [
                     )}
                   </div>
 
-                  <span class="h-px flex-1 bg-gradient-to-r from-white/14 via-white/6 to-transparent transition-opacity duration-200 group-hover:from-white/18 group-hover:via-white/9"></span>
+                  <span class="h-px flex-1 bg-gradient-to-r from-white/16 via-white/6 to-transparent transition-opacity duration-200 group-hover:from-white/20 group-hover:via-white/9"></span>
                 </div>
 
-                <h3 class="mt-5 max-w-[16rem] text-lg font-semibold tracking-[-0.03em] text-white transition-colors duration-200 group-hover:text-white/95 sm:text-[1.15rem]">
+                <h3 class="mt-5 max-w-[15ch] text-lg font-semibold tracking-[-0.03em] text-white sm:text-[1.1rem]">
                   {item.title}
                 </h3>
-                <p class="mt-3 max-w-[25rem] text-sm leading-7 text-copy-soft sm:text-base">
+                <p class="mt-3 max-w-[24rem] text-sm leading-7 text-copy-soft">
                   {item.description}
                 </p>
               </article>

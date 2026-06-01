@@ -12,9 +12,13 @@ type PlatformSectionId =
 type PlatformSection = {
   id: string;
   title: string;
+  benefit?: string;
   description: string;
   imageSrc: string;
   imageAlt: string;
+  previewLabel?: string;
+  previewItems?: string[];
+  previewFootnote?: string;
 };
 
 type UpcomingFeature = {
@@ -44,11 +48,6 @@ const publicRoot = new URL("../../public/", import.meta.url);
 const hasAsset = (src: string) =>
   existsSync(fileURLToPath(new URL(src.replace(/^\//, ""), publicRoot)));
 
-const publicLiveTrackingMobileSrc =
-  "/images/platform/public-live-tracking-mobile.webp";
-const publicLiveResultsMobileSrc =
-  "/images/platform/public-live-results-mobile.webp";
-
 const sectionOrder: PlatformSectionId[] = [
   "registrations",
   "configuration",
@@ -61,42 +60,62 @@ const fallbackSections: PlatformSection[] = [
   {
     id: "registrations",
     title: "Registrations",
+    benefit: "Bring entries, schools, categories, and music into one intake flow.",
     description:
-      "Schools, participants, categories, and music prepared in one clear flow instead of being scattered across files and inboxes.",
+      "Collect competition data in one place instead of rebuilding the event from spreadsheets, emails, and separate forms.",
     imageSrc: "/images/platform/registrations.webp",
-    imageAlt: "LumoraEvents registrations flow placeholder",
+    imageAlt: "LumoraEvents registrations flow",
+    previewLabel: "Registration flow",
+    previewItems: ["Schools", "Participants", "Categories", "Music"],
+    previewFootnote: "Everything arrives structured before competition day.",
   },
   {
     id: "configuration",
     title: "Configuration",
+    benefit: "Shape schedules, judges, and criteria before the day gets busy.",
     description:
-      "Schedules, judges, criteria, and event structure prepared in one flexible setup layer before the day begins.",
+      "Set the operational rules once, keep the structure readable, and prepare the event without jumping across disconnected tools.",
     imageSrc: "/images/platform/configuration.webp",
-    imageAlt: "LumoraEvents event configuration placeholder",
+    imageAlt: "LumoraEvents event configuration and schedule setup",
+    previewLabel: "Event setup",
+    previewItems: ["Schedules", "Judge panels", "Criteria", "Rounds"],
+    previewFootnote: "A flexible setup layer for the moving parts.",
   },
   {
     id: "judges",
     title: "Judges experience",
+    benefit: "Keep scoring clean, fast, and easy to follow on any device.",
     description:
-      "A clean scoring flow that stays fast and easy to follow on tablet or phone, even under live pressure.",
+      "Judges work from a focused interface that reduces friction under pressure and keeps results flowing back into the event in real time.",
     imageSrc: "/images/platform/judges.webp",
     imageAlt: "LumoraEvents judges scoring interface",
+    previewLabel: "Scoring flow",
+    previewItems: ["Tablet ready", "Mobile ready", "Fast input", "Live sync"],
+    previewFootnote: "Built for live scoring without extra noise.",
   },
   {
     id: "live-tracking",
     title: "Live tracking",
+    benefit: "See what is live, what is next, and where attention is needed.",
     description:
-      "See what is running, what is next, and where attention is needed from one calm operational view.",
+      "Give organizers one calmer operational view during the event, with the current stage of the competition always within reach.",
     imageSrc: "/images/platform/live-tracking.webp",
     imageAlt: "LumoraEvents live tracking screen",
+    previewLabel: "Control board",
+    previewItems: ["Now live", "Up next", "Delays", "Attention points"],
+    previewFootnote: "A clearer operational pulse during the day.",
   },
   {
     id: "public-live",
     title: "Public live experience",
+    benefit: "Share schedules, performances, and results without manual updates.",
     description:
-      "Participants and audiences follow schedules, performances, and results through a modern public live experience.",
+      "Participants and audiences follow the event through a public layer that keeps them informed without pulling the team away from operations.",
     imageSrc: "/images/platform/public-live.webp",
     imageAlt: "LumoraEvents public live experience",
+    previewLabel: "Public live",
+    previewItems: ["Schedules", "Performance order", "Results", "Live status"],
+    previewFootnote: "A public view that stays aligned with the event.",
   },
 ];
 
@@ -104,13 +123,13 @@ const fallbackUpcoming: UpcomingFeature = {
   badge: "Coming soon",
   title: "Workshop & Masterclasses",
   description:
-    "A new layer in preparation for workshops, masterclasses, and special sessions, designed to extend the event ecosystem with the same calm clarity.",
-  note: "A lighter next step for LumoraEvents, bringing educational moments closer to the broader event experience.",
+    "A lighter extension for workshops, masterclasses, and special sessions inside the same product ecosystem.",
+  note: "Designed as a teaser for what comes next, not as a separate product story.",
   previewEyebrow: "Future layer",
   previewTitle: "Learning experiences",
   previewItems: ["Workshops", "Masterclasses", "Special sessions"],
   previewFootnote:
-    "A small editorial preview of what is coming next inside the platform ecosystem.",
+    "The same clarity, expanded beyond competition formats.",
 };
 
 const fallbackById = new Map(
@@ -133,581 +152,237 @@ const sections = sectionOrder.map((id) => {
     ...section,
     id,
     imageSrc,
+    previewItems:
+      section?.previewItems && section.previewItems.length > 0
+        ? section.previewItems
+        : fallback.previewItems,
     hasImage: hasAsset(imageSrc),
   };
 });
 
-const registrations = sections[0] ?? fallbackSections[0];
-const configuration = sections[1] ?? fallbackSections[1];
-const judges = sections[2] ?? fallbackSections[2];
-const liveTracking = sections[3] ?? fallbackSections[3];
-const publicLive = sections[4] ?? fallbackSections[4];
 const upcoming = {
   ...fallbackUpcoming,
   ...features.upcoming,
 };
-const publicLiveTrackingMobileHasImage = hasAsset(publicLiveTrackingMobileSrc);
-const publicLiveResultsMobileHasImage = hasAsset(publicLiveResultsMobileSrc);
+
+const toneById: Record<
+  PlatformSectionId,
+  {
+    dotClass: string;
+    previewGlow: string;
+  }
+> = {
+  registrations: {
+    dotClass: "bg-accent-cyan/80",
+    previewGlow:
+      "bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.12),transparent_58%)]",
+  },
+  configuration: {
+    dotClass: "bg-accent/78",
+    previewGlow:
+      "bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_58%)]",
+  },
+  judges: {
+    dotClass: "bg-accent-cyan/80",
+    previewGlow:
+      "bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.12),transparent_58%)]",
+  },
+  "live-tracking": {
+    dotClass: "bg-accent/78",
+    previewGlow:
+      "bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_58%)]",
+  },
+  "public-live": {
+    dotClass: "bg-accent-cyan/80",
+    previewGlow:
+      "bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.12),transparent_58%),radial-gradient(circle_at_78%_0%,rgba(124,58,237,0.08),transparent_34%)]",
+  },
+};
 ---
 
-<section id="features" class="shell relative py-16 sm:py-20 lg:py-24">
-  <div class="relative z-10 max-w-[44rem]">
-    <span class="eyebrow reveal">{features.eyebrow}</span>
+<section id="features" class="shell relative pb-14 pt-10 sm:pb-16 sm:pt-12 lg:pb-20 lg:pt-14">
+  <div class="section-intro section-intro-centered relative z-10">
+    <span class="eyebrow reveal justify-center">{features.eyebrow}</span>
     <h2
-      class="reveal mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.9rem] lg:leading-[0.96]"
+      class="section-title reveal"
       style="--reveal-delay: 80ms"
     >
       {features.title}
     </h2>
     <p
-      class="reveal mt-5 max-w-[38rem] text-lg leading-8 text-copy-soft sm:text-xl"
+      class="section-description reveal mx-auto max-w-[41rem]"
       style="--reveal-delay: 160ms"
     >
       {features.description}
     </p>
   </div>
 
-  <div
-    class="relative z-10 mt-14 space-y-16 sm:mt-16 sm:space-y-18 lg:space-y-20"
-  >
-    <article class="reveal" style="--reveal-delay: 220ms">
-      <div class="max-w-[31rem]">
-        <p
-          class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-        >
-          {registrations.title}
-        </p>
-        <p
-          class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-        >
-          {registrations.description}
-        </p>
-      </div>
+  <div class="relative z-10 mx-auto mt-10 max-w-[72rem] space-y-4 sm:mt-12 sm:space-y-5">
+    {
+      sections.map((section, index) => {
+        const tone = toneById[section.id as PlatformSectionId] ?? toneById.registrations;
 
-      <div class="relative mt-8 sm:mt-10">
-        <div
-          class="relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] sm:p-5"
-        >
-          <div class="flex items-center gap-2 border-b border-white/10 pb-4">
-            <span class="size-2 rounded-full bg-white/25"></span>
-            <span class="size-2 rounded-full bg-white/20"></span>
-            <span class="size-2 rounded-full bg-white/15"></span>
-            <span
-              class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-            >
-              Registration flow
-            </span>
-          </div>
-
-          <div
-            class="mt-4 overflow-hidden rounded-[1.9rem] border border-white/10 bg-black/42 p-4"
-          >
-            {
-              registrations.hasImage ? (
-                <img
-                  src={registrations.imageSrc}
-                  alt={registrations.imageAlt}
-                  class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div class="grid min-h-[24rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[30rem]">
-                  <div class="max-w-md">
-                    <p class="text-2xl font-semibold text-white sm:text-3xl">
-                      {registrations.title}
-                    </p>
-                    <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
-                      {registrations.imageSrc}
-                    </p>
-                  </div>
-                </div>
-              )
-            }
-          </div>
-        </div>
-
-        <div
-          class="mt-4 max-w-xs rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:-right-2 sm:bottom-6 sm:mt-0"
-        >
-          Schools, categories, music, and participant data gathered in one clear
-          place.
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="relative">
-        <div class="max-w-[31rem] lg:ml-auto">
-          <p
-            class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-          >
-            {configuration.title}
-          </p>
-          <p
-            class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-          >
-            {configuration.description}
-          </p>
-        </div>
-
-        <div class="relative mt-10 sm:mt-12">
-          <div
-            class="ml-auto w-full overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] lg:w-[88%]"
-          >
-            <div class="flex items-center gap-2 border-b border-white/10 pb-4">
-              <span class="size-2 rounded-full bg-white/25"></span>
-              <span class="size-2 rounded-full bg-white/20"></span>
-              <span class="size-2 rounded-full bg-white/15"></span>
-              <span
-                class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-              >
-                Event setup
-              </span>
-            </div>
-
-            <div
-              class="mt-4 overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/42 p-4"
-            >
-              {
-                configuration.hasImage ? (
-                  <img
-                    src={configuration.imageSrc}
-                    alt={configuration.imageAlt}
-                    class="h-auto w-full rounded-[1.3rem] border border-white/8 object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div class="grid min-h-[22rem] place-items-center rounded-[1.3rem] border border-dashed border-white/12 bg-black/45 px-10 py-14 text-center sm:min-h-[28rem]">
-                    <div class="max-w-md">
-                      <p class="text-2xl font-semibold text-white sm:text-3xl">
-                        {configuration.title}
-                      </p>
-                      <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
-                        {configuration.imageSrc}
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-
-          <div
-            class="mt-4 max-w-xs rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-0 sm:top-6 sm:mt-0"
-          >
-            Schedules, judges, categories, and criteria shaped before the day
-            begins.
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="relative">
-        <div class="max-w-[31rem] lg:ml-auto">
-          <p
-            class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-          >
-            {judges.title}
-          </p>
-          <p
-            class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-          >
-            {judges.description}
-          </p>
-        </div>
-
-        <div class="relative mt-10 sm:min-h-[32rem]">
-          <div
-            class="relative w-[84%] overflow-hidden rounded-[2.3rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_56px_rgba(0,0,0,0.28)] sm:w-[76%]"
-          >
-            <div class="flex items-center gap-2 border-b border-white/10 pb-4">
-              <span class="size-2 rounded-full bg-white/25"></span>
-              <span class="size-2 rounded-full bg-white/20"></span>
-              <span class="size-2 rounded-full bg-white/15"></span>
-              <span
-                class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-              >
-                Judge input
-              </span>
-            </div>
-
-            <div
-              class="mt-4 overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/40 p-4"
-            >
-              {
-                judges.hasImage ? (
-                  <img
-                    src={judges.imageSrc}
-                    alt={judges.imageAlt}
-                    class="h-auto w-full rounded-[1.2rem] border border-white/8 object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div class="grid min-h-[20rem] place-items-center rounded-[1.2rem] border border-dashed border-white/12 bg-black/45 px-8 py-12 text-center sm:min-h-[24rem]">
-                    <div class="max-w-sm">
-                      <p class="text-xl font-semibold text-white sm:text-2xl">
-                        Tablet scoring
-                      </p>
-                      <p class="mt-3 text-sm leading-7 text-copy-soft">
-                        {judges.imageSrc}
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-
-          <div
-            class="relative mt-4 ml-auto w-[52%] overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/72 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:right-[6%] sm:top-28 sm:mt-0 sm:w-[28%]"
+        return (
+          <article
+            class="reveal surface-card relative overflow-hidden p-5 sm:p-6"
+            style={`--reveal-delay: ${220 + index * 60}ms`}
           >
             <div
-              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
-            >
-              {
-                judges.hasImage ? (
-                  <img
-                    src={judges.imageSrc}
-                    alt={judges.imageAlt}
-                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-black/48 px-4 py-6 text-center sm:min-h-[17rem]">
-                    <div>
-                      <p class="text-sm font-semibold text-white">
-                        Mobile scoring
-                      </p>
-                      <p class="mt-2 text-xs leading-5 text-copy-soft">
-                        Clear, fast input under live pressure.
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="max-w-[30rem]">
-        <p
-          class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-        >
-          {liveTracking.title}
-        </p>
-        <p
-          class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-        >
-          {liveTracking.description}
-        </p>
-      </div>
-
-      <div class="relative mt-8 sm:mt-10">
-        <div
-          class="relative overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] sm:p-5"
-        >
-          <div class="flex items-center gap-2 border-b border-white/10 pb-4">
-            <span class="size-2 rounded-full bg-white/25"></span>
-            <span class="size-2 rounded-full bg-white/20"></span>
-            <span class="size-2 rounded-full bg-white/15"></span>
-            <span
-              class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-            >
-              Live control
-            </span>
-          </div>
-
-          <div
-            class="mt-4 overflow-hidden rounded-[1.9rem] border border-white/10 bg-black/42 p-4"
-          >
-            {
-              liveTracking.hasImage ? (
-                <img
-                  src={liveTracking.imageSrc}
-                  alt={liveTracking.imageAlt}
-                  class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div class="grid min-h-[24rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.12),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[30rem]">
-                  <div class="max-w-md">
-                    <p class="text-2xl font-semibold text-white sm:text-3xl">
-                      {liveTracking.title}
-                    </p>
-                    <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
-                      {liveTracking.imageSrc}
-                    </p>
-                  </div>
-                </div>
-              )
-            }
-          </div>
-        </div>
-
-        <div
-          class="mt-4 max-w-xs rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:-right-2 sm:bottom-6 sm:mt-0"
-        >
-          See what is live, what is next, and where attention is needed.
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="max-w-[31rem] lg:ml-auto">
-        <p
-          class="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-accent-cyan"
-        >
-          {publicLive.title}
-        </p>
-        <p
-          class="mt-4 text-xl leading-8 text-copy-soft sm:text-2xl sm:leading-9"
-        >
-          {publicLive.description}
-        </p>
-      </div>
-
-      <div class="relative mt-10 sm:min-h-[35rem] sm:mt-12 lg:min-h-[40rem]">
-        <div
-          class="relative mx-auto w-full overflow-hidden rounded-[2.4rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_58px_rgba(0,0,0,0.28)] sm:w-[72%] lg:w-[68%]"
-        >
-          <div class="flex items-center gap-2 border-b border-white/10 pb-4">
-            <span class="size-2 rounded-full bg-white/25"></span>
-            <span class="size-2 rounded-full bg-white/20"></span>
-            <span class="size-2 rounded-full bg-white/15"></span>
-            <span
-              class="ml-auto rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-            >
-              Public live
-            </span>
-          </div>
-
-          <div
-            class="mt-4 overflow-hidden rounded-[1.9rem] border border-white/10 bg-black/42 p-4"
-          >
-            {
-              publicLive.hasImage ? (
-                <img
-                  src={publicLive.imageSrc}
-                  alt={publicLive.imageAlt}
-                  class="h-auto w-full rounded-[1.4rem] border border-white/8 object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ) : (
-                <div class="grid min-h-[22rem] place-items-center rounded-[1.4rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_44%),linear-gradient(180deg,rgba(16,16,18,0.95),rgba(10,10,10,0.98))] px-10 py-14 text-center sm:min-h-[28rem]">
-                  <div class="max-w-md">
-                    <p class="text-2xl font-semibold text-white sm:text-3xl">
-                      {publicLive.title}
-                    </p>
-                    <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
-                      {publicLive.imageSrc}
-                    </p>
-                  </div>
-                </div>
-              )
-            }
-          </div>
-        </div>
-
-        <div class="mt-4 grid grid-cols-2 gap-4 sm:contents">
-          <div
-            class="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/72 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-[2%] sm:top-20 sm:mt-0 sm:w-[22%] lg:left-[4%] lg:w-[21%]"
-          >
-            <div class="mb-3 flex items-center gap-2 px-1">
-              <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
-              <span
-                class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-              >
-                Live follow
-              </span>
-            </div>
+              class:list={[
+                "pointer-events-none absolute inset-0 opacity-90",
+                tone.previewGlow,
+              ]}
+            ></div>
 
             <div
-              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
+              class:list={[
+                "relative z-10 grid h-full gap-5 xl:items-center",
+                "xl:grid-cols-[minmax(0,1.15fr)_minmax(16rem,0.85fr)]",
+              ]}
             >
-              {
-                publicLiveTrackingMobileHasImage ? (
-                  <img
-                    src={publicLiveTrackingMobileSrc}
-                    alt="LumoraEvents public live tracking mobile view"
-                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.1),transparent_48%),linear-gradient(180deg,rgba(12,12,14,0.96),rgba(8,8,10,0.98))] px-4 py-6 text-center sm:min-h-[16rem]">
-                    <div>
-                      <p class="text-sm font-semibold text-white">
-                        Mobile tracking
-                      </p>
-                      <p class="mt-2 text-xs leading-5 text-copy-soft">
-                        Order, timings, and what is happening now.
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-
-          <div
-            class="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-black/72 p-3 shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:right-[2%] sm:bottom-16 sm:mt-0 sm:w-[22%] lg:right-[4%] lg:w-[21%]"
-          >
-            <div class="mb-3 flex items-center gap-2 px-1">
-              <span class="size-1.5 rounded-full bg-white/75"></span>
-              <span
-                class="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-copy-soft"
-              >
-                Results
-              </span>
-            </div>
-
-            <div
-              class="overflow-hidden rounded-[1.35rem] border border-white/10 bg-black/44 p-3"
-            >
-              {
-                publicLiveResultsMobileHasImage ? (
-                  <img
-                    src={publicLiveResultsMobileSrc}
-                    alt="LumoraEvents public live results mobile view"
-                    class="h-auto w-full rounded-[0.9rem] border border-white/8 object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <div class="grid min-h-[12rem] place-items-center rounded-[0.9rem] border border-dashed border-white/12 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_48%),linear-gradient(180deg,rgba(12,12,14,0.96),rgba(8,8,10,0.98))] px-4 py-6 text-center sm:min-h-[16rem]">
-                    <div>
-                      <p class="text-sm font-semibold text-white">
-                        Mobile results
-                      </p>
-                      <p class="mt-2 text-xs leading-5 text-copy-soft">
-                        Placements and scores ready to check at a glance.
-                      </p>
-                    </div>
-                  </div>
-                )
-              }
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="mt-4 flex max-w-sm items-start gap-3 rounded-[1.4rem] border border-white/10 bg-black/72 px-5 py-4 text-sm leading-7 text-copy-soft shadow-[0_14px_34px_rgba(0,0,0,0.22)] sm:absolute sm:left-[12%] sm:bottom-6 sm:mt-0 lg:left-[18%]"
-        >
-          <span class="mt-2 size-2 shrink-0 rounded-full bg-accent-cyan"></span>
-          <p>
-            Participants and audiences stay informed without chasing updates.
-          </p>
-        </div>
-      </div>
-    </article>
-
-    <article class="reveal" style="--reveal-delay: 120ms">
-      <div class="mx-auto max-w-[64rem]">
-        <div
-          class="rounded-[2.1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] px-6 py-7 shadow-[0_18px_40px_rgba(0,0,0,0.18)] sm:px-8 sm:py-9"
-        >
-          <div
-            class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(17rem,19.5rem)] lg:items-center lg:gap-10"
-          >
-            <div class="max-w-[36rem]">
-              <span
-                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-copy-soft"
-              >
-                <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
-                {upcoming.badge}
-              </span>
-
-              <h3
-                class="editorial-display mt-5 text-3xl leading-[1.02] font-semibold tracking-[-0.05em] text-white sm:text-[2.7rem]"
-              >
-                {upcoming.title}
-              </h3>
-
-              <p
-                class="mt-4 max-w-[33rem] text-lg leading-8 text-copy-soft sm:text-xl sm:leading-9"
-              >
-                {upcoming.description}
-              </p>
-
-              <p
-                class="mt-4 max-w-[31rem] text-sm leading-7 text-copy-soft sm:text-base"
-              >
-                {upcoming.note}
-              </p>
-            </div>
-
-            <div class="w-full max-w-[19.5rem] lg:justify-self-end">
-              <div class="relative mx-auto">
-                <div
-                  class="pointer-events-none absolute inset-x-6 -top-3 h-px bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent)]"
-                >
-                </div>
-
-                <div
-                  class="overflow-hidden rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-4 shadow-[0_16px_36px_rgba(0,0,0,0.2)]"
-                >
-                  <div class="flex items-center justify-between gap-3">
-                    <span
-                      class="rounded-full border border-white/10 bg-black/28 px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-copy-soft"
-                    >
-                      {upcoming.badge}
-                    </span>
-                    <span class="size-2 rounded-full bg-accent-cyan/70"></span>
-                  </div>
-
-                  <div
-                    class="mt-4 rounded-[1.35rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.08),transparent_56%),linear-gradient(180deg,rgba(13,13,15,0.96),rgba(9,9,11,0.98))] p-4"
+              <div class="max-w-[34rem]">
+                <div class="flex items-center gap-3">
+                  <span
+                    class:list={[
+                      "inline-flex min-w-[2.4rem] items-center justify-center rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-copy-soft",
+                    ]}
                   >
-                    <p
-                      class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-white/45"
-                    >
-                      {upcoming.previewEyebrow}
-                    </p>
-                    <p
-                      class="mt-2 text-lg font-semibold tracking-[-0.04em] text-white"
-                    >
-                      {upcoming.previewTitle}
-                    </p>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span class="text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-copy-soft/84">
+                    {section.title}
+                  </span>
+                </div>
 
-                    <div class="mt-4 space-y-2.5">
-                      {
-                        upcoming.previewItems.map((item, index) => (
-                          <div class="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2.5 text-xs text-copy-soft">
-                            <span
-                              class={`size-1.5 rounded-full ${
-                                index === 0
-                                  ? "bg-accent-cyan/80"
-                                  : index === 1
-                                    ? "bg-white/60"
-                                    : "bg-accent/70"
-                              }`}
-                            ></span>
-                            <span>{item}</span>
-                          </div>
-                        ))
-                      }
-                    </div>
+                <h3 class="mt-4 max-w-[18ch] text-[1.8rem] font-semibold tracking-[-0.05em] text-white sm:text-[1.95rem] sm:leading-[1.04]">
+                  {section.benefit}
+                </h3>
 
-                    <p class="mt-4 text-xs leading-6 text-copy-soft">
-                      {upcoming.previewFootnote}
-                    </p>
+                <p class="mt-3 max-w-[33rem] text-sm leading-[1.625rem] text-copy-soft sm:text-base sm:leading-7">
+                  {section.description}
+                </p>
+              </div>
+
+              <div class="relative z-10">
+                <div class="product-mini-frame bg-black/52 p-2.5 sm:p-3">
+                  <div class="flex items-center justify-between gap-3">
+                    <span class="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[0.6rem] font-semibold uppercase tracking-[0.18em] text-copy-soft">
+                      {section.previewLabel}
+                    </span>
+                    <span class:list={["size-2 rounded-full", tone.dotClass]}></span>
                   </div>
+
+                  {
+                    section.hasImage ? (
+                      <div class="mt-2.5 overflow-hidden rounded-[1.15rem] border border-white/10 bg-black/36">
+                        <img
+                          src={section.imageSrc}
+                          alt={section.imageAlt}
+                          class="aspect-[16/10] w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    ) : (
+                      <div class="mt-2.5 rounded-[1.15rem] border border-white/10 bg-black/36 p-3">
+                        <div class="space-y-2">
+                          {(section.previewItems ?? []).slice(0, 4).map((item) => (
+                            <div class="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/[0.03] px-3 py-2">
+                              <div class="flex items-center gap-2.5">
+                                <span
+                                  class:list={[
+                                    "size-1.5 rounded-full",
+                                    tone.dotClass,
+                                  ]}
+                                ></span>
+                                <span class="text-xs text-copy-soft">{item}</span>
+                              </div>
+                              <span class="h-2 w-10 rounded-full bg-white/10"></span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )
+                  }
+
+                  <div class="mt-2.5 flex flex-wrap gap-2">
+                    {(section.previewItems ?? []).slice(0, 3).map((item) => (
+                      <span class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] text-copy-soft">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p class="mt-2.5 text-xs leading-[1.375rem] text-copy-soft">
+                    {section.previewFootnote}
+                  </p>
                 </div>
               </div>
             </div>
+          </article>
+        );
+      })
+    }
+  </div>
+
+  <article class="reveal surface-card relative mt-5 overflow-hidden p-5 sm:p-6" style="--reveal-delay: 560ms">
+    <div
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.1),transparent_42%),radial-gradient(circle_at_78%_0%,rgba(124,58,237,0.08),transparent_28%)]"
+    >
+    </div>
+
+    <div class="relative z-10 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(15rem,18rem)] lg:items-center">
+      <div class="max-w-[38rem]">
+        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
+          <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
+          {upcoming.badge}
+        </span>
+
+        <h3 class="mt-4 text-[1.8rem] font-semibold tracking-[-0.05em] text-white sm:text-[1.95rem] sm:leading-[1.06]">
+          {upcoming.title}
+        </h3>
+
+        <p class="mt-3 max-w-[34rem] text-base leading-7 text-copy-soft sm:text-lg">
+          {upcoming.description}
+        </p>
+
+        <p class="mt-2.5 max-w-[32rem] text-sm leading-[1.625rem] text-copy-soft/86 sm:leading-7">
+          {upcoming.note}
+        </p>
+      </div>
+
+      <div class="product-mini-frame bg-black/52 p-3">
+        <div class="flex items-center justify-between gap-3">
+          <span class="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-copy-soft">
+            {upcoming.previewEyebrow}
+          </span>
+          <span class="size-2 rounded-full bg-accent/78"></span>
+        </div>
+
+        <div class="mt-2.5 rounded-[1.15rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-3">
+          <p class="text-base font-semibold tracking-[-0.03em] text-white">
+            {upcoming.previewTitle}
+          </p>
+
+          <div class="mt-2.5 space-y-2">
+            {upcoming.previewItems.map((item, index) => (
+              <div class="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-copy-soft">
+                <span
+                  class:list={[
+                    "size-1.5 rounded-full",
+                    index === 1 ? "bg-white/65" : index === 2 ? "bg-accent/72" : "bg-accent-cyan/80",
+                  ]}
+                ></span>
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
+
+          <p class="mt-3 text-xs leading-[1.375rem] text-copy-soft">
+            {upcoming.previewFootnote}
+          </p>
         </div>
       </div>
-    </article>
-  </div>
+    </div>
+  </article>
 </section>
