@@ -1,9 +1,10 @@
 ---
-import ApproachSection from "./ApproachSection.astro";
-import FeaturesSection from "./FeaturesSection.astro";
 import Footer from "./Footer.astro";
 import Header from "./Header.astro";
+import { getPlatformPageContent } from "../content/platform-page";
 import { getMessages } from "../utils/i18n";
+import { getPagePath } from "../utils/routes";
+import { siteConfig } from "../utils/site";
 import type { Locale } from "../utils/site";
 
 interface Props {
@@ -12,7 +13,10 @@ interface Props {
 
 const { locale } = Astro.props;
 const messages = getMessages(locale);
-const content = messages.platformPage;
+const content = getPlatformPageContent(locale);
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const contactHref = `${baseUrl}${getPagePath(locale, "contact")}`;
+const emailHref = `mailto:${siteConfig.email}`;
 ---
 
 <Header
@@ -23,77 +27,686 @@ const content = messages.platformPage;
 
 <main class="relative isolate overflow-hidden">
   <div
-    class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.16),transparent_68%)]"
+    class="pointer-events-none absolute inset-x-0 top-0 h-[30rem] bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_58%),radial-gradient(circle_at_82%_12%,rgba(6,182,212,0.1),transparent_18%)]"
   >
   </div>
 
-  <section class="shell relative pb-14 pt-8 sm:pb-18 sm:pt-12">
-    <div class="max-w-[50rem]">
-      <span class="eyebrow reveal">{content.hero.eyebrow}</span>
-      <h1
-        class="editorial-display reveal mt-6 max-w-[12ch] text-5xl leading-[0.95] font-semibold tracking-[-0.06em] text-white sm:text-6xl lg:text-[5.4rem]"
-        style="--reveal-delay: 80ms"
-      >
-        {content.hero.title}
-      </h1>
-      <p
-        class="reveal mt-6 max-w-[38rem] text-lg leading-8 text-copy-soft sm:text-xl"
-        style="--reveal-delay: 160ms"
-      >
-        {content.hero.description}
-      </p>
-    </div>
-  </section>
-
-  <section class="shell relative py-14 sm:py-18">
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,28rem)_minmax(0,1fr)] lg:gap-14">
-      <div class="reveal max-w-[28rem]" style="--reveal-delay: 80ms">
-        <span class="eyebrow">{content.intro.eyebrow}</span>
-        <h2
-          class="editorial-display mt-5 text-4xl leading-[0.98] font-semibold tracking-[-0.05em] text-white sm:text-[3.05rem]"
-        >
-          {content.intro.title}
-        </h2>
-        <p class="mt-5 text-base leading-8 text-copy-soft sm:text-lg">
-          {content.intro.description}
-        </p>
-      </div>
-
-      <div class="reveal border-t border-white/10" style="--reveal-delay: 140ms">
-        {
-          content.notes.map((item) => (
-            <div class="grid gap-5 border-b border-white/10 py-6 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] sm:gap-8 sm:py-7">
-              <h3 class="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
-                {item.title}
-              </h3>
-              <p class="max-w-[32rem] text-sm leading-7 text-copy-soft sm:text-base">
-                {item.description}
-              </p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <FeaturesSection features={messages.features} />
-
-  <ApproachSection approach={messages.approach} />
-
-  <section class="shell relative pb-18 pt-12 sm:pb-22">
+  <section class="shell relative pb-10 pt-8 sm:pb-14 sm:pt-12 lg:pb-16">
     <div
-      class="reveal relative mx-auto max-w-[48rem] rounded-[2.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-6 py-10 text-center shadow-[0_20px_46px_rgba(0,0,0,0.24)] sm:px-10 sm:py-14"
+      class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(21rem,0.95fr)] lg:items-end lg:gap-12"
+    >
+      <div class="max-w-[45rem]">
+        <span class="eyebrow reveal">{content.hero.eyebrow}</span>
+        <h1
+          class="reveal mt-5 max-w-[11ch] text-5xl font-semibold tracking-[-0.08em] text-balance text-white sm:text-6xl lg:text-[5.1rem] lg:leading-[0.94]"
+          style="--reveal-delay: 80ms"
+        >
+          {content.hero.title}
+        </h1>
+        <p
+          class="reveal mt-6 max-w-[39rem] text-lg leading-8 text-copy-soft sm:text-xl"
+          style="--reveal-delay: 160ms"
+        >
+          {content.hero.description}
+        </p>
+
+        <div
+          class="reveal mt-8 flex flex-col gap-3 sm:flex-row"
+          style="--reveal-delay: 220ms"
+        >
+          <a class="button-primary" href="#event-management">
+            {content.hero.primaryLabel}
+          </a>
+          <a class="button-secondary" href={contactHref}>
+            {content.hero.secondaryLabel}
+          </a>
+        </div>
+
+        <div
+          class="reveal mt-10 grid gap-3 sm:grid-cols-3"
+          style="--reveal-delay: 280ms"
+        >
+          {
+            content.moduleLinks.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="rounded-[1.45rem] border border-white/10 bg-white/[0.03] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-[border-color,background-color,transform] duration-200 hover:border-white/18 hover:bg-white/[0.05] hover:-translate-y-0.5"
+              >
+                <div class="flex items-center justify-between gap-3">
+                  <span class="text-[0.66rem] font-semibold uppercase tracking-[0.26em] text-copy-soft/65">
+                    {item.number}
+                  </span>
+                  {item.status && (
+                    <span class="rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[0.56rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
+                      {item.status}
+                    </span>
+                  )}
+                </div>
+                <p class="mt-3 text-base font-semibold tracking-[-0.03em] text-white">
+                  {item.title}
+                </p>
+                <p class="mt-2 text-sm leading-6 text-copy-soft">
+                  {item.description}
+                </p>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div
+        class="reveal relative lg:justify-self-end"
+        style="--reveal-delay: 180ms"
+      >
+        <div
+          class="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 shadow-[0_24px_56px_rgba(0,0,0,0.24)] sm:p-5"
+        >
+          <div class="flex items-center gap-2 border-b border-white/10 pb-4">
+            <span class="size-2 rounded-full bg-white/25"></span>
+            <span class="size-2 rounded-full bg-white/20"></span>
+            <span class="size-2 rounded-full bg-white/15"></span>
+            <span
+              class="ml-auto rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-copy-soft"
+            >
+              {content.hero.overviewLabel}
+            </span>
+          </div>
+
+          <div
+            class="mt-5 rounded-[1.6rem] border border-white/10 bg-black/35 p-5"
+          >
+            <p
+              class="text-xl font-semibold tracking-[-0.04em] text-white sm:text-[1.7rem]"
+            >
+              {content.hero.overviewTitle}
+            </p>
+            <p class="mt-3 text-sm leading-7 text-copy-soft sm:text-base">
+              {content.hero.overviewBody}
+            </p>
+
+            <div class="mt-6 space-y-3">
+              {
+                content.hero.summaryCards.map((item) => (
+                  <article class="rounded-[1.3rem] border border-white/10 bg-white/[0.03] px-4 py-4">
+                    <div class="flex items-center justify-between gap-3">
+                      <p class="text-sm font-semibold tracking-[-0.03em] text-white">
+                        {item.title}
+                      </p>
+                      <span class="rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[0.54rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <p class="mt-2 text-sm leading-6 text-copy-soft">
+                      {item.description}
+                    </p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+          {
+            content.hero.signalCards.map((item) => (
+              <article class="rounded-[1.3rem] border border-white/10 bg-black/45 px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+                <p class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-copy-soft/65">
+                  {item.label}
+                </p>
+                <p class="mt-2 text-sm font-semibold tracking-[-0.03em] text-white">
+                  {item.value}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shell relative pb-14 sm:pb-18">
+    <div class="grid gap-4 md:grid-cols-3">
+      {
+        content.operatingStrip.map((item, index) => (
+          <article
+            class="reveal rounded-[1.65rem] border border-white/10 bg-white/[0.03] px-5 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]"
+            style={`--reveal-delay: ${index * 70 + 80}ms`}
+          >
+            <span class="inline-flex size-8 items-center justify-center rounded-full border border-white/10 bg-black/35 text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-copy-soft">
+              0{index + 1}
+            </span>
+            <h2 class="mt-4 max-w-[18ch] text-xl font-semibold tracking-[-0.04em] text-white">
+              {item.title}
+            </h2>
+            <p class="mt-3 text-sm leading-7 text-copy-soft">
+              {item.description}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section
+    id="event-management"
+    class="shell relative scroll-mt-28 py-3 sm:py-4"
+  >
+    <div
+      class="overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(124,58,237,0.08),rgba(8,8,10,0.98)_22%,rgba(5,5,6,0.99))] px-5 py-6 shadow-[0_28px_68px_rgba(0,0,0,0.24)] sm:px-8 sm:py-8 lg:px-10 lg:py-10"
+    >
+      <div
+        class="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-10"
+      >
+        <div class="reveal max-w-[22rem]" style="--reveal-delay: 80ms">
+          <span class="eyebrow">{content.eventManagement.eyebrow}</span>
+          <h2
+            class="mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-[3.15rem] sm:leading-[0.96]"
+          >
+            {content.eventManagement.title}
+          </h2>
+          <p class="mt-5 text-base leading-8 text-copy-soft sm:text-lg">
+            {content.eventManagement.description}
+          </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          {
+            content.eventManagement.highlights.map((item, index) => (
+              <article
+                class="reveal rounded-[1.6rem] border border-white/10 bg-black/28 px-5 py-5"
+                style={`--reveal-delay: ${index * 70 + 120}ms`}
+              >
+                <h3 class="text-lg font-semibold tracking-[-0.03em] text-white">
+                  {item.title}
+                </h3>
+                <p class="mt-3 text-sm leading-7 text-copy-soft">
+                  {item.description}
+                </p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-white/10 pt-8">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
+          <div
+            class="reveal rounded-[1.75rem] border border-white/10 bg-black/28 px-5 py-6"
+            style="--reveal-delay: 100ms"
+          >
+            <p
+              class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-accent-cyan/80"
+            >
+              {content.eventManagement.organizers.label}
+            </p>
+            <h3
+              class="mt-4 text-[1.75rem] leading-[1.02] font-semibold tracking-[-0.05em] text-white"
+            >
+              {content.eventManagement.organizers.title}
+            </h3>
+            <p class="mt-4 text-sm leading-7 text-copy-soft sm:text-base">
+              {content.eventManagement.organizers.description}
+            </p>
+          </div>
+
+          <div class="grid gap-4 xl:grid-cols-3">
+            {
+              content.eventManagement.organizers.groups.map((group, index) => (
+                <article
+                  class="reveal rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-5"
+                  style={`--reveal-delay: ${index * 70 + 150}ms`}
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <span class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-copy-soft/65">
+                      0{index + 1}
+                    </span>
+                    <span class="size-2 rounded-full bg-accent" />
+                  </div>
+                  <h4 class="mt-4 text-lg font-semibold tracking-[-0.03em] text-white">
+                    {group.title}
+                  </h4>
+                  <p class="mt-3 text-sm leading-7 text-copy-soft">
+                    {group.description}
+                  </p>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span class="rounded-full border border-white/10 bg-black/32 px-3 py-2 text-xs text-copy-soft">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 border-t border-white/10 pt-6">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
+          <div
+            class="reveal rounded-[1.75rem] border border-white/10 bg-black/28 px-5 py-6"
+            style="--reveal-delay: 100ms"
+          >
+            <p
+              class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-accent-cyan/80"
+            >
+              {content.eventManagement.judges.label}
+            </p>
+            <h3
+              class="mt-4 text-[1.75rem] leading-[1.02] font-semibold tracking-[-0.05em] text-white"
+            >
+              {content.eventManagement.judges.title}
+            </h3>
+            <p class="mt-4 text-sm leading-7 text-copy-soft sm:text-base">
+              {content.eventManagement.judges.description}
+            </p>
+          </div>
+
+          <div
+            class="grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(18rem,0.9fr)]"
+          >
+            <div class="grid gap-4">
+              {
+                content.eventManagement.judges.panels.map((panel, index) => (
+                  <article
+                    class="reveal rounded-[1.7rem] border border-white/10 bg-white/[0.03] px-5 py-5"
+                    style={`--reveal-delay: ${index * 70 + 160}ms`}
+                  >
+                    <h4 class="text-lg font-semibold tracking-[-0.03em] text-white">
+                      {panel.title}
+                    </h4>
+                    <p class="mt-3 text-sm leading-7 text-copy-soft">
+                      {panel.description}
+                    </p>
+                    <div class="mt-5 flex flex-wrap gap-2">
+                      {panel.items.map((item) => (
+                        <span class="rounded-full border border-white/10 bg-black/32 px-3 py-2 text-xs text-copy-soft">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+
+            <article
+              class="reveal rounded-[1.7rem] border border-white/10 bg-[linear-gradient(180deg,rgba(6,182,212,0.08),rgba(255,255,255,0.02))] px-5 py-5"
+              style="--reveal-delay: 230ms"
+            >
+              <p
+                class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-accent-cyan/80"
+              >
+                {content.eventManagement.judges.flow.label}
+              </p>
+              <h4
+                class="mt-4 text-xl font-semibold tracking-[-0.04em] text-white"
+              >
+                {content.eventManagement.judges.flow.title}
+              </h4>
+              <p class="mt-3 text-sm leading-7 text-copy-soft">
+                {content.eventManagement.judges.flow.description}
+              </p>
+              <div class="mt-5 space-y-2.5">
+                {
+                  content.eventManagement.judges.flow.steps.map(
+                    (step, index) => (
+                      <div class="flex items-center gap-3 rounded-full border border-white/10 bg-black/30 px-3.5 py-2.5 text-sm text-copy-soft">
+                        <span class="inline-flex size-6 items-center justify-center rounded-full border border-white/10 bg-black/36 text-[0.64rem] font-semibold text-white">
+                          {index + 1}
+                        </span>
+                        <span>{step}</span>
+                      </div>
+                    ),
+                  )
+                }
+              </div>
+              <p class="mt-5 text-sm leading-7 text-copy-soft">
+                {content.eventManagement.judges.flow.note}
+              </p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-6 border-t border-white/10 pt-6">
+        <div class="grid gap-6 lg:grid-cols-[minmax(0,18rem)_minmax(0,1fr)]">
+          <div
+            class="reveal rounded-[1.75rem] border border-white/10 bg-black/28 px-5 py-6"
+            style="--reveal-delay: 100ms"
+          >
+            <p
+              class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-accent-cyan/80"
+            >
+              {content.eventManagement.publicLayer.label}
+            </p>
+            <h3
+              class="mt-4 text-[1.75rem] leading-[1.02] font-semibold tracking-[-0.05em] text-white"
+            >
+              {content.eventManagement.publicLayer.title}
+            </h3>
+            <p class="mt-4 text-sm leading-7 text-copy-soft sm:text-base">
+              {content.eventManagement.publicLayer.description}
+            </p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            {
+              content.eventManagement.publicLayer.panels.map((panel, index) => (
+                <article
+                  class="reveal rounded-[1.7rem] border border-white/10 bg-white/[0.03] px-5 py-5"
+                  style={`--reveal-delay: ${index * 70 + 170}ms`}
+                >
+                  <h4 class="text-lg font-semibold tracking-[-0.03em] text-white">
+                    {panel.title}
+                  </h4>
+                  <p class="mt-3 text-sm leading-7 text-copy-soft">
+                    {panel.description}
+                  </p>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    {panel.items.map((item) => (
+                      <span class="rounded-full border border-white/10 bg-black/32 px-3 py-2 text-xs text-copy-soft">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mt-6 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)]"
+      >
+        <article
+          class="reveal rounded-[1.8rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015))] px-5 py-5"
+          style="--reveal-delay: 160ms"
+        >
+          <p
+            class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-accent-cyan/80"
+          >
+            {content.eventManagement.languages.eyebrow}
+          </p>
+          <h3
+            class="mt-4 text-[1.6rem] leading-[1.04] font-semibold tracking-[-0.05em] text-white"
+          >
+            {content.eventManagement.languages.title}
+          </h3>
+          <p
+            class="mt-4 max-w-[38rem] text-sm leading-7 text-copy-soft sm:text-base"
+          >
+            {content.eventManagement.languages.description}
+          </p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            {
+              content.eventManagement.languages.items.map((item) => (
+                <span class="rounded-full border border-white/10 bg-black/30 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
+                  {item}
+                </span>
+              ))
+            }
+          </div>
+        </article>
+
+        <article
+          class="reveal rounded-[1.8rem] border border-white/10 bg-black/28 px-5 py-5"
+          style="--reveal-delay: 220ms"
+        >
+          <p class="text-sm leading-7 text-copy-soft">
+            {content.eventManagement.languages.note}
+          </p>
+        </article>
+      </div>
+
+      <div
+        class="reveal mt-6 rounded-[1.9rem] border border-white/10 bg-black/34 px-5 py-6"
+        style="--reveal-delay: 220ms"
+      >
+        <h3
+          class="text-[1.6rem] leading-[1.04] font-semibold tracking-[-0.05em] text-white"
+        >
+          {content.eventManagement.closing.title}
+        </h3>
+        <p
+          class="mt-4 max-w-[42rem] text-sm leading-7 text-copy-soft sm:text-base"
+        >
+          {content.eventManagement.closing.description}
+        </p>
+        <div class="mt-5 flex flex-wrap gap-2">
+          {
+            content.eventManagement.closing.tags.map((item) => (
+              <span class="rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-2 text-xs text-copy-soft">
+                {item}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="registrations"
+    class="shell relative scroll-mt-28 py-10 sm:py-14"
+  >
+    <div
+      class="overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(6,182,212,0.08),rgba(8,8,10,0.98)_24%,rgba(5,5,6,0.99))] px-5 py-6 shadow-[0_24px_58px_rgba(0,0,0,0.22)] sm:px-8 sm:py-8 lg:px-10 lg:py-10"
+    >
+      <div
+        class="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-10"
+      >
+        <div class="reveal max-w-[22rem]" style="--reveal-delay: 80ms">
+          <span class="eyebrow">{content.registrations.eyebrow}</span>
+          <h2
+            class="mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-[3rem] sm:leading-[0.98]"
+          >
+            {content.registrations.title}
+          </h2>
+          <p class="mt-5 text-base leading-8 text-copy-soft sm:text-lg">
+            {content.registrations.description}
+          </p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            content.registrations.roles.map((role, index) => (
+              <article
+                class="reveal rounded-[1.8rem] border border-white/10 bg-white/[0.03] px-5 py-5"
+                style={`--reveal-delay: ${index * 70 + 140}ms`}
+              >
+                <p class="text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-accent-cyan/80">
+                  {role.label}
+                </p>
+                <h3 class="mt-4 text-[1.55rem] leading-[1.04] font-semibold tracking-[-0.05em] text-white">
+                  {role.title}
+                </h3>
+                <p class="mt-4 text-sm leading-7 text-copy-soft sm:text-base">
+                  {role.description}
+                </p>
+                <div class="mt-5 grid gap-3">
+                  {role.groups.map((group) => (
+                    <div class="rounded-[1.35rem] border border-white/10 bg-black/30 px-4 py-4">
+                      <h4 class="text-base font-semibold tracking-[-0.03em] text-white">
+                        {group.title}
+                      </h4>
+                      <p class="mt-2 text-sm leading-6 text-copy-soft">
+                        {group.description}
+                      </p>
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        {group.items.map((item) => (
+                          <span class="rounded-full border border-white/10 bg-black/32 px-3 py-2 text-xs text-copy-soft">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-8 border-t border-white/10 pt-8">
+        <div
+          class="grid gap-6 lg:grid-cols-[minmax(0,21rem)_minmax(0,1fr)] lg:items-start"
+        >
+          <div class="reveal max-w-[21rem]" style="--reveal-delay: 100ms">
+            <span class="eyebrow"
+              >{content.registrations.comingSoon.eyebrow}</span
+            >
+            <h3
+              class="mt-5 text-[1.8rem] leading-[1.04] font-semibold tracking-[-0.05em] text-white"
+            >
+              {content.registrations.comingSoon.title}
+            </h3>
+            <p class="mt-4 text-sm leading-7 text-copy-soft sm:text-base">
+              {content.registrations.comingSoon.description}
+            </p>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            {
+              content.registrations.comingSoon.panels.map((panel, index) => (
+                <article
+                  class="reveal rounded-[1.7rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] px-5 py-5"
+                  style={`--reveal-delay: ${index * 70 + 150}ms`}
+                >
+                  <div class="flex items-center justify-between gap-3">
+                    <h4 class="text-lg font-semibold tracking-[-0.03em] text-white">
+                      {panel.title}
+                    </h4>
+                    {panel.badge && (
+                      <span class="rounded-full border border-white/10 bg-black/30 px-2.5 py-1 text-[0.54rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
+                        {panel.badge}
+                      </span>
+                    )}
+                  </div>
+                  <p class="mt-3 text-sm leading-7 text-copy-soft">
+                    {panel.description}
+                  </p>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    {panel.items.map((item) => (
+                      <span class="rounded-full border border-white/10 bg-black/32 px-3 py-2 text-xs text-copy-soft">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id="workshops-masterclasses"
+    class="shell relative scroll-mt-28 py-4 sm:py-6"
+  >
+    <div
+      class="overflow-hidden rounded-[2.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(236,72,153,0.08),rgba(8,8,10,0.98)_26%,rgba(5,5,6,0.99))] px-5 py-6 shadow-[0_24px_58px_rgba(0,0,0,0.22)] sm:px-8 sm:py-8 lg:px-10 lg:py-10"
+    >
+      <div
+        class="grid gap-8 lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] lg:gap-10"
+      >
+        <div class="reveal max-w-[22rem]" style="--reveal-delay: 80ms">
+          <span class="eyebrow">{content.workshops.eyebrow}</span>
+          <div
+            class="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-copy-soft"
+          >
+            <span class="size-1.5 rounded-full bg-accent-pink/80"></span>
+            {content.workshops.badge}
+          </div>
+          <h2
+            class="mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-[3rem] sm:leading-[0.98]"
+          >
+            {content.workshops.title}
+          </h2>
+          <p class="mt-5 text-base leading-8 text-copy-soft sm:text-lg">
+            {content.workshops.description}
+          </p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          {
+            content.workshops.clusters.map((cluster, index) => (
+              <article
+                class="reveal rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-5"
+                style={`--reveal-delay: ${index * 70 + 140}ms`}
+              >
+                <h3 class="text-lg font-semibold tracking-[-0.03em] text-white">
+                  {cluster.title}
+                </h3>
+                <p class="mt-3 text-sm leading-7 text-copy-soft">
+                  {cluster.description}
+                </p>
+                <div class="mt-5 flex flex-wrap gap-2">
+                  {cluster.items.map((item) => (
+                    <span class="rounded-full border border-white/10 bg-black/32 px-3 py-2 text-xs text-copy-soft">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <article
+        class="reveal mt-8 rounded-[1.85rem] border border-white/10 bg-black/30 px-5 py-6"
+        style="--reveal-delay: 220ms"
+      >
+        <h3
+          class="text-[1.6rem] leading-[1.04] font-semibold tracking-[-0.05em] text-white"
+        >
+          {content.workshops.closingTitle}
+        </h3>
+        <p
+          class="mt-4 max-w-[42rem] text-sm leading-7 text-copy-soft sm:text-base"
+        >
+          {content.workshops.closingDescription}
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="shell relative pb-20 pt-12 sm:pb-24 sm:pt-16">
+    <div
+      class="reveal overflow-hidden rounded-[2.3rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.015))] px-6 py-8 shadow-[0_24px_60px_rgba(0,0,0,0.24)] sm:px-8 sm:py-10 lg:px-10"
       style="--reveal-delay: 120ms"
     >
-      <span class="eyebrow">{content.closing.eyebrow}</span>
-      <h2
-        class="editorial-display mx-auto mt-6 max-w-[14ch] text-4xl leading-[1] font-semibold tracking-[-0.05em] text-white sm:text-[3.3rem]"
-      >
-        {content.closing.title}
-      </h2>
-      <p class="mx-auto mt-5 max-w-[34rem] text-base leading-8 text-copy-soft sm:text-lg">
-        {content.closing.description}
-      </p>
+      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+        <div class="max-w-[42rem]">
+          <span class="eyebrow">{content.cta.eyebrow}</span>
+          <h2
+            class="mt-5 text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-[3rem] sm:leading-[0.98]"
+          >
+            {content.cta.title}
+          </h2>
+          <p class="mt-5 text-base leading-8 text-copy-soft sm:text-lg">
+            {content.cta.description}
+          </p>
+          <p class="mt-4 text-sm leading-7 text-copy-soft">
+            {content.cta.note}
+          </p>
+        </div>
+
+        <div class="flex flex-col gap-3 sm:flex-row lg:flex-col">
+          <a class="button-primary" href={contactHref}
+            >{content.cta.primaryLabel}</a
+          >
+          <a class="button-secondary" href={emailHref}
+            >{content.cta.secondaryLabel}</a
+          >
+        </div>
+      </div>
     </div>
   </section>
 </main>
