@@ -36,26 +36,28 @@ const keywords =
 
     <div class="reveal mt-10 sm:mt-11" style="--reveal-delay: 220ms">
       <ul
-        class="flex flex-wrap items-center justify-center gap-x-5 gap-y-4 sm:gap-x-7"
+        class="flex flex-col items-center justify-center gap-y-3 text-center sm:flex-row sm:flex-wrap sm:gap-x-7 sm:gap-y-4"
       >
       {
-        keywords.map((item, index) => (
-          <li class="flex items-center gap-5 sm:gap-7">
-            {index !== 0 && (
-              <div
-                aria-hidden="true"
-                class="flex items-center gap-1.5 sm:gap-2"
-              >
+        keywords.flatMap((item, index) => [
+          index !== 0 && (
+            <li aria-hidden="true" class="flex items-center justify-center">
+              <span class="text-[0.84rem] font-semibold uppercase tracking-[0.36em] text-copy/70 sm:hidden">
+                * * *
+              </span>
+              <div class="hidden items-center gap-1.5 sm:flex sm:gap-2">
                 <span class="size-1 rounded-full bg-white/18"></span>
                 <span class="size-1.5 rounded-full bg-accent-cyan/70 shadow-[0_0_10px_rgba(6,182,212,0.22)]"></span>
                 <span class="size-1 rounded-full bg-accent/60 shadow-[0_0_10px_rgba(124,58,237,0.18)]"></span>
               </div>
-            )}
-            <span class="text-[0.84rem] font-semibold uppercase tracking-[0.36em] text-copy/94 sm:text-[0.95rem]">
+            </li>
+          ),
+          <li class="text-center">
+            <span class="block text-[0.84rem] font-semibold uppercase tracking-[0.36em] text-copy/94 sm:text-[0.95rem]">
               {item}
             </span>
-          </li>
-        ))
+          </li>,
+        ])
       }
       </ul>
     </div>
