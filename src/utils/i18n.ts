@@ -1,19 +1,10 @@
 import en from "../i18n/en.json";
 import es from "../i18n/es.json";
-import { sharedMessages } from "../content/shared-messages";
 import { siteConfig, type Locale } from "./site";
 
-const mergedEn = {
-  ...en,
-  ...sharedMessages.en,
-};
-
 const dictionaries = {
-  en: mergedEn,
-  es: {
-    ...es,
-    ...sharedMessages.es,
-  },
+  en,
+  es,
 };
 
 type LocaleEntry = {

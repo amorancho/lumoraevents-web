@@ -14,46 +14,7 @@ interface Props {
 }
 
 const { faq } = Astro.props;
-
-const fallbackItems: FaqItem[] = [
-  {
-    question: "Do we need technical knowledge to run it?",
-    answer:
-      "No. LumoraEvents is designed for event teams, with a setup that stays clear and support that stays close when needed.",
-  },
-  {
-    question: "How do judges submit scores during the event?",
-    answer:
-      "Judges score from a clean interface on tablet or phone, so input stays fast and readable under live pressure.",
-  },
-  {
-    question: "Can it adapt to our own competition rules?",
-    answer:
-      "Yes. Scoring logic, judging flow, categories, and timings can be adjusted to fit how your event already works.",
-  },
-  {
-    question: "Does it work on phones and tablets?",
-    answer:
-      "Yes. The platform is built to work smoothly across modern browsers on mobile, tablet, and desktop.",
-  },
-  {
-    question: "Do you provide support during the competition day?",
-    answer:
-      "Yes. We stay available before, during, and after the event so operational questions do not turn into stress.",
-  },
-  {
-    question: "Can the audience follow the competition live?",
-    answer:
-      "Yes. Schedules, participants, and results can be shared through a live public experience with clear visibility.",
-  },
-  {
-    question: "Do we need to install anything?",
-    answer:
-      "No installation is required. LumoraEvents runs in the browser, which keeps rollout simple for teams and judges.",
-  },
-];
-
-const items = faq.items.length ? faq.items : fallbackItems;
+const items = faq.items ?? [];
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",

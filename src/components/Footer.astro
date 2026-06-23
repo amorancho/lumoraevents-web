@@ -8,22 +8,35 @@ interface Props {
   navigation: {
     footerLinks: ReadonlyArray<{
       label: string;
-      page: SitePage;
+      page: string;
     }>;
     appLabel: string;
+    homeAriaLabel: string;
+    logoAlt: string;
   };
   footer: {
     tagline: string;
     accessLabel: string;
+    instagramLabel: string;
+    instagramAriaLabel: string;
+    copyright: string;
+    versionDisplay: string;
+    versionAriaLabel: string;
   };
 }
 
 const { currentLocale, navigation, footer } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
-const getHref = (page: SitePage) => `${baseUrl}${getPagePath(currentLocale, page)}`;
+const getHref = (page: string) =>
+  `${baseUrl}${getPagePath(currentLocale, page as SitePage)}`;
 const logoSrc = `${baseUrl}/images/new_logo.png`;
-const appVersion = `v${packageInfo.version}`;
+const appVersion = footer.versionDisplay.replace("{version}", packageInfo.version);
 const year = new Date().getFullYear();
+const copyrightLabel = footer.copyright.replace("{year}", String(year));
+const versionAriaLabel = footer.versionAriaLabel.replace(
+  "{version}",
+  packageInfo.version,
+);
 ---
 
 <footer class="py-10 sm:py-12">
@@ -35,12 +48,12 @@ const year = new Date().getFullYear();
         <div class="max-w-[34rem]">
           <a
             href={getHref("home")}
-            aria-label="LumoraEvents home"
+            aria-label={navigation.homeAriaLabel}
             class="inline-flex items-center"
           >
             <img
               src={logoSrc}
-              alt="LumoraEvents"
+              alt={navigation.logoAlt}
               class="h-8 w-auto sm:h-9"
               loading="lazy"
             />
@@ -55,7 +68,7 @@ const year = new Date().getFullYear();
             href={siteConfig.instagramUrl}
             target="_blank"
             rel="noreferrer"
-            aria-label="LumoraEvents Instagram"
+            aria-label={footer.instagramAriaLabel}
             class="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2.5 text-sm font-medium text-copy shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition-[border-color,background-color,color] duration-200 hover:border-white/16 hover:bg-white/[0.05]"
           >
             <svg
@@ -82,7 +95,7 @@ const year = new Date().getFullYear();
               ></circle>
               <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor"></circle>
             </svg>
-            <span>{siteConfig.instagramHandle}</span>
+            <span>{footer.instagramLabel}</span>
           </a>
 
           <a
@@ -114,8 +127,8 @@ const year = new Date().getFullYear();
         </nav>
 
         <p>
-          Copyright {year} LumoraEvents. All rights reserved.
-          <span class="text-copy-soft/70" aria-label={`Version ${packageInfo.version}`}>
+          {copyrightLabel}
+          <span class="text-copy-soft/70" aria-label={versionAriaLabel}>
             ({appVersion})
           </span>
         </p>

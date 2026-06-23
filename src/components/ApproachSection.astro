@@ -20,30 +20,7 @@ interface Props {
 }
 
 const { approach } = Astro.props;
-
-const fallbackItems: ApproachItem[] = [
-  {
-    title: "One place for the moving parts",
-    description: "Participants, schedules, music, judges, and scoring stay connected.",
-  },
-  {
-    title: "Clarity when plans shift",
-    description: "Timings and last-minute changes remain readable across the event.",
-  },
-  {
-    title: "Support that stays close",
-    description: "Questions get answered without adding pressure to the team.",
-  },
-  {
-    title: "Less chaos before the event",
-    description: "Preparation stops living across spreadsheets, emails, and side lists.",
-  },
-];
-
-const items = fallbackItems.map((fallbackItem, index) => ({
-  ...fallbackItem,
-  ...(approach.items[index] ?? {}),
-}));
+const items = approach.items ?? [];
 
 const pillarAccents: ApproachAccent[] = [
   {

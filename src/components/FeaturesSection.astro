@@ -65,105 +65,6 @@ const sectionOrder: PlatformSectionId[] = [
   "public-live",
 ];
 
-const fallbackSections: PlatformSection[] = [
-  {
-    id: "registrations",
-    title: "Registrations",
-    benefit: "Bring entries, schools, categories, and music into one intake flow.",
-    description:
-      "Collect competition data in one place instead of rebuilding the event from spreadsheets, emails, and separate forms.",
-    imageSrc: "/images/platform/registrations.webp",
-    imageAlt: "LumoraEvents registrations flow",
-    previewLabel: "Registration flow",
-    previewItems: ["Schools", "Participants", "Categories", "Music"],
-    previewFootnote: "Everything arrives structured before competition day.",
-  },
-  {
-    id: "configuration",
-    title: "Configuration",
-    benefit: "Shape schedules, judges, and criteria before the day gets busy.",
-    description:
-      "Set the operational rules once, keep the structure readable, and prepare the event without jumping across disconnected tools.",
-    imageSrc: "/images/platform/configuration.webp",
-    imageAlt: "LumoraEvents event configuration and schedule setup",
-    previewLabel: "Event setup",
-    previewItems: ["Schedules", "Judge panels", "Criteria", "Rounds"],
-    extrasLabel: "Cross-cutting capabilities",
-    extras: [
-      {
-        title: "Plan B",
-        description:
-          "Export the full event to PDF so the team can continue if connectivity drops on event day.",
-      },
-      {
-        title: "Multilingual",
-        description:
-          "Available in Spanish, English, French, Italian, and Portuguese, with room for more when needed.",
-      },
-      {
-        title: "Imports",
-        description:
-          "Bring in participants, categories, and event structure from WOP, Excel, or spreadsheets.",
-      },
-      {
-        title: "Exports",
-        description:
-          "Export results, schedules, and platform data to PDF or Excel whenever you need them.",
-      },
-    ],
-    previewFootnote: "A flexible setup layer for the moving parts.",
-  },
-  {
-    id: "judges",
-    title: "Judges experience",
-    benefit: "Keep scoring clean, fast, and easy to follow on any device.",
-    description:
-      "Judges work from a focused interface that reduces friction under pressure and keeps results flowing back into the event in real time.",
-    imageSrc: "/images/platform/judges.webp",
-    imageAlt: "LumoraEvents judges scoring interface",
-    previewLabel: "Scoring flow",
-    previewItems: ["Tablet ready", "Mobile ready", "Fast input", "Live sync"],
-    previewFootnote: "Built for live scoring without extra noise.",
-  },
-  {
-    id: "live-tracking",
-    title: "Live tracking",
-    benefit: "See what is live, what is next, and where attention is needed.",
-    description:
-      "Give organizers one calmer operational view during the event, with the current stage of the competition always within reach.",
-    imageSrc: "/images/platform/live-tracking.webp",
-    imageAlt: "LumoraEvents live tracking screen",
-    previewLabel: "Control board",
-    previewItems: ["Now live", "Up next", "Delays", "Attention points"],
-    previewFootnote: "A clearer operational pulse during the day.",
-  },
-  {
-    id: "public-live",
-    title: "Public live experience",
-    benefit: "Share schedules, performances, and results without manual updates.",
-    description:
-      "Participants and audiences follow the event through a public layer that keeps them informed without pulling the team away from operations.",
-    imageSrc: "/images/platform/public-live.webp",
-    imageAlt: "LumoraEvents public live experience",
-    previewLabel: "Public live",
-    previewItems: ["Schedules", "Performance order", "Results", "Live status"],
-    previewFootnote: "A public view that stays aligned with the event.",
-  },
-];
-
-const fallbackUpcoming: UpcomingFeature = {
-  badge: "Coming soon",
-  title: "Workshop & Masterclasses",
-  description:
-    "A lighter extension for workshops, masterclasses, and special sessions inside the same product ecosystem.",
-  note: "Designed as a teaser for what comes next, not as a separate product story.",
-  previewEyebrow: "Future layer",
-  previewItems: ["Workshops", "Masterclasses", "Special sessions"],
-};
-
-const fallbackById = new Map(
-  fallbackSections.map((section) => [section.id as PlatformSectionId, section]),
-);
 const providedById = new Map(
   features.sections.map((section) => [
     section.id as PlatformSectionId,
@@ -172,30 +73,25 @@ const providedById = new Map(
 );
 
 const sections = sectionOrder.map((id) => {
-  const fallback = fallbackById.get(id) ?? fallbackSections[0];
   const section = providedById.get(id);
-  const imageSrc = section?.imageSrc ?? fallback.imageSrc;
+  if (!section) {
+    return null;
+  }
+
+  const imageSrc = section.imageSrc;
 
   return {
-    ...fallback,
     ...section,
     id,
     imageSrc,
-    previewItems:
-      section?.previewItems && section.previewItems.length > 0
-        ? section.previewItems
-        : fallback.previewItems,
-    extras:
-      section?.extras && section.extras.length > 0 ? section.extras : fallback.extras,
+    previewItems: section.previewItems ?? [],
+    extras: section.extras ?? [],
     hasImage: hasAsset(imageSrc),
   };
-});
+}).filter((section): section is NonNullable<typeof section> => section !== null);
 
-const upcoming = {
-  ...fallbackUpcoming,
-  ...features.upcoming,
-};
-const newBadgeLabel = features.labels?.new ?? "New";
+const upcoming = features.upcoming;
+const newBadgeLabel = features.labels?.new ?? "";
 
 const toneById: Record<
   PlatformSectionId,
@@ -402,62 +298,66 @@ const toneById: Record<
     }
   </div>
 
-  <div class="relative z-10 mt-10 pt-8 sm:mt-14 sm:pt-10">
-    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent"></div>
+  {
+    upcoming && (
+      <div class="relative z-10 mt-10 pt-8 sm:mt-14 sm:pt-10">
+        <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent"></div>
 
-    <article
-      class="reveal relative overflow-hidden rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,rgba(8,47,73,0.94),rgba(10,14,24,0.96)_48%,rgba(88,28,135,0.35))] p-6 shadow-[0_28px_80px_rgba(3,7,18,0.32)] sm:p-7"
-      style="--reveal-delay: 560ms"
-    >
-      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(34,211,238,0.16),transparent_26%),radial-gradient(circle_at_82%_18%,rgba(168,85,247,0.16),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))]"></div>
-      <div class="pointer-events-none absolute -right-14 top-6 h-32 w-32 rounded-full border border-white/10 bg-white/[0.03] blur-2xl"></div>
+        <article
+          class="reveal relative overflow-hidden rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,rgba(8,47,73,0.94),rgba(10,14,24,0.96)_48%,rgba(88,28,135,0.35))] p-6 shadow-[0_28px_80px_rgba(3,7,18,0.32)] sm:p-7"
+          style="--reveal-delay: 560ms"
+        >
+          <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(34,211,238,0.16),transparent_26%),radial-gradient(circle_at_82%_18%,rgba(168,85,247,0.16),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))]"></div>
+          <div class="pointer-events-none absolute -right-14 top-6 h-32 w-32 rounded-full border border-white/10 bg-white/[0.03] blur-2xl"></div>
 
-      <div class="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)] lg:items-center">
-        <div class="max-w-[40rem]">
-          <div class="flex items-center gap-3">
-            <span class="inline-flex items-center gap-2 rounded-full border border-cyan-200/18 bg-cyan-300/10 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-cyan-50">
-              <span class="size-1.5 rounded-full bg-cyan-300"></span>
-              {upcoming.badge}
-            </span>
-            <span class="h-px flex-1 bg-gradient-to-r from-cyan-200/24 to-transparent"></span>
-          </div>
-
-          <h3 class="mt-5 max-w-[16ch] text-[2rem] font-semibold tracking-[-0.05em] text-white sm:text-[2.2rem] sm:leading-[1.02]">
-            {upcoming.title}
-          </h3>
-
-          <p class="mt-3 max-w-[34rem] text-base leading-7 text-copy-soft sm:text-lg">
-            {upcoming.description}
-          </p>
-
-          <p class="mt-3 max-w-[32rem] text-sm leading-[1.625rem] text-copy-soft/86 sm:leading-7">
-            {upcoming.note}
-          </p>
-        </div>
-
-        <aside class="rounded-[1.55rem] border border-white/12 bg-black/22 p-4 backdrop-blur-sm">
-          <div class="flex items-center gap-3">
-            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
-              {upcoming.previewEyebrow}
-            </span>
-            <span class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></span>
-          </div>
-
-          <div class="mt-4 space-y-2.5">
-            {upcoming.previewItems.map((item, index) => (
-              <div class="flex items-center gap-3 rounded-[1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] px-3 py-2.5 text-sm text-copy-soft">
-                <span
-                  class:list={[
-                    "size-2 rounded-full",
-                    index === 1 ? "bg-white/72" : index === 2 ? "bg-accent/80" : "bg-accent-cyan/85",
-                  ]}
-                ></span>
-                <span class="font-medium text-white/92">{item}</span>
+          <div class="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)] lg:items-center">
+            <div class="max-w-[40rem]">
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-2 rounded-full border border-cyan-200/18 bg-cyan-300/10 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-cyan-50">
+                  <span class="size-1.5 rounded-full bg-cyan-300"></span>
+                  {upcoming.badge}
+                </span>
+                <span class="h-px flex-1 bg-gradient-to-r from-cyan-200/24 to-transparent"></span>
               </div>
-            ))}
+
+              <h3 class="mt-5 max-w-[16ch] text-[2rem] font-semibold tracking-[-0.05em] text-white sm:text-[2.2rem] sm:leading-[1.02]">
+                {upcoming.title}
+              </h3>
+
+              <p class="mt-3 max-w-[34rem] text-base leading-7 text-copy-soft sm:text-lg">
+                {upcoming.description}
+              </p>
+
+              <p class="mt-3 max-w-[32rem] text-sm leading-[1.625rem] text-copy-soft/86 sm:leading-7">
+                {upcoming.note}
+              </p>
+            </div>
+
+            <aside class="rounded-[1.55rem] border border-white/12 bg-black/22 p-4 backdrop-blur-sm">
+              <div class="flex items-center gap-3">
+                <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
+                  {upcoming.previewEyebrow}
+                </span>
+                <span class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></span>
+              </div>
+
+              <div class="mt-4 space-y-2.5">
+                {upcoming.previewItems.map((item, index) => (
+                  <div class="flex items-center gap-3 rounded-[1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] px-3 py-2.5 text-sm text-copy-soft">
+                    <span
+                      class:list={[
+                        "size-2 rounded-full",
+                        index === 1 ? "bg-white/72" : index === 2 ? "bg-accent/80" : "bg-accent-cyan/85",
+                      ]}
+                    ></span>
+                    <span class="font-medium text-white/92">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </aside>
           </div>
-        </aside>
+        </article>
       </div>
-    </article>
-  </div>
+    )
+  }
 </section>

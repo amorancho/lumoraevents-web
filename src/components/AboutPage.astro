@@ -17,49 +17,48 @@ const content = messages.aboutPage;
 
 <main class="relative isolate overflow-hidden">
   <section class="shell relative pb-8 pt-5 sm:pb-10 sm:pt-7">
-    <div class="mx-auto max-w-[42rem]">
-      <div class="max-w-[38rem]">
-        <span class="eyebrow reveal">{content.hero.eyebrow}</span>
-        <h1
-          class="reveal mt-4 max-w-[14ch] text-[2rem] leading-[1.06] font-semibold tracking-[-0.045em] text-white sm:text-[2.55rem] lg:text-[2.85rem]"
-          style="--reveal-delay: 80ms"
-        >
-          {content.hero.title}
-        </h1>
+    <div class="section-intro section-intro-centered relative z-10 max-w-[54rem]">
+      <span class="eyebrow reveal justify-center">{content.hero.eyebrow}</span>
+      <h1
+        class="reveal mx-auto mt-5 max-w-[15ch] text-4xl font-semibold tracking-[-0.06em] text-balance text-white sm:text-5xl lg:text-[3.9rem] lg:leading-[0.96]"
+        style="--reveal-delay: 80ms"
+      >
+        {content.hero.title}
+      </h1>
 
-        <div
-          class="reveal mt-5 max-w-[35rem] space-y-4 text-[0.98rem] leading-8 text-copy-soft sm:text-lg"
-          style="--reveal-delay: 160ms"
-        >
-          {
-            content.hero.paragraphs.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))
-          }
-        </div>
+      <div
+        class="reveal mx-auto mt-5 max-w-[41rem] space-y-4 text-lg leading-8 text-copy-soft sm:text-xl"
+        style="--reveal-delay: 160ms"
+      >
+        {
+          content.hero.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="shell relative py-8 sm:py-10">
-    <div class="mx-auto max-w-[42rem]">
-      <div class="reveal max-w-[36rem]" style="--reveal-delay: 80ms">
-        <span class="eyebrow">{content.story.eyebrow}</span>
+    <div class="section-intro section-intro-centered relative z-10 max-w-[54rem]">
+      <div class="reveal" style="--reveal-delay: 80ms">
+        <span class="eyebrow justify-center">{content.story.eyebrow}</span>
         <h2
-          class="mt-4 max-w-[15ch] text-[1.7rem] leading-[1.08] font-semibold tracking-[-0.045em] text-white sm:text-[2.15rem]"
+          class="section-title mx-auto max-w-[15ch]"
         >
           {content.story.title}
         </h2>
       </div>
 
-      <div class="reveal mt-5 max-w-[35rem] space-y-4 text-[0.98rem] leading-8 text-copy-soft sm:text-lg" style="--reveal-delay: 140ms">
-        <div class="space-y-4">
-          {
-            content.story.paragraphs.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))
-          }
-        </div>
+      <div
+        class="reveal mx-auto mt-5 max-w-[41rem] space-y-4 text-lg leading-8 text-copy-soft sm:text-xl"
+        style="--reveal-delay: 140ms"
+      >
+        {
+          content.story.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))
+        }
       </div>
     </div>
   </section>

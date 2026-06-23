@@ -11,34 +11,6 @@ interface Props {
 const { locale } = Astro.props;
 const messages = getMessages(locale);
 const content = messages.contactPage;
-const copy =
-  locale === "es"
-    ? {
-        eyebrow: "Contacto",
-        title: "Cuéntanos cómo es tu evento.",
-        description:
-          "Si estás preparando una competición y quieres ver si LumoraEvents encaja con la forma en la que trabaja tu equipo, podemos empezar en ese punto.",
-        methodNotes: [
-          "La forma más directa de empezar una conversación.",
-          "Una forma más tranquila e informal de mantener el contacto.",
-          "Para equipos que ya tienen acceso y quieren entrar directamente.",
-        ],
-      }
-    : {
-        eyebrow: "Contact",
-        title: "Tell us about your event.",
-        description:
-          "If you are planning a competition and want to see whether LumoraEvents fits the way your team works, we can start from there.",
-        methodNotes: [
-          "The most direct way to start a conversation.",
-          "A quieter, more informal way to stay in touch.",
-          "For teams who already have access and want to enter directly.",
-        ],
-      };
-const methods = content.methods.map((method, index) => ({
-  ...method,
-  note: copy.methodNotes[index] ?? method.note,
-}));
 ---
 
 <Header currentLocale={locale} currentPage="contact" navigation={messages.navigation} />
@@ -47,14 +19,14 @@ const methods = content.methods.map((method, index) => ({
   <section class="shell relative pb-12 pt-5 sm:pb-14 sm:pt-7">
     <div class="mx-auto max-w-[40rem]">
       <div class="reveal mx-auto max-w-[32rem] text-center" style="--reveal-delay: 80ms">
-        <span class="eyebrow">{copy.eyebrow}</span>
+        <span class="eyebrow">{content.hero.eyebrow}</span>
         <h1
           class="mt-4 text-[2rem] leading-[1.06] font-semibold tracking-[-0.05em] text-white sm:text-[2.45rem]"
         >
-          {copy.title}
+          {content.hero.title}
         </h1>
         <p class="mt-4 text-base leading-8 text-copy-soft sm:text-lg">
-          {copy.description}
+          {content.hero.description}
         </p>
       </div>
 
@@ -64,7 +36,7 @@ const methods = content.methods.map((method, index) => ({
       >
         <div class="border-t border-white/10">
           {
-            methods.map((method) => (
+            content.methods.map((method) => (
               <a
                 href={method.href}
                 target={method.href.startsWith("http") ? "_blank" : undefined}

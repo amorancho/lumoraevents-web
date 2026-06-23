@@ -1,19 +1,62 @@
 {
   "meta": {
-    "title": "LumoraEvents | Competition and dance event management software",
-    "description": "Professional platform to manage registrations, judges, scheduling, voting, and results for dance competitions and other judged events."
+    "title": "LumoraEvents | Software for dance competitions and judged events",
+    "description": "A professional platform to manage registrations, judges, schedules, voting and results for dance competitions and other judged events."
   },
   "navigation": {
-    "appLabel": "Access platform",
-    "menu": "Menu"
+    "headerLinks": [
+      {
+        "label": "Home",
+        "page": "home"
+      },
+      {
+        "label": "About",
+        "page": "about"
+      },
+      {
+        "label": "Contact",
+        "page": "contact"
+      }
+    ],
+    "footerLinks": [
+      {
+        "label": "About",
+        "page": "about"
+      },
+      {
+        "label": "Contact",
+        "page": "contact"
+      }
+    ],
+    "appLabel": "Access the platform",
+    "menu": "Menu",
+    "homeAriaLabel": "LumoraEvents home",
+    "logoAlt": "LumoraEvents",
+    "localeSwitcher": {
+      "locales": {
+        "en": {
+          "shortLabel": "en",
+          "label": "English"
+        },
+        "es": {
+          "shortLabel": "es",
+          "label": "Español"
+        }
+      }
+    }
   },
   "hero": {
-    "title": "Dance competition management software",
+    "title": "Software for dance competitions",
     "description": "Less improvisation. More control. A better organized competition from day one.",
     "keywords": ["SMART", "SIMPLE", "COMPETITIONS UNDER CONTROL"]
   },
   "events": {
     "title": "Some of our events",
+    "a11y": {
+      "logoAltTemplate": "{name} logo",
+      "scrollLeft": "Scroll events left",
+      "scrollRight": "Scroll events right"
+    },
     "items": [
       {
         "name": "Etoiles d'Orient",
@@ -57,190 +100,387 @@
       }
     ],
     "editorial": {
-      "label": "Types of events",
+      "label": "Event types",
       "title": "Not every competition works the same way.",
-      "description": "LumoraEvents adapts naturally to dance competitions with different styles, formats, and judging dynamics.",
-      "secondaryLabel": "Beyond dance",
+      "description": "LumoraEvents adapts naturally to dance competitions with different styles, formats and judging dynamics.",
+      "secondaryLabel": "BEYOND DANCE",
       "secondaryStyles": [
-        "GASTRONOMIC",
+        "GASTRONOMY",
         "BEAUTY",
-        "CANINE",
-        "VOCAL / SINGING",
+        "DOG SHOWS",
+        "VOICE / SINGING",
         "AND MUCH MORE"
       ],
       "styles": [
-        "URBAN",
-        "HIP HOP",
-        "BATTLES",
-        "BELLYDANCE",
-        "MODERN",
-        "CONTEMPORARY",
-        "FUSION",
-        "K-POP",
-        "CLASSICAL BALLET",
-        "OPEN",
-        "ANY STYLE"
+        {
+          "label": "URBAN"
+        },
+        {
+          "label": "HIP HOP"
+        },
+        {
+          "label": "BATTLES"
+        },
+        {
+          "label": "BELLYDANCE"
+        },
+        {
+          "label": "MODERN"
+        },
+        {
+          "label": "CONTEMPORARY"
+        },
+        {
+          "label": "FUSION"
+        },
+        {
+          "label": "K-POP"
+        },
+        {
+          "label": "CLASSICAL BALLET"
+        },
+        {
+          "label": "OPEN"
+        },
+        {
+          "label": "ANY STYLE",
+          "isExpanded": true
+        }
       ]
     }
   },
   "approach": {
     "eyebrow": "Real support",
     "title": "How we work with you",
-    "description": "We support you before, during, and after the event so the technology feels like help, not one more concern.",
+    "description": "We support you before, during and after the event so technology becomes a help, not one more thing to worry about.",
     "items": [
       {
         "title": "First meeting",
-        "description": "We understand how your event works, answer questions, and show you the best way to work with the platform."
+        "description": "We learn how your event works, answer your questions and show you the best way to work with the platform."
       },
       {
         "title": "Setup and preparation",
-        "description": "We help you prepare the event and make the adjustments needed to match the way your team works."
+        "description": "We help you prepare the event and make the adjustments needed to fit the way your team works."
       },
       {
         "title": "Support during the event",
-        "description": "We monitor the competitions and keep a direct communication channel open to respond quickly to any need."
+        "description": "We monitor the competitions and keep a direct communication channel open so we can respond quickly when needed."
       },
       {
         "title": "Continuous improvement",
-        "description": "After the event, we gather feedback, review what we learned, and keep improving the platform alongside organizers."
+        "description": "After the event, we gather feedback, review what we have learned and keep improving the platform together with organizers."
       }
     ]
   },
   "features": {
     "eyebrow": "Platform experience",
-    "title": "All the competition management flow in one platform.",
-    "description": "Registrations, setup, judging, live control, and public visibility connected in one platform built for real events.",
+    "title": "Run your entire competition from one platform.",
+    "description": "Registrations, setup, judging, live tracking and public experience connected in one platform built for real events.",
     "labels": {
       "new": "New"
     },
     "upcoming": {
       "badge": "Coming soon",
-      "title": "Workshop & Masterclasses",
-      "description": "A lighter extension for workshops, masterclasses, and special sessions inside the same product ecosystem.",
-      "note": "Designed as a teaser for what comes next, not as a separate product story.",
-      "previewEyebrow": "Future layer",
-      "previewItems": ["Workshops", "Masterclasses", "Special sessions"]
+      "title": "Workshops and masterclasses",
+      "description": "Manage workshops and special classes as part of the same event.",
+      "note": "Control registrations, schedules and instructors for the learning experiences inside your event.",
+      "previewEyebrow": "Coming soon",
+      "previewItems": [
+        "Workshops",
+        "Masterclasses",
+        "Capacity and payment management",
+        "Hotels, travel and extras",
+        "Discounts"
+      ]
     },
     "sections": [
       {
         "id": "registrations",
         "title": "Registrations",
-        "benefit": "Bring entries, schools, categories, and music into one intake flow.",
-        "description": "Collect competition data in one place instead of rebuilding the event from spreadsheets, emails, and separate forms.",
+        "benefit": "Organized registrations from day one.",
+        "description": "Collect schools, participants, categories, styles and music in one place, avoiding spreadsheets, scattered emails and forms that are hard to reconcile.",
         "imageSrc": "/images/platform/registrations.webp",
-        "imageAlt": "LumoraEvents registrations flow",
-        "previewLabel": "Registration flow",
-        "previewItems": ["Schools", "Participants", "Categories", "Music"],
+        "imageAlt": "LumoraEvents registration flow",
+        "previewLabel": "Full control over",
+        "previewItems": [
+          "Schools",
+          "Participants",
+          "Categories / styles",
+          "Music",
+          "Payments and authorizations"
+        ],
         "previewFootnote": "Everything arrives structured before competition day."
       },
       {
         "id": "configuration",
-        "title": "Configuration",
-        "benefit": "Shape schedules, judges, and criteria before the day gets busy.",
-        "description": "Set the operational rules once, keep the structure readable, and prepare the event without jumping across disconnected tools.",
+        "title": "Setup and organization",
+        "benefit": "Define schedules, judges and criteria before the day begins.",
+        "description": "Configure the operational rules once, keep the structure clear and prepare the event without jumping between disconnected tools.",
         "imageSrc": "/images/platform/configuration.webp",
-        "imageAlt": "LumoraEvents event configuration and schedule setup",
-        "previewLabel": "Event setup",
-        "previewItems": ["Schedules", "Judge panels", "Criteria", "Rounds"],
-        "extrasLabel": "Cross-cutting capabilities",
+        "imageAlt": "Event setup and schedules in LumoraEvents",
+        "previewLabel": "Event preparation",
+        "previewItems": [
+          "Categories / styles",
+          "Participants",
+          "Competitions",
+          "Judges",
+          "Criteria",
+          "Schedule / running order"
+        ],
+        "extrasLabel": "Cross-functional capabilities",
         "extras": [
           {
             "title": "Plan B",
-            "description": "Export the full event to PDF so the team can continue if connectivity drops on event day or a critical issue appears."
+            "description": "Export the full event to PDF so the team can continue if the connection drops on event day or a critical issue appears."
           },
           {
             "title": "Multilingual",
-            "description": "The platform supports Spanish, English, French, Italian, and Portuguese, and can adapt to other languages when needed."
+            "description": "The platform is available in Spanish, English, French, Italian and Portuguese, and can adapt to other languages if needed."
           },
           {
             "title": "Imports",
-            "description": "Import participants, categories, and event structure from WOP, Excel, or spreadsheets."
+            "description": "Import participants, categories and event structure from WOP, Excel or spreadsheets."
           },
           {
             "title": "Exports",
-            "description": "Export results, schedules, and any relevant platform data to PDF or Excel."
+            "description": "Export results, schedules and any relevant platform data to PDF or Excel."
           }
         ],
-        "previewFootnote": "A flexible setup layer for the moving parts."
+        "previewFootnote": "A flexible layer for every moving part of the event."
       },
       {
         "id": "judges",
-        "title": "Judges experience",
-        "benefit": "Keep scoring clean, fast, and easy to follow on any device.",
-        "description": "Judges work from a focused interface that reduces friction under pressure and keeps results flowing back into the event in real time.",
+        "title": "Judging experience",
+        "benefit": "Keep scoring clean, fast and easy to follow on any device.",
+        "description": "Judges work from a focused interface that reduces friction under pressure and sends results back to the event in real time.",
         "imageSrc": "/images/platform/judges.webp",
-        "imageAlt": "LumoraEvents judges scoring interface",
+        "imageAlt": "LumoraEvents judging interface",
         "previewLabel": "Scoring flow",
-        "previewItems": ["Tablet ready", "Mobile ready", "Fast input", "Live sync"],
+        "previewItems": [
+          "Multi-device",
+          "Comfortable display",
+          "Easy score submission",
+          "Feedback and notes",
+          "Penalties"
+        ],
         "previewFootnote": "Built for live scoring without extra noise."
       },
       {
         "id": "live-tracking",
         "title": "Live tracking",
-        "benefit": "See what is live, what is next, and where attention is needed.",
-        "description": "Give organizers one calmer operational view during the event, with the current stage of the competition always within reach.",
+        "benefit": "Stay in control of what is happening now, what comes next and where attention is needed.",
+        "description": "Give the team a complete operational view of the competitions, with the current status always visible.",
         "imageSrc": "/images/platform/live-tracking.webp",
         "imageAlt": "LumoraEvents live tracking screen",
-        "previewLabel": "Control board",
-        "previewItems": ["Now live", "Up next", "Delays", "Attention points"],
-        "previewFootnote": "A clearer operational pulse during the day."
+        "previewLabel": "Live control",
+        "previewItems": [
+          "Live tracking",
+          "Competition status",
+          "Voting progress",
+          "Penalties / No show / Disqualifications",
+          "Rankings and results"
+        ],
+        "previewFootnote": "A clearer operational pulse throughout the event."
       },
       {
         "id": "public-live",
-        "title": "Public live experience",
-        "benefit": "Share schedules, performances, and results without manual updates.",
-        "description": "Participants and audiences follow the event through a public layer that keeps them informed without pulling the team away from operations.",
+        "title": "Live audience experience",
+        "benefit": "Share schedules and results without manual updates.",
+        "description": "Participants and audiences can follow the event through a public layer that keeps them informed without pulling the team away from operations.",
         "imageSrc": "/images/platform/public-live.webp",
-        "imageAlt": "LumoraEvents public live experience",
-        "previewLabel": "Public live",
-        "previewItems": ["Schedules", "Performance order", "Results", "Live status"],
-        "previewFootnote": "A public view that stays aligned with the event.",
-        "new": "Public voting"
+        "imageAlt": "LumoraEvents live public experience",
+        "previewLabel": "Audience and participants",
+        "previewItems": [
+          "Easy QR access",
+          "Schedule / running order",
+          "Rankings and results",
+          "Live status",
+          "Personalized statistics"
+        ],
+        "previewFootnote": "A public view aligned with what is happening at the event.",
+        "new": "Audience voting"
       }
     ]
   },
   "faq": {
     "eyebrow": "FAQ",
-    "title": "A few things teams usually ask before getting started.",
-    "description": "Short answers, clear expectations, and real support behind the platform.",
+    "title": "A few common questions before getting started.",
+    "description": "Short answers, clear expectations and real support behind the platform.",
     "items": [
       {
-        "question": "Do we need technical knowledge to run LumoraEvents?",
-        "answer": "No. LumoraEvents is designed for event teams, with a setup that stays clear and support that stays close when needed."
+        "question": "Do we need technical knowledge to use LumoraEvents?",
+        "answer": "No. LumoraEvents is designed for event teams, with clear setup and close support whenever needed."
       },
       {
-        "question": "How do judges send scores during the competition?",
-        "answer": "Judges score from a clean interface on tablet or phone, so input stays fast and readable under live pressure."
+        "question": "How do judges submit scores during the competition?",
+        "answer": "Judges score from a clean interface on tablet or mobile, keeping the process fast and easy to read live."
       },
       {
         "question": "Can it adapt to our own competition rules?",
-        "answer": "Yes. Scoring logic, judging flow, categories, and timings can be adjusted to fit how your event already works."
+        "answer": "Yes. Scoring logic, judging flow, categories and timings can be adjusted to fit the way your event already works."
       },
       {
         "question": "Does it work well on any device?",
-        "answer": "Yes. The platform is built to work smoothly across modern browsers on mobile, tablet, and desktop."
+        "answer": "Yes. The platform is designed to run smoothly in modern browsers on mobile, tablet and desktop."
       },
       {
         "question": "Will we have support during the event day?",
-        "answer": "Yes. We stay available before, during, and after the event so operational questions do not turn into stress."
+        "answer": "Yes. We are available before, during and after the event so operational questions do not turn into stress."
       },
       {
         "question": "Can the audience follow the competition live?",
-        "answer": "Yes. Schedules, participants, and results can be shared through a live public experience with clear visibility."
+        "answer": "Yes. Schedules, participants and results can be shared through a live public experience with clear visibility."
       },
       {
-        "question": "Do we need to install anything to use it?",
-        "answer": "No installation is required. LumoraEvents runs in the browser, which keeps rollout simple for teams and judges."
+        "question": "Do we need to install anything?",
+        "answer": "No installation is required. LumoraEvents runs in the browser, making rollout simple for teams and judges."
       }
     ]
   },
   "cta": {
     "eyebrow": "LET'S START WITH YOUR EVENT",
-    "title": "The best way to get to know LumoraEvents is by talking about your event.",
-    "description": "Because no competition works exactly the same way. Let’s start by understanding yours, and we’ll show you how we work with organizers like you.",
-    "primaryCta": "Let's talk"
+    "title": "The best way to understand LumoraEvents is to talk about your event.",
+    "description": "Because no two competitions work exactly the same way. Let’s start by understanding yours, and we’ll show you how we work with organizers like you.",
+    "primaryCta": "Let’s talk"
   },
   "footer": {
-    "tagline": "Competition management designed around real events."
+    "tagline": "Run your entire competition from one platform.",
+    "accessLabel": "Access the platform",
+    "instagramLabel": "@lumoraevents.app",
+    "instagramAriaLabel": "LumoraEvents Instagram",
+    "copyright": "Copyright {year} LumoraEvents. All rights reserved.",
+    "versionDisplay": "v{version}",
+    "versionAriaLabel": "Version {version}"
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "About | LumoraEvents",
+      "description": "LumoraEvents was born from real events, grows alongside real organizers and stays close before, during and after each competition."
+    },
+    "hero": {
+      "eyebrow": "About",
+      "title": "We are two entrepreneurs from Mallorca building a platform from real events.",
+      "paragraphs": [
+        "We come from two worlds we care deeply about: dance and technology. After years connected to competitions and events, bringing both experiences together felt like a natural step.",
+        "LumoraEvents was born there, and also from a very simple idea: staying close to organizers, judges and participants where the real work of an event actually happens."
+      ]
+    },
+    "story": {
+      "eyebrow": "How it began",
+      "title": "We were part of the organization and saw the operational chaos up close.",
+      "paragraphs": [
+        "Spreadsheets on one side, emails on another, separate tools and too much energy spent simply trying to coordinate everything.",
+        "That is where LumoraEvents began: in a real environment, from repeated needs and with the idea of making the work clearer, more organized and better supported."
+      ]
+    },
+    "work": {
+      "eyebrow": "How we work",
+      "title": "We work closely, listen carefully and believe support is part of the experience.",
+      "description": "For LumoraEvents, this is central. It is not about handing over a tool and disappearing, but about supporting the process and continuing to refine it with each organizer.",
+      "phases": [
+        {
+          "title": "Before the event",
+          "description": "We listen to how each organization works, where the current friction points are and which practical details cannot be lost along the way."
+        },
+        {
+          "title": "During the event",
+          "description": "We stay close so that any question, adjustment or issue does not become an extra layer of pressure for the team."
+        },
+        {
+          "title": "After the event",
+          "description": "We review what was learned, gather the small details and keep improving from real use, not from a distant roadmap."
+        }
+      ]
+    },
+    "philosophy": {
+      "eyebrow": "Philosophy",
+      "title": "We prefer clarity over unnecessary complexity.",
+      "description": "We try to build with calm judgment, adapting to how each event works and avoiding layers that only make the work more complicated.",
+      "items": [
+        {
+          "title": "Simplicity",
+          "description": "If something can be understood with fewer steps and less noise, that is usually the better path."
+        },
+        {
+          "title": "Clarity",
+          "description": "When an event is moving, every decision needs to be understood quickly and without ambiguity."
+        },
+        {
+          "title": "Adaptability",
+          "description": "Each competition has its own way of working. The goal is not to impose a structure, but to support it well."
+        },
+        {
+          "title": "Constant evolution",
+          "description": "We keep adjusting, correcting and learning because real events always teach something new."
+        }
+      ]
+    },
+    "principles": {
+      "eyebrow": "Principles",
+      "items": [
+        {
+          "title": "Listen before deciding",
+          "description": "The best improvements almost always begin with an honest conversation with the people organizing."
+        },
+        {
+          "title": "Stay close",
+          "description": "Closeness is not a communication layer. It is a way of working."
+        },
+        {
+          "title": "Avoid the unnecessary",
+          "description": "We do not add complexity just to look more complete."
+        },
+        {
+          "title": "Build from reality",
+          "description": "What matters is what helps in a real event, not what sounds better in the abstract."
+        }
+      ]
+    },
+    "closing": {
+      "eyebrow": "Close to the process",
+      "title": "LumoraEvents keeps growing in the same way it began: close, listening and learning from real events.",
+      "description": "That is what we also want this page to reflect: behind LumoraEvents there is not a startup talking about itself, but real people building alongside real people."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Contact | LumoraEvents",
+      "description": "Start a conversation with LumoraEvents about your competition, your workflow and the support your team needs."
+    },
+    "hero": {
+      "eyebrow": "Contact",
+      "title": "Tell us about your event.",
+      "description": "If you are preparing a competition and want to see whether LumoraEvents fits the way your team works, we can start there."
+    },
+    "methods": [
+      {
+        "label": "Email",
+        "value": "[info@lumoraevents.net](mailto:info@lumoraevents.net)",
+        "href": "mailto:info@lumoraevents.net",
+        "note": "The most direct way to start a conversation."
+      },
+      {
+        "label": "Instagram",
+        "value": "@lumoraevents.app",
+        "href": "https://instagram.com/lumoraevents.app",
+        "note": "A more relaxed and informal way to stay in touch."
+      },
+      {
+        "label": "Platform access",
+        "value": "app.lumoraevents.net",
+        "href": "https://app.lumoraevents.net",
+        "note": "For teams that already have access and want to log in directly."
+      }
+    ]
+  },
+  "notFoundPage": {
+    "meta": {
+      "title": "Page not found | LumoraEvents",
+      "description": "The requested page does not exist."
+    },
+    "eyebrow": "404",
+    "title": "This page does not exist.",
+    "description": "The route may have changed or may not have been published yet.",
+    "backHome": "Back to home"
   }
 }

@@ -4,8 +4,46 @@
     "description": "Plataforma profesional para gestionar inscripciones, jueces, programación, votaciones y resultados en competiciones de danza y otros eventos con jurado."
   },
   "navigation": {
+    "headerLinks": [
+      {
+        "label": "Inicio",
+        "page": "home"
+      },
+      {
+        "label": "Nosotros",
+        "page": "about"
+      },
+      {
+        "label": "Contacto",
+        "page": "contact"
+      }
+    ],
+    "footerLinks": [
+      {
+        "label": "Nosotros",
+        "page": "about"
+      },
+      {
+        "label": "Contacto",
+        "page": "contact"
+      }
+    ],
     "appLabel": "Acceder a la plataforma",
-    "menu": "Menú"
+    "menu": "Menú",
+    "homeAriaLabel": "Inicio de LumoraEvents",
+    "logoAlt": "LumoraEvents",
+    "localeSwitcher": {
+      "locales": {
+        "en": {
+          "shortLabel": "en",
+          "label": "English"
+        },
+        "es": {
+          "shortLabel": "es",
+          "label": "Español"
+        }
+      }
+    }
   },
   "hero": {
     "title": "Software para competiciones de danza",
@@ -14,6 +52,11 @@
   },
   "events": {
     "title": "Algunos de nuestros eventos",
+    "a11y": {
+      "logoAltTemplate": "Logotipo de {name}",
+      "scrollLeft": "Desplazar eventos a la izquierda",
+      "scrollRight": "Desplazar eventos a la derecha"
+    },
     "items": [
       {
         "name": "Etoiles d'Orient",
@@ -27,7 +70,6 @@
         "name": "Royal Dance Competición",
         "logoSrc": "/images/events/event-10.webp"
       },
-      
       {
         "name": "Leyla Raqs BCN",
         "logoSrc": "/images/events/event-04.webp"
@@ -70,17 +112,40 @@
         "Y MUCHO MÁS"
       ],
       "styles": [
-        "URBAN",
-        "HIP HOP",
-        "BATALLAS",
-        "BELLYDANCE",
-        "MODERN",
-        "CONTEMPORARY",
-        "FUSION",
-        "K-POP",
-        "DANZA CLÁSICA",
-        "OPEN",
-        "CUALQUIER ESTILO"
+        {
+          "label": "URBAN"
+        },
+        {
+          "label": "HIP HOP"
+        },
+        {
+          "label": "BATALLAS"
+        },
+        {
+          "label": "BELLYDANCE"
+        },
+        {
+          "label": "MODERN"
+        },
+        {
+          "label": "CONTEMPORARY"
+        },
+        {
+          "label": "FUSION"
+        },
+        {
+          "label": "K-POP"
+        },
+        {
+          "label": "DANZA CLÁSICA"
+        },
+        {
+          "label": "OPEN"
+        },
+        {
+          "label": "CUALQUIER ESTILO",
+          "isExpanded": true
+        }
       ]
     }
   },
@@ -108,19 +173,25 @@
     ]
   },
   "features": {
-    "upcoming": {
-      "badge": "Coming soon",
-      "title": "Workshop & Masterclasses",
-      "description": "Gestiona los talleres y clases especiales englobadas en el evento.",
-      "note": "Controla inscripciones, horarios y profesores de las experiencias formativas de tu evento.",
-      "previewEyebrow": "Próxima capa",
-      "previewItems": ["Workshops", "Masterclasses", "Cupos/Gestión económica", "Hoteles, viajes y extras", "Descuentos"]
-    },
     "eyebrow": "Experiencia de plataforma",
     "title": "Todo el proceso de organización de una competición en una sola plataforma.",
     "description": "Inscripciones, configuración, jueces, seguimiento y experiencia pública conectados en una sola plataforma pensada para eventos reales.",
     "labels": {
       "new": "Nuevo"
+    },
+    "upcoming": {
+      "badge": "Próximamente",
+      "title": "Workshops y masterclasses",
+      "description": "Gestiona los talleres y clases especiales englobadas en el evento.",
+      "note": "Controla inscripciones, horarios y profesores de las experiencias formativas de tu evento.",
+      "previewEyebrow": "Próximamente",
+      "previewItems": [
+        "Workshops",
+        "Masterclasses",
+        "Cupos y gestión de pagos",
+        "Hoteles, viajes y extras",
+        "Descuentos"
+      ]
     },
     "sections": [
       {
@@ -141,7 +212,7 @@
         "description": "Configura las reglas operativas una vez, mantén la estructura legible y prepara el evento sin saltar entre herramientas desconectadas.",
         "imageSrc": "/images/platform/configuration.webp",
         "imageAlt": "Configuración del evento y horarios en LumoraEvents",
-        "previewLabel": "Setup del evento",
+        "previewLabel": "Configuración del evento",
         "previewItems": ["Categorías / Estilos", "Participantes", "Competiciones", "Jueces", "Criterios", "Programación/Escaleta"],
         "extrasLabel": "Capacidades transversales",
         "extras": [
@@ -167,11 +238,11 @@
       {
         "id": "judges",
         "title": "Experiencia de jueces",
-        "benefit": "Mantén el scoring limpio, rápido y fácil de seguir en cualquier dispositivo.",
+        "benefit": "Mantén la puntuación limpia, rápida y fácil de seguir en cualquier dispositivo.",
         "description": "Los jueces trabajan desde una interfaz enfocada que reduce fricción bajo presión y devuelve los resultados al evento en tiempo real.",
         "imageSrc": "/images/platform/judges.webp",
-        "imageAlt": "Interfaz de scoring de jueces de LumoraEvents",
-        "previewLabel": "Flujo de scoring",
+        "imageAlt": "Interfaz de puntuación de jueces de LumoraEvents",
+        "previewLabel": "Flujo de puntuación",
         "previewItems": ["Multidispositivo", "Visualización cómoda", "Envío fácil de votos", "Feedbacks y notas", "Penalizaciones"],
         "previewFootnote": "Pensado para puntuar en directo sin ruido extra."
       },
@@ -183,7 +254,7 @@
         "imageSrc": "/images/platform/live-tracking.webp",
         "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents",
         "previewLabel": "Control en vivo",
-        "previewItems": ["Seguimiento en vivo", "Estado Competiciones", "Seguimiento votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados"],
+        "previewItems": ["Seguimiento en vivo", "Estado de competiciones", "Seguimiento de votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados"],
         "previewFootnote": "Un pulso operativo más claro durante la jornada."
       },
       {
@@ -194,7 +265,7 @@
         "imageSrc": "/images/platform/public-live.webp",
         "imageAlt": "Experiencia pública en directo de LumoraEvents",
         "previewLabel": "Público y participantes",
-        "previewItems": ["Acceso  cómodo por QR", "Programación / Orden", "Clasificación y Resultados", "Estado en vivo", "Estadísticas personalizadas"],
+        "previewItems": ["Acceso cómodo por QR", "Programación / Orden", "Clasificación y resultados", "Estado en vivo", "Estadísticas personalizadas"],
         "previewFootnote": "Una vista pública alineada con lo que ocurre en el evento.",
         "new": "Votación del público"
       }
@@ -242,6 +313,143 @@
     "primaryCta": "Hablemos"
   },
   "footer": {
-    "tagline": "Todo el proceso de organización de una competición en una sola plataforma."
+    "tagline": "Todo el proceso de organización de una competición en una sola plataforma.",
+    "accessLabel": "Acceder a la plataforma",
+    "instagramLabel": "@lumoraevents.app",
+    "instagramAriaLabel": "Instagram de LumoraEvents",
+    "copyright": "Copyright {year} LumoraEvents. Todos los derechos reservados.",
+    "versionDisplay": "v{version}",
+    "versionAriaLabel": "Versión {version}"
+  },
+  "aboutPage": {
+    "meta": {
+      "title": "Nosotros | LumoraEvents",
+      "description": "LumoraEvents nace de eventos reales, crece junto a organizadores reales y se mantiene cerca antes, durante y después de cada competición."
+    },
+    "hero": {
+      "eyebrow": "Nosotros",
+      "title": "Somos dos emprendedores de Mallorca construyendo junto a eventos reales.",
+      "paragraphs": [
+        "Venimos de dos mundos que nos importan de verdad: la danza y la tecnología. Después de años vinculados a competiciones y eventos, unir ambas experiencias fue un paso bastante natural.",
+        "LumoraEvents nace justo ahí, y también de una idea muy simple: mantenerse cerca de organizadores, jueces y participantes allí donde el trabajo real del evento ocurre."
+      ]
+    },
+    "story": {
+      "eyebrow": "Cómo nació",
+      "title": "Formábamos parte de la organización y vimos de cerca el caos operativo.",
+      "paragraphs": [
+        "Hojas de cálculo por un lado, correos por otro, herramientas separadas y demasiada energía dedicada simplemente a coordinarlo todo.",
+        "Ahí empezó LumoraEvents: en un entorno real, desde necesidades repetidas y con la idea de hacer el trabajo más claro, más ordenado y más acompañado."
+      ]
+    },
+    "work": {
+      "eyebrow": "Cómo trabajamos",
+      "title": "Trabajamos cerca, con escucha real y con la idea de que el soporte también forma parte de la experiencia.",
+      "description": "Para LumoraEvents esto es central. No se trata solo de entregar una herramienta y desaparecer, sino de acompañar el proceso y seguir afinando junto a cada organizador.",
+      "phases": [
+        {
+          "title": "Antes del evento",
+          "description": "Escuchamos cómo trabaja cada organización, dónde están hoy las fricciones y qué detalles prácticos no pueden perderse por el camino."
+        },
+        {
+          "title": "Durante el evento",
+          "description": "Nos mantenemos cerca para que cualquier duda, ajuste o incidencia no se convierta en una capa extra de presión para el equipo."
+        },
+        {
+          "title": "Después del evento",
+          "description": "Revisamos lo aprendido, recogemos matices y seguimos mejorando desde la realidad del uso, no desde una hoja de ruta distante."
+        }
+      ]
+    },
+    "philosophy": {
+      "eyebrow": "Filosofía",
+      "title": "Preferimos la claridad a la complejidad innecesaria.",
+      "description": "Intentamos construir con criterio tranquilo, adaptándonos a cómo funciona cada evento y evitando añadir capas que solo complican el trabajo.",
+      "items": [
+        {
+          "title": "Simplicidad",
+          "description": "Si algo puede entenderse con menos pasos y menos ruido, ese suele ser el mejor camino."
+        },
+        {
+          "title": "Claridad",
+          "description": "Cuando el evento avanza, cada decisión necesita entenderse rápido y sin ambigüedades."
+        },
+        {
+          "title": "Adaptabilidad",
+          "description": "Cada competición tiene su forma de trabajar. El criterio no es imponer una estructura, sino acompañarla bien."
+        },
+        {
+          "title": "Evolución constante",
+          "description": "Seguimos ajustando, corrigiendo y aprendiendo porque los eventos reales siempre enseñan algo nuevo."
+        }
+      ]
+    },
+    "principles": {
+      "eyebrow": "Principios",
+      "items": [
+        {
+          "title": "Escuchar antes de decidir",
+          "description": "Las mejores mejoras casi siempre empiezan en una conversación honesta con quien organiza."
+        },
+        {
+          "title": "Mantenerse cerca",
+          "description": "La cercanía no es una capa de comunicación. Es una forma de trabajar."
+        },
+        {
+          "title": "Evitar lo innecesario",
+          "description": "No añadimos complejidad solo para parecer más completos."
+        },
+        {
+          "title": "Construir desde la realidad",
+          "description": "Lo que importa es lo que ayuda en un evento real, no lo que suena mejor en abstracto."
+        }
+      ]
+    },
+    "closing": {
+      "eyebrow": "Cerca del proceso",
+      "title": "LumoraEvents sigue creciendo de la misma forma en la que empezó: cerca, escuchando y aprendiendo de eventos reales.",
+      "description": "Eso es lo que queremos que se sienta también aquí: que detrás de LumoraEvents no hay una startup hablando de sí misma, sino personas reales construyendo junto a personas reales."
+    }
+  },
+  "contactPage": {
+    "meta": {
+      "title": "Contacto | LumoraEvents",
+      "description": "Empieza una conversación con LumoraEvents sobre tu competición, tu flujo de trabajo y el soporte que necesita tu equipo."
+    },
+    "hero": {
+      "eyebrow": "Contacto",
+      "title": "Cuéntanos cómo es tu evento.",
+      "description": "Si estás preparando una competición y quieres ver si LumoraEvents encaja con la forma en la que trabaja tu equipo, podemos empezar por ahí."
+    },
+    "methods": [
+      {
+        "label": "Email",
+        "value": "info@lumoraevents.net",
+        "href": "mailto:info@lumoraevents.net",
+        "note": "La forma más directa de empezar una conversación."
+      },
+      {
+        "label": "Instagram",
+        "value": "@lumoraevents.app",
+        "href": "https://instagram.com/lumoraevents.app",
+        "note": "Una forma más tranquila e informal de mantener el contacto."
+      },
+      {
+        "label": "Acceso a la plataforma",
+        "value": "app.lumoraevents.net",
+        "href": "https://app.lumoraevents.net",
+        "note": "Para equipos que ya tienen acceso y quieren entrar directamente."
+      }
+    ]
+  },
+  "notFoundPage": {
+    "meta": {
+      "title": "Página no encontrada | LumoraEvents",
+      "description": "La página solicitada no existe."
+    },
+    "eyebrow": "404",
+    "title": "Esta página no existe.",
+    "description": "Puede que la ruta haya cambiado o que todavía no se haya publicado.",
+    "backHome": "Volver al inicio"
   }
 }

@@ -11,6 +11,11 @@ type EventItem = {
 interface Props {
   events: {
     title: string;
+    a11y: {
+      logoAltTemplate: string;
+      scrollLeft: string;
+      scrollRight: string;
+    };
     items: EventItem[];
   };
 }
@@ -20,43 +25,18 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 const publicRoot = new URL("../../public/", import.meta.url);
 const hasAsset = (src: string) =>
   existsSync(fileURLToPath(new URL(src.replace(/^\//, ""), publicRoot)));
+const items = (events.items ?? []).map((item) => {
+  const logoSrc = item.logoSrc;
 
-const fallbackItems: EventItem[] = [
-  { name: "Etoiles d'Orient", logoSrc: "/images/events/event-01.webp" },
-  {
-    name: "Campeonato Nacional de Euskadi",
-    logoSrc: "/images/events/event-02.webp",
-  },
-  { name: "IAD Grand Prix", logoSrc: "/images/events/event-03.webp" },
-  { name: "Leyla Raqs BCN", logoSrc: "/images/events/event-04.webp" },
-  { name: "Da House Fest", logoSrc: "/images/events/event-05.webp" },
-  {
-    name: "Campeonato Danza Moderna y Urbana Ciudad de Pamplona",
-    logoSrc: "/images/events/event-06.webp",
-  },
-  {
-    name: "Campeonato Nacional Castilla y León Danza Urbana",
-    logoSrc: "/images/events/event-07.webp",
-  },
-  { name: "Hips Don't Lie", logoSrc: "/images/events/event-08.webp" },
-  { name: "Weekend Experience", logoSrc: "/images/events/event-09.webp" },
-];
-
-const items = (events.items.length ? events.items : fallbackItems).map(
-  (item, index) => {
-    const fallbackItem = fallbackItems[index] ?? fallbackItems[0];
-    const logoSrc = item.logoSrc || fallbackItem.logoSrc;
-
-    return {
-      ...fallbackItem,
-      ...item,
-      logoSrc,
-      resolvedSrc: `${baseUrl}${logoSrc}`,
-      logoAlt: item.logoAlt ?? `${item.name} logo`,
-      hasLogo: hasAsset(logoSrc),
-    };
-  },
-);
+  return {
+    ...item,
+    resolvedSrc: `${baseUrl}${logoSrc}`,
+    logoAlt:
+      item.logoAlt ??
+      events.a11y.logoAltTemplate.replace("{name}", item.name),
+    hasLogo: hasAsset(logoSrc),
+  };
+});
 ---
 
 <section class="shell relative py-14 sm:py-16 lg:py-18">
@@ -74,7 +54,7 @@ const items = (events.items.length ? events.items : fallbackItems).map(
           class="event-scroll-button absolute left-2 top-1/2 z-30 -translate-y-1/2 sm:left-3 lg:-left-5"
           data-event-scroll-button="prev"
           data-event-scroll-target="events-scroller"
-          aria-label="Scroll events left"
+          aria-label={events.a11y.scrollLeft}
         >
           <svg
             viewBox="0 0 20 20"
@@ -96,7 +76,7 @@ const items = (events.items.length ? events.items : fallbackItems).map(
           class="event-scroll-button absolute right-2 top-1/2 z-30 -translate-y-1/2 sm:right-3 lg:-right-5"
           data-event-scroll-button="next"
           data-event-scroll-target="events-scroller"
-          aria-label="Scroll events right"
+          aria-label={events.a11y.scrollRight}
         >
           <svg
             viewBox="0 0 20 20"

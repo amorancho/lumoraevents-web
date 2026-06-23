@@ -1,24 +1,28 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getMessages } from "../utils/i18n";
+
+const locale = "en";
+const content = getMessages(locale).notFoundPage;
 ---
 
 <BaseLayout
-  locale="en"
-  title="Page not found | LumoraEvents"
-  description="The requested page does not exist."
+  locale={locale}
+  title={content.meta.title}
+  description={content.meta.description}
 >
   <main class="shell flex min-h-[70vh] items-center justify-center py-20">
     <div class="panel max-w-2xl px-8 py-10 text-center sm:px-12 sm:py-14">
-      <span class="eyebrow justify-center">404</span>
+      <span class="eyebrow justify-center">{content.eyebrow}</span>
       <h1
         class="mt-5 text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl"
       >
-        This page does not exist.
+        {content.title}
       </h1>
       <p class="mt-5 text-lg leading-8 text-copy-soft">
-        The route may have moved or has not been published yet.
+        {content.description}
       </p>
-      <a href="/" class="button-primary mt-8"> Back to home </a>
+      <a href="/" class="button-primary mt-8"> {content.backHome} </a>
     </div>
   </main>
 </BaseLayout>
