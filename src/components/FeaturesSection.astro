@@ -9,6 +9,11 @@ type PlatformSectionId =
   | "live-tracking"
   | "public-live";
 
+type PlatformSectionExtra = {
+  title: string;
+  description: string;
+};
+
 type PlatformSection = {
   id: string;
   title: string;
@@ -18,7 +23,10 @@ type PlatformSection = {
   imageAlt: string;
   previewLabel?: string;
   previewItems?: string[];
+  extrasLabel?: string;
+  extras?: PlatformSectionExtra[];
   previewFootnote?: string;
+  new?: string;
 };
 
 type UpcomingFeature = {
@@ -27,9 +35,7 @@ type UpcomingFeature = {
   description: string;
   note: string;
   previewEyebrow: string;
-  previewTitle: string;
   previewItems: string[];
-  previewFootnote: string;
 };
 
 interface Props {
@@ -37,6 +43,9 @@ interface Props {
     eyebrow: string;
     title: string;
     description: string;
+    labels?: {
+      new?: string;
+    };
     sections: PlatformSection[];
     upcoming?: UpcomingFeature;
   };
@@ -79,6 +88,29 @@ const fallbackSections: PlatformSection[] = [
     imageAlt: "LumoraEvents event configuration and schedule setup",
     previewLabel: "Event setup",
     previewItems: ["Schedules", "Judge panels", "Criteria", "Rounds"],
+    extrasLabel: "Cross-cutting capabilities",
+    extras: [
+      {
+        title: "Plan B",
+        description:
+          "Export the full event to PDF so the team can continue if connectivity drops on event day.",
+      },
+      {
+        title: "Multilingual",
+        description:
+          "Available in Spanish, English, French, Italian, and Portuguese, with room for more when needed.",
+      },
+      {
+        title: "Imports",
+        description:
+          "Bring in participants, categories, and event structure from WOP, Excel, or spreadsheets.",
+      },
+      {
+        title: "Exports",
+        description:
+          "Export results, schedules, and platform data to PDF or Excel whenever you need them.",
+      },
+    ],
     previewFootnote: "A flexible setup layer for the moving parts.",
   },
   {
@@ -126,10 +158,7 @@ const fallbackUpcoming: UpcomingFeature = {
     "A lighter extension for workshops, masterclasses, and special sessions inside the same product ecosystem.",
   note: "Designed as a teaser for what comes next, not as a separate product story.",
   previewEyebrow: "Future layer",
-  previewTitle: "Learning experiences",
   previewItems: ["Workshops", "Masterclasses", "Special sessions"],
-  previewFootnote:
-    "The same clarity, expanded beyond competition formats.",
 };
 
 const fallbackById = new Map(
@@ -156,6 +185,8 @@ const sections = sectionOrder.map((id) => {
       section?.previewItems && section.previewItems.length > 0
         ? section.previewItems
         : fallback.previewItems,
+    extras:
+      section?.extras && section.extras.length > 0 ? section.extras : fallback.extras,
     hasImage: hasAsset(imageSrc),
   };
 });
@@ -164,6 +195,7 @@ const upcoming = {
   ...fallbackUpcoming,
   ...features.upcoming,
 };
+const newBadgeLabel = features.labels?.new ?? "New";
 
 const toneById: Record<
   PlatformSectionId,
@@ -201,7 +233,7 @@ const toneById: Record<
 ---
 
 <section id="features" class="shell relative pb-14 pt-10 sm:pb-16 sm:pt-12 lg:pb-20 lg:pt-14">
-  <div class="section-intro section-intro-centered relative z-10">
+  <div class="section-intro section-intro-centered relative z-10 max-w-[54rem]">
     <span class="eyebrow reveal justify-center">{features.eyebrow}</span>
     <h2
       class="section-title reveal"
@@ -221,6 +253,8 @@ const toneById: Record<
     {
       sections.map((section, index) => {
         const tone = toneById[section.id as PlatformSectionId] ?? toneById.registrations;
+        const previewItems = section.previewItems ?? [];
+        const extras = section.extras ?? [];
 
         return (
           <article
@@ -274,20 +308,20 @@ const toneById: Record<
 
                   {
                     section.hasImage ? (
-                      <div class="mt-2.5 overflow-hidden rounded-[1.15rem] border border-white/10 bg-black/36">
+                      <div class="mt-2 overflow-hidden rounded-[1.15rem] border border-white/10 bg-black/36">
                         <img
                           src={section.imageSrc}
                           alt={section.imageAlt}
-                          class="aspect-[16/10] w-full object-cover"
+                          class="aspect-[16/9] w-full object-cover"
                           loading="lazy"
                           decoding="async"
                         />
                       </div>
                     ) : (
-                      <div class="mt-2.5 rounded-[1.15rem] border border-white/10 bg-black/36 p-3">
-                        <div class="space-y-2">
-                          {(section.previewItems ?? []).slice(0, 4).map((item) => (
-                            <div class="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/[0.03] px-3 py-2">
+                      <div class="mt-2 rounded-[1.15rem] border border-white/10 bg-black/36 p-3">
+                        <div class="space-y-1.5">
+                          {previewItems.map((item) => (
+                            <div class="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/[0.03] px-3 py-1.5">
                               <div class="flex items-center gap-2.5">
                                 <span
                                   class:list={[
@@ -297,7 +331,7 @@ const toneById: Record<
                                 ></span>
                                 <span class="text-xs text-copy-soft">{item}</span>
                               </div>
-                              <span class="h-2 w-10 rounded-full bg-white/10"></span>
+                              <span class="h-2 w-8 rounded-full bg-white/10"></span>
                             </div>
                           ))}
                         </div>
@@ -305,84 +339,125 @@ const toneById: Record<
                     )
                   }
 
-                  <div class="mt-2.5 flex flex-wrap gap-2">
-                    {(section.previewItems ?? []).slice(0, 3).map((item) => (
-                      <span class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] text-copy-soft">
-                        {item}
-                      </span>
-                    ))}
-                  </div>
+                  {
+                    section.hasImage && previewItems.length > 0 ? (
+                      <div class="mt-2 flex flex-wrap gap-2">
+                        {previewItems.map((item) => (
+                          <span class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] text-copy-soft">
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null
+                  }
 
-                  <p class="mt-2.5 text-xs leading-[1.375rem] text-copy-soft">
-                    {section.previewFootnote}
-                  </p>
+                  {
+                    section.new ? (
+                      <div class="mt-2.5 rounded-[1rem] border border-amber-200/30 bg-[linear-gradient(135deg,rgba(251,191,36,0.22),rgba(251,191,36,0.08)_42%,rgba(255,255,255,0.04))] px-3 py-2.5 shadow-[0_10px_24px_rgba(245,158,11,0.12)]">
+                        <div class="flex items-center gap-2">
+                          <span class="inline-flex items-center rounded-full border border-amber-100/30 bg-amber-300/15 px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-amber-50">
+                            {newBadgeLabel}
+                          </span>
+                          <span class="h-px flex-1 bg-gradient-to-r from-amber-100/30 to-transparent"></span>
+                        </div>
+
+                        <p class="mt-2 text-sm font-semibold leading-5 text-white">
+                          {section.new}
+                        </p>
+                      </div>
+                    ) : null
+                  }
                 </div>
               </div>
             </div>
+
+            {
+              extras.length > 0 ? (
+                <div class="relative z-10 mt-5 rounded-[1.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-4 sm:p-4.5">
+                  <div class="flex items-center gap-3">
+                    <span class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-copy-soft">
+                      {section.extrasLabel}
+                    </span>
+                    <span class="h-px flex-1 bg-gradient-to-r from-white/16 to-transparent"></span>
+                  </div>
+
+                  <div class="mt-3 grid gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
+                    {extras.map((item) => (
+                      <div class="rounded-[1rem] border border-white/8 bg-black/26 px-3 py-3">
+                        <p class="text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-white/90">
+                          {item.title}
+                        </p>
+                        <p class="mt-1.5 text-[0.74rem] leading-5 text-copy-soft">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null
+            }
           </article>
         );
       })
     }
   </div>
 
-  <article class="reveal surface-card relative mt-5 overflow-hidden p-5 sm:p-6" style="--reveal-delay: 560ms">
-    <div
-      class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(6,182,212,0.1),transparent_42%),radial-gradient(circle_at_78%_0%,rgba(124,58,237,0.08),transparent_28%)]"
+  <div class="relative z-10 mt-10 pt-8 sm:mt-14 sm:pt-10">
+    <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent"></div>
+
+    <article
+      class="reveal relative overflow-hidden rounded-[2rem] border border-white/12 bg-[linear-gradient(135deg,rgba(8,47,73,0.94),rgba(10,14,24,0.96)_48%,rgba(88,28,135,0.35))] p-6 shadow-[0_28px_80px_rgba(3,7,18,0.32)] sm:p-7"
+      style="--reveal-delay: 560ms"
     >
-    </div>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(34,211,238,0.16),transparent_26%),radial-gradient(circle_at_82%_18%,rgba(168,85,247,0.16),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.01))]"></div>
+      <div class="pointer-events-none absolute -right-14 top-6 h-32 w-32 rounded-full border border-white/10 bg-white/[0.03] blur-2xl"></div>
 
-    <div class="relative z-10 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(15rem,18rem)] lg:items-center">
-      <div class="max-w-[38rem]">
-        <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
-          <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
-          {upcoming.badge}
-        </span>
+      <div class="relative z-10 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,22rem)] lg:items-center">
+        <div class="max-w-[40rem]">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-2 rounded-full border border-cyan-200/18 bg-cyan-300/10 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-cyan-50">
+              <span class="size-1.5 rounded-full bg-cyan-300"></span>
+              {upcoming.badge}
+            </span>
+            <span class="h-px flex-1 bg-gradient-to-r from-cyan-200/24 to-transparent"></span>
+          </div>
 
-        <h3 class="mt-4 text-[1.8rem] font-semibold tracking-[-0.05em] text-white sm:text-[1.95rem] sm:leading-[1.06]">
-          {upcoming.title}
-        </h3>
+          <h3 class="mt-5 max-w-[16ch] text-[2rem] font-semibold tracking-[-0.05em] text-white sm:text-[2.2rem] sm:leading-[1.02]">
+            {upcoming.title}
+          </h3>
 
-        <p class="mt-3 max-w-[34rem] text-base leading-7 text-copy-soft sm:text-lg">
-          {upcoming.description}
-        </p>
-
-        <p class="mt-2.5 max-w-[32rem] text-sm leading-[1.625rem] text-copy-soft/86 sm:leading-7">
-          {upcoming.note}
-        </p>
-      </div>
-
-      <div class="product-mini-frame bg-black/52 p-3">
-        <div class="flex items-center justify-between gap-3">
-          <span class="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-copy-soft">
-            {upcoming.previewEyebrow}
-          </span>
-          <span class="size-2 rounded-full bg-accent/78"></span>
-        </div>
-
-        <div class="mt-2.5 rounded-[1.15rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-3">
-          <p class="text-base font-semibold tracking-[-0.03em] text-white">
-            {upcoming.previewTitle}
+          <p class="mt-3 max-w-[34rem] text-base leading-7 text-copy-soft sm:text-lg">
+            {upcoming.description}
           </p>
 
-          <div class="mt-2.5 space-y-2">
+          <p class="mt-3 max-w-[32rem] text-sm leading-[1.625rem] text-copy-soft/86 sm:leading-7">
+            {upcoming.note}
+          </p>
+        </div>
+
+        <aside class="rounded-[1.55rem] border border-white/12 bg-black/22 p-4 backdrop-blur-sm">
+          <div class="flex items-center gap-3">
+            <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
+              {upcoming.previewEyebrow}
+            </span>
+            <span class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></span>
+          </div>
+
+          <div class="mt-4 space-y-2.5">
             {upcoming.previewItems.map((item, index) => (
-              <div class="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-copy-soft">
+              <div class="flex items-center gap-3 rounded-[1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] px-3 py-2.5 text-sm text-copy-soft">
                 <span
                   class:list={[
-                    "size-1.5 rounded-full",
-                    index === 1 ? "bg-white/65" : index === 2 ? "bg-accent/72" : "bg-accent-cyan/80",
+                    "size-2 rounded-full",
+                    index === 1 ? "bg-white/72" : index === 2 ? "bg-accent/80" : "bg-accent-cyan/85",
                   ]}
                 ></span>
-                <span>{item}</span>
+                <span class="font-medium text-white/92">{item}</span>
               </div>
             ))}
           </div>
-
-          <p class="mt-3 text-xs leading-[1.375rem] text-copy-soft">
-            {upcoming.previewFootnote}
-          </p>
-        </div>
+        </aside>
       </div>
-    </div>
-  </article>
+    </article>
+  </div>
 </section>

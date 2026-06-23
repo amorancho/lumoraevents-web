@@ -21,7 +21,7 @@ interface Props {
 const { currentLocale, navigation, footer } = Astro.props;
 const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 const getHref = (page: SitePage) => `${baseUrl}${getPagePath(currentLocale, page)}`;
-const logoSrc = `${baseUrl}/images/logo.svg`;
+const logoSrc = `${baseUrl}/images/new_logo.png`;
 const appVersion = `v${packageInfo.version}`;
 const year = new Date().getFullYear();
 ---
@@ -32,7 +32,7 @@ const year = new Date().getFullYear();
       <div
         class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
       >
-        <div class="max-w-[31rem]">
+        <div class="max-w-[34rem]">
           <a
             href={getHref("home")}
             aria-label="LumoraEvents home"
@@ -45,7 +45,7 @@ const year = new Date().getFullYear();
               loading="lazy"
             />
           </a>
-          <p class="mt-5 max-w-[26rem] text-sm leading-7 text-copy-soft">
+          <p class="mt-5 max-w-[31rem] text-sm leading-7 text-copy-soft">
             {footer.tagline}
           </p>
         </div>

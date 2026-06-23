@@ -8,7 +8,7 @@
     "menu": "Menú"
   },
   "hero": {
-    "title": "Una forma más clara de organizar competiciones.",
+    "title": "Software para competiciones de danza",
     "description": "Menos improvisación. Más control. Una competición mejor organizada desde el primer día.",
     "keywords": ["SMART", "SIMPLE", "COMPETICIONES BAJO CONTROL"]
   },
@@ -111,37 +111,57 @@
     "upcoming": {
       "badge": "Coming soon",
       "title": "Workshop & Masterclasses",
-      "description": "Una extensión ligera para workshops, masterclasses y sesiones especiales dentro del mismo ecosistema de producto.",
-      "note": "Planteado como teaser de la siguiente capa, no como un bloque separado de otra web.",
+      "description": "Gestiona los talleres y clases especiales englobadas en el evento.",
+      "note": "Controla inscripciones, horarios y profesores de las experiencias formativas de tu evento.",
       "previewEyebrow": "Próxima capa",
-      "previewTitle": "Experiencias formativas",
-      "previewItems": ["Workshops", "Masterclasses", "Sesiones especiales"],
-      "previewFootnote": "La misma claridad, ampliada más allá de la competición."
+      "previewItems": ["Workshops", "Masterclasses", "Cupos/Gestión económica", "Hoteles, viajes y extras", "Descuentos"]
     },
     "eyebrow": "Experiencia de plataforma",
-    "title": "Todo el proceso de gestión de una competición en una sola plataforma.",
+    "title": "Todo el proceso de organización de una competición en una sola plataforma.",
     "description": "Inscripciones, configuración, jueces, seguimiento y experiencia pública conectados en una sola plataforma pensada para eventos reales.",
+    "labels": {
+      "new": "Nuevo"
+    },
     "sections": [
       {
         "id": "registrations",
         "title": "Inscripciones",
-        "benefit": "Reúne inscripciones, escuelas, categorías y músicas en un solo flujo.",
-        "description": "Recoge los datos del evento en un solo lugar, sin reconstruir la competición entre hojas de cálculo, correos y formularios separados.",
+        "benefit": "Inscripciones ordenadas desde el primer día.",
+        "description": "Recoge la información de escuelas, participantes, categorías y música en un único lugar, evitando hojas de cálculo, correos sueltos y formularios difíciles de cuadrar.",
         "imageSrc": "/images/platform/registrations.webp",
         "imageAlt": "Flujo de inscripciones de LumoraEvents",
-        "previewLabel": "Flujo de inscripción",
-        "previewItems": ["Escuelas", "Participantes", "Categorías", "Música"],
+        "previewLabel": "Control total sobre",
+        "previewItems": ["Escuelas", "Participantes", "Categorías / Estilos", "Música", "Pagos y Autorizaciones"],
         "previewFootnote": "Todo llega estructurado antes del día de competición."
       },
       {
         "id": "configuration",
-        "title": "Configuración",
+        "title": "Configuración / Organización",
         "benefit": "Define horarios, jueces y criterios antes de que empiece la jornada.",
         "description": "Configura las reglas operativas una vez, mantén la estructura legible y prepara el evento sin saltar entre herramientas desconectadas.",
         "imageSrc": "/images/platform/configuration.webp",
         "imageAlt": "Configuración del evento y horarios en LumoraEvents",
         "previewLabel": "Setup del evento",
-        "previewItems": ["Horarios", "Paneles", "Criterios", "Rondas"],
+        "previewItems": ["Categorías / Estilos", "Participantes", "Competiciones", "Jueces", "Criterios", "Programación/Escaleta"],
+        "extrasLabel": "Capacidades transversales",
+        "extras": [
+          {
+            "title": "Plan B",
+            "description": "Exporta todo el evento a PDF para poder continuar si el día D se pierde la conexión o surge una incidencia crítica."
+          },
+          {
+            "title": "Multidioma",
+            "description": "La plataforma está disponible en español, inglés, francés, italiano y portugués, y puede adaptarse a otros idiomas si lo necesitas."
+          },
+          {
+            "title": "Importaciones",
+            "description": "Importa participantes, categorías y estructura del evento desde WOP, Excel u hojas de cálculo."
+          },
+          {
+            "title": "Exportaciones",
+            "description": "Exporta a PDF o Excel resultados, programación y cualquier dato relevante de la plataforma."
+          }
+        ],
         "previewFootnote": "Una capa flexible para todas las piezas del evento."
       },
       {
@@ -152,30 +172,31 @@
         "imageSrc": "/images/platform/judges.webp",
         "imageAlt": "Interfaz de scoring de jueces de LumoraEvents",
         "previewLabel": "Flujo de scoring",
-        "previewItems": ["Tablet", "Móvil", "Entrada rápida", "Sync en vivo"],
+        "previewItems": ["Multidispositivo", "Visualización cómoda", "Envío fácil de votos", "Feedbacks y notas", "Penalizaciones"],
         "previewFootnote": "Pensado para puntuar en directo sin ruido extra."
       },
       {
         "id": "live-tracking",
         "title": "Seguimiento en directo",
-        "benefit": "Ve qué está en marcha, qué viene después y dónde hace falta atención.",
-        "description": "Da al equipo una vista operativa más calmada durante el evento, con el estado actual de la competición siempre visible.",
+        "benefit": "Control total sobre lo que sucede en directo, lo que viene y dónde hay que poner atención.",
+        "description": "Da al equipo una vista operativa completa de las competiciones, con el estado actual siempre visible.",
         "imageSrc": "/images/platform/live-tracking.webp",
         "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents",
         "previewLabel": "Control en vivo",
-        "previewItems": ["Ahora", "Siguiente", "Retrasos", "Puntos de atención"],
+        "previewItems": ["Seguimiento en vivo", "Estado Competiciones", "Seguimiento votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados"],
         "previewFootnote": "Un pulso operativo más claro durante la jornada."
       },
       {
         "id": "public-live",
-        "title": "Experiencia pública en directo",
-        "benefit": "Comparte horarios, actuaciones y resultados sin actualizaciones manuales.",
+        "title": "Experiencia del público en directo",
+        "benefit": "Comparte programación y resultados sin actualizaciones manuales.",
         "description": "Participantes y público siguen el evento desde una capa pública que informa sin apartar al equipo de la operativa.",
         "imageSrc": "/images/platform/public-live.webp",
         "imageAlt": "Experiencia pública en directo de LumoraEvents",
-        "previewLabel": "Live público",
-        "previewItems": ["Horarios", "Orden", "Resultados", "Estado en vivo"],
-        "previewFootnote": "Una vista pública alineada con lo que ocurre en el evento."
+        "previewLabel": "Público y participantes",
+        "previewItems": ["Acceso  cómodo por QR", "Programación / Orden", "Clasificación y Resultados", "Estado en vivo", "Estadísticas personalizadas"],
+        "previewFootnote": "Una vista pública alineada con lo que ocurre en el evento.",
+        "new": "Votación del público"
       }
     ]
   },
@@ -221,6 +242,6 @@
     "primaryCta": "Hablemos"
   },
   "footer": {
-    "tagline": "Gestión de competiciones diseñada alrededor de eventos reales."
+    "tagline": "Todo el proceso de organización de una competición en una sola plataforma."
   }
 }

@@ -8,7 +8,7 @@
     "menu": "Menu"
   },
   "hero": {
-    "title": "A clearer way to run competitions.",
+    "title": "Dance competition management software",
     "description": "Less improvisation. More control. A better organized competition from day one.",
     "keywords": ["SMART", "SIMPLE", "COMPETITIONS UNDER CONTROL"]
   },
@@ -108,17 +108,18 @@
   },
   "features": {
     "eyebrow": "Platform experience",
-    "title": "The full competition management process in one platform.",
+    "title": "All the competition management flow in one platform.",
     "description": "Registrations, setup, judging, live control, and public visibility connected in one platform built for real events.",
+    "labels": {
+      "new": "New"
+    },
     "upcoming": {
       "badge": "Coming soon",
       "title": "Workshop & Masterclasses",
       "description": "A lighter extension for workshops, masterclasses, and special sessions inside the same product ecosystem.",
       "note": "Designed as a teaser for what comes next, not as a separate product story.",
       "previewEyebrow": "Future layer",
-      "previewTitle": "Learning experiences",
-      "previewItems": ["Workshops", "Masterclasses", "Special sessions"],
-      "previewFootnote": "The same clarity, expanded beyond competition formats."
+      "previewItems": ["Workshops", "Masterclasses", "Special sessions"]
     },
     "sections": [
       {
@@ -141,6 +142,25 @@
         "imageAlt": "LumoraEvents event configuration and schedule setup",
         "previewLabel": "Event setup",
         "previewItems": ["Schedules", "Judge panels", "Criteria", "Rounds"],
+        "extrasLabel": "Cross-cutting capabilities",
+        "extras": [
+          {
+            "title": "Plan B",
+            "description": "Export the full event to PDF so the team can continue if connectivity drops on event day or a critical issue appears."
+          },
+          {
+            "title": "Multilingual",
+            "description": "The platform supports Spanish, English, French, Italian, and Portuguese, and can adapt to other languages when needed."
+          },
+          {
+            "title": "Imports",
+            "description": "Import participants, categories, and event structure from WOP, Excel, or spreadsheets."
+          },
+          {
+            "title": "Exports",
+            "description": "Export results, schedules, and any relevant platform data to PDF or Excel."
+          }
+        ],
         "previewFootnote": "A flexible setup layer for the moving parts."
       },
       {
@@ -174,7 +194,8 @@
         "imageAlt": "LumoraEvents public live experience",
         "previewLabel": "Public live",
         "previewItems": ["Schedules", "Performance order", "Results", "Live status"],
-        "previewFootnote": "A public view that stays aligned with the event."
+        "previewFootnote": "A public view that stays aligned with the event.",
+        "new": "Public voting"
       }
     ]
   },

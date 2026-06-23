@@ -7,10 +7,6 @@ export const sharedMessages = {
           page: "home",
         },
         {
-          label: "Platform",
-          page: "platform",
-        },
-        {
           label: "About",
           page: "about",
         },
@@ -20,10 +16,6 @@ export const sharedMessages = {
         },
       ],
       footerLinks: [
-        {
-          label: "Platform",
-          page: "platform",
-        },
         {
           label: "About",
           page: "about",
@@ -145,48 +137,6 @@ export const sharedMessages = {
           "That is what we want this page to reflect as well: not a startup speaking about itself, but real people building alongside real people.",
       },
     },
-    platformPage: {
-      meta: {
-        title: "Platform | LumoraEvents",
-        description:
-          "A clear competition flow for registrations, judging, live tracking, public updates, and support around real event days.",
-      },
-      hero: {
-        eyebrow: "Platform",
-        title: "One operating layer for the full competition flow.",
-        description:
-          "Registrations, setup, scoring, live control, and public visibility connected in one platform designed to stay calm under pressure.",
-      },
-      intro: {
-        eyebrow: "What it holds together",
-        title: "The product is built to remove fragmentation before it becomes stress.",
-        description:
-          "Instead of distributing the event across spreadsheets, chat threads, and manual fixes, LumoraEvents keeps the moving parts readable from setup through results.",
-      },
-      notes: [
-        {
-          title: "Before the day begins",
-          description:
-            "Schedules, categories, music, participants, and judging rules stay in one preparation flow.",
-        },
-        {
-          title: "When the event is live",
-          description:
-            "Judges, organizers, and public visibility keep moving from the same source of truth.",
-        },
-        {
-          title: "When plans shift",
-          description:
-            "Changes remain operational instead of turning into avoidable confusion.",
-        },
-      ],
-      closing: {
-        eyebrow: "Platform support",
-        title: "Software, plus the calm of knowing someone stays close to the event.",
-        description:
-          "The product matters. So does the human layer behind it when the day is already in motion.",
-      },
-    },
     contactPage: {
       meta: {
         title: "Contact | LumoraEvents",
@@ -240,10 +190,6 @@ export const sharedMessages = {
           page: "home",
         },
         {
-          label: "Plataforma",
-          page: "platform",
-        },
-        {
           label: "Nosotros",
           page: "about",
         },
@@ -253,10 +199,6 @@ export const sharedMessages = {
         },
       ],
       footerLinks: [
-        {
-          label: "Plataforma",
-          page: "platform",
-        },
         {
           label: "Nosotros",
           page: "about",
@@ -271,7 +213,7 @@ export const sharedMessages = {
     },
 
     footer: {
-      tagline: "Gestión de competiciones diseñada alrededor de eventos reales.",
+      tagline: "Todo el proceso de organización de una competición en una sola plataforma.",
       accessLabel: "Acceder a la plataforma",
     },
 
@@ -388,56 +330,6 @@ export const sharedMessages = {
           "LumoraEvents sigue creciendo de la misma forma en la que empezó: cerca, escuchando y aprendiendo de eventos reales.",
         description:
           "Eso es lo que queremos que se sienta también aquí: que detrás de LumoraEvents no hay una startup hablando de sí misma, sino personas reales construyendo junto a personas reales.",
-      },
-    },
-
-    platformPage: {
-      meta: {
-        title: "Plataforma | LumoraEvents",
-        description:
-          "Un flujo claro para inscripciones, jueces, seguimiento en vivo, visibilidad pública y soporte alrededor de competiciones reales.",
-      },
-
-      hero: {
-        eyebrow: "Plataforma",
-        title:
-          "Una sola capa operativa para todo el flujo de competición.",
-        description:
-          "Inscripciones, configuración, puntuación, control en vivo y visibilidad pública conectados en una plataforma pensada para mantenerse estable bajo presión.",
-      },
-
-      intro: {
-        eyebrow: "Lo que mantiene todo unido",
-        title:
-          "El producto está construido para eliminar fragmentación antes de que se convierta en estrés.",
-        description:
-          "En lugar de repartir el evento entre hojas de cálculo, chats y arreglos manuales, LumoraEvents mantiene las piezas legibles desde la preparación hasta los resultados.",
-      },
-
-      notes: [
-        {
-          title: "Antes de que empiece el día",
-          description:
-            "Horarios, categorías, músicas, participantes y reglas de jueces viven en un mismo flujo de preparación.",
-        },
-        {
-          title: "Cuando el evento está en marcha",
-          description:
-            "Jueces, organización y visibilidad pública se mueven desde una misma fuente de verdad.",
-        },
-        {
-          title: "Cuando el plan cambia",
-          description:
-            "Los cambios siguen siendo operativos en lugar de convertirse en confusión evitable.",
-        },
-      ],
-
-      closing: {
-        eyebrow: "Soporte de plataforma",
-        title:
-          "Software, y también la tranquilidad de saber que alguien sigue cerca del evento.",
-        description:
-          "El producto importa. La capa humana que hay detrás cuando el día ya está en marcha también.",
       },
     },
 

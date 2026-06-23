@@ -10,10 +10,6 @@ export const pageSlugs = {
     en: "",
     es: "",
   },
-  platform: {
-    en: "platform",
-    es: "plataforma",
-  },
   about: {
     en: "about",
     es: "nosotros",
