@@ -46,10 +46,32 @@ const socialImageUrl = new URL(
   siteConfig.ogImage,
   `${siteConfig.siteUrl}/`,
 ).toString();
+const organizationLogoUrl = new URL(
+  siteConfig.organizationLogo,
+  `${siteConfig.siteUrl}/`,
+).toString();
 const sitemapUrl = new URL(
   "/sitemap-index.xml",
   `${siteConfig.siteUrl}/`,
 ).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+      logo: organizationLogoUrl,
+      sameAs: [siteConfig.instagramUrl],
+    },
+    {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+      inLanguage: Object.values(siteConfig.locales).map(({ lang }) => lang),
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -92,6 +114,12 @@ const sitemapUrl = new URL(
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
     <meta name="twitter:image:alt" content={siteConfig.ogImageAlt} />
+
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
 
     <Analytics />
   </head>

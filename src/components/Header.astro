@@ -23,7 +23,7 @@ const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 const appHref = siteConfig.appUrl;
 const getHref = (page: string) =>
   `${baseUrl}${getPagePath(currentLocale, page as SitePage)}`;
-const logoSrc = `${baseUrl}/images/new_logo.png`;
+const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
 ---
 
 <header class="sticky top-0 z-40 pt-3 sm:pt-4">
