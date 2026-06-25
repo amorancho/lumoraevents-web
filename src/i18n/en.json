@@ -26,6 +26,14 @@
       {
         "label": "Contact",
         "page": "contact"
+      },
+      {
+        "label": "Privacy Policy",
+        "page": "privacy"
+      },
+      {
+        "label": "Cookie Policy",
+        "page": "cookies"
       }
     ],
     "appLabel": "Access the platform",
@@ -348,9 +356,163 @@
     "accessLabel": "Access the platform",
     "instagramLabel": "@lumoraevents.app",
     "instagramAriaLabel": "LumoraEvents Instagram",
-    "copyright": "Copyright {year} LumoraEvents. All rights reserved.",
+    "cookieSettingsLabel": "Cookie settings",
+    "copyright": "© {year} LumoraEvents. All rights reserved.",
     "versionDisplay": "v{version}",
     "versionAriaLabel": "Version {version}"
+  },
+  "cookieConsent": {
+    "eyebrow": "Cookie preferences",
+    "title": "We use cookies to improve your experience.",
+    "description": "We use necessary cookies to make the site work and optional cookies to understand usage and improve the website.",
+    "policyLink": "Cookie policy",
+    "necessaryHint": "Necessary cookies are always active.",
+    "necessaryOnly": "Necessary only",
+    "configure": "Configure",
+    "acceptAll": "Accept all",
+    "close": "Close",
+    "necessaryTitle": "Necessary cookies",
+    "necessaryDescription": "Needed for the basic functioning of the website.",
+    "alwaysActive": "Always active",
+    "analyticsTitle": "Optional cookies",
+    "analyticsDescription": "They help us understand website usage and improve the site.",
+    "analyticsToggleLabel": "Enable optional cookies",
+    "savePreferences": "Save preferences"
+  },
+  "cookiesPage": {
+    "meta": {
+      "title": "Cookie Policy | LumoraEvents",
+      "description": "Learn how LumoraEvents uses necessary and analytics cookies, and how you can change your preference at any time."
+    },
+    "hero": {
+      "eyebrow": "Cookie Policy",
+      "title": "How LumoraEvents uses cookies.",
+      "description": "This page explains what cookies are, which ones we use and how you can decide whether analytics cookies are allowed."
+    },
+    "summary": {
+      "title": "At a glance",
+      "items": [
+        "Necessary cookies keep essential site functions working.",
+        "Optional analytics cookies only load after your consent.",
+        "If you accept optional cookies, LumoraEvents uses Google Analytics 4.",
+        "You can review or change your choice at any time from the footer."
+      ]
+    },
+    "sections": [
+      {
+        "title": "What are cookies?",
+        "paragraphs": [
+          "Cookies are small files that a website stores in your browser to remember useful information about your visit.",
+          "They can help a site function correctly, remember preferences or measure how people use the pages."
+        ]
+      },
+      {
+        "title": "Necessary cookies",
+        "paragraphs": [
+          "Necessary cookies support essential technical functions and cannot be disabled from the preference panel.",
+          "Without them, some parts of the site may not work as expected."
+        ]
+      },
+      {
+        "title": "Optional / analytics cookies",
+        "paragraphs": [
+          "Optional cookies are used for analytics and measurement. If you accept them, LumoraEvents loads Google Analytics 4 to understand visits, navigation patterns and the performance of public pages.",
+          "If you reject them, Google Analytics is not loaded."
+        ]
+      },
+      {
+        "title": "How to change your preference",
+        "paragraphs": [
+          "On your first visit you can choose Necessary only, Accept all or open Configure to decide manually.",
+          "You can also open Cookie settings later from the footer and update your preference whenever you want."
+        ]
+      }
+    ],
+    "contactNote": "If you need help or want to ask anything about this policy, you can contact us at info@lumoraevents.net."
+  },
+  "privacyPage": {
+    "meta": {
+      "title": "Privacy Policy | LumoraEvents",
+      "description": "Learn what data LumoraEvents may process through the website, for what purposes and how you can exercise your privacy rights."
+    },
+    "hero": {
+      "eyebrow": "Privacy Policy",
+      "title": "How LumoraEvents handles personal data.",
+      "description": "This page explains what data may be processed through the public website, why it may be used and how you can exercise your rights."
+    },
+    "summary": {
+      "title": "At a glance",
+      "items": [
+        "Controller: LumoraEvents",
+        "Privacy contact: info@lumoraevents.net",
+        "Possible data: information you send by email and navigation or usage data if you accept optional analytics cookies.",
+        "No automated decisions with legal or similarly significant effects are carried out through this public website."
+      ]
+    },
+    "sections": [
+      {
+        "title": "Controller",
+        "paragraphs": [
+          "LumoraEvents is responsible for the personal data that may be processed through this public website.",
+          "For any privacy-related request, you can contact info@lumoraevents.net."
+        ]
+      },
+      {
+        "title": "What data may be processed",
+        "paragraphs": [
+          "Depending on how you interact with LumoraEvents, limited personal data may be processed."
+        ],
+        "items": [
+          "Information you send by email to info@lumoraevents.net.",
+          "Basic usage and measurement data collected through Google Analytics 4 only if you accept optional cookies."
+        ]
+      },
+      {
+        "title": "Purposes of processing",
+        "paragraphs": [
+          "Personal data may be processed to respond to inquiries, manage communications related to your message and improve the public website through aggregated analytics when optional cookies have been accepted."
+        ]
+      },
+      {
+        "title": "Legal basis",
+        "paragraphs": [
+          "The legal basis may be your consent, the application of pre-contractual measures at your request or the legitimate interest in managing the public website and its security, depending on the context.",
+          "Google Analytics 4 only operates on the basis of consent when optional cookies are accepted."
+        ]
+      },
+      {
+        "title": "Retention",
+        "paragraphs": [
+          "Data will be kept only for as long as necessary to handle the relevant request, maintain the communication or comply with legal obligations.",
+          "Analytics data is subject to the retention settings configured in Google Analytics 4 once consent has been granted."
+        ]
+      },
+      {
+        "title": "Recipients and providers",
+        "paragraphs": [
+          "Data may be processed by service providers needed to operate the website and communication channels."
+        ],
+        "items": [
+          "Hosting or infrastructure providers.",
+          "Email providers.",
+          "Google as provider of Google Analytics 4 when optional cookies are accepted."
+        ]
+      },
+      {
+        "title": "User rights",
+        "paragraphs": [
+          "You may request access, rectification, erasure, objection, restriction or portability when applicable by writing to info@lumoraevents.net.",
+          "You also have the right to withdraw consent at any time when processing is based on consent, including optional analytics cookies."
+        ]
+      },
+      {
+        "title": "Complaints and automated decisions",
+        "paragraphs": [
+          "If you believe your rights have been infringed, you may file a complaint with the supervisory authority that is competent in your country or region.",
+          "This website does not use personal data for automated decisions that produce legal or similarly significant effects."
+        ]
+      }
+    ]
   },
   "aboutPage": {
     "meta": {
@@ -455,7 +617,7 @@
     "methods": [
       {
         "label": "Email",
-        "value": "[info@lumoraevents.net](mailto:info@lumoraevents.net)",
+        "value": "info@lumoraevents.net",
         "href": "mailto:info@lumoraevents.net",
         "note": "The most direct way to start a conversation."
       },

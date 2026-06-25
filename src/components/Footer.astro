@@ -19,6 +19,7 @@ interface Props {
     accessLabel: string;
     instagramLabel: string;
     instagramAriaLabel: string;
+    cookieSettingsLabel: string;
     copyright: string;
     versionDisplay: string;
     versionAriaLabel: string;
@@ -111,20 +112,30 @@ const versionAriaLabel = footer.versionAriaLabel.replace(
       </div>
 
       <div
-        class="flex flex-col gap-4 border-t border-white/8 pt-6 text-sm text-copy-soft md:flex-row md:items-center md:justify-between"
+        class="flex flex-col gap-4 border-t border-white/8 pt-6 text-sm text-copy-soft lg:flex-row lg:items-center lg:justify-between"
       >
-        <nav class="flex flex-wrap gap-5">
-          {
-            navigation.footerLinks.map((link) => (
-              <a
-                href={getHref(link.page)}
-                class="transition-colors duration-300 hover:text-copy"
-              >
-                {link.label}
-              </a>
-            ))
-          }
-        </nav>
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:gap-5">
+          <nav class="flex flex-wrap gap-5">
+            {
+              navigation.footerLinks.map((link) => (
+                <a
+                  href={getHref(link.page)}
+                  class="transition-colors duration-300 hover:text-copy"
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
+
+          <button
+            type="button"
+            data-open-cookie-settings
+            class="inline-flex items-center text-left transition-colors duration-300 hover:text-copy"
+          >
+            {footer.cookieSettingsLabel}
+          </button>
+        </div>
 
         <p>
           {copyrightLabel}

@@ -1,22 +1,21 @@
 ---
-const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const inlineScript = measurementId
-  ? `window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${measurementId}');`
-  : "";
+import { Buffer } from "node:buffer";
+
+const measurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID?.trim();
+const analyticsConfig = measurementId
+  ? {
+      measurementIdBase64: Buffer.from(measurementId).toString("base64"),
+    }
+  : undefined;
 ---
 
 {
-  measurementId && (
-    <>
-      <script
-        is:inline
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
-      />
-      <script is:inline set:html={inlineScript} />
-    </>
+  analyticsConfig && (
+    <script
+      is:inline
+      id="lumora-analytics-config"
+      type="application/json"
+      set:html={JSON.stringify(analyticsConfig)}
+    />
   )
 }

@@ -1,0 +1,124 @@
+---
+import Footer from "./Footer.astro";
+import Header from "./Header.astro";
+import { getMessages } from "../utils/i18n";
+import type { SitePage } from "../utils/routes";
+import type { Locale } from "../utils/site";
+
+type LegalSection = {
+  title: string;
+  paragraphs: string[];
+  items?: string[];
+};
+
+type LegalContent = {
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+  };
+  summary?: {
+    title: string;
+    items: string[];
+  };
+  sections: LegalSection[];
+  contactNote?: string;
+};
+
+interface Props {
+  locale: Locale;
+  currentPage: SitePage;
+  content: LegalContent;
+}
+
+const { locale, currentPage, content } = Astro.props;
+const messages = getMessages(locale);
+---
+
+<Header currentLocale={locale} currentPage={currentPage} navigation={messages.navigation} />
+
+<main class="relative isolate overflow-hidden">
+  <section class="shell relative pb-8 pt-5 sm:pb-10 sm:pt-7">
+    <div class="section-intro section-intro-centered relative z-10 max-w-[54rem]">
+      <span class="eyebrow justify-center">{content.hero.eyebrow}</span>
+      <h1 class="section-title mx-auto max-w-[14ch]">
+        {content.hero.title}
+      </h1>
+      <p class="section-description mx-auto max-w-[40rem]">
+        {content.hero.description}
+      </p>
+    </div>
+  </section>
+
+  {
+    content.summary && (
+      <section class="shell relative pb-8 sm:pb-10">
+        <div class="surface-card mx-auto max-w-[58rem] p-5 sm:p-6">
+          <div class="border-b border-white/10 pb-4">
+            <h2 class="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
+              {content.summary.title}
+            </h2>
+          </div>
+
+          <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+            {content.summary.items.map((item) => (
+              <li class="rounded-[1.35rem] border border-white/10 bg-white/[0.02] px-4 py-4 text-sm leading-7 text-copy-soft">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="shell relative pb-14 pt-4 sm:pb-16 sm:pt-6">
+    <div class="mx-auto max-w-[58rem] border-t border-white/10">
+      {
+        content.sections.map((section) => (
+          <section class="grid gap-4 border-b border-white/10 py-6 sm:grid-cols-[minmax(0,14rem)_minmax(0,1fr)] sm:gap-8 sm:py-7">
+            <h2 class="text-lg font-semibold tracking-[-0.03em] text-white sm:text-xl">
+              {section.title}
+            </h2>
+
+            <div class="space-y-4">
+              {
+                section.paragraphs.map((paragraph) => (
+                  <p class="text-sm leading-7 text-copy-soft sm:text-base">
+                    {paragraph}
+                  </p>
+                ))
+              }
+
+              {
+                section.items && section.items.length > 0 && (
+                  <ul class="space-y-2 pt-1 text-sm leading-7 text-copy-soft sm:text-base">
+                    {section.items.map((item) => (
+                      <li class="pl-4 before:mr-3 before:inline-block before:translate-y-[-0.08rem] before:text-copy before:content-['•']">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )
+              }
+            </div>
+          </section>
+        ))
+      }
+    </div>
+
+    {
+      content.contactNote && (
+        <p class="mx-auto mt-8 max-w-[58rem] text-sm leading-7 text-copy-soft sm:text-base">
+          {content.contactNote}
+        </p>
+      )
+    }
+  </section>
+</main>
+
+<Footer
+  currentLocale={locale}
+  navigation={messages.navigation}
+  footer={messages.footer}
+/>

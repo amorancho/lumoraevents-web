@@ -1,0 +1,484 @@
+---
+import { getMessages } from "../utils/i18n";
+import { getPagePath } from "../utils/routes";
+import type { Locale } from "../utils/site";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const messages = getMessages(locale);
+const content = messages.cookieConsent;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const policyHref = `${baseUrl}${getPagePath(locale, "cookies")}`;
+---
+
+<div
+  id="lumora-cookie-consent"
+  data-cookie-consent
+  hidden
+  class="fixed inset-x-0 bottom-0 z-[70] px-4 pb-4 sm:px-5 sm:pb-5"
+>
+  <div
+    class="panel mx-auto max-w-[46rem] border-white/12 bg-black/88 backdrop-blur"
+    role="dialog"
+    aria-labelledby="lumora-cookie-consent-title"
+    aria-describedby="lumora-cookie-consent-description"
+  >
+    <div class="flex flex-col gap-3.5 p-3.5 sm:p-4.5">
+      <div class="flex items-start justify-between gap-3">
+        <div class="max-w-[38rem]">
+          <h2
+            id="lumora-cookie-consent-title"
+            class="text-base font-semibold tracking-[-0.03em] text-white sm:text-[1.05rem]"
+          >
+            {content.title}
+          </h2>
+          <p
+            id="lumora-cookie-consent-description"
+            class="mt-2 max-w-[38rem] text-sm leading-6 text-copy-soft"
+          >
+            {content.description}
+          </p>
+
+          <div class="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-copy-soft sm:text-sm">
+            <a
+              href={policyHref}
+              class="underline decoration-white/15 underline-offset-4 transition-colors duration-200 hover:text-copy"
+            >
+              {content.policyLink}
+            </a>
+            <span class="text-copy-soft/80">{content.necessaryHint}</span>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          data-cookie-close
+          hidden
+          class="shrink-0 rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-copy-soft transition-[border-color,color,background-color] duration-200 hover:border-white/16 hover:bg-white/[0.04] hover:text-copy"
+        >
+          {content.close}
+        </button>
+      </div>
+
+      <div
+        data-cookie-banner-actions
+        class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end"
+      >
+        <button
+          type="button"
+          data-cookie-reject
+          class="button-secondary px-4 py-2.5"
+        >
+          {content.necessaryOnly}
+        </button>
+        <button
+          type="button"
+          data-cookie-configure
+          class="button-secondary px-4 py-2.5"
+        >
+          {content.configure}
+        </button>
+        <button
+          type="button"
+          data-cookie-accept
+          class="button-primary px-4 py-2.5"
+        >
+          {content.acceptAll}
+        </button>
+      </div>
+
+      <div data-cookie-settings hidden class="grid gap-3 border-t border-white/10 pt-4">
+        <div class="rounded-[1.35rem] border border-white/10 bg-white/[0.02] p-3.5 sm:p-4">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-base font-semibold tracking-[-0.03em] text-white">
+                {content.necessaryTitle}
+              </h3>
+              <p class="mt-1.5 max-w-[34rem] text-sm leading-6 text-copy-soft">
+                {content.necessaryDescription}
+              </p>
+            </div>
+
+            <span
+              class="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-200"
+            >
+              {content.alwaysActive}
+            </span>
+          </div>
+        </div>
+
+        <label
+          class="flex flex-col gap-3 rounded-[1.35rem] border border-white/10 bg-white/[0.02] p-3.5 sm:flex-row sm:items-start sm:justify-between sm:p-4"
+        >
+          <div class="max-w-[34rem]">
+            <span class="text-base font-semibold tracking-[-0.03em] text-white">
+              {content.analyticsTitle}
+            </span>
+            <p class="mt-1.5 text-sm leading-6 text-copy-soft">
+              {content.analyticsDescription}
+            </p>
+          </div>
+
+          <span class="flex items-center gap-3 sm:pt-0.5">
+            <span class="text-sm text-copy-soft">
+              {content.analyticsToggleLabel}
+            </span>
+            <input
+              type="checkbox"
+              data-cookie-analytics-toggle
+              class="mt-0.5 h-5 w-5 rounded border-white/20 bg-canvas"
+              style="accent-color: var(--color-accent-cyan)"
+            />
+          </span>
+        </label>
+
+        <div class="flex flex-col gap-2 sm:flex-row sm:justify-end">
+          <button type="button" data-cookie-save class="button-primary px-4 py-2.5">
+            {content.savePreferences}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  const setupCookieConsent = () => {
+    const root = document.querySelector("[data-cookie-consent]");
+
+    if (!(root instanceof HTMLElement) || root.dataset.bound === "true") {
+      return;
+    }
+
+    root.dataset.bound = "true";
+
+    const storageKey = "lumoraevents_cookie_consent";
+    const storageVersion = 1;
+    const openSettingsEvent = "lumoraevents:open-cookie-settings";
+    const analyticsScriptId = "lumora-analytics-loader";
+    const closeButton = root.querySelector("[data-cookie-close]");
+    const bannerActions = root.querySelector("[data-cookie-banner-actions]");
+    const settingsPanel = root.querySelector("[data-cookie-settings]");
+    const acceptButton = root.querySelector("[data-cookie-accept]");
+    const rejectButton = root.querySelector("[data-cookie-reject]");
+    const configureButton = root.querySelector("[data-cookie-configure]");
+    const saveButton = root.querySelector("[data-cookie-save]");
+    const analyticsToggle = root.querySelector("[data-cookie-analytics-toggle]");
+    const analyticsConfigNode = document.getElementById("lumora-analytics-config");
+    let measurementId = "";
+
+    const resolveMeasurementId = () => {
+      if (measurementId) {
+        return measurementId;
+      }
+
+      if (
+        !(analyticsConfigNode instanceof HTMLScriptElement) ||
+        !analyticsConfigNode.textContent
+      ) {
+        return "";
+      }
+
+      try {
+        const parsedConfig = JSON.parse(analyticsConfigNode.textContent);
+        const base64Value = parsedConfig?.measurementIdBase64;
+
+        if (typeof base64Value === "string" && base64Value) {
+          measurementId = window.atob(base64Value);
+        }
+      } catch {
+        measurementId = "";
+      }
+
+      return measurementId;
+    };
+
+    const readConsent = () => {
+      try {
+        const storedValue = window.localStorage.getItem(storageKey);
+
+        if (!storedValue) {
+          return null;
+        }
+
+        if (storedValue === "accepted" || storedValue === "rejected") {
+          return {
+            analytics: storedValue === "accepted",
+            status: storedValue,
+            version: storageVersion,
+          };
+        }
+
+        const parsedValue = JSON.parse(storedValue);
+
+        if (
+          parsedValue &&
+          typeof parsedValue === "object" &&
+          parsedValue.version === storageVersion &&
+          typeof parsedValue.analytics === "boolean" &&
+          (parsedValue.status === "accepted" || parsedValue.status === "rejected")
+        ) {
+          return parsedValue;
+        }
+      } catch {
+        return null;
+      }
+
+      return null;
+    };
+
+    const writeConsent = (analyticsEnabled) => {
+      const nextConsent = {
+        analytics: analyticsEnabled,
+        status: analyticsEnabled ? "accepted" : "rejected",
+        version: storageVersion,
+      };
+
+      try {
+        window.localStorage.setItem(storageKey, JSON.stringify(nextConsent));
+      } catch {
+        return nextConsent;
+      }
+
+      return nextConsent;
+    };
+
+    const expireCookie = (name, domain) => {
+      const domainAttribute = domain ? `; domain=${domain}` : "";
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domainAttribute}`;
+    };
+
+    const clearAnalyticsCookies = () => {
+      const cookieNames = document.cookie
+        .split(";")
+        .map((cookieEntry) => cookieEntry.trim().split("=")[0])
+        .filter(
+          (cookieName) =>
+            cookieName === "_ga" ||
+            cookieName === "_gid" ||
+            cookieName === "_gat" ||
+            cookieName.startsWith("_ga_"),
+        );
+
+      if (!cookieNames.length) {
+        return;
+      }
+
+      const hostParts = window.location.hostname.split(".");
+      const domains = [undefined, window.location.hostname];
+
+      for (let index = 0; index < hostParts.length - 1; index += 1) {
+        domains.push(`.${hostParts.slice(index).join(".")}`);
+      }
+
+      const uniqueDomains = [...new Set(domains)];
+
+      cookieNames.forEach((cookieName) => {
+        uniqueDomains.forEach((domain) => {
+          expireCookie(cookieName, domain);
+        });
+      });
+    };
+
+    const loadAnalytics = () => {
+      const activeMeasurementId = resolveMeasurementId();
+
+      if (!activeMeasurementId) {
+        return false;
+      }
+
+      if (window.__lumoraGaLoaded === true) {
+        window[`ga-disable-${activeMeasurementId}`] = false;
+        return true;
+      }
+
+      window.__lumoraGaLoaded = true;
+      window[`ga-disable-${activeMeasurementId}`] = false;
+      window.dataLayer = window.dataLayer || [];
+      const track =
+        window.gtag ||
+        function () {
+          window.dataLayer.push(arguments);
+        };
+
+      window.gtag = track;
+      track("js", new Date());
+      track("config", activeMeasurementId);
+
+      if (!document.getElementById(analyticsScriptId)) {
+        const analyticsScript = document.createElement("script");
+        analyticsScript.async = true;
+        analyticsScript.id = analyticsScriptId;
+        analyticsScript.src = `${["https://www", "googletagmanager", "com/gtag/js?id="].join(".")}${encodeURIComponent(activeMeasurementId)}`;
+        document.head.appendChild(analyticsScript);
+      }
+
+      return true;
+    };
+
+    const disableAnalytics = () => {
+      const activeMeasurementId = resolveMeasurementId();
+
+      if (activeMeasurementId) {
+        window[`ga-disable-${activeMeasurementId}`] = true;
+      }
+
+      const track = window.gtag;
+
+      if (typeof track === "function") {
+        track("consent", "update", {
+          analytics_storage: "denied",
+        });
+      }
+
+      clearAnalyticsCookies();
+    };
+
+    const setSettingsState = (isOpen) => {
+      if (!(settingsPanel instanceof HTMLElement) || !(bannerActions instanceof HTMLElement)) {
+        return;
+      }
+
+      settingsPanel.hidden = !isOpen;
+      bannerActions.hidden = isOpen;
+
+      if (closeButton instanceof HTMLButtonElement) {
+        closeButton.hidden = !isOpen;
+      }
+    };
+
+    const showBanner = () => {
+      const storedConsent = readConsent();
+      root.hidden = false;
+      setSettingsState(false);
+
+      if (analyticsToggle instanceof HTMLInputElement) {
+        analyticsToggle.checked = storedConsent?.analytics === true;
+      }
+    };
+
+    const hideBanner = () => {
+      root.hidden = true;
+      setSettingsState(false);
+    };
+
+    const openSettings = () => {
+      const storedConsent = readConsent();
+      root.hidden = false;
+      setSettingsState(true);
+
+      if (analyticsToggle instanceof HTMLInputElement) {
+        analyticsToggle.checked = storedConsent?.analytics === true;
+      }
+    };
+
+    const applyConsent = (analyticsEnabled) => {
+      writeConsent(analyticsEnabled);
+
+      if (analyticsEnabled) {
+        loadAnalytics();
+      } else {
+        disableAnalytics();
+      }
+
+      hideBanner();
+    };
+
+    if (acceptButton instanceof HTMLButtonElement) {
+      acceptButton.addEventListener("click", () => {
+        applyConsent(true);
+      });
+    }
+
+    if (rejectButton instanceof HTMLButtonElement) {
+      rejectButton.addEventListener("click", () => {
+        applyConsent(false);
+      });
+    }
+
+    if (configureButton instanceof HTMLButtonElement) {
+      configureButton.addEventListener("click", () => {
+        openSettings();
+      });
+    }
+
+    if (
+      saveButton instanceof HTMLButtonElement &&
+      analyticsToggle instanceof HTMLInputElement
+    ) {
+      saveButton.addEventListener("click", () => {
+        applyConsent(analyticsToggle.checked);
+      });
+    }
+
+    if (closeButton instanceof HTMLButtonElement) {
+      closeButton.addEventListener("click", () => {
+        if (readConsent()) {
+          hideBanner();
+          return;
+        }
+
+        showBanner();
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      const trigger = target.closest("[data-open-cookie-settings]");
+
+      if (!(trigger instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      event.preventDefault();
+      openSettings();
+    });
+
+    window.addEventListener(openSettingsEvent, () => {
+      openSettings();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || root.hidden) {
+        return;
+      }
+
+      if (readConsent()) {
+        hideBanner();
+        return;
+      }
+
+      showBanner();
+    });
+
+    const storedConsent = readConsent();
+
+    if (!storedConsent) {
+      showBanner();
+      return;
+    }
+
+    if (storedConsent.analytics) {
+      loadAnalytics();
+      return;
+    }
+
+    disableAnalytics();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupCookieConsent, {
+      once: true,
+    });
+  } else {
+    setupCookieConsent();
+  }
+</script>

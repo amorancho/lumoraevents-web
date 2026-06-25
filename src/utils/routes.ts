@@ -18,6 +18,14 @@ export const pageSlugs = {
     en: "contact",
     es: "contacto",
   },
+  privacy: {
+    en: "privacy",
+    es: "privacidad",
+  },
+  cookies: {
+    en: "cookies",
+    es: "cookies",
+  },
 } as const satisfies Record<string, Record<Locale, string>>;
 
 export type SitePage = keyof typeof pageSlugs;

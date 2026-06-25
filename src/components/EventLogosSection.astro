@@ -127,7 +127,7 @@ const items = (events.items ?? []).map((item) => {
                           alt={item.logoAlt}
                           draggable="false"
                           class="h-full w-full object-contain opacity-72 grayscale transition-[opacity,filter] duration-200 group-hover:opacity-100 group-hover:grayscale-0"
-                          loading={index < 3 ? "eager" : "lazy"}
+                          loading="lazy"
                           decoding="async"
                         />
                       </div>

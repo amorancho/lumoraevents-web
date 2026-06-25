@@ -1,5 +1,6 @@
 ---
 import Analytics from "../components/Analytics.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import "../styles/global.css";
 import {
   getAlternateLinks,
@@ -128,5 +129,6 @@ const structuredData = {
     <div class="relative isolate min-h-screen">
       <slot />
     </div>
+    <CookieConsent locale={locale} />
   </body>
 </html>
