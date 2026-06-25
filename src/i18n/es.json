@@ -251,7 +251,7 @@
         "imageSrc": "/images/platform/judges.webp",
         "imageAlt": "Interfaz de puntuación de jueces de LumoraEvents",
         "previewLabel": "Flujo de puntuación",
-        "previewItems": ["Multidispositivo", "Visualización cómoda", "Envío fácil de votos", "Feedbacks y notas", "Penalizaciones"],
+        "previewItems": ["Multidispositivo", "Visualización cómoda", "Envío fácil de votos", "Feedback por voz o escrito", "Penalizaciones"],
         "previewFootnote": "Pensado para puntuar en directo sin ruido extra."
       },
       {
