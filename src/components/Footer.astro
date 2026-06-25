@@ -38,13 +38,19 @@ const versionAriaLabel = footer.versionAriaLabel.replace(
   "{version}",
   packageInfo.version,
 );
+const primaryFooterLinks = navigation.footerLinks.filter(
+  (link) => link.page === "about" || link.page === "contact",
+);
+const secondaryFooterLinks = navigation.footerLinks.filter(
+  (link) => link.page !== "about" && link.page !== "contact",
+);
 ---
 
 <footer class="py-10 sm:py-12">
   <div class="shell border-t border-white/8 pt-8 sm:pt-9">
     <div class="flex flex-col gap-8">
       <div
-        class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
+        class="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(13rem,0.72fr)_minmax(13rem,0.88fr)] lg:items-start"
       >
         <div class="max-w-[34rem]">
           <a
@@ -64,7 +70,39 @@ const versionAriaLabel = footer.versionAriaLabel.replace(
           </p>
         </div>
 
-        <div class="flex flex-col items-start gap-3 sm:items-end">
+        <div class="flex flex-col gap-3 lg:pt-1">
+          <nav class="flex flex-col items-start gap-2">
+            {
+              primaryFooterLinks.map((link) => (
+                <a
+                  href={getHref(link.page)}
+                  class="group inline-flex min-w-[9rem] items-center justify-between gap-3 rounded-full border border-white/8 bg-white/[0.015] px-3.5 py-2 text-[0.78rem] font-medium text-copy-soft shadow-[inset_0_1px_0_rgba(255,255,255,0.035)] transition-[border-color,background-color,color] duration-200 hover:border-white/12 hover:bg-white/[0.03] hover:text-copy"
+                >
+                  <span class="flex items-center gap-3">
+                    <span class="size-1.5 rounded-full bg-accent-cyan/55 transition-colors duration-200 group-hover:bg-accent-cyan/80"></span>
+                    <span>{link.label}</span>
+                  </span>
+                  <svg
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    aria-hidden="true"
+                    class="size-3.5 text-copy-soft/70 transition-[transform,color] duration-200 group-hover:translate-x-0.5 group-hover:text-copy"
+                  >
+                    <path
+                      d="M7 5.5 11.5 10 7 14.5M11.5 10H4.5"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    ></path>
+                  </svg>
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+
+        <div class="flex flex-col items-start gap-3 lg:items-end lg:pt-1">
           <a
             href={siteConfig.instagramUrl}
             target="_blank"
@@ -117,7 +155,7 @@ const versionAriaLabel = footer.versionAriaLabel.replace(
         <div class="flex flex-col gap-4 md:flex-row md:items-center md:gap-5">
           <nav class="flex flex-wrap gap-5">
             {
-              navigation.footerLinks.map((link) => (
+              secondaryFooterLinks.map((link) => (
                 <a
                   href={getHref(link.page)}
                   class="transition-colors duration-300 hover:text-copy"
