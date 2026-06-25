@@ -1,11 +1,7 @@
+import sharedSiteConfig from "../../site.config.mjs";
+
 export const siteConfig = {
-  name: "LumoraEvents",
-  //siteUrl: "https://lumoraevents.net",
-  siteUrl: "https://amorancho.github.io",
-  appUrl: "https://app.lumoraevents.net",
-  email: "info@lumoraevents.net",
-  instagramUrl: "https://instagram.com/lumoraevents.app",
-  socialImage: "/images/og-default.svg",
+  ...sharedSiteConfig,
   defaultLocale: "en",
   locales: {
     en: {

@@ -4,12 +4,14 @@ import { getMessages } from "../utils/i18n";
 
 const locale = "en";
 const content = getMessages(locale).notFoundPage;
+const homeHref = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
   locale={locale}
   title={content.meta.title}
   description={content.meta.description}
+  noindex={true}
 >
   <main class="shell flex min-h-[70vh] items-center justify-center py-20">
     <div class="panel max-w-2xl px-8 py-10 text-center sm:px-12 sm:py-14">
@@ -22,7 +24,7 @@ const content = getMessages(locale).notFoundPage;
       <p class="mt-5 text-lg leading-8 text-copy-soft">
         {content.description}
       </p>
-      <a href="/" class="button-primary mt-8"> {content.backHome} </a>
+      <a href={homeHref} class="button-primary mt-8"> {content.backHome} </a>
     </div>
   </main>
 </BaseLayout>

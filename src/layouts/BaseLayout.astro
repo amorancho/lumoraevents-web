@@ -19,19 +19,36 @@ interface Props {
   description: string;
   page?: SitePage;
   slug?: string;
+  noindex?: boolean;
 }
 
-const { locale, title, description, page, slug = "" } = Astro.props;
-const canonicalUrl = page
-  ? getPageCanonicalUrl(locale, page)
-  : getCanonicalUrl(locale, slug);
-const alternateLinks = page
-  ? getAlternatePageLinks(page)
-  : getAlternateLinks(slug);
+const {
+  locale,
+  title,
+  description,
+  page,
+  slug = "",
+  noindex = false,
+} = Astro.props;
+const shouldEmitIndexableLinks = !(noindex && !page && !slug);
+const canonicalUrl = shouldEmitIndexableLinks
+  ? page
+    ? getPageCanonicalUrl(locale, page)
+    : getCanonicalUrl(locale, slug)
+  : undefined;
+const alternateLinks = shouldEmitIndexableLinks
+  ? page
+    ? getAlternatePageLinks(page)
+    : getAlternateLinks(slug)
+  : [];
 const localeDefinition = getLocaleDefinition(locale);
 const socialImageUrl = new URL(
-  `${import.meta.env.BASE_URL}${siteConfig.socialImage}`,
-  siteConfig.siteUrl,
+  siteConfig.ogImage,
+  `${siteConfig.siteUrl}/`,
+).toString();
+const sitemapUrl = new URL(
+  "/sitemap-index.xml",
+  `${siteConfig.siteUrl}/`,
 ).toString();
 ---
 
@@ -42,17 +59,19 @@ const socialImageUrl = new URL(
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="theme-color" content={siteConfig.themeColor} />
+    {noindex && <meta name="robots" content="noindex" />}
 
     <title>{title}</title>
 
-    <link
-      rel="icon"
-      href={`${import.meta.env.BASE_URL}favicon.svg`}
-      type="image/svg+xml"
-    />
-    <link rel="canonical" href={canonicalUrl} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="sitemap" href={sitemapUrl} />
 
     {
       alternateLinks.map((link) => (
@@ -64,13 +83,15 @@ const socialImageUrl = new URL(
     <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content={siteConfig.ogImageAlt} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={siteConfig.ogImageAlt} />
 
     <Analytics />
   </head>
