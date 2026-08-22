@@ -286,7 +286,11 @@
           "Competition status",
           "Voting progress",
           "Penalties / No show / Disqualifications",
-          "Rankings and results"
+          "Rankings and results",
+          {
+            "title": "Accreditation management",
+            "badge": "Coming soon"
+          }
         ],
         "previewFootnote": "A clearer operational pulse throughout the event."
       },

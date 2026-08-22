@@ -262,7 +262,7 @@
         "imageSrc": "/images/platform/live-tracking.webp",
         "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents",
         "previewLabel": "Control en vivo",
-        "previewItems": ["Seguimiento en vivo", "Estado de competiciones", "Seguimiento de votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados"],
+        "previewItems": ["Seguimiento en vivo", "Estado de competiciones", "Seguimiento de votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados", {"title": "Gestión de acreditaciones", "badge": "Próximamente"}],
         "previewFootnote": "Un pulso operativo más claro durante la jornada."
       },
       {

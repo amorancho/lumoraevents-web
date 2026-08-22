@@ -14,6 +14,13 @@ type PlatformSectionExtra = {
   description: string;
 };
 
+type PreviewItem =
+  | string
+  | {
+      title: string;
+      badge: string;
+    };
+
 type PlatformSection = {
   id: string;
   title: string;
@@ -22,7 +29,7 @@ type PlatformSection = {
   imageSrc: string;
   imageAlt: string;
   previewLabel?: string;
-  previewItems?: string[];
+  previewItems?: PreviewItem[];
   extrasLabel?: string;
   extras?: PlatformSectionExtra[];
   previewFootnote?: string;
@@ -216,20 +223,34 @@ const toneById: Record<
                     ) : (
                       <div class="mt-2 rounded-[1.15rem] border border-white/10 bg-black/36 p-3">
                         <div class="space-y-1.5">
-                          {previewItems.map((item) => (
-                            <div class="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/[0.03] px-3 py-1.5">
-                              <div class="flex items-center gap-2.5">
-                                <span
-                                  class:list={[
-                                    "size-1.5 rounded-full",
-                                    tone.dotClass,
-                                  ]}
-                                ></span>
-                                <span class="text-xs text-copy-soft">{item}</span>
+                          {previewItems.map((item) =>
+                            typeof item === "string" ? (
+                              <div class="flex items-center justify-between gap-3 rounded-[1rem] border border-white/8 bg-white/[0.03] px-3 py-1.5">
+                                <div class="flex items-center gap-2.5">
+                                  <span
+                                    class:list={[
+                                      "size-1.5 rounded-full",
+                                      tone.dotClass,
+                                    ]}
+                                  ></span>
+                                  <span class="text-xs text-copy-soft">{item}</span>
+                                </div>
+                                <span class="h-2 w-8 rounded-full bg-white/10"></span>
                               </div>
-                              <span class="h-2 w-8 rounded-full bg-white/10"></span>
-                            </div>
-                          ))}
+                            ) : (
+                              <div class="rounded-[1rem] border border-emerald-200/30 bg-[linear-gradient(135deg,rgba(52,211,153,0.22),rgba(16,185,129,0.08)_42%,rgba(255,255,255,0.04))] px-3 py-2.5 shadow-[0_10px_24px_rgba(16,185,129,0.12)]">
+                                <div class="flex items-center gap-2">
+                                  <span class="inline-flex items-center rounded-full border border-emerald-100/30 bg-emerald-300/15 px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-emerald-50">
+                                    {item.badge}
+                                  </span>
+                                  <span class="h-px flex-1 bg-gradient-to-r from-emerald-100/30 to-transparent"></span>
+                                </div>
+                                <p class="mt-2 text-sm font-semibold leading-5 text-white">
+                                  {item.title}
+                                </p>
+                              </div>
+                            ),
+                          )}
                         </div>
                       </div>
                     )
@@ -238,11 +259,25 @@ const toneById: Record<
                   {
                     section.hasImage && previewItems.length > 0 ? (
                       <div class="mt-2 flex flex-wrap gap-2">
-                        {previewItems.map((item) => (
-                          <span class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] text-copy-soft">
-                            {item}
-                          </span>
-                        ))}
+                        {previewItems.map((item) =>
+                          typeof item === "string" ? (
+                            <span class="inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-[0.68rem] text-copy-soft">
+                              {item}
+                            </span>
+                          ) : (
+                            <div class="w-full rounded-[1rem] border border-emerald-200/30 bg-[linear-gradient(135deg,rgba(52,211,153,0.22),rgba(16,185,129,0.08)_42%,rgba(255,255,255,0.04))] px-3 py-2.5 shadow-[0_10px_24px_rgba(16,185,129,0.12)]">
+                              <div class="flex items-center gap-2">
+                                <span class="inline-flex items-center rounded-full border border-emerald-100/30 bg-emerald-300/15 px-2 py-0.5 text-[0.58rem] font-semibold uppercase tracking-[0.2em] text-emerald-50">
+                                  {item.badge}
+                                </span>
+                                <span class="h-px flex-1 bg-gradient-to-r from-emerald-100/30 to-transparent"></span>
+                              </div>
+                              <p class="mt-2 text-sm font-semibold leading-5 text-white">
+                                {item.title}
+                              </p>
+                            </div>
+                          ),
+                        )}
                       </div>
                     ) : null
                   }
