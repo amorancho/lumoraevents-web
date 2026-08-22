@@ -1,10 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getMessages } from "../utils/i18n";
+import { getPagePath } from "../utils/routes";
 
 const locale = "en";
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const homeHref = `${baseUrl}${getPagePath(locale, "home")}`;
 const content = getMessages(locale).notFoundPage;
-const homeHref = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
