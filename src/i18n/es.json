@@ -180,6 +180,42 @@
       }
     ]
   },
+  "webService": {
+    "eyebrow": "MÁS ALLÁ DE LA PLATAFORMA",
+    "title": "Tu evento también merece una web a su altura.",
+    "description": "Diseñamos webs modernas, rápidas y adaptadas a la identidad de tu evento, para que participantes, escuelas y público encuentren fácilmente toda la información que necesitan.",
+    "benefits": [
+      {
+        "title": "Diseñada para tu evento",
+        "description": "Programa, categorías, jueces, reglamento, sponsors, localización, galería y toda la información importante, organizada de forma clara y pensada específicamente para eventos."
+      },
+      {
+        "title": "Rápida, moderna y preparada para cualquier dispositivo",
+        "description": "Una experiencia cuidada en móvil, tablet y ordenador, con especial atención al rendimiento, usabilidad y posicionamiento en buscadores."
+      },
+      {
+        "title": "Todo en las mismas manos",
+        "description": "Podemos encargarnos del diseño, desarrollo, publicación y mantenimiento de la web, además de conectarla con las inscripciones y servicios de LumoraEvents cuando sea necesario."
+      }
+    ],
+    "secondaryText": "Dominio, publicación y mantenimiento también pueden quedar en nuestras manos.",
+    "preview": {
+      "ariaLabel": "Representación de una web moderna para eventos",
+      "brand": "Tu evento",
+      "navigation": ["Programa", "Información", "Participa"],
+      "eyebrow": "Próxima edición",
+      "title": "Una experiencia que empieza antes del evento.",
+      "date": "Programa · Participantes · Información",
+      "primaryAction": "Inscripciones",
+      "secondaryAction": "Ver programa",
+      "scheduleLabel": "Todo lo importante, siempre accesible",
+      "scheduleItems": [
+        "Programa y horarios",
+        "Categorías y jueces",
+        "Ubicación y acceso"
+      ]
+    }
+  },
   "features": {
     "eyebrow": "Experiencia de plataforma",
     "title": "Todo el proceso de organización de una competición en una sola plataforma.",

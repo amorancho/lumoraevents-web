@@ -180,6 +180,42 @@
       }
     ]
   },
+  "webService": {
+    "eyebrow": "BEYOND THE PLATFORM",
+    "title": "Your event deserves a website to match.",
+    "description": "We design modern, fast websites tailored to your event's identity, so participants, schools and audiences can easily find all the information they need.",
+    "benefits": [
+      {
+        "title": "Designed for your event",
+        "description": "Schedule, categories, judges, rules, sponsors, location, gallery and all the key information, organized clearly and designed specifically for events."
+      },
+      {
+        "title": "Fast, modern and ready for every device",
+        "description": "A polished experience on mobile, tablet and desktop, with close attention to performance, usability and search visibility."
+      },
+      {
+        "title": "Everything in the same hands",
+        "description": "We can take care of design, development, publishing and maintenance, and connect the website with LumoraEvents registrations and services whenever needed."
+      }
+    ],
+    "secondaryText": "Domain, publishing and maintenance can also stay in our hands.",
+    "preview": {
+      "ariaLabel": "Representation of a modern event website",
+      "brand": "Your event",
+      "navigation": ["Schedule", "Information", "Take part"],
+      "eyebrow": "Next edition",
+      "title": "An experience that begins before the event.",
+      "date": "Schedule · Participants · Information",
+      "primaryAction": "Registrations",
+      "secondaryAction": "View schedule",
+      "scheduleLabel": "Everything important, always accessible",
+      "scheduleItems": [
+        "Schedule and timings",
+        "Categories and judges",
+        "Location and access"
+      ]
+    }
+  },
   "features": {
     "eyebrow": "Platform experience",
     "title": "Run your entire competition from one platform.",
