@@ -1,0 +1,62 @@
+# LumoraEvents
+
+> LumoraEvents is a web platform for managing dance competitions and other judged events. It connects registrations, event setup, judges and scoring, live operational tracking, rankings and results, and the public event experience in one system. LumoraEvents also designs and maintains websites for events and provides close support before, during and after each competition.
+
+The primary language of the website is English and is served from the root path. The Spanish version is served under `/es/`.
+
+Use the root URLs for English-language information and the corresponding `/es/` URLs for Spanish-language information.
+
+## English
+
+- [Home](https://lumoraevents.net/): Main overview of the LumoraEvents platform, including registrations, event configuration, judges and scoring, live tracking, public schedules and results, audience voting, supported event types, support model, event websites, featured events and FAQ.
+- [About](https://lumoraevents.net/about/): Background of LumoraEvents, its origins in real event organization, working philosophy and principles.
+- [Contact](https://lumoraevents.net/contact/): Official contact information for organizers interested in LumoraEvents, including email, Instagram and platform access.
+
+## Español
+
+- [Inicio](https://lumoraevents.net/es/): Resumen principal de la plataforma LumoraEvents: inscripciones, configuración del evento, jueces y puntuación, seguimiento en directo, programación y resultados públicos, votación del público, tipos de eventos, acompañamiento, webs para eventos y preguntas frecuentes.
+- [Nosotros](https://lumoraevents.net/es/nosotros/): Origen de LumoraEvents, experiencia en organización de eventos, forma de trabajo, filosofía y principios.
+- [Contacto](https://lumoraevents.net/es/contacto/): Información oficial de contacto para organizadores interesados en LumoraEvents, incluyendo email, Instagram y acceso a la plataforma.
+
+## Platform capabilities
+
+LumoraEvents is designed primarily for dance competitions, including urban dance, hip hop, battles, bellydance, modern, contemporary, fusion, K-pop, classical ballet and open formats. The platform can also adapt to other judged event types.
+
+Core capabilities described on the official website include:
+
+- Registration management for schools, participants, categories, styles, music, payments and authorizations.
+- Event setup for categories, styles, participants, competitions, judges, criteria, schedules and running orders.
+- Multilingual operation in Spanish, English, French, Italian and Portuguese, with the possibility of adapting to other languages.
+- Imports from WOP, Excel and spreadsheets.
+- Exports of results, schedules and relevant event data to PDF or Excel.
+- Judge scoring from mobile devices or tablets, including written or voice feedback and penalties.
+- Live operational tracking of competitions, voting progress, penalties, no-shows, disqualifications, rankings and results.
+- Public access to schedules, running orders, live status, rankings, results, personalized statistics and audience voting.
+- Offline contingency support through a full-event PDF Plan B.
+- Event websites designed, developed, published and maintained by LumoraEvents, with optional integration with registrations and platform services.
+- Workshops, masterclasses, capacity and payment management, travel-related extras and discounts are presented as upcoming capabilities.
+
+## Services and public products
+
+- [LumoraEvents Platform](https://app.lumoraevents.net/): Web application used by organizers, judges, schools, participants and event teams where access is available.
+- [Bellydance Event Directory](https://bellydance.lumoraevents.net/): Public international directory for bellydance festivals, competitions, workshops, masterclasses, galas and other gatherings.
+- [Instagram](https://www.instagram.com/lumoraevents.app/): Official LumoraEvents Instagram account.
+
+## Contact
+
+- Email: info@lumoraevents.net
+- Instagram: @lumoraevents.app
+- Website: https://lumoraevents.net/
+- Platform: https://app.lumoraevents.net/
+
+## Legal and privacy
+
+- [Privacy Policy](https://lumoraevents.net/privacy/): English privacy policy for the public website.
+- [Cookie Policy](https://lumoraevents.net/cookies/): English cookie policy and information about optional analytics cookies.
+- [Política de privacidad](https://lumoraevents.net/es/privacidad/): Política de privacidad en español.
+- [Política de cookies](https://lumoraevents.net/es/cookies/): Política de cookies en español.
+
+## Notes for language selection
+
+- English is the default language: `https://lumoraevents.net/`
+- Spanish is available under: `https://lumoraevents.net/es/`
