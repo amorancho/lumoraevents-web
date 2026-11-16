@@ -9,7 +9,8 @@ interface Props {
   navigation: {
     headerLinks: ReadonlyArray<{
       label: string;
-      page: string;
+      page?: string;
+      app?: boolean;
     }>;
     appLabel: string;
     menu: string;
@@ -51,11 +52,13 @@ const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
           />
         </a>
 
-        <nav class="relative z-10 hidden items-center gap-6 md:flex">
+        <nav class="relative z-10 hidden items-center gap-4 lg:flex xl:gap-6">
           {
             navigation.headerLinks.map((link) => (
               <a
-                href={getHref(link.page)}
+                href={link.app ? appHref : getHref(link.page ?? "home")}
+                target={link.app ? "_blank" : undefined}
+                rel={link.app ? "noopener noreferrer" : undefined}
                 aria-current={link.page === currentPage ? "page" : undefined}
                 class:list={[
                   "text-sm",
@@ -72,17 +75,16 @@ const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
           <a
             href={appHref}
             target="_blank"
-            rel="noreferrer"
-            class="inline-flex items-center gap-2 border-l border-white/8 pl-5 text-sm text-copy-soft/85 hover:text-copy"
+            rel="noopener noreferrer"
+            class="button-primary whitespace-nowrap"
           >
-            <span class="size-1.5 rounded-full bg-accent-cyan/80"></span>
             <span>{navigation.appLabel}</span>
           </a>
 
           <LanguageSwitcher currentLocale={currentLocale} currentPage={currentPage} />
         </nav>
 
-        <div class="relative z-10 md:hidden">
+        <div class="relative z-10 lg:hidden">
           <button
             type="button"
             data-mobile-menu-button
@@ -99,13 +101,15 @@ const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
         id="mobile-nav-panel"
         data-mobile-menu-panel
         hidden
-        class="panel pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-3rem))] translate-y-1.5 p-4 opacity-0 transition-[opacity,transform] duration-150 md:hidden"
+        class="panel pointer-events-none absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(18rem,calc(100vw-3rem))] translate-y-1.5 p-4 opacity-0 transition-[opacity,transform] duration-150 lg:hidden"
       >
         <nav class="flex flex-col gap-2">
           {
             navigation.headerLinks.map((link) => (
               <a
-                href={getHref(link.page)}
+                href={link.app ? appHref : getHref(link.page ?? "home")}
+                target={link.app ? "_blank" : undefined}
+                rel={link.app ? "noopener noreferrer" : undefined}
                 aria-current={link.page === currentPage ? "page" : undefined}
                 class:list={[
                   "rounded-2xl px-4 py-3 text-sm font-medium hover:bg-white/[0.04] hover:text-copy",
@@ -116,15 +120,6 @@ const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
               </a>
             ))
           }
-
-          <a
-            href={appHref}
-            target="_blank"
-            rel="noreferrer"
-            class="rounded-2xl px-4 py-3 text-sm font-medium text-copy-soft hover:bg-white/[0.04] hover:text-copy"
-          >
-            {navigation.appLabel}
-          </a>
         </nav>
 
         <div class="mt-4 border-t border-white/10 pt-4">
@@ -134,7 +129,7 @@ const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
         <a
           href={appHref}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           class="button-primary mt-4 w-full"
         >
           {navigation.appLabel}
@@ -162,7 +157,7 @@ const logoSrc = `${baseUrl}${siteConfig.brandLogo}`;
         root.dataset.bound = "true";
         let hideTimer;
 
-        const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
+        const isDesktop = () => window.matchMedia("(min-width: 1024px)").matches;
         const isOpen = () => button.getAttribute("aria-expanded") === "true";
 
         const finishHide = () => {

@@ -10,6 +10,10 @@
         "page": "home"
       },
       {
+        "label": "Events",
+        "app": true
+      },
+      {
         "label": "About",
         "page": "about"
       },
@@ -223,14 +227,15 @@
     "labels": {
       "new": "New"
     },
-    "upcoming": {
-      "badge": "Coming soon",
-      "title": "Workshops and masterclasses",
-      "description": "Manage workshops and special classes as part of the same event.",
-      "note": "Control registrations, schedules and instructors for the learning experiences inside your event.",
-      "previewEyebrow": "Coming soon",
+    "newModule": {
+      "badge": "New module",
+      "title": "Workshops, classes and extras",
+      "description": "Manage workshops, classes, masterclasses and additional services within the same event.",
+      "note": "Control registrations, capacity, schedules and instructors, along with payments, accommodation, travel and discounts.",
+      "previewEyebrow": "Includes",
       "previewItems": [
         "Workshops",
+        "Classes",
         "Masterclasses",
         "Capacity and payment management",
         "Hotels, travel and extras",
@@ -322,13 +327,10 @@
           "Competition status",
           "Voting progress",
           "Penalties / No show / Disqualifications",
-          "Rankings and results",
-          {
-            "title": "Accreditation management",
-            "badge": "Coming soon"
-          }
+          "Rankings and results"
         ],
-        "previewFootnote": "A clearer operational pulse throughout the event."
+        "previewFootnote": "A clearer operational pulse throughout the event.",
+        "new": "Accreditation management"
       },
       {
         "id": "public-live",

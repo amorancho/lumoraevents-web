@@ -1,13 +1,16 @@
 ---
+import { siteConfig } from "../utils/site";
+
 interface Props {
   hero: {
     title: string;
     description: string;
     keywords?: string[];
   };
+  appLabel: string;
 }
 
-const { hero } = Astro.props;
+const { hero, appLabel } = Astro.props;
 
 const keywords = hero.keywords ?? [];
 ---
@@ -62,5 +65,16 @@ const keywords = hero.keywords ?? [];
         </div>
       )
     }
+
+    <div class="reveal mt-8" style="--reveal-delay: 300ms">
+      <a
+        href={siteConfig.appUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="button-primary"
+      >
+        {appLabel}
+      </a>
+    </div>
   </div>
 </section>

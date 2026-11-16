@@ -36,7 +36,7 @@ type PlatformSection = {
   new?: string;
 };
 
-type UpcomingFeature = {
+type NewModule = {
   badge: string;
   title: string;
   description: string;
@@ -54,7 +54,7 @@ interface Props {
       new?: string;
     };
     sections: PlatformSection[];
-    upcoming?: UpcomingFeature;
+    newModule?: NewModule;
   };
 }
 
@@ -97,7 +97,7 @@ const sections = sectionOrder.map((id) => {
   };
 }).filter((section): section is NonNullable<typeof section> => section !== null);
 
-const upcoming = features.upcoming;
+const newModule = features.newModule;
 const newBadgeLabel = features.labels?.new ?? "";
 
 const toneById: Record<
@@ -334,7 +334,7 @@ const toneById: Record<
   </div>
 
   {
-    upcoming && (
+    newModule && (
       <div class="relative z-10 mt-10 pt-8 sm:mt-14 sm:pt-10">
         <div class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/16 to-transparent"></div>
 
@@ -350,34 +350,34 @@ const toneById: Record<
               <div class="flex items-center gap-3">
                 <span class="inline-flex items-center gap-2 rounded-full border border-cyan-200/18 bg-cyan-300/10 px-3 py-1.5 text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-cyan-50">
                   <span class="size-1.5 rounded-full bg-cyan-300"></span>
-                  {upcoming.badge}
+                  {newModule.badge}
                 </span>
                 <span class="h-px flex-1 bg-gradient-to-r from-cyan-200/24 to-transparent"></span>
               </div>
 
               <h3 class="mt-5 max-w-[16ch] text-[2rem] font-semibold tracking-[-0.05em] text-white sm:text-[2.2rem] sm:leading-[1.02]">
-                {upcoming.title}
+                {newModule.title}
               </h3>
 
               <p class="mt-3 max-w-[34rem] text-base leading-7 text-copy-soft sm:text-lg">
-                {upcoming.description}
+                {newModule.description}
               </p>
 
               <p class="mt-3 max-w-[32rem] text-sm leading-[1.625rem] text-copy-soft/86 sm:leading-7">
-                {upcoming.note}
+                {newModule.note}
               </p>
             </div>
 
             <aside class="rounded-[1.55rem] border border-white/12 bg-black/22 p-4 backdrop-blur-sm">
               <div class="flex items-center gap-3">
                 <span class="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-copy-soft">
-                  {upcoming.previewEyebrow}
+                  {newModule.previewEyebrow}
                 </span>
                 <span class="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent"></span>
               </div>
 
               <div class="mt-4 space-y-2.5">
-                {upcoming.previewItems.map((item, index) => (
+                {newModule.previewItems.map((item, index) => (
                   <div class="flex items-center gap-3 rounded-[1rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] px-3 py-2.5 text-sm text-copy-soft">
                     <span
                       class:list={[

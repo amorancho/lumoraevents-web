@@ -10,6 +10,10 @@
         "page": "home"
       },
       {
+        "label": "Eventos",
+        "app": true
+      },
+      {
         "label": "Nosotros",
         "page": "about"
       },
@@ -223,14 +227,15 @@
     "labels": {
       "new": "Nuevo"
     },
-    "upcoming": {
-      "badge": "Próximamente",
-      "title": "Workshops y masterclasses",
-      "description": "Gestiona los talleres y clases especiales englobadas en el evento.",
-      "note": "Controla inscripciones, horarios y profesores de las experiencias formativas de tu evento.",
-      "previewEyebrow": "Próximamente",
+    "newModule": {
+      "badge": "Nuevo módulo",
+      "title": "Workshops, talleres y extras",
+      "description": "Gestiona workshops, talleres, masterclasses y servicios adicionales dentro del mismo evento.",
+      "note": "Controla inscripciones, cupos, horarios y profesores, junto con pagos, alojamientos, viajes y descuentos.",
+      "previewEyebrow": "Incluye",
       "previewItems": [
         "Workshops",
+        "Talleres",
         "Masterclasses",
         "Cupos y gestión de pagos",
         "Hoteles, viajes y extras",
@@ -298,8 +303,9 @@
         "imageSrc": "/images/platform/live-tracking.webp",
         "imageAlt": "Pantalla de seguimiento en directo de LumoraEvents",
         "previewLabel": "Control en vivo",
-        "previewItems": ["Seguimiento en vivo", "Estado de competiciones", "Seguimiento de votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados", {"title": "Gestión de acreditaciones", "badge": "Próximamente"}],
-        "previewFootnote": "Un pulso operativo más claro durante la jornada."
+        "previewItems": ["Seguimiento en vivo", "Estado de competiciones", "Seguimiento de votaciones", "Penalizaciones / NoShow / Descalificaciones", "Clasificación y resultados"],
+        "previewFootnote": "Un pulso operativo más claro durante la jornada.",
+        "new": "Gestión de acreditaciones"
       },
       {
         "id": "public-live",
