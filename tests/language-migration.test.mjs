@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, stat } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { after, before, test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { preview } from "astro";
@@ -13,15 +13,15 @@ const pages = [
   { page: "privacy", es: "/privacidad/", en: "/en/privacy/" },
   { page: "cookies", es: "/cookies/", en: "/en/cookies/" },
 ];
-const redirects = [
-  ["/es/", "/"],
-  ["/es/nosotros/", "/nosotros/"],
-  ["/es/contacto/", "/contacto/"],
-  ["/es/privacidad/", "/privacidad/"],
-  ["/es/cookies/", "/cookies/"],
-  ["/about/", "/en/about/"],
-  ["/contact/", "/en/contact/"],
-  ["/privacy/", "/en/privacy/"],
+const retiredPaths = [
+  "/es/",
+  "/es/nosotros/",
+  "/es/contacto/",
+  "/es/privacidad/",
+  "/es/cookies/",
+  "/about/",
+  "/contact/",
+  "/privacy/",
 ];
 const dictionaries = Object.fromEntries(
   await Promise.all(
@@ -70,27 +70,8 @@ const distFile = (path) =>
 
 let previewServer;
 let localOrigin;
-const rules = (
-  await readFile(new URL("../dist/_redirects", import.meta.url), "utf8")
-)
-  .split(/\r?\n/)
-  .map((line) => line.trim())
-  .filter((line) => line && !line.startsWith("#"))
-  .map((line) => line.split(/\s+/));
-const ruleDestinations = new Map(
-  rules.map(([source, destination]) => [source, destination]),
-);
 
 before(async () => {
-  if (process.env.PAGES_TEST_ORIGIN) {
-    const origin = new URL(process.env.PAGES_TEST_ORIGIN);
-    assert.ok(
-      ["127.0.0.1", "localhost", "[::1]"].includes(origin.hostname),
-      "Pages runtime tests must use a local server",
-    );
-    localOrigin = origin.origin;
-    return;
-  }
   previewServer = await preview({
     root: fileURLToPath(new URL("../", import.meta.url)),
     server: { host: "127.0.0.1", port: 0 },
@@ -242,95 +223,86 @@ for (const pair of pages) {
   }
 }
 
-test("native Pages rules cover all 16 legacy variants with HTTP 301 and final destinations", async () => {
-  assert.equal(rules.length, 16);
-  assert.equal(
-    ruleDestinations.size,
-    16,
-    "no duplicate or conflicting sources",
-  );
-  assert.ok(rules.every((rule) => rule.length === 3 && rule[2] === "301"));
-  for (const [oldPath, newPath] of redirects) {
-    for (const source of [oldPath, oldPath.slice(0, -1)]) {
-      assert.equal(ruleDestinations.get(source), newPath);
-      assert.equal(
-        ruleDestinations.has(newPath),
-        false,
-        "no redirect chains or loops",
-      );
-      assert.ok((await stat(distFile(newPath))).isFile(), newPath);
-    }
-  }
-});
-
-// Astro preview does not implement Pages' _redirects. Run this additional HTTP
-// check against a local "wrangler pages dev dist" server, without an emulator
-// implemented by these tests or any requests to a production deployment.
-if (process.env.PAGES_TEST_ORIGIN) {
-  test("Cloudflare Pages runtime: one 301 hop, both slash variants, GET/HEAD and exact queries", async () => {
-    for (const [oldPath, newPath] of redirects) {
-      for (const source of [oldPath, oldPath.slice(0, -1)]) {
+test("retired and unknown URLs return real HTTP 404, with and without a slash", async () => {
+  for (const path of [
+    ...retiredPaths,
+    "/es/unknown/",
+    "/about/team/",
+    "/not-a-page/",
+  ]) {
+    for (const variant of [path, path.slice(0, -1)]) {
+      for (const query of ["", "?utm_source=migration&ref=a%2Fb"]) {
         for (const method of ["GET", "HEAD"]) {
-          const query = "?utm_source=seo%20migration&ref=a%2Fb&tag=1&tag=2";
-          const response = await fetch(localOrigin + source + query, {
+          const response = await fetch(localOrigin + variant + query, {
             method,
             redirect: "manual",
           });
-          assert.equal(response.status, 301, method + " " + source);
-          assert.ok(response.headers.has("location"));
-          const location = new URL(
-            response.headers.get("location"),
-            localOrigin,
-          );
-          assert.equal(location.href, localOrigin + newPath + query);
-          const destination = await fetch(localOrigin + newPath + query, {
-            method,
-            redirect: "manual",
-          });
-          assert.equal(destination.status, 200, newPath);
+          assert.equal(response.status, 404, method + " " + variant + query);
+          assert.equal(response.headers.has("location"), false);
+          await response.arrayBuffer();
         }
       }
     }
-  });
-}
-
-test("redirect rules exclude reused/final URLs, unknown paths, assets, API and external hosts", () => {
-  for (const path of [
-    ...pages.flatMap(({ es, en }) => [es, en]),
-    "/cookies",
-    "/images/new_logo.png",
-    "/_astro/global.css",
-    "/api/contact",
-    "/es/unknown/",
-    "/es/images/logo.png",
-    "/about/team/",
-    "/es//",
-    "/sitemap-index.xml",
-    "/robots.txt",
-  ]) {
-    assert.equal(ruleDestinations.has(path), false, path);
-  }
-  for (const [source, destination] of rules) {
-    assert.ok(source.startsWith("/") && !source.startsWith("//"));
-    assert.ok(destination.startsWith("/") && !destination.startsWith("//"));
-    assert.doesNotMatch(
-      source + destination,
-      /[*:?]/,
-      "only exact relative paths",
-    );
   }
 });
 
-test("build includes _redirects unchanged and no Pages Functions or Worker", async () => {
-  assert.equal(
-    await readFile(new URL("../dist/_redirects", import.meta.url), "utf8"),
-    await readFile(new URL("../public/_redirects", import.meta.url), "utf8"),
+test("publication contains only the final HTML pages and no redirect mechanism", async () => {
+  const files = (
+    await readdir(new URL("../dist/", import.meta.url), { recursive: true })
+  ).map((file) => file.replaceAll("\\", "/"));
+  const htmlFiles = files.filter((file) => file.endsWith(".html")).sort();
+  assert.deepEqual(
+    htmlFiles,
+    [
+      "404.html",
+      ...pages
+        .flatMap(({ es, en }) => [es, en])
+        .map((path) => path.slice(1) + "index.html"),
+    ].sort(),
   );
-  for (const path of ["functions", "dist/_worker.js", "dist/_routes.json"]) {
-    await assert.rejects(stat(new URL("../" + path, import.meta.url)), {
-      code: "ENOENT",
-    });
+  for (const path of [
+    "_redirects",
+    "_worker.js",
+    "_routes.json",
+    ".htaccess",
+    "functions",
+    "hosting/redirects-worker.mjs",
+    "hosting/wrangler.json",
+  ]) {
+    await assert.rejects(stat(distFile("/" + path)), { code: "ENOENT" });
   }
+  for (const file of htmlFiles) {
+    const html = await readFile(distFile("/" + file), "utf8");
+    assert.ok(
+      !tags(html, "meta").some(
+        (item) => item["http-equiv"]?.toLowerCase() === "refresh",
+      ),
+      file + ": no meta refresh",
+    );
+    assert.doesNotMatch(
+      html,
+      /\b(?:(?:window|document|globalThis)\.)?location(?:\s*=|\.(?:href\s*=|(?:assign|replace)\s*\())/,
+      file + ": no JavaScript navigation",
+    );
+    assert.doesNotMatch(
+      html,
+      /(?:href|src|action)=["'](?:https:\/\/lumoraevents\.net)?\/es(?:\/|["'?#])/i,
+      file + ": no links to retired Spanish routes",
+    );
+    assert.doesNotMatch(html, /https:\/\/lumoraevents\.net\/es(?:\/|["?#])/);
+  }
+});
+
+test("llms.txt references the ten final pages and no retired Spanish prefix", async () => {
+  const llms = await readFile(distFile("/llms.txt"), "utf8");
+  const urls = [
+    ...llms.matchAll(/\]\((https:\/\/lumoraevents\.net\/[^)]*)\)/g),
+  ].map(([, url]) => url);
+  assert.deepEqual(
+    urls.sort(),
+    pages.flatMap(({ es, en }) => [absolute(es), absolute(en)]).sort(),
+  );
+  assert.doesNotMatch(llms, /\/es\//);
 });
 
 test("sitemap, robots, 404 and manifest agree with the final route set", async () => {

@@ -1,119 +1,102 @@
 # Migración del idioma principal a español
 
-Implementación local preparada para revisión. No se ha publicado el sitio ni se han modificado DNS, reglas, Workers o ajustes de producción.
+## Decisión definitiva e infraestructura
 
-## Auditoría previa
+La web corporativa se aloja en GitHub Pages. Cloudflare gestiona únicamente DNS, sin proxy. No se utilizan Cloudflare Pages ni Workers, ni se añade ningún mecanismo de redirección para las URLs retiradas.
 
-- Framework: Astro 5.18.1, Tailwind CSS 4 y salida estática. Las páginas completas se generan durante el build; no dependen de JavaScript para mostrar su contenido esencial.
-- Despliegue: el usuario confirmó que `lumoraevents.net` se publica en Cloudflare Pages mediante su integración con GitHub. Astro genera `dist/` desde la raíz del repositorio con `npm run build`. No se dispone de acceso al panel para contrastar sus ajustes guardados. El repositorio conserva `.github/workflows/deploy.yml` y `public/CNAME` para GitHub Pages; no configuran el proyecto de Cloudflare y no se modifican en esta adaptación.
-- Pages Functions: no hay directorio `functions/`, middleware de Astro, adaptador `@astrojs/cloudflare`, `_worker.js` ni `_routes.json` en el código o el build inspeccionados. Las rutas se sirven como archivos estáticos.
-- Rutas originales: inicio, nosotros/about, contacto/contact, privacidad/privacy y cookies, en inglés sin prefijo y español bajo `/es/`. También hay `404.astro` y `robots.txt.ts`; no se encontraron otras páginas públicas o legales.
-- Idiomas: diccionarios `src/i18n/es.json` y `en.json`, configuración en `src/utils/site.ts`, funciones en `src/utils/i18n.ts` y equivalencias de slugs en `src/utils/routes.ts`. Se conserva este sistema.
-- Enlaces: cabecera, footer, CTA, política de cookies y selector de idioma usan `getPagePath`. El selector recibe la página actual tanto en escritorio como en móvil.
-- SEO: `BaseLayout.astro` genera canonical absoluto, hreflang ES/EN y el `x-default` existente, `html lang`, Open Graph, Twitter y JSON-LD de Organization/WebSite. Los títulos y descripciones salen de cada diccionario. No había `og:locale`.
-- Sitemap: `@astrojs/sitemap` genera `sitemap-index.xml` y `sitemap-0.xml` desde las páginas construidas. No había hreflang en XML; continúa en HTML. No se introduce otro generador.
-- Robots: permite `/` y anuncia `sitemap-index.xml`. La página 404 tiene `noindex` y carece de canonical/hreflang; no aparece en el sitemap.
-- Redirecciones: se utiliza el mecanismo nativo `_redirects` de Cloudflare Pages. El archivo fuente `public/_redirects` llega sin cambios a `dist/_redirects` en el build. Se han eliminado el Worker independiente y su configuración de Wrangler.
-- Cookies y GA4: `CookieConsent.astro` guarda la preferencia en `lumoraevents_cookie_consent`, versión 1, y carga Analytics únicamente después del consentimiento. `Analytics.astro` usa `PUBLIC_GA_MEASUREMENT_ID`. Ambos componentes, la clave de almacenamiento y la variable se conservan.
-- El manifiesto abre `/` y mantiene su scope. Los datos estructurados apuntan al dominio corporativo; los enlaces al SaaS siguen apuntando a `https://app.lumoraevents.net`.
+El español es el idioma principal sin prefijo y el inglés se sirve bajo `/en/`. Se acepta que Google vuelva a rastrear e indexar las URLs definitivas. Esta revisión mantiene las páginas y el SEO ya implementados y elimina únicamente los restos de la propuesta anterior de redirecciones.
 
-## Resultado y rutas
+No se ha hecho commit, push ni despliegue de este ajuste, ni se ha cambiado la configuración de producción.
 
-Todas las rutas finales tienen barra final canónica. Se conserva `trailingSlash: "always"` y el tratamiento del hosting para las variantes finales sin barra. Las rutas antiguas, con o sin barra, redirigen directamente a la URL final con barra.
+## Configuración y artefacto de publicación
 
-| URL anterior      | URL de destino o reutilizada | Comportamiento previsto         |
-| ----------------- | ---------------------------- | ------------------------------- |
-| `/es/`            | `/`                          | 301 → 200, español              |
-| `/es/nosotros/`   | `/nosotros/`                 | 301 → 200, español              |
-| `/es/contacto/`   | `/contacto/`                 | 301 → 200, español              |
-| `/es/privacidad/` | `/privacidad/`               | 301 → 200, español              |
-| `/es/cookies/`    | `/cookies/`                  | 301 → 200, español              |
-| `/about/`         | `/en/about/`                 | 301 → 200, inglés               |
-| `/contact/`       | `/en/contact/`               | 301 → 200, inglés               |
-| `/privacy/`       | `/en/privacy/`               | 301 → 200, inglés               |
-| `/`               | `/`                          | 200, cambia de inglés a español |
-| `/cookies/`       | `/cookies/`                  | 200, cambia de inglés a español |
+- `astro.config.mjs` mantiene `output: "static"`, `trailingSlash: "always"` y `@astrojs/sitemap`.
+- El comando `npm run build` genera `dist/` desde la raíz del repositorio.
+- `.github/workflows/deploy.yml` usa `withastro/action` para construir y subir el artefacto, y `actions/deploy-pages` para publicarlo. No añade rewrites, redirecciones ni un fallback al inicio.
+- `public/CNAME` conserva `lumoraevents.net`. No se modifica la aplicación SaaS ni sus subdominios.
+- `src/pages/404.astro` genera `dist/404.html` con contenido español, `noindex` y enlace al inicio. Se muestra como página de error; no se copia `index.html` sobre ella ni se generan páginas antiguas que devuelvan 200.
+- No hay Pages Functions, middleware, Worker ni configuración de fallback de aplicación en el repositorio.
+- El artefacto contiene exactamente diez páginas finales y `404.html`, además de assets, robots, sitemap, manifiesto, CNAME y `llms.txt`. No contiene las páginas retiradas ni `_redirects`.
 
-El inicio inglés está en `/en/` y la política de cookies inglesa en `/en/cookies/`, ambos con HTTP 200.
+El panel privado de GitHub Pages no se ha podido consultar mediante la API sin autenticar. Se ha revisado el workflow del repositorio y comprobado el comportamiento HTTP público, incluida una ruta inexistente, para descartar respuestas de error con estado 200.
 
-Las URLs `/` y `/cookies/` se reutilizan. No pueden redirigir a inglés y servir simultáneamente las páginas españolas. Cambian su contenido y metadatos, y los buscadores deben volver a rastrearlas. Los enlaces externos antiguos a esas dos URLs mostrarán español; el selector permite acceder a su versión inglesa equivalente.
+## URLs finales
 
-El `x-default` existente apunta ahora a la página española equivalente. Cada canonical sigue siendo autorreferencial; los idiomas se relacionan exclusivamente mediante hreflang. Se añaden `og:locale` y `og:locale:alternate`. El manifiesto declara `lang: "es"` y el 404 general usa español, sin detección de idioma.
+Todas las URLs siguientes tienen HTTP 200 en la prueba local y en la comprobación pública realizada durante esta revisión.
 
-## Archivos de implementación
+| Página     | Español        | Inglés         |
+| ---------- | -------------- | -------------- |
+| Inicio     | `/`            | `/en/`         |
+| Nosotros   | `/nosotros/`   | `/en/about/`   |
+| Contacto   | `/contacto/`   | `/en/contact/` |
+| Privacidad | `/privacidad/` | `/en/privacy/` |
+| Cookies    | `/cookies/`    | `/en/cookies/` |
 
-| Archivo                                                                                      | Cambio                                                                                                 |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `src/utils/site.ts`                                                                          | Español por defecto, idiomas y locales Open Graph                                                      |
-| `src/layouts/BaseLayout.astro`                                                               | Open Graph por idioma; canonical, hreflang, x-default y JSON-LD usan la nueva configuración compartida |
-| `src/pages/index.astro`, `cookies.astro`                                                     | Español en las URLs reutilizadas                                                                       |
-| `src/pages/nosotros.astro`, `contacto.astro`, `privacidad.astro`                             | Páginas españolas trasladadas desde `src/pages/es/`                                                    |
-| `src/pages/en/index.astro`, `about.astro`, `contact.astro`, `privacy.astro`, `cookies.astro` | Páginas inglesas trasladadas desde la raíz                                                             |
-| `src/pages/404.astro`                                                                        | Idioma por defecto y enlace al nuevo inicio                                                            |
-| `src/pages/es/*.astro`, `src/pages/about.astro`, `contact.astro`, `privacy.astro`            | Eliminadas las páginas en URLs antiguas                                                                |
-| `public/site.webmanifest`                                                                    | Idioma español                                                                                         |
-| `public/_redirects`                                                                          | 16 reglas HTTP 301 nativas de Cloudflare Pages; ocho rutas antiguas con y sin barra final              |
-| `tests/language-migration.test.mjs`                                                          | Pruebas HTTP locales y SEO sobre el HTML construido                                                    |
-| `package.json`                                                                               | `npm test` construye y ejecuta las pruebas nativas de Node                                             |
-| `README.md`, `docs/language-migration.md`                                                    | Idiomas, auditoría, validación y activación manual                                                     |
+`/` y `/cookies/` conservan sus URLs y muestran español. Sus versiones inglesas están en `/en/` y `/en/cookies/`. No se redirigen las URLs reutilizadas.
 
-El sitemap y robots se siguen generando con su mecanismo existente y no se versionan en `dist/`. Los componentes visuales, CSS, imágenes y diccionarios conservan su contenido.
+## URLs retiradas
 
-## Publicación en Cloudflare Pages, después de revisar
+| URL retirada      | Comportamiento definitivo |
+| ----------------- | ------------------------- |
+| `/es/`            | HTTP 404                  |
+| `/es/nosotros/`   | HTTP 404                  |
+| `/es/contacto/`   | HTTP 404                  |
+| `/es/privacidad/` | HTTP 404                  |
+| `/es/cookies/`    | HTTP 404                  |
+| `/about/`         | HTTP 404                  |
+| `/contact/`       | HTTP 404                  |
+| `/privacy/`       | HTTP 404                  |
 
-Las páginas y las redirecciones forman parte del mismo build estático. No hay que crear ni activar un Worker, añadir reglas de redirección en el panel o cambiar DNS.
+También se comprueban las variantes sin barra final y las peticiones GET/HEAD. No se implementan 301, 302, redirecciones JavaScript ni meta refresh. `robots.txt` permite rastrear estas URLs para que los buscadores observen el estado 404.
 
-1. Comprobar en el proyecto existente de Cloudflare Pages que el directorio raíz es el del repositorio, el comando es `npm run build` y el directorio de publicación es `dist`. Estos son los valores comprobados localmente; no se han leído ni cambiado ajustes del panel.
-2. Revisar si existen reglas o Workers externos al repositorio que intercepten las rutas antiguas. Si llegó a activarse el Worker de la propuesta anterior, retirar únicamente ese Worker/ruta de la migración. No se activó durante esta tarea. No tocar reglas o registros de `app.lumoraevents.net`.
-3. Tras aprobar la revisión, publicar mediante la integración Git existente de Cloudflare Pages. `_redirects` se procesa automáticamente junto con el HTML. No se ha hecho push ni se ha desplegado durante esta adaptación.
-4. Repetir la matriz HTTP en una vista previa de Pages y después en el dominio público. Confirmar los parámetros de consulta, ausencia de cadenas, caché y las URLs reutilizadas. La configuración de la rama de producción y el disparo automático de builds siguen gestionados en el panel existente.
+## SEO y comportamiento conservados
 
-Las 16 reglas usan exclusivamente rutas relativas exactas, sin comodines. No incluyen `/`, `/cookies/` ni las rutas finales, por lo que no hay bucles ni redirecciones hacia inglés de las URLs españolas reutilizadas. No hay reglas para recursos, API o subdominios. Los destinos no fijan una query string; su conservación debe comprobarse en el runtime de Pages con la prueba HTTP disponible.
+- Canonical absoluto y autorreferencial en cada página final, sin canonical cruzado entre idiomas.
+- Hreflang `es` y `en` recíprocos y autorreferenciales para cada pareja. El `x-default` existente apunta a la versión española equivalente.
+- `html lang`, títulos y descripciones específicos de cada idioma; Open Graph con URL, título, descripción e idioma coherentes.
+- Sitemap generado con únicamente las diez URLs finales, sin páginas retiradas ni 404. `robots.txt` permite `/` y anuncia `sitemap-index.xml`.
+- Enlaces internos y selectores de escritorio y móvil conservan las equivalencias entre idiomas.
+- No hay referencias al prefijo español retirado como ruta vigente en el HTML, los enlaces, datos estructurados o `llms.txt`.
+- No se modifican diseño, traducciones, consentimiento de cookies, Analytics ni enlaces al SaaS. Las páginas esenciales se generan en HTML durante el build.
 
-Cloudflare Pages no aplica `_redirects` a solicitudes atendidas por Pages Functions. No se han encontrado Functions en este proyecto; si se añaden en el futuro, habrá que excluir estas rutas de su ámbito o implementar la redirección en la Function correspondiente.
+Las menciones a URLs retiradas en esta guía y en las pruebas documentan el comportamiento 404; no son enlaces de navegación ni URLs indexables.
 
-Referencias oficiales: [redirecciones nativas y limitación con Functions](https://developers.cloudflare.com/pages/configuration/redirects/), [Astro en Cloudflare Pages](https://developers.cloudflare.com/pages/framework-guides/deploy-an-astro-site/) y [runtime local de Pages](https://developers.cloudflare.com/pages/functions/local-development/).
+## Archivos de este ajuste
 
-## Validación local y comprobaciones pendientes
+| Archivo                             | Cambio                                                                                                                                                      |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `public/_redirects`                 | Eliminado                                                                                                                                                   |
+| `tests/language-migration.test.mjs` | Retirada la lógica de Cloudflare Pages; se comprueban 404 reales, ausencia de mecanismos de redirección, inventario de HTML y enlaces finales de `llms.txt` |
+| `README.md`                         | Infraestructura de GitHub Pages y decisión sin redirecciones                                                                                                |
+| `docs/language-migration.md`        | Guía actualizada con la decisión definitiva y las comprobaciones                                                                                            |
+
+`redirects-worker.mjs` y `hosting/wrangler.json` ya estaban eliminados. No se recrean ni se conservan instrucciones para activarlos.
+
+## Comprobaciones ejecutadas
 
 ```bash
 npm run check
 npm test
-npm run format:check
 ```
 
-`npm test` ejecuta `astro build` y 14 pruebas de Node. Levanta temporalmente Astro preview para comprobar el HTML y valida las reglas reales de `dist/_redirects`, su copia desde `public/` y sus destinos. Astro preview no interpreta `_redirects`; no se simulan sus respuestas HTTP con código propio. El servidor se cierra al terminar y no se accede a producción.
+`npm test` construye el sitio y ejecuta 14 pruebas con un servidor temporal de Astro preview, que se cierra al terminar. Verifica:
 
-Las 14 pruebas verifican:
+- HTTP 200, H1 y SEO de las diez páginas finales, incluidos inicio y cookies en español.
+- Canonical, hreflang, Open Graph, JSON-LD, enlaces y selectores de idioma en ambas direcciones.
+- HTTP 404 sin cabecera Location en las ocho rutas retiradas y rutas desconocidas, con/sin barra, con/sin query string y con GET/HEAD.
+- Inventario exacto de HTML y ausencia de reglas, Worker, meta refresh o navegación JavaScript que implemente redirecciones.
+- `llms.txt` con las diez páginas finales, sitemap, robots, manifiesto y 404 sin canonical/hreflang.
 
-- HTTP 200 e idioma correcto de las diez páginas finales, incluso enviando Accept-Language del idioma contrario.
-- H1, títulos y descripciones específicos de los diccionarios, presentes en HTML sin ejecutar JavaScript.
-- Canonical absoluto y autorreferencial, hreflang recíprocos ES/EN y x-default español en cada pareja.
-- Open Graph, JSON-LD, selector de idioma de escritorio/móvil en ambas direcciones, navegación, enlaces internos y archivos de imágenes/estilos/iconos.
-- Enlace de política de cookies del banner, acceso a ajustes del footer y continuidad de la clave de consentimiento.
-- 16 reglas 301 explícitas para las ocho rutas antiguas con/sin barra, sin duplicados, bucles ni destinos que vuelvan a redirigir.
-- Exclusión de URLs reutilizadas, páginas finales, rutas desconocidas, API y recursos; las reglas son relativas y no incluyen hosts externos.
-- Copia exacta `public/_redirects` → `dist/_redirects` y ausencia de Pages Functions y Worker en el build.
-- Sitemap con exactamente las diez URLs indexables, robots abierto, 404 con HTTP 404/noindex y manifiesto.
+El build y las 14 pruebas pasan. Astro check pasa sin errores ni advertencias. Se comprueba el formato de los archivos modificados, sin reformatear archivos ajenos al ajuste.
 
-La comprobación de Astro pasa sin errores. El build y las 14 pruebas pasan. No hay script de ESLint en el proyecto: `npm run check` es el análisis estático disponible.
+También se ha realizado una revisión de solo lectura del dominio público: diez páginas con 200 y SEO coherente; 32 peticiones GET/HEAD a las 16 variantes antiguas con 404 sin Location; dos URLs desconocidas con 404; sitemap y robots correctos. El servidor se identifica como GitHub.com. Estos resultados describen la publicación existente; no implican que se haya desplegado este ajuste local.
 
-`npm run format:check` detecta problemas de formato previos en archivos ajenos a esta migración. Se comprueba por separado el formato de los archivos modificados; no se aplica una reformateación global a componentes o traducciones.
+## Publicación y pendientes
 
-Se intentó ejecutar `npx wrangler@4 pages dev` sobre el directorio `dist`. Wrangler 4.163.0 confirmó `Parsed 16 valid redirect rules` y la ausencia de Functions. El runtime `workerd` no pudo arrancar en este Windows por una violación de acceso (`0xc0000005`) y desbordamiento de pila. No se modificó el sistema para repararlo.
+No se necesita activar el proxy, crear Workers ni añadir reglas manuales en Cloudflare. No se ha ejecutado ningún despliegue.
 
-Queda pendiente la prueba HTTP de redirecciones en un runtime compatible o una vista previa real de Pages: códigos 301, un único salto a 200, GET/HEAD, parámetros repetidos/codificados y normalización de barra de Pages. Las validaciones de archivo no sustituyen esa prueba.
+Cuando se apruebe la publicación, el workflow de GitHub Pages debe publicar el nuevo artefacto completo para retirar también `_redirects` del resultado servido. El push a `main` ya dispara ese workflow, por lo que no se ha realizado en esta revisión.
 
-Para repetirla en un entorno compatible, arrancar `npx wrangler@4 pages dev dist` y, en otra terminal PowerShell, ejecutar:
+Después de publicar, volver a comprobar los estados HTTP y el SEO del dominio público y revisar el sitemap en Search Console. La nueva indexación y los efectos de retirar las URLs antiguas solo podrán observarse progresivamente. La comprobación visual y funcional de cookies/GA4 en navegador sigue siendo independiente; sus componentes no se modifican en este ajuste.
 
-```powershell
-$env:PAGES_TEST_ORIGIN = "http://127.0.0.1:8788"
-node --test
-Remove-Item Env:PAGES_TEST_ORIGIN
-```
-
-Ese modo ejecuta las 14 comprobaciones contra Pages y añade la prueba HTTP de las 16 variantes con GET/HEAD y queries codificadas/repetidas (15 pruebas en total). Solo admite un origen local.
-
-También quedan pendientes de verificar en el panel o tras publicar: ajustes de build reales, reglas externas, DNS/TLS, caché y posibles cabeceras robots. No se ha desplegado ni se han cambiado configuraciones de Cloudflare.
-
-También queda pendiente la comprobación visual en navegador, interacción del menú y del consentimiento (aceptar/rechazar/revocar y persistencia entre idiomas), y las solicitudes reales de GA4 con el ID de producción. Sus componentes y lógica no se han modificado; las pruebas locales de enlaces/HTML no sustituyen esa comprobación funcional. El recrawl y los cambios de indexación de Google solo podrán observarse después de publicar.
+Referencia oficial: [página 404 personalizada de GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site).
