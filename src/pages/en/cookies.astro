@@ -3,15 +3,19 @@ import LegalPage from "../../components/LegalPage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getMessages } from "../../utils/i18n";
 
-const locale = "es";
+const locale = "en";
 const messages = getMessages(locale);
 ---
 
 <BaseLayout
   locale={locale}
-  title={messages.privacyPage.meta.title}
-  description={messages.privacyPage.meta.description}
-  page="privacy"
+  title={messages.cookiesPage.meta.title}
+  description={messages.cookiesPage.meta.description}
+  page="cookies"
 >
-  <LegalPage locale={locale} currentPage="privacy" content={messages.privacyPage} />
+  <LegalPage
+    locale={locale}
+    currentPage="cookies"
+    content={messages.cookiesPage}
+  />
 </BaseLayout>

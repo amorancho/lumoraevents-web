@@ -3,7 +3,7 @@ import LegalPage from "../components/LegalPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getMessages } from "../utils/i18n";
 
-const locale = "en";
+const locale = "es";
 const messages = getMessages(locale);
 ---
 
@@ -13,5 +13,9 @@ const messages = getMessages(locale);
   description={messages.cookiesPage.meta.description}
   page="cookies"
 >
-  <LegalPage locale={locale} currentPage="cookies" content={messages.cookiesPage} />
+  <LegalPage
+    locale={locale}
+    currentPage="cookies"
+    content={messages.cookiesPage}
+  />
 </BaseLayout>

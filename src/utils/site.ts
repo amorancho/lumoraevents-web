@@ -2,15 +2,17 @@ import sharedSiteConfig from "../../site.config.mjs";
 
 export const siteConfig = {
   ...sharedSiteConfig,
-  defaultLocale: "en",
+  defaultLocale: "es",
   locales: {
-    en: {
-      label: "English",
-      lang: "en",
-    },
     es: {
       label: "Espa\u00f1ol",
       lang: "es",
+      ogLocale: "es_ES",
+    },
+    en: {
+      label: "English",
+      lang: "en",
+      ogLocale: "en_US",
     },
   },
 } as const;

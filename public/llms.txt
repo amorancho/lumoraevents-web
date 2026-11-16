@@ -2,21 +2,21 @@
 
 > LumoraEvents is a web platform for managing dance competitions and other judged events. It connects registrations, event setup, judges and scoring, live operational tracking, rankings and results, and the public event experience in one system. LumoraEvents also designs and maintains websites for events and provides close support before, during and after each competition.
 
-The primary language of the website is English and is served from the root path. The Spanish version is served under `/es/`.
+The primary language of the website is Spanish and is served from the root path. The English version is served under `/en/`.
 
-Use the root URLs for English-language information and the corresponding `/es/` URLs for Spanish-language information.
+Use the root URLs for Spanish-language information and the corresponding `/en/` URLs for English-language information.
 
 ## English
 
-- [Home](https://lumoraevents.net/): Main overview of the LumoraEvents platform, including registrations, event configuration, judges and scoring, live tracking, public schedules and results, audience voting, supported event types, support model, event websites, featured events and FAQ.
-- [About](https://lumoraevents.net/about/): Background of LumoraEvents, its origins in real event organization, working philosophy and principles.
-- [Contact](https://lumoraevents.net/contact/): Official contact information for organizers interested in LumoraEvents, including email, Instagram and platform access.
+- [Home](https://lumoraevents.net/en/): Main overview of the LumoraEvents platform, including registrations, event configuration, judges and scoring, live tracking, public schedules and results, audience voting, supported event types, support model, event websites, featured events and FAQ.
+- [About](https://lumoraevents.net/en/about/): Background of LumoraEvents, its origins in real event organization, working philosophy and principles.
+- [Contact](https://lumoraevents.net/en/contact/): Official contact information for organizers interested in LumoraEvents, including email, Instagram and platform access.
 
 ## Español
 
-- [Inicio](https://lumoraevents.net/es/): Resumen principal de la plataforma LumoraEvents: inscripciones, configuración del evento, jueces y puntuación, seguimiento en directo, programación y resultados públicos, votación del público, tipos de eventos, acompañamiento, webs para eventos y preguntas frecuentes.
-- [Nosotros](https://lumoraevents.net/es/nosotros/): Origen de LumoraEvents, experiencia en organización de eventos, forma de trabajo, filosofía y principios.
-- [Contacto](https://lumoraevents.net/es/contacto/): Información oficial de contacto para organizadores interesados en LumoraEvents, incluyendo email, Instagram y acceso a la plataforma.
+- [Inicio](https://lumoraevents.net/): Resumen principal de la plataforma LumoraEvents: inscripciones, configuración del evento, jueces y puntuación, seguimiento en directo, programación y resultados públicos, votación del público, tipos de eventos, acompañamiento, webs para eventos y preguntas frecuentes.
+- [Nosotros](https://lumoraevents.net/nosotros/): Origen de LumoraEvents, experiencia en organización de eventos, forma de trabajo, filosofía y principios.
+- [Contacto](https://lumoraevents.net/contacto/): Información oficial de contacto para organizadores interesados en LumoraEvents, incluyendo email, Instagram y acceso a la plataforma.
 
 ## Platform capabilities
 
@@ -51,12 +51,12 @@ Core capabilities described on the official website include:
 
 ## Legal and privacy
 
-- [Privacy Policy](https://lumoraevents.net/privacy/): English privacy policy for the public website.
-- [Cookie Policy](https://lumoraevents.net/cookies/): English cookie policy and information about optional analytics cookies.
-- [Política de privacidad](https://lumoraevents.net/es/privacidad/): Política de privacidad en español.
-- [Política de cookies](https://lumoraevents.net/es/cookies/): Política de cookies en español.
+- [Privacy Policy](https://lumoraevents.net/en/privacy/): English privacy policy for the public website.
+- [Cookie Policy](https://lumoraevents.net/en/cookies/): English cookie policy and information about optional analytics cookies.
+- [Política de privacidad](https://lumoraevents.net/privacidad/): Política de privacidad en español.
+- [Política de cookies](https://lumoraevents.net/cookies/): Política de cookies en español.
 
 ## Notes for language selection
 
-- English is the default language: `https://lumoraevents.net/`
-- Spanish is available under: `https://lumoraevents.net/es/`
+- Spanish is the default language: `https://lumoraevents.net/`
+- English is available under: `https://lumoraevents.net/en/`

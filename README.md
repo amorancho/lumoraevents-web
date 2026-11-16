@@ -1,11 +1,11 @@
 # LumoraEvents Web
 
-Base pública de LumoraEvents construida con Astro, Tailwind CSS y despliegue estático en GitHub Pages.
+Base pública de LumoraEvents construida con Astro, Tailwind CSS y despliegue estático en Cloudflare Pages conectado a GitHub.
 
 ## Requisitos
 
 - Node.js 20.3+ para desarrollo local
-- Node.js 22+ en CI para el workflow de GitHub Pages
+- Usar una versión de Node compatible con el proyecto en Cloudflare Pages
 
 ## Scripts
 
@@ -19,6 +19,7 @@ Scripts adicionales:
 
 ```bash
 npm run check
+npm test
 npm run format
 npm run preview
 ```
@@ -40,10 +41,12 @@ public/
 
 ## Idiomas
 
-- Inglés en `/`
-- Español en `/es/`
+- Español en `/`
+- Inglés en `/en/`
 
-El archivo `src/i18n/it.json` queda incluido como plantilla para un futuro tercer idioma. Para publicarlo, añade `it` en `src/utils/site.ts` y crea su ruta en `src/pages/it/index.astro`.
+Las traducciones se conservan en `src/i18n/es.json` y `src/i18n/en.json`. Las equivalencias de páginas están en `src/utils/routes.ts`; el idioma por defecto se define en `src/utils/site.ts`.
+
+La [guía de migración de idioma](docs/language-migration.md) incluye la auditoría, el mapeo completo, las comprobaciones locales y los ajustes de Cloudflare Pages. `npm test` genera el sitio y ejecuta las pruebas de la migración sin dependencias de pruebas adicionales.
 
 ## Analytics
 
@@ -53,13 +56,17 @@ Configura GA4 con la variable pública:
 PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-## GitHub Pages
+## Cloudflare Pages
 
-El workflow usa la acción oficial `withastro/action`.
+El proyecto se publica desde la integración de Cloudflare Pages con el repositorio de GitHub.
 
-Después del primer push:
+- Directorio raíz: raíz de este repositorio.
+- Comando de build: `npm run build`.
+- Directorio de publicación: `dist`.
+- Salida de Astro: estática, sin Pages Functions.
 
-1. En GitHub, configura Pages para publicar con `GitHub Actions`.
-2. En la configuración de Pages, asigna el dominio personalizado `lumoraevents.net`.
+Las redirecciones HTTP 301 están en `public/_redirects`. Astro copia este archivo a `dist/_redirects`, donde Cloudflare Pages lo interpreta de forma nativa. No requieren un Worker ni reglas manuales adicionales.
 
 La URL `site` de Astro ya está fijada a `https://lumoraevents.net` para generar canonicals, hreflang y sitemap correctos.
+
+El repositorio conserva `.github/workflows/deploy.yml` para GitHub Pages; ese workflow no configura Cloudflare Pages y no se ha modificado como parte de esta adaptación. Los ajustes reales del proyecto de Cloudflare se gestionan en su panel.

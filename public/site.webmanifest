@@ -1,6 +1,7 @@
 {
   "name": "LumoraEvents",
   "short_name": "LumoraEvents",
+  "lang": "es",
   "start_url": "/",
   "scope": "/",
   "icons": [

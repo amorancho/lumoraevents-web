@@ -1,0 +1,19 @@
+# ES migration: Spanish is now served without a language prefix.
+/es / 301
+/es/ / 301
+/es/nosotros /nosotros/ 301
+/es/nosotros/ /nosotros/ 301
+/es/contacto /contacto/ 301
+/es/contacto/ /contacto/ 301
+/es/privacidad /privacidad/ 301
+/es/privacidad/ /privacidad/ 301
+/es/cookies /cookies/ 301
+/es/cookies/ /cookies/ 301
+
+# English pages now live under /en/. Do not redirect / or /cookies/.
+/about /en/about/ 301
+/about/ /en/about/ 301
+/contact /en/contact/ 301
+/contact/ /en/contact/ 301
+/privacy /en/privacy/ 301
+/privacy/ /en/privacy/ 301
