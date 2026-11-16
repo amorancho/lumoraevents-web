@@ -1,28 +1,23 @@
 # Migración del idioma principal a español
 
-## Decisión definitiva e infraestructura
+## Infraestructura y generación estática
 
-La web corporativa se aloja en GitHub Pages. Cloudflare gestiona únicamente DNS, sin proxy. No se utilizan Cloudflare Pages ni Workers, ni se añade ningún mecanismo de redirección para las URLs retiradas.
+La web corporativa se aloja en GitHub Pages. Cloudflare gestiona únicamente DNS, sin proxy. El español es el idioma principal sin prefijo y el inglés se sirve bajo `/en/`.
 
-El español es el idioma principal sin prefijo y el inglés se sirve bajo `/en/`. Se acepta que Google vuelva a rastrear e indexar las URLs definitivas. Esta revisión mantiene las páginas y el SEO ya implementados y elimina únicamente los restos de la propuesta anterior de redirecciones.
+Las ocho rutas antiguas se conservan como páginas HTML de redirección con `meta refresh` de 0 segundos, canonical absoluto al destino definitivo y un enlace HTML visible. GitHub Pages sirve estos archivos estáticos con HTTP 200 y el navegador sigue el `meta refresh`.
 
-No se ha hecho commit, push ni despliegue de este ajuste, ni se ha cambiado la configuración de producción.
-
-## Configuración y artefacto de publicación
-
-- `astro.config.mjs` mantiene `output: "static"`, `trailingSlash: "always"` y `@astrojs/sitemap`.
+- `astro.config.mjs` mantiene `output: "static"`, `trailingSlash: "always"` y `@astrojs/sitemap`. El filtro del sitemap excluye únicamente las ocho rutas de redirección.
+- `src/utils/legacy-redirects.mjs` contiene el mapa explícito de rutas antiguas y destinos definitivos.
+- `src/pages/[...legacy].astro` utiliza `getStaticPaths()` para generar exclusivamente esas ocho páginas como `<ruta>/index.html`. Las rutas desconocidas siguen devolviendo 404.
 - El comando `npm run build` genera `dist/` desde la raíz del repositorio.
-- `.github/workflows/deploy.yml` usa `withastro/action` para construir y subir el artefacto, y `actions/deploy-pages` para publicarlo. No añade rewrites, redirecciones ni un fallback al inicio.
+- El artefacto contiene diez páginas de contenido, ocho páginas de redirección y `404.html`, además de assets, robots, sitemap, manifiesto, CNAME y `llms.txt`.
+- `.github/workflows/deploy.yml` usa `withastro/action` para construir y subir el artefacto, y `actions/deploy-pages` para publicarlo.
 - `public/CNAME` conserva `lumoraevents.net`. No se modifica la aplicación SaaS ni sus subdominios.
-- `src/pages/404.astro` genera `dist/404.html` con contenido español, `noindex` y enlace al inicio. Se muestra como página de error; no se copia `index.html` sobre ella ni se generan páginas antiguas que devuelvan 200.
-- No hay Pages Functions, middleware, Worker ni configuración de fallback de aplicación en el repositorio.
-- El artefacto contiene exactamente diez páginas finales y `404.html`, además de assets, robots, sitemap, manifiesto, CNAME y `llms.txt`. No contiene las páginas retiradas ni `_redirects`.
+- `src/pages/404.astro` genera `dist/404.html` con contenido español, `noindex` y enlace al inicio. No se copia el inicio como fallback.
 
-El panel privado de GitHub Pages no se ha podido consultar mediante la API sin autenticar. Se ha revisado el workflow del repositorio y comprobado el comportamiento HTTP público, incluida una ruta inexistente, para descartar respuestas de error con estado 200.
+No se añaden redirecciones JavaScript, Workers, reglas de Cloudflare ni archivos `_redirects`. Las páginas de redirección no utilizan el layout de contenido ni cargan scripts, Analytics o consentimiento de cookies.
 
 ## URLs finales
-
-Todas las URLs siguientes tienen HTTP 200 en la prueba local y en la comprobación pública realizada durante esta revisión.
 
 | Página     | Español        | Inglés         |
 | ---------- | -------------- | -------------- |
@@ -32,71 +27,70 @@ Todas las URLs siguientes tienen HTTP 200 en la prueba local y en la comprobaci�
 | Privacidad | `/privacidad/` | `/en/privacy/` |
 | Cookies    | `/cookies/`    | `/en/cookies/` |
 
-`/` y `/cookies/` conservan sus URLs y muestran español. Sus versiones inglesas están en `/en/` y `/en/cookies/`. No se redirigen las URLs reutilizadas.
+`/` y `/cookies/` conservan sus URLs y muestran español. Sus versiones inglesas están en `/en/` y `/en/cookies/`. Estas rutas reutilizadas sirven contenido directamente.
 
-## URLs retiradas
+## Redirecciones de las URLs antiguas
 
-| URL retirada      | Comportamiento definitivo |
-| ----------------- | ------------------------- |
-| `/es/`            | HTTP 404                  |
-| `/es/nosotros/`   | HTTP 404                  |
-| `/es/contacto/`   | HTTP 404                  |
-| `/es/privacidad/` | HTTP 404                  |
-| `/es/cookies/`    | HTTP 404                  |
-| `/about/`         | HTTP 404                  |
-| `/contact/`       | HTTP 404                  |
-| `/privacy/`       | HTTP 404                  |
+| URL antigua       | Destino definitivo |
+| ----------------- | ------------------ |
+| `/es/`            | `/`                |
+| `/es/nosotros/`   | `/nosotros/`       |
+| `/es/contacto/`   | `/contacto/`       |
+| `/es/privacidad/` | `/privacidad/`     |
+| `/es/cookies/`    | `/cookies/`        |
+| `/about/`         | `/en/about/`       |
+| `/contact/`       | `/en/contact/`     |
+| `/privacy/`       | `/en/privacy/`     |
 
-También se comprueban las variantes sin barra final y las peticiones GET/HEAD. No se implementan 301, 302, redirecciones JavaScript ni meta refresh. `robots.txt` permite rastrear estas URLs para que los buscadores observen el estado 404.
+El `meta refresh`, el canonical y el enlace visible apuntan a la misma URL absoluta bajo `https://lumoraevents.net`. Los destinos sirven contenido directamente, sin cadenas ni bucles de redirección. `robots.txt` permite rastrear las rutas antiguas para que los buscadores puedan leer las redirecciones.
 
 ## SEO y comportamiento conservados
 
-- Canonical absoluto y autorreferencial en cada página final, sin canonical cruzado entre idiomas.
+- Canonical absoluto y autorreferencial en cada página de contenido, sin canonical cruzado entre idiomas.
 - Hreflang `es` y `en` recíprocos y autorreferenciales para cada pareja. El `x-default` existente apunta a la versión española equivalente.
 - `html lang`, títulos y descripciones específicos de cada idioma; Open Graph con URL, título, descripción e idioma coherentes.
-- Sitemap generado con únicamente las diez URLs finales, sin páginas retiradas ni 404. `robots.txt` permite `/` y anuncia `sitemap-index.xml`.
+- Sitemap generado con únicamente las diez URLs finales, sin páginas de redirección ni 404. `robots.txt` permite `/` y anuncia `sitemap-index.xml`.
 - Enlaces internos y selectores de escritorio y móvil conservan las equivalencias entre idiomas.
-- No hay referencias al prefijo español retirado como ruta vigente en el HTML, los enlaces, datos estructurados o `llms.txt`.
+- `llms.txt` mantiene únicamente las diez páginas finales. No hay enlaces internos a las rutas antiguas.
 - No se modifican diseño, traducciones, consentimiento de cookies, Analytics ni enlaces al SaaS. Las páginas esenciales se generan en HTML durante el build.
 
-Las menciones a URLs retiradas en esta guía y en las pruebas documentan el comportamiento 404; no son enlaces de navegación ni URLs indexables.
+## Archivos del ajuste
 
-## Archivos de este ajuste
+| Archivo                             | Cambio                                                        |
+| ----------------------------------- | ------------------------------------------------------------- |
+| `src/utils/legacy-redirects.mjs`    | Mapa explícito de las ocho redirecciones                      |
+| `src/pages/[...legacy].astro`       | Plantilla que genera los ocho HTML de redirección             |
+| `astro.config.mjs`                  | Exclusión de las rutas antiguas del sitemap                   |
+| `tests/language-migration.test.mjs` | Comprobaciones de redirecciones, destinos, SEO y artefacto    |
+| `README.md`                         | Descripción actualizada de las redirecciones en GitHub Pages  |
+| `docs/language-migration.md`        | Guía de las rutas definitivas, redirecciones y comprobaciones |
 
-| Archivo                             | Cambio                                                                                                                                                      |
-| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `public/_redirects`                 | Eliminado                                                                                                                                                   |
-| `tests/language-migration.test.mjs` | Retirada la lógica de Cloudflare Pages; se comprueban 404 reales, ausencia de mecanismos de redirección, inventario de HTML y enlaces finales de `llms.txt` |
-| `README.md`                         | Infraestructura de GitHub Pages y decisión sin redirecciones                                                                                                |
-| `docs/language-migration.md`        | Guía actualizada con la decisión definitiva y las comprobaciones                                                                                            |
-
-`redirects-worker.mjs` y `hosting/wrangler.json` ya estaban eliminados. No se recrean ni se conservan instrucciones para activarlos.
-
-## Comprobaciones ejecutadas
+## Comprobaciones locales
 
 ```bash
 npm run check
 npm test
 ```
 
-`npm test` construye el sitio y ejecuta 14 pruebas con un servidor temporal de Astro preview, que se cierra al terminar. Verifica:
+`npm test` construye el sitio y ejecuta las pruebas con un servidor temporal de Astro preview, que se cierra al terminar. La suite comprueba:
 
-- HTTP 200, H1 y SEO de las diez páginas finales, incluidos inicio y cookies en español.
+- HTTP 200, idioma, H1 y SEO de las diez páginas finales, incluidos inicio y cookies en español.
 - Canonical, hreflang, Open Graph, JSON-LD, enlaces y selectores de idioma en ambas direcciones.
-- HTTP 404 sin cabecera Location en las ocho rutas retiradas y rutas desconocidas, con/sin barra, con/sin query string y con GET/HEAD.
-- Inventario exacto de HTML y ausencia de reglas, Worker, meta refresh o navegación JavaScript que implemente redirecciones.
-- `llms.txt` con las diez páginas finales, sitemap, robots, manifiesto y 404 sin canonical/hreflang.
+- Presencia de los ocho archivos HTML de redirección en `dist/` y respuesta GET/HEAD con y sin query string.
+- Un único `meta refresh` de 0 segundos por ruta antigua, canonical y enlace visible al destino esperado.
+- Destinos con HTTP 200 y sin nuevas redirecciones, cadenas o bucles.
+- HTTP 404 para rutas desconocidas, con y sin barra final, con y sin query string y con GET/HEAD.
+- Inventario exacto de los 19 HTML, ausencia de redirecciones JavaScript y de reglas de hosting.
+- `llms.txt` y sitemap con las diez páginas finales; robots, manifiesto y 404 sin cambios.
 
-El build y las 14 pruebas pasan. Astro check pasa sin errores ni advertencias. Se comprueba el formato de los archivos modificados, sin reformatear archivos ajenos al ajuste.
+En esta revisión, `npm run check` termina sin errores, advertencias ni sugerencias; las 22 pruebas de `npm test` pasan. Prettier valida el formato de los seis archivos creados o modificados.
 
-También se ha realizado una revisión de solo lectura del dominio público: diez páginas con 200 y SEO coherente; 32 peticiones GET/HEAD a las 16 variantes antiguas con 404 sin Location; dos URLs desconocidas con 404; sitemap y robots correctos. El servidor se identifica como GitHub.com. Estos resultados describen la publicación existente; no implican que se haya desplegado este ajuste local.
+La comparación con un build anterior al ajuste confirma que el HTML de las diez páginas finales y de `404.html` es idéntico salvo el nombre del archivo CSS. Tailwind añade únicamente las utilidades `.visible` y `.filter`, que no se utilizan en esas páginas; el resto del CSS es idéntico. El sitemap y los demás archivos existentes mantienen su contenido.
 
-## Publicación y pendientes
+## Publicación
 
-No se necesita activar el proxy, crear Workers ni añadir reglas manuales en Cloudflare. No se ha ejecutado ningún despliegue.
+Los cambios se preparan y verifican localmente antes de publicar. El push a `main` publica el ajuste mediante el workflow de GitHub Pages.
 
-Cuando se apruebe la publicación, el workflow de GitHub Pages debe publicar el nuevo artefacto completo para retirar también `_redirects` del resultado servido. El push a `main` ya dispara ese workflow, por lo que no se ha realizado en esta revisión.
+El workflow se ejecuta al hacer push a `main` o al iniciarlo manualmente. Cuando se decida publicar, GitHub Pages deberá recibir el nuevo artefacto completo, incluidos los ocho HTML de redirección. No se necesita activar el proxy de Cloudflare ni modificar su configuración.
 
-Después de publicar, volver a comprobar los estados HTTP y el SEO del dominio público y revisar el sitemap en Search Console. La nueva indexación y los efectos de retirar las URLs antiguas solo podrán observarse progresivamente. La comprobación visual y funcional de cookies/GA4 en navegador sigue siendo independiente; sus componentes no se modifican en este ajuste.
-
-Referencia oficial: [página 404 personalizada de GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-custom-404-page-for-your-github-pages-site).
+Después de publicar, se podrán volver a comprobar las rutas antiguas en el dominio público y revisar el sitemap en Search Console. Las comprobaciones locales no implican que estas redirecciones estén desplegadas.

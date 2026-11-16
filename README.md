@@ -46,7 +46,7 @@ public/
 
 Las traducciones se conservan en `src/i18n/es.json` y `src/i18n/en.json`. Las equivalencias de páginas están en `src/utils/routes.ts`; el idioma por defecto se define en `src/utils/site.ts`.
 
-La [guía de migración de idioma](docs/language-migration.md) incluye las URLs definitivas, las URLs retiradas con HTTP 404 y las comprobaciones SEO. `npm test` genera el sitio y ejecuta las pruebas de la migración sin dependencias de pruebas adicionales.
+La [guía de migración de idioma](docs/language-migration.md) incluye las URLs definitivas, las ocho redirecciones estáticas desde las rutas antiguas y las comprobaciones SEO. `npm test` genera el sitio y ejecuta las pruebas de la migración sin dependencias de pruebas adicionales.
 
 ## Analytics
 
@@ -66,7 +66,7 @@ El workflow `.github/workflows/deploy.yml` construye con `withastro/action` y pu
 - Salida de Astro: estática.
 - Dominio personalizado: `lumoraevents.net`, conservado en `public/CNAME`.
 
-No se implementan redirecciones de la migración. Las URLs retiradas, incluidas las antiguas rutas españolas con prefijo, quedan fuera del artefacto y devuelven HTTP 404. `src/pages/404.astro` genera `dist/404.html` para mostrar el error; no se copia el inicio como fallback ni se bloquean esas rutas en `robots.txt`.
+Las ocho rutas antiguas definidas en `src/utils/legacy-redirects.mjs` se generan como páginas HTML mediante `src/pages/[...legacy].astro`. Cada una contiene un `meta refresh` de 0 segundos, un canonical absoluto al destino definitivo y un enlace visible. Se excluyen del sitemap y no utilizan JavaScript ni configuración de Cloudflare. Las rutas desconocidas siguen devolviendo HTTP 404 con `dist/404.html`; no se copia el inicio como fallback ni se bloquean las rutas antiguas en `robots.txt`.
 
 La URL `site` de Astro ya está fijada a `https://lumoraevents.net` para generar canonicals, hreflang y sitemap correctos.
 

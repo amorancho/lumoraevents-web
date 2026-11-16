@@ -1,0 +1,48 @@
+---
+import { legacyRedirects } from "../utils/legacy-redirects.mjs";
+import { siteConfig } from "../utils/site";
+
+export function getStaticPaths() {
+  return Object.entries(legacyRedirects).map(([from, destination]) => ({
+    params: { legacy: from.slice(1, -1) },
+    props: { destination },
+  }));
+}
+
+interface Props {
+  destination: string;
+}
+
+const { destination } = Astro.props;
+const canonicalUrl = new URL(destination, siteConfig.siteUrl).href;
+const locale = destination.startsWith("/en/") ? "en" : "es";
+const content =
+  locale === "es"
+    ? {
+        title: "Página trasladada",
+        message: "Esta página se ha trasladado a una nueva dirección.",
+        link: "Ir a la página actual",
+      }
+    : {
+        title: "Page moved",
+        message: "This page has moved to a new address.",
+        link: "Go to the current page",
+      };
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={`0; url=${canonicalUrl}`} />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{content.title} | {siteConfig.name}</title>
+  </head>
+  <body>
+    <main>
+      <h1>{content.title}</h1>
+      <p>{content.message} <a href={canonicalUrl}>{content.link}</a></p>
+    </main>
+  </body>
+</html>

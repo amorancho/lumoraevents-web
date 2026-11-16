@@ -13,15 +13,15 @@ const pages = [
   { page: "privacy", es: "/privacidad/", en: "/en/privacy/" },
   { page: "cookies", es: "/cookies/", en: "/en/cookies/" },
 ];
-const retiredPaths = [
-  "/es/",
-  "/es/nosotros/",
-  "/es/contacto/",
-  "/es/privacidad/",
-  "/es/cookies/",
-  "/about/",
-  "/contact/",
-  "/privacy/",
+const redirects = [
+  { from: "/es/", to: "/" },
+  { from: "/es/nosotros/", to: "/nosotros/" },
+  { from: "/es/contacto/", to: "/contacto/" },
+  { from: "/es/privacidad/", to: "/privacidad/" },
+  { from: "/es/cookies/", to: "/cookies/" },
+  { from: "/about/", to: "/en/about/" },
+  { from: "/contact/", to: "/en/contact/" },
+  { from: "/privacy/", to: "/en/privacy/" },
 ];
 const dictionaries = Object.fromEntries(
   await Promise.all(
@@ -124,6 +124,12 @@ for (const pair of pages) {
           locale === "es" ? "en_US" : "es_ES",
         );
         const links = tags(html, "link");
+        assert.ok(
+          !tags(html, "meta").some(
+            (item) => item["http-equiv"]?.toLowerCase() === "refresh",
+          ),
+          path + ": final pages must not redirect",
+        );
         assert.deepEqual(
           links
             .filter((item) => item.rel === "canonical")
@@ -223,13 +229,70 @@ for (const pair of pages) {
   }
 }
 
-test("retired and unknown URLs return real HTTP 404, with and without a slash", async () => {
-  for (const path of [
-    ...retiredPaths,
-    "/es/unknown/",
-    "/about/team/",
-    "/not-a-page/",
-  ]) {
+for (const { from, to } of redirects) {
+  test(
+    from + ": instant static redirect to " + to + " without loops",
+    async () => {
+      const html = await readFile(distFile(from), "utf8");
+      for (const query of ["", "?utm_source=migration&ref=a%2Fb"]) {
+        for (const method of ["GET", "HEAD"]) {
+          const response = await fetch(localOrigin + from + query, {
+            method,
+            redirect: "manual",
+          });
+          assert.equal(response.status, 200, method + " " + from + query);
+          assert.equal(response.headers.has("location"), false);
+          assert.match(response.headers.get("content-type"), /text\/html/);
+          if (method === "GET") {
+            assert.equal(await response.text(), html);
+          } else {
+            await response.arrayBuffer();
+          }
+        }
+      }
+      assert.equal(
+        tags(html, "html")[0].lang,
+        to.startsWith("/en/") ? "en" : "es",
+      );
+      assert.deepEqual(
+        tags(html, "meta")
+          .filter((item) => item["http-equiv"]?.toLowerCase() === "refresh")
+          .map((item) => item.content),
+        ["0; url=" + absolute(to)],
+      );
+      assert.deepEqual(
+        tags(html, "link")
+          .filter((item) => item.rel === "canonical")
+          .map((item) => item.href),
+        [absolute(to)],
+      );
+      assert.ok(!tags(html, "link").some((item) => item.rel === "alternate"));
+      const anchors = tags(html, "a");
+      assert.equal(anchors.length, 1);
+      assert.equal(anchors[0].href, absolute(to));
+      assert.ok(
+        textContent(html.match(/<a\b[^>]*>([\s\S]*?)<\/a>/)[1]).length > 0,
+        "visible fallback link has text",
+      );
+      assert.doesNotMatch(html, /<script\b|<style\b|\bhidden(?:=|\s|>)/i);
+      assert.notEqual(from, to);
+      assert.ok(pages.some(({ es, en }) => es === to || en === to));
+      assert.ok(!redirects.some((item) => item.from === to));
+      const destination = await fetch(localOrigin + to, { redirect: "manual" });
+      assert.equal(destination.status, 200);
+      assert.equal(destination.headers.has("location"), false);
+      assert.ok(
+        !tags(await destination.text(), "meta").some(
+          (item) => item["http-equiv"]?.toLowerCase() === "refresh",
+        ),
+        "destination serves content directly, with no redirect chain or loop",
+      );
+    },
+  );
+}
+
+test("unknown URLs return real HTTP 404, with and without a slash", async () => {
+  for (const path of ["/es/unknown/", "/about/team/", "/not-a-page/"]) {
     for (const variant of [path, path.slice(0, -1)]) {
       for (const query of ["", "?utm_source=migration&ref=a%2Fb"]) {
         for (const method of ["GET", "HEAD"]) {
@@ -246,7 +309,7 @@ test("retired and unknown URLs return real HTTP 404, with and without a slash", 
   }
 });
 
-test("publication contains only the final HTML pages and no redirect mechanism", async () => {
+test("publication contains final pages and eight static redirects without runtime or hosting redirects", async () => {
   const files = (
     await readdir(new URL("../dist/", import.meta.url), { recursive: true })
   ).map((file) => file.replaceAll("\\", "/"));
@@ -258,6 +321,7 @@ test("publication contains only the final HTML pages and no redirect mechanism",
       ...pages
         .flatMap(({ es, en }) => [es, en])
         .map((path) => path.slice(1) + "index.html"),
+      ...redirects.map(({ from }) => from.slice(1) + "index.html"),
     ].sort(),
   );
   for (const path of [
@@ -271,13 +335,17 @@ test("publication contains only the final HTML pages and no redirect mechanism",
   ]) {
     await assert.rejects(stat(distFile("/" + path)), { code: "ENOENT" });
   }
+  const redirectFiles = new Set(
+    redirects.map(({ from }) => from.slice(1) + "index.html"),
+  );
   for (const file of htmlFiles) {
     const html = await readFile(distFile("/" + file), "utf8");
-    assert.ok(
-      !tags(html, "meta").some(
+    assert.equal(
+      tags(html, "meta").filter(
         (item) => item["http-equiv"]?.toLowerCase() === "refresh",
-      ),
-      file + ": no meta refresh",
+      ).length,
+      redirectFiles.has(file) ? 1 : 0,
+      file + ": only legacy pages contain a meta refresh",
     );
     assert.doesNotMatch(
       html,
